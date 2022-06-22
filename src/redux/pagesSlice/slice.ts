@@ -11,8 +11,8 @@ const initialState: IPagesSliceState = {
     { title: 'All Updates', imgUrl: `${updatesSvg}` },
     { title: 'Settings & Members', imgUrl: `${settingSvg}` },
   ],
-  privatePages: ['React', 'Redux', 'React + TypeScript', 'Redux + TypeScript'],
-  favoritePages: ['NodeJS', 'Angular', 'Vue 3'],
+  // privatePages: ['React', 'Redux', 'React + TypeScript', 'Redux + TypeScript'],
+  // favoritePages: ['NodeJS', 'Angular', 'Vue 3'],
 }
 
 export const pagesSlice = createSlice({
@@ -21,18 +21,18 @@ export const pagesSlice = createSlice({
   initialState: initialState,
 
   reducers: {
-    setPrivatePage(state, action) {
-      state.privatePages = [...state.privatePages, action.payload]
-    },
-    setFavoritePage(state, action) {
-      const newPage = action.payload
-
-      state.privatePages = state.privatePages.filter(page => page !== newPage)
-      state.favoritePages = [...state.favoritePages, newPage] // !
-    },
+    // setPrivatePage(state, action) {
+    //   state.privatePages = [...state.privatePages, action.payload]
+    // },
+    // setFavoritePage(state, action) {
+    //   const newPage = action.payload
+    //
+    //   state.privatePages = state.privatePages.filter(page => page !== newPage)
+    //   state.favoritePages = [...state.favoritePages, newPage] // !
+    // },
   },
 })
 
-export const { setPrivatePage } = pagesSlice.actions
+// export const { setPrivatePage } = pagesSlice.actions
 
 export default pagesSlice.reducer

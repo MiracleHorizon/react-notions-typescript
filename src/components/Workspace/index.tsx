@@ -7,13 +7,6 @@ import Board from '../Templates/Board'
 import styles from './Workspace.module.scss'
 
 const Workspace: React.FC = () => {
-  // const settingsPopupClickHandler = (e: MouseEvent) => {
-  //   if (!e.composedPath().includes('')) {
-  //
-  //   }
-  // }
-  // onClick={settingsPopupClickHandler}
-
   return (
     <div className={styles.workspace}>
       <Sidebar />
@@ -26,3 +19,10 @@ const Workspace: React.FC = () => {
 }
 
 export default Workspace
+
+// const settingsPopupClickHandler = (e: MouseEvent) => {
+//   if (!e.composedPath().includes('')) {
+//
+//   }
+// }
+// onClick={settingsPopupClickHandler}

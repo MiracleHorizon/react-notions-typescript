@@ -6,15 +6,16 @@ import AddNewPageButton from '../../../shared/Buttons/AddNewPage'
 import Tooltip from '../../../shared/Tooltip'
 
 import { isHoverOnSidebarSelector } from '../../../redux/sidebarSlice/selectors'
-import { privatePagesSelector } from '../../../redux/pagesSlice/selectors'
 import { onToggleList } from '../../../utils/onToggleList'
 
 import sidebarStyles from '../Sidebar.module.scss'
+import { privatePagesSelector } from '../../../redux/workSpaceSlice/selectors'
 
 const PrivatePages: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true)
   const [isTooltipOpen, setIsTooltipOpen] = useState(false)
   const isHovered = useSelector(isHoverOnSidebarSelector)
+
   const privatePages = useSelector(privatePagesSelector)
 
   const togglePrivateList = (): void => onToggleList({ isOpen, setIsOpen })
@@ -37,7 +38,7 @@ const PrivatePages: React.FC = () => {
         <h3>PRIVATE</h3>
       </div>
       {isHovered && <AddNewPageButton />}
-      {isOpen && <SidebarList titles={privatePages} />}
+      {isOpen && <SidebarList pages={privatePages} />}
     </div>
   )
 }

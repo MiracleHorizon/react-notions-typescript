@@ -1,33 +1,40 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
 import SidebarListItem from './ListItem'
 
-import styles from './SidebarList.module.scss'
-import { useDispatch } from 'react-redux'
 import { setActiveItem } from '../../../redux/sidebarSlice/slice'
+import { IWorkspacePage } from '../../../redux/workSpaceSlice/types'
+
+import styles from './SidebarList.module.scss'
 
 interface ISidebarListProps {
-  titles: string[]
+  pages: IWorkspacePage[] | IWorkspacePage
 }
 
-const SidebarList: React.FC<ISidebarListProps> = ({ titles }) => {
+const SidebarList: React.FC<ISidebarListProps> = ({ pages }) => {
   const dispatch = useDispatch()
   const onSelectItem = (i: number): void => {
     dispatch(setActiveItem(i))
   }
 
+  const listItemsHandler = () => {
+    if (!Array.isArray(pages)) return <li>{pages.pageTitle}</li> //!
+
+    return pages.map(({ id, pageTitle }, index) => (
+      <SidebarListItem
+        key={index}
+        title={pageTitle}
+        index={index}
+        id={id}
+        onSelect={onSelectItem}
+      />
+    ))
+  }
+
   return (
     <div className={styles.root}>
-      <ul>
-        {titles.map((title, index) => (
-          <SidebarListItem
-            key={index}
-            title={title}
-            index={index}
-            onSelect={onSelectItem}
-          />
-        ))}
-      </ul>
+      <ul>{listItemsHandler()}</ul>
     </div>
   )
 }

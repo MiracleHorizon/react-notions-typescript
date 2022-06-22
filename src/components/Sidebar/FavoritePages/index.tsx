@@ -3,14 +3,15 @@ import React, { useState } from 'react'
 import sidebarStyles from '../Sidebar.module.scss'
 import SidebarList from '../PagesList'
 import { useSelector } from 'react-redux'
-import { favoritePagesSelector } from '../../../redux/pagesSlice/selectors'
 import { onToggleList } from '../../../utils/onToggleList'
 import Tooltip from '../../../shared/Tooltip'
 import { onToggleTooltip } from '../../../utils/onToggleTooltip'
+import { favoritePagesSelector } from '../../../redux/workSpaceSlice/selectors'
 
 const FavoritePages: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(true)
-  const [isTooltipOpen, setIsTooltipOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState<boolean>(true)
+  const [isTooltipOpen, setIsTooltipOpen] = useState<boolean>(false)
+
   const favoritePages = useSelector(favoritePagesSelector)
 
   const toggleFavoriteList = () => {
@@ -33,7 +34,7 @@ const FavoritePages: React.FC = () => {
         )}
         <h3>FAVORITES</h3>
       </div>
-      {isOpen && <SidebarList titles={favoritePages} />}
+      {isOpen && <SidebarList pages={favoritePages} />}
     </div>
   )
 }

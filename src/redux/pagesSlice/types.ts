@@ -5,8 +5,8 @@ interface IUserBarItem {
 
 interface IPagesSliceState {
   userBarItems: IUserBarItem[]
-  privatePages: string[]
-  favoritePages: string[] | []
+  // privatePages: string[]
+  // favoritePages: string[] | []
 }
 
 export type { IPagesSliceState, IUserBarItem }

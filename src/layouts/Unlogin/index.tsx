@@ -6,7 +6,6 @@ import LoginForm from '../../components/LoginForm'
 const LoginLayout: React.FC = () => {
   return (
     <div className={styles.root}>
-      <h1 className={styles.mainTitle}>Не залогинен</h1>
       <LoginForm />
       <div className={styles.footer}>
         <a href=''>Need help?</a>

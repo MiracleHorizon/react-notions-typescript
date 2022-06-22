@@ -1,0 +1,91 @@
+.board {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+
+  .content {
+    position: relative;
+    width: 90%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .pageIcon {
+    position: absolute;
+    top: -90px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 142px;
+    height: 142px;
+    border-radius: 5px;
+
+    &:hover {
+      background-color: rgba(28, 28, 28, 0.1);
+      transition: background-color 0.2s ease-out;
+    }
+
+    img {
+      width: 125px;
+      height: 125px;
+      z-index: 10;
+      border-radius: 5px;
+    }
+  }
+
+  .commentBlock {
+    margin-top: 40px;
+
+    div {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      padding: 5px;
+      border-radius: 4px;
+      opacity: 0;
+
+      &:hover {
+        background-color: #e8e7e3;
+        transition: background-color 0.15s ease-in-out;
+        opacity: 1;
+      }
+
+      &:active {
+        background-color: #d3d3d3;
+        transition: background-color 0.15s ease-in-out;
+      }
+
+      img {
+        width: 16px;
+        height: 16px;
+        opacity: 0.6;
+        object-fit: cover;
+      }
+
+      span {
+        font-size: 14px;
+        font-weight: 400;
+        margin: 0 5px;
+        color: #73716c;
+      }
+    }
+  }
+
+  .pageTitle {
+    margin-top:5px;
+
+    h1 {
+      font-size: 40px;
+      font-weight: bold;
+      line-height: 48px;
+      color: #37352f;
+    }
+  }
+}

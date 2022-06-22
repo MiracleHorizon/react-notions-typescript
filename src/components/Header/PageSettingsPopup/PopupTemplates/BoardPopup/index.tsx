@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ClassicPagePopup = () => {
+const BoardPagePopup = () => {
   return (
     <div>
       <div>
@@ -36,4 +36,4 @@ const ClassicPagePopup = () => {
   )
 }
 
-export default ClassicPagePopup
+export default BoardPagePopup

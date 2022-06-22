@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useSelector } from 'react-redux'
 
-import ClassicPagePopup from './PopupTemplates/BoardPopup'
+import BoardPagePopup from './PopupTemplates/BoardPopup'
 
 import { pageTemplateSelector } from '../../../redux/pagePopupSlice/selectors'
 import { Templates } from '../../../redux/pagePopupSlice/types'
@@ -10,11 +10,12 @@ import styles from './PageSettingsPopup.module.scss'
 
 const PageSettingsPopup = () => {
   const pageTemplate = useSelector(pageTemplateSelector)
+  const ref = useRef(null)
 
   const pageTemplatedHandler = () => {
     switch (pageTemplate) {
       case Templates.BOARD:
-        return <ClassicPagePopup />
+        return <BoardPagePopup />
       case Templates.TASK_LIST:
         return <></>
       case Templates.TABLE:
@@ -22,7 +23,11 @@ const PageSettingsPopup = () => {
     }
   }
 
-  return <div className={styles.popup}>{pageTemplatedHandler()}</div>
+  return (
+    <div ref={ref} className={styles.popup}>
+      {pageTemplatedHandler()}
+    </div>
+  )
 }
 
 export default PageSettingsPopup

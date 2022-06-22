@@ -8,4 +8,8 @@ const pageTemplateSelector = (state: RootState): string => {
   return state.settingsPopup.template
 }
 
+// const popupRefSelector = (state: RootState) => {
+// return state.settingsPopup.ref
+// }
+
 export { isPopupOpenSelector, pageTemplateSelector }

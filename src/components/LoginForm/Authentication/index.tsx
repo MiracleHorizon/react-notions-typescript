@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import styles from './Authentication.module.scss'
 import notionAppSvg from '../../../assets/img/appImgs/notion.svg'
@@ -9,7 +10,9 @@ const Authentication: React.FC = () => {
   return (
     <div className={styles.root}>
       <div className={styles.titleBlock}>
-        <img src={notionAppSvg} alt='' />
+        <Link to='/'>
+          <img src={notionAppSvg} alt='Notions' />
+        </Link>
         <h2>Welcome to React Notion</h2>
         <p>Log in to sync your content.</p>
       </div>

@@ -1,16 +1,18 @@
 import React from 'react'
+import { Route, Routes } from 'react-router-dom'
 
-import Sidebar from '../../components/Sidebar'
+import HomePage from '../../pages/HomePage'
+import WorkspacePage from '../../pages/WorkspacePage'
+import LoginLayout from '../Unlogin'
 
 const LoggedInLayout: React.FC = () => {
   return (
-    <div>
-      {/*<Header />*/}
-      <Sidebar />
-    </div>
+    <Routes>
+      <Route path='/' element={<HomePage />} />
+      <Route path='/login' element={<LoginLayout />}></Route>
+      <Route path='/workspace' element={<WorkspacePage />} />
+    </Routes>
   )
 }
-
-// <BoardPopup />
 
 export default LoggedInLayout
