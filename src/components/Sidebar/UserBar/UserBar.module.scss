@@ -1,0 +1,14 @@
+.userBar {
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+  user-select: none;
+
+  ul {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    width: 96%;
+  }
+}
