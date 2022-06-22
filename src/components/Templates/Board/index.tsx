@@ -1,12 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
+
 import Banner from '../../../shared/Banner'
 
 const Board: React.FC = () => {
-  return (
-    <div>
-      <Banner />
-    </div>
-  )
+  const [isHasBanner, setBanner] = useState(true)
+
+  return <div>{isHasBanner && <Banner />}</div>
 }
 
 export default Board

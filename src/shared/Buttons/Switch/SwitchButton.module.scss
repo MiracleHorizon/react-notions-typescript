@@ -10,6 +10,11 @@
   border-radius: 3px;
 
   &:hover {
+    background-color: #e8e7e3;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  &:active {
     background-color: #d3d3d3;
     transition: background-color 0.2s ease-in-out;
   }
@@ -24,15 +29,22 @@
 
 .switchBtnOpen {
   cursor: pointer;
-  position: absolute;
+  position: relative;
   top: 10px;
   left: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 25px;
+  height: 25px;
   border-radius: 3px;
 
   &:hover {
+    background-color: #e8e7e3;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  &:active {
     background-color: #d3d3d3;
     transition: background-color 0.2s ease-in-out;
   }

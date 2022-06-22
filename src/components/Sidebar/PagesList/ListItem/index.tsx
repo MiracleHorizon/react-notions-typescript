@@ -16,7 +16,11 @@ const SidebarListItem: React.FC<ISidebarListItemProps> = ({
   onSelect,
 }) => {
   return (
-    <li className={styles.item} onClick={() => onSelect(index)}>
+    <li
+      draggable={true}
+      className={styles.item}
+      onClick={() => onSelect(index)}
+    >
       <img src={arrow} alt='Toggle' className={styles.toggleIcon} />
       <div>
         <div className={styles.icon}>

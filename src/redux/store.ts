@@ -3,11 +3,13 @@ import { useDispatch } from 'react-redux'
 
 import sidebar from './sidebarSlice/slice'
 import pages from './pagesSlice/slice'
+import settingsPopup from './pagePopupSlice/slice'
 
 export const store = configureStore({
   reducer: {
     sidebar,
     pages,
+    settingsPopup,
   },
 })
 

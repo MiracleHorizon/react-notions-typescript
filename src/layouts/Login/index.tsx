@@ -11,6 +11,6 @@ const LoggedInLayout: React.FC = () => {
   )
 }
 
-// <Board />
+// <BoardPopup />
 
 export default LoggedInLayout
