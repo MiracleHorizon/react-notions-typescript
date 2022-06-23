@@ -10,8 +10,10 @@ interface IPopupInputProps {
 
 const ChangePageTitlePopup: React.FC<IPopupInputProps> = ({ value }) => {
   const dispatch = useDispatch()
-  const inputRef = useRef<HTMLInputElement | null>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
+
   // e: React.ChangeEvent<HTMLInputElement>
+
   const onChangeCurrentPageTitle = () => {
     if (!inputRef.current) return null
 
