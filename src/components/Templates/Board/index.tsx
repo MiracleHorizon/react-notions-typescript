@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useSelector } from 'react-redux'
 
-import Banner from '../../../shared/Banner'
+import PageCover from '../../../shared/PageCover'
 import BoardContent from './BoardContent'
+import { currentPageSelector } from '../../../redux/workSpaceSlice/selectors'
+import { CoverColors } from '../../../redux/workSpaceSlice/types'
 import styles from './Board.module.scss'
 
 const Board: React.FC = () => {
-  const [isHasCover, setCover] = useState<boolean>(true)
+  const { isHasCover, cover } = useSelector(currentPageSelector)
 
   return (
     <div className={styles.board}>
-      {isHasCover && <Banner />}
+      {<PageCover cover={isHasCover ? cover : CoverColors.WHITE} />}
       <BoardContent />
     </div>
   )

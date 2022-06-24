@@ -2,10 +2,8 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 
 import SidebarListItem from './ListItem'
-
 import { setActiveItem } from '../../../redux/sidebarSlice/slice'
 import { IWorkspacePage } from '../../../redux/workSpaceSlice/types'
-
 import styles from './SidebarList.module.scss'
 
 interface ISidebarListProps {
@@ -19,12 +17,13 @@ const SidebarList: React.FC<ISidebarListProps> = ({ pages }) => {
   const listItemsHandler = () => {
     if (!Array.isArray(pages)) return <li>{pages.pageTitle}</li> //!
 
-    return pages.map(({ id, pageTitle, pageImg }, index) => (
+    return pages.map(({ id, pageTitle, icon, isHasIcon }, index) => (
       <SidebarListItem
         key={index}
         id={id}
         title={pageTitle}
-        img={pageImg}
+        icon={icon}
+        isHasIcon={isHasIcon}
         index={index}
         onSelect={onSelectItem}
       />

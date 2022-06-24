@@ -12,12 +12,13 @@ import {
   openChangePageTitleModal,
 } from '../../redux/modalsSlice/slice'
 import styles from './Header.module.scss'
+import emptyIcon from '../../assets/img/emptyIcon.svg'
 
 const Header: React.FC = () => {
   const changePageTitleModalRef = useRef<HTMLDivElement>(null)
   const isChangePageTitleModalOpen = useSelector(changePageTitleModalSelector)
   const isSidebarOpen = useSelector(isSidebarOpenSelector)
-  const { pageTitle, pageImg } = useSelector(currentPageSelector)
+  const { pageTitle, icon, isHasIcon } = useSelector(currentPageSelector)
 
   const dispatch = useDispatch()
 
@@ -45,7 +46,7 @@ const Header: React.FC = () => {
       >
         <div ref={changePageTitleModalRef}>
           <div className={styles.pageTitleBlock}>
-            <img src={pageImg} alt='Page Icon' />
+            <img src={isHasIcon ? icon : emptyIcon} alt='Page icon' />
             <span>{pageTitle}</span>
           </div>
           {isChangePageTitleModalOpen && <ChangePageTitleModal />}

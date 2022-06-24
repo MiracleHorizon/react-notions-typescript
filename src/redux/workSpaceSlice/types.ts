@@ -1,7 +1,20 @@
+enum CoverColors {
+  RED = '#eb5757',
+  BLUE = '#1c9ace',
+  YELLOW = '#f9bf52',
+  BEIGE = '#ffefe3',
+  PINK = '#ff388a',
+  WHITE = '#fff',
+}
+
 interface IWorkspacePage {
   id: number
   pageTitle: string
-  pageImg: string
+  icon: string
+  cover: CoverColors
+  isHasIcon: boolean
+  isHasCover: boolean
+  isHasComments: boolean
   isFavorite: boolean
 }
 
@@ -27,3 +40,4 @@ interface IWorkspaceSliceState {
 }
 
 export type { IWorkspaceSliceState, IWorkspacePage }
+export { CoverColors }

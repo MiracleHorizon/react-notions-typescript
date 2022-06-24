@@ -4,17 +4,19 @@ import { useDispatch } from 'react-redux'
 import { setCurrentPage } from '../../../../redux/workSpaceSlice/slice'
 import arrow from '../../../../assets/img/sidebar-arrow.svg'
 import styles from './SidebarListItem.module.scss'
+import emptyIcon from '../../../../assets/img/emptyIcon.svg'
 
 interface ISidebarListItemProps {
   title: string
-  img: string
+  icon: string
   id: number
   index: number
+  isHasIcon: boolean
   onSelect: (i: number) => void
 }
 
 const SidebarListItem: React.FC<ISidebarListItemProps> = props => {
-  const { id, title, img, index, onSelect } = props
+  const { id, title, icon, isHasIcon, index, onSelect } = props
   const dispatch = useDispatch()
 
   const onSelectCurrentPage = (): void => {
@@ -26,7 +28,7 @@ const SidebarListItem: React.FC<ISidebarListItemProps> = props => {
       <img src={arrow} alt='Toggle' className={styles.toggleIcon} />
       <div>
         <div className={styles.icon}>
-          <img src={img} alt='Title Img' />
+          <img src={isHasIcon ? icon : emptyIcon} alt='Page icon' />
         </div>
         <span>{title}</span>
       </div>
