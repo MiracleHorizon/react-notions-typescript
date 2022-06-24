@@ -4,22 +4,19 @@ import { useSelector } from 'react-redux'
 import SidebarList from '../PagesList'
 import AddNewPageButton from '../../../shared/Buttons/AddNewPage'
 import Tooltip from '../../../shared/Tooltip'
-
 import { isHoverOnSidebarSelector } from '../../../redux/sidebarSlice/selectors'
 import { onToggleList } from '../../../utils/onToggleList'
-
-import sidebarStyles from '../Sidebar.module.scss'
 import { privatePagesSelector } from '../../../redux/workSpaceSlice/selectors'
+import sidebarStyles from '../Sidebar.module.scss'
 
 const PrivatePages: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(true)
-  const [isTooltipOpen, setIsTooltipOpen] = useState(false)
-  const isHovered = useSelector(isHoverOnSidebarSelector)
-
+  const [isOpen, setIsOpen] = useState<boolean>(true)
+  const [isTooltipOpen, setIsTooltipOpen] = useState<boolean>(false)
+  const isHovered = useSelector(isHoverOnSidebarSelector) //!
   const privatePages = useSelector(privatePagesSelector)
 
-  const togglePrivateList = (): void => onToggleList({ isOpen, setIsOpen })
-  const toggleTooltip = (): void => setIsTooltipOpen(!isTooltipOpen)
+  const togglePrivateList = () => onToggleList({ isOpen, setIsOpen })
+  const toggleTooltip = () => setIsTooltipOpen(!isTooltipOpen)
 
   return (
     <div className={sidebarStyles.panel}>

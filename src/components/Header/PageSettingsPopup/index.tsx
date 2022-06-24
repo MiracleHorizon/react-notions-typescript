@@ -3,21 +3,21 @@ import { useSelector } from 'react-redux'
 
 import BoardPagePopup from './PopupTemplates/BoardPopup'
 
-import { pageTemplateSelector } from '../../../redux/pagePopupSlice/selectors'
-import { Templates } from '../../../redux/pagePopupSlice/types'
+import { pageTemplateSelector } from '../../../redux/popupsSlice/selectors'
+import { PageTemplates } from '../../../redux/popupsSlice/types'
 
 import styles from './PageSettingsPopup.module.scss'
 
-const PageSettingsPopup = () => {
+const PageSettingsPopup: React.FC = () => {
   const pageTemplate = useSelector(pageTemplateSelector)
 
   const pageTemplatedHandler = () => {
     switch (pageTemplate) {
-      case Templates.BOARD:
+      case PageTemplates.BOARD:
         return <BoardPagePopup />
-      case Templates.TASK_LIST:
+      case PageTemplates.TASK_LIST:
         return <>Task List</>
-      case Templates.TABLE:
+      case PageTemplates.CALENDAR:
         return <>Table</>
     }
   }

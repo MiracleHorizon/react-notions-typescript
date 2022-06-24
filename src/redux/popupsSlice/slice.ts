@@ -1,9 +1,10 @@
-import { IPageSettingsPopupState, Templates } from './types'
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState: IPageSettingsPopupState = {
-  isPopupOpen: false,
-  template: Templates.BOARD,
+import { IAppPopupsState, PageTemplates } from './types'
+
+const initialState: IAppPopupsState = {
+  isPageSettingsPopupOpen: false,
+  template: PageTemplates.BOARD,
 }
 
 export const pageSettingsPopupSlice = createSlice({
@@ -12,11 +13,11 @@ export const pageSettingsPopupSlice = createSlice({
   initialState: initialState,
 
   reducers: {
-    closeSettingsPopup(state) {
-      state.isPopupOpen = false
+    closeSettingsPopup(state): void {
+      state.isPageSettingsPopupOpen = false
     },
     openSettingsPopup(state) {
-      state.isPopupOpen = true
+      state.isPageSettingsPopupOpen = true
     },
   },
 })

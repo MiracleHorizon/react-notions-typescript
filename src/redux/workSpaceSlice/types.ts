@@ -1,6 +1,7 @@
 interface IWorkspacePage {
   id: number
   pageTitle: string
+  pageImg: string
   isFavorite: boolean
 }
 

@@ -2,20 +2,19 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 
 import { setCurrentPage } from '../../../../redux/workSpaceSlice/slice'
-
-import googleSvg from '../../../../assets/img/appImgs/google-logo.png'
 import arrow from '../../../../assets/img/sidebar-arrow.svg'
 import styles from './SidebarListItem.module.scss'
 
 interface ISidebarListItemProps {
   title: string
+  img: string
   id: number
   index: number
   onSelect: (i: number) => void
 }
 
 const SidebarListItem: React.FC<ISidebarListItemProps> = props => {
-  const { title, id, index, onSelect } = props
+  const { id, title, img, index, onSelect } = props
   const dispatch = useDispatch()
 
   const onSelectCurrentPage = (): void => {
@@ -27,7 +26,7 @@ const SidebarListItem: React.FC<ISidebarListItemProps> = props => {
       <img src={arrow} alt='Toggle' className={styles.toggleIcon} />
       <div>
         <div className={styles.icon}>
-          <img src={googleSvg} alt='Title Img' />
+          <img src={img} alt='Title Img' />
         </div>
         <span>{title}</span>
       </div>

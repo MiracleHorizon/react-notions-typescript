@@ -2,7 +2,6 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 import UserBarItem from './UserBarItem'
-
 import { userBarItemsSelector } from '../../../redux/pagesSlice/selectors'
 import styles from './UserBar.module.scss'
 

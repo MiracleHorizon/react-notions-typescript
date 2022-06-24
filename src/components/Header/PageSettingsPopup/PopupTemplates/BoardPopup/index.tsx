@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BoardPagePopup = () => {
+const BoardPagePopup: React.FC = () => {
   return (
     <div>
       <div>
