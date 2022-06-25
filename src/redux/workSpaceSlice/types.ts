@@ -1,3 +1,5 @@
+import { PageTemplates } from '../popupsSlice/types'
+
 enum CoverColors {
   RED = '#eb5757',
   BLUE = '#1c9ace',
@@ -12,6 +14,9 @@ interface IWorkspacePage {
   pageTitle: string
   icon: string
   cover: CoverColors
+  template: PageTemplates
+  isFullWidth: boolean
+  isSmallText: boolean
   isHasIcon: boolean
   isHasCover: boolean
   isHasComments: boolean

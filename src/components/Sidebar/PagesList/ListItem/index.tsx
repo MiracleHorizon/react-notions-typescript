@@ -1,37 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
+import ListItemOptionsButton from '../../../../shared/Buttons/ListItemOptions'
+import ChangeIconTooltip from '../../../../shared/Tooltips/ChangeIcon'
+import { IWorkspacePage } from '../../../../redux/workSpaceSlice/types'
 import { setCurrentPage } from '../../../../redux/workSpaceSlice/slice'
-import arrow from '../../../../assets/img/sidebar-arrow.svg'
 import styles from './SidebarListItem.module.scss'
+import toggleIcon from '../../../../assets/img/sidebar-arrow.svg'
 import emptyIcon from '../../../../assets/img/emptyIcon.svg'
 
 interface ISidebarListItemProps {
-  title: string
-  icon: string
-  id: number
-  index: number
-  isHasIcon: boolean
+  page: IWorkspacePage
+  index: number //!
   onSelect: (i: number) => void
 }
 
 const SidebarListItem: React.FC<ISidebarListItemProps> = props => {
-  const { id, title, icon, isHasIcon, index, onSelect } = props
-  const dispatch = useDispatch()
+  const { id, pageTitle, icon, isHasIcon, isFavorite } = props.page
+  const [isTooltipOpen, setIsTooltipOpen] = useState<boolean>(false)
 
-  const onSelectCurrentPage = (): void => {
-    dispatch(setCurrentPage(id))
-  }
+  const dispatch = useDispatch()
+  const onSelectCurrentPage = () => dispatch(setCurrentPage(id))
+  const onToggleTooltip = () => setIsTooltipOpen(!isTooltipOpen)
 
   return (
     <li draggable={true} className={styles.item} onClick={onSelectCurrentPage}>
-      <img src={arrow} alt='Toggle' className={styles.toggleIcon} />
+      <img src={toggleIcon} alt='Toggle' className={styles.toggleIcon} />
       <div>
-        <div className={styles.icon}>
+        <div
+          className={styles.icon}
+          onMouseEnter={onToggleTooltip}
+          onMouseLeave={onToggleTooltip}
+        >
+          {isTooltipOpen && <ChangeIconTooltip />}
           <img src={isHasIcon ? icon : emptyIcon} alt='Page icon' />
         </div>
-        <span>{title}</span>
+        <span className={styles.pageTitle}>{pageTitle}</span>
       </div>
+      <ListItemOptionsButton
+        title={isFavorite ? 'Remove, rename' : 'Delete, duplicate'}
+      />
     </li>
   )
 }

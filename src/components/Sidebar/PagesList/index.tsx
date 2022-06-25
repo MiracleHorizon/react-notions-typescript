@@ -17,13 +17,10 @@ const SidebarList: React.FC<ISidebarListProps> = ({ pages }) => {
   const listItemsHandler = () => {
     if (!Array.isArray(pages)) return <li>{pages.pageTitle}</li> //!
 
-    return pages.map(({ id, pageTitle, icon, isHasIcon }, index) => (
+    return pages.map((page, index) => (
       <SidebarListItem
-        key={index}
-        id={id}
-        title={pageTitle}
-        icon={icon}
-        isHasIcon={isHasIcon}
+        key={page.id}
+        page={page}
         index={index}
         onSelect={onSelectItem}
       />

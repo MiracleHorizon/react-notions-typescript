@@ -1,0 +1,26 @@
+.tooltip {
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: max-content;
+  padding: 3px 7px;
+  border-radius: 3px;
+  background-color: #1c1c1c;
+  z-index: 1000;
+
+  span {
+    font-size: 12px;
+    margin: 1px 0;
+  }
+}
+
+.title {
+  color: white;
+  font-weight: 600;
+}
+
+.description {
+  color: #767571;
+  font-weight: 600;
+}

@@ -1,0 +1,19 @@
+.bar {
+  padding: 5px 0;
+
+  h5 {
+    font-size: 11px ;
+    color: rgba(55, 53, 47, 0.65);
+    font-weight: 500;
+    line-height: 13px;
+    margin-left: 15px;
+  }
+
+  .fontsBlock {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5px;
+  }
+}

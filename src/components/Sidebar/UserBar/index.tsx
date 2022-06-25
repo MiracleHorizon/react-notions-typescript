@@ -1,18 +1,22 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import UserBarItem from './UserBarItem'
-import { userBarItemsSelector } from '../../../redux/pagesSlice/selectors'
+import OptionItem from '../../OptionsList/OptionItem'
+import { userBarOptionsSelector } from '../../../redux/optionsSlice/selectors'
 import styles from './UserBar.module.scss'
 
 const UserBar: React.FC = () => {
-  const userBarItems = useSelector(userBarItemsSelector)
+  const userBarOptions = useSelector(userBarOptionsSelector)
 
   return (
     <div className={styles.userBar}>
       <ul>
-        {userBarItems.map(({ title, imgUrl }) => (
-          <UserBarItem key={title} title={title} imgUrl={imgUrl} />
+        {userBarOptions.map(option => (
+          <OptionItem
+            key={option.title}
+            option={option}
+            className={'userBar'}
+          />
         ))}
       </ul>
     </div>

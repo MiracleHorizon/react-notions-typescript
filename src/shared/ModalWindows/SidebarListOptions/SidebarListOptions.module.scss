@@ -1,0 +1,15 @@
+.list {
+  width: 245px;
+  max-height: 350px;
+  margin-right: 20px;
+  border-radius: 4px;
+  padding: 4px 0;
+  box-shadow: rgb(15 15 15 / 5%) 0 0 0 1px, rgb(15 15 15 / 10%) 0 3px 6px, rgb(15 15 15 / 20%) 0 9px 24px;;
+  z-index: 10;
+  user-select:none;
+
+  span {
+    color: #37352f;
+    font-weight: 400;
+  }
+}

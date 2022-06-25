@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import PageSettingsPopup from '../PageSettingsPopup'
+import PageSettingsPopup from '../../../shared/ModalWindows/PageSettings'
 import { currentPageSelector } from '../../../redux/workSpaceSlice/selectors'
 import { pageSettingsPopupSelector } from '../../../redux/popupsSlice/selectors'
 import { toggleFavorite } from '../../../redux/workSpaceSlice/slice'

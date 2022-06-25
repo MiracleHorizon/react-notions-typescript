@@ -1,93 +1,9 @@
 .content {
-  position: relative;
-  top: 40px;
-  width: 90%;
   display: flex;
   align-items: flex-start;
-  flex-direction: column;
-  padding: 20px;
-
-  .pageIcon {
-    position: absolute;
-    top: -120px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 142px;
-    height: 142px;
-    border-radius: 4px;
-    user-select: none;
-
-    &:hover {
-      background-color: rgba(28, 28, 28, 0.1);
-      transition: background-color 0.2s ease-out;
-    }
-
-    img {
-      width: 125px;
-      height: 125px;
-      z-index: 10;
-      border-radius: 4px;
-    }
-  }
-
-  .optionsBlock {
-    display: flex;
-    flex-direction: row;
-    opacity: 0;
-    user-select: none;
-
-    &:hover {
-      opacity: 1;
-      transition: opacity 50ms ease-in-out;
-    }
-
-    div {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: row;
-      margin: 0 2px;
-      padding: 4px;
-      border-radius: 3px;
-
-      &:hover {
-        background-color: #e8e7e3;
-        transition: background-color 0.15s ease-in-out;
-      }
-
-      &:active {
-        background-color: #d3d3d3;
-        transition: background-color 0.15s ease-in-out;
-      }
-
-      img {
-        width: 16px;
-        height: 16px;
-        opacity: 0.5;
-        object-fit: cover;
-      }
-
-      span {
-        font-size: 14px;
-        font-weight: 400;
-        margin: 0 5px;
-        color: #84827f;
-      }
-    }
-  }
-
-  .pageTitle {
-    margin-top:5px;
-
-    h1 {
-      font-size: 40px;
-      font-weight: bold;
-      line-height: 48px;
-      color: #37352f;
-    }
-  }
+  flex-direction: row;
+  //min-height: calc(100vh - 250px - 120px - 45px); //!
+  height: 500px;
+  min-width: 70%;
+  max-width: 100%;
 }
-

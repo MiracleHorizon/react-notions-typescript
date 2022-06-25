@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
 
 import sidebar from './sidebarSlice/slice'
-import pages from './pagesSlice/slice'
+import options from './optionsSlice/slice'
 import popups from './popupsSlice/slice'
 import modals from './modalsSlice/slice'
 import workspace from './workSpaceSlice/slice'
@@ -10,7 +10,7 @@ import workspace from './workSpaceSlice/slice'
 export const store = configureStore({
   reducer: {
     sidebar,
-    pages,
+    options,
     popups,
     modals,
     workspace,

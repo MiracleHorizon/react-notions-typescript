@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { CoverColors, IWorkspaceSliceState } from './types'
 import vue3Svg from '../../assets/img/technologies/vue3.svg'
 import reactSvg from '../../assets/img/technologies/react.svg'
+import { PageTemplates } from '../popupsSlice/types'
 
 const initialState: IWorkspaceSliceState = {
   pages: [
@@ -11,6 +12,9 @@ const initialState: IWorkspaceSliceState = {
       pageTitle: 'React + TypeScript',
       cover: CoverColors.YELLOW,
       icon: '',
+      isFullWidth: true,
+      isSmallText: false,
+      template: PageTemplates.BOARD,
       isHasCover: true,
       isHasIcon: false,
       isHasComments: false,
@@ -21,6 +25,9 @@ const initialState: IWorkspaceSliceState = {
       pageTitle: 'Redux + TypeScript',
       cover: CoverColors.WHITE,
       icon: `${reactSvg}`,
+      template: PageTemplates.BOARD,
+      isFullWidth: true,
+      isSmallText: false,
       isHasIcon: true,
       isHasCover: false,
       isHasComments: false,
@@ -29,6 +36,9 @@ const initialState: IWorkspaceSliceState = {
     {
       id: 3,
       pageTitle: 'React',
+      template: PageTemplates.BOARD,
+      isFullWidth: true,
+      isSmallText: false,
       cover: CoverColors.YELLOW,
       icon: `${vue3Svg}`,
       isHasIcon: true,
@@ -39,6 +49,9 @@ const initialState: IWorkspaceSliceState = {
     {
       id: 4,
       pageTitle: 'Redux',
+      template: PageTemplates.BOARD,
+      isFullWidth: true,
+      isSmallText: false,
       cover: CoverColors.WHITE,
       icon: `${reactSvg}`,
       isHasCover: false,
@@ -50,6 +63,9 @@ const initialState: IWorkspaceSliceState = {
     {
       id: 5,
       pageTitle: 'NodeJS',
+      template: PageTemplates.BOARD,
+      isFullWidth: true,
+      isSmallText: false,
       cover: CoverColors.PINK,
       icon: `${vue3Svg}`,
       isHasCover: true,
@@ -63,6 +79,9 @@ const initialState: IWorkspaceSliceState = {
       pageTitle: 'Angular',
       cover: CoverColors.BEIGE,
       icon: `${reactSvg}`,
+      template: PageTemplates.BOARD,
+      isFullWidth: true,
+      isSmallText: false,
       isHasCover: true,
       isHasComments: false,
 
@@ -75,8 +94,10 @@ const initialState: IWorkspaceSliceState = {
       cover: CoverColors.RED,
       icon: `${vue3Svg}`,
       isHasCover: true,
+      template: PageTemplates.TASK_LIST,
+      isFullWidth: true,
+      isSmallText: false,
       isHasComments: false,
-
       isHasIcon: true,
       isFavorite: true,
     },
@@ -86,6 +107,9 @@ const initialState: IWorkspaceSliceState = {
     pageTitle: 'Vue 3',
     cover: CoverColors.BLUE,
     icon: `${reactSvg}`,
+    isFullWidth: true,
+    isSmallText: false,
+    template: PageTemplates.TASK_LIST,
     isHasCover: true,
     isHasComments: false,
     isHasIcon: true,
@@ -149,6 +173,20 @@ export const workSpaceSlice = createSlice({
       state.currentPage.isFavorite = !state.currentPage.isFavorite
       page.isFavorite = !page.isFavorite
     },
+    toggleFullWidth(state, action) {
+      const page = state.pages.find(page => page.id === action.payload)
+
+      if (!page) return
+      state.currentPage.isFullWidth = !state.currentPage.isFullWidth
+      page.isFullWidth = !page.isFullWidth
+    },
+    toggleSmallText(state, action) {
+      const page = state.pages.find(page => page.id === action.payload)
+
+      if (!page) return
+      state.currentPage.isSmallText = !state.currentPage.isSmallText
+      page.isSmallText = !page.isSmallText
+    },
   },
 })
 
@@ -160,6 +198,8 @@ export const {
   removeCover,
   removeIcon,
   toggleFavorite,
+  toggleFullWidth,
+  toggleSmallText,
 } = workSpaceSlice.actions
 
 export default workSpaceSlice.reducer
