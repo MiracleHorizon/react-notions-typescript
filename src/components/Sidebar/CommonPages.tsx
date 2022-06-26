@@ -9,20 +9,20 @@ import { isHoverOnSidebarSelector } from '../../redux/sidebarSlice/selectors'
 import { privatePagesSelector } from '../../redux/workSpaceSlice/selectors'
 import sidebarStyles from './Sidebar.module.scss'
 
-const PrivatePages: React.FC = () => {
+const CommonPages: React.FC = () => {
   const [isListOpen, setIsListOpen] = useState<boolean>(true)
   const [isTooltipOpen, setIsTooltipOpen] = useState<boolean>(false)
   const isHovered = useSelector(isHoverOnSidebarSelector) //!
   const privatePages = useSelector(privatePagesSelector)
 
-  const togglePrivateList = () => setIsListOpen(!isListOpen)
+  const toggleCommonList = () => setIsListOpen(!isListOpen)
   const toggleTooltip = () => setIsTooltipOpen(!isTooltipOpen)
 
   return (
     <div className={sidebarStyles.panel}>
       <ListTitle
-        title={'Private'}
-        toggleList={togglePrivateList}
+        title={'Common'}
+        toggleList={toggleCommonList}
         toggleTooltip={toggleTooltip}
       />
       {isHovered && <AddNewPageButton />}
@@ -30,11 +30,11 @@ const PrivatePages: React.FC = () => {
       {isTooltipOpen && (
         <SidebarListTooltip
           isOpen={isListOpen}
-          description={'Only you can access these pages.'}
+          description={'Your regular pages.'}
         />
       )}
     </div>
   )
 }
 
-export default PrivatePages
+export default CommonPages

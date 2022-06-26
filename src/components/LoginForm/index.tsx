@@ -4,6 +4,7 @@ import Authentication from './Authentication'
 import ClearInput from '../../shared/Buttons/ClearInput'
 
 import styles from './LoginForm.module.scss'
+import Separator from '../../shared/Separator'
 
 const LoginForm: React.FC = () => {
   const [emailValue, setEmailValue] = useState<string>('')
@@ -17,7 +18,7 @@ const LoginForm: React.FC = () => {
   return (
     <div className={styles.root}>
       <Authentication />
-      <div className={styles.separator} />
+      <Separator />
       <form>
         <label>
           Email

@@ -1,6 +1,6 @@
 import React from 'react'
 import ToggleOptionItem from './ToggleOptionItem'
-import { ToggleOption } from '../../utils/toggleOptionsHandler'
+import { ToggleOption } from '../../utils/helpers/toggleOptionsHandler'
 
 interface ToggleOptionsProps {
   options: ToggleOption[]

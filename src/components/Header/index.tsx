@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import SwitchOpenButton from '../../shared/Buttons/Switch/SwitchOpen'
+import SwitchOpenButton from '../../shared/Buttons/SwitchSidebar/SwitchOpen'
 import ActionButtons from './ActionButtons'
 import ChangePageTitleModal from '../../shared/ModalWindows/ChangePageTitle'
 import { isSidebarOpenSelector } from '../../redux/sidebarSlice/selectors'

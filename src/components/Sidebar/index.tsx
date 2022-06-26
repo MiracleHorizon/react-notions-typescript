@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import FavoritePages from './FavoritePages'
-import PrivatePages from './PrivatePages'
+import CommonPages from './CommonPages'
 import NewPageBar from './NewPageBar'
 import SwitcherBar from './SwitcherBar'
 import UserBar from './UserBar'
@@ -14,24 +14,24 @@ const Sidebar: React.FC = () => {
   const isOpen = useSelector(isSidebarOpenSelector)
 
   const dispatch = useDispatch()
-  const onEnterSidebar = () => dispatch(setIsHover())
+  const onEnterSidebar = () => dispatch(setIsHover()) //!
   const onLeaveSidebar = () => dispatch(setIsNotHover())
 
   return (
     <React.Fragment>
-      {isOpen && (
-        <div
-          className={styles.sidebar}
-          onMouseEnter={onEnterSidebar}
-          onMouseLeave={onLeaveSidebar}
-        >
-          <SwitcherBar />
-          <UserBar />
-          <FavoritePages />
-          <PrivatePages />
-          <NewPageBar />
-        </div>
-      )}
+      <div
+        className={
+          isOpen ? styles.sidebar : `${styles.sidebar} ${styles.close}`
+        }
+        onMouseEnter={onEnterSidebar}
+        onMouseLeave={onLeaveSidebar}
+      >
+        <SwitcherBar />
+        <UserBar />
+        <FavoritePages />
+        <CommonPages />
+        <NewPageBar />
+      </div>
     </React.Fragment>
   )
 }

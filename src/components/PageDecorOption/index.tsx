@@ -9,7 +9,7 @@ const PageDecorOption: React.FC<IPageDecorOptionsProps> = props => {
   const { iconImg, optionsTitle } = props
 
   return (
-    <div>
+    <div role='button'>
       <img src={iconImg} alt={`Add ${optionsTitle}`} />
       <span>Add {optionsTitle}</span>
     </div>

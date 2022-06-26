@@ -1,6 +1,8 @@
-import styles from '../components/OptionsList/OptionItem/OptionItem.module.scss'
+import styles from '../../components/OptionsList/OptionItem/OptionItem.module.scss'
 
-const classNameHandler = (className: string = 'workspace'): string => {
+const optionItemClassNameHandler = (
+  className: string = 'workspace'
+): string => {
   switch (className) {
     case 'userBar':
       return `${styles.item} ${styles.userBar}`
@@ -11,4 +13,4 @@ const classNameHandler = (className: string = 'workspace'): string => {
   }
 }
 
-export default classNameHandler
+export default optionItemClassNameHandler

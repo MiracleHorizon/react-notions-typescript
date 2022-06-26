@@ -1,23 +1,16 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import SidebarListOptions from '../../../../shared/ModalWindows/SidebarListOptions'
-import PageSettings from '../../../../shared/ModalWindows/PageSettings'
-import {
-  favoritePageOptionsSelector,
-  privatePageOptionsSelector,
-} from '../../../../redux/optionsSlice/selectors'
+import SwitchCoverModal from '../../../../shared/ModalWindows/SwitchCover'
+import { isModalOpenSelector } from '../../../../redux/switchCoverSlice/selectors'
 import styles from './BoardContent.module.scss'
 
 const BoardContent: React.FC = () => {
-  const favoritePageOptions = useSelector(favoritePageOptionsSelector)
-  const privatePageOptions = useSelector(privatePageOptionsSelector)
+  const isSwitchCoverModalOpen = useSelector(isModalOpenSelector)
 
   return (
     <div className={styles.content}>
-      <SidebarListOptions options={favoritePageOptions} />
-      <SidebarListOptions options={privatePageOptions} />
-      <PageSettings />
+      {isSwitchCoverModalOpen && <SwitchCoverModal />}
     </div>
   )
 }

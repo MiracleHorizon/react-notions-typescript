@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { ToggleOption } from '../../../utils/toggleOptionsHandler'
+import { ToggleOption } from '../../../utils/helpers/toggleOptionsHandler'
 import styles from './ToggleOptionItem.module.scss'
 
 const ToggleOptionItem: React.FC<ToggleOption> = option => {

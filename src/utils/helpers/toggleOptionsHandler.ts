@@ -1,5 +1,8 @@
 import { AnyAction } from '@reduxjs/toolkit'
-import { toggleFullWidth, toggleSmallText } from '../redux/workSpaceSlice/slice'
+import {
+  toggleFullWidth,
+  toggleSmallText,
+} from '../../redux/workSpaceSlice/slice'
 
 interface ToggleOption {
   id: number

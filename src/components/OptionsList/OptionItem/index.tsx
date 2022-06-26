@@ -1,6 +1,6 @@
 import React from 'react'
 import { IOptionItem } from '../../../redux/optionsSlice/types'
-import classNameHandler from '../../../utils/optionItemClassNameHandler'
+import classNameHandler from '../../../utils/helpers/optionItemClassNameHandler'
 
 interface OptionItemProps {
   option: IOptionItem

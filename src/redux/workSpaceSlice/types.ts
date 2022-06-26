@@ -6,7 +6,10 @@ enum CoverColors {
   YELLOW = '#f9bf52',
   BEIGE = '#ffefe3',
   PINK = '#ff388a',
-  WHITE = '#fff',
+  WHITE = '#eaeaea',
+  PURPLE = '#E1D3F8',
+  GREEN = '#CCE7E1',
+  ORANGE = '#FDDFCC',
 }
 
 interface IWorkspacePage {
@@ -15,8 +18,8 @@ interface IWorkspacePage {
   icon: string
   cover: CoverColors
   template: PageTemplates
-  isFullWidth: boolean
   isSmallText: boolean
+  isFullWidth: boolean
   isHasIcon: boolean
   isHasCover: boolean
   isHasComments: boolean

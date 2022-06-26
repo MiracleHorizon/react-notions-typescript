@@ -17,12 +17,12 @@ import optionsSvg from '../../../assets/img/three-dots.svg'
 
 const ActionButtons: React.FC = () => {
   const [isPageFavorite, setIsPageFavorite] = useState<boolean>(false)
-  const isPageSettingsPopupOpen = useSelector(pageSettingsPopupSelector)
   const pageOptionsRef = useRef<HTMLDivElement>(null)
   const currentPage = useSelector(currentPageSelector)
+  const isPageSettingsPopupOpen = useSelector(pageSettingsPopupSelector)
 
   const dispatch = useDispatch()
-  const togglePopup = () => dispatch(openSettingsPopup())
+  const onOpenSettingsModal = () => dispatch(openSettingsPopup())
   const toggleIsFavorite = () => dispatch(toggleFavorite(currentPage?.id))
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const ActionButtons: React.FC = () => {
     return () => {
       document.body.removeEventListener('click', popupClickHandler)
     }
-  })
+  }, [dispatch])
 
   return (
     <div className={styles.actionButtons}>
@@ -53,7 +53,7 @@ const ActionButtons: React.FC = () => {
       <div className={styles.actionButton} onClick={toggleIsFavorite}>
         <img src={isPageFavorite ? favoriteStarSvg : starSvg} alt='Favorites' />
       </div>
-      <div ref={pageOptionsRef} onClick={togglePopup}>
+      <div ref={pageOptionsRef} onClick={onOpenSettingsModal}>
         <div className={styles.actionButton}>
           <img src={optionsSvg} alt='Options' />
         </div>
