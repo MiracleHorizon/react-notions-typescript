@@ -1,18 +1,16 @@
 import React, { useEffect, useRef } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import styles from './PageCover.module.scss'
 import {
   setIsModalClose,
   setIsModalOpen,
 } from '../../redux/switchCoverSlice/slice'
+import { currentPageSelector } from '../../redux/workSpaceSlice/selectors'
 
-interface IPageCoverProps {
-  cover: string
-}
-
-const PageCover: React.FC<IPageCoverProps> = ({ cover }) => {
+const PageCover: React.FC = () => {
   const modalRef = useRef<HTMLDivElement>(null)
+  const { cover } = useSelector(currentPageSelector)
 
   const dispatch = useDispatch()
   const onOpenSwitchCoverModal = () => dispatch(setIsModalOpen())

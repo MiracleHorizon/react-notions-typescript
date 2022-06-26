@@ -1,5 +1,6 @@
 import React from 'react'
 
+import CoverGalleryItem from './CoverGalleryItem'
 import { CoverColors } from '../../../redux/workSpaceSlice/types'
 import styles from './CoversGalery.module.scss'
 
@@ -14,9 +15,7 @@ const CoversGallery: React.FC<CoverGalleryProps> = ({ title, covers }) => {
       <div className={styles.title}>{title}</div>
       <div className={styles.covers}>
         {covers.map(cover => (
-          <div className={styles.cover} key={cover}>
-            <div style={{ backgroundColor: cover }} />
-          </div>
+          <CoverGalleryItem key={cover} cover={cover} />
         ))}
       </div>
     </div>

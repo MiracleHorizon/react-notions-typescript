@@ -30,9 +30,6 @@ export const switchCoverSlice = createSlice({
     setCategory(state, action) {
       state.selectedCategory = action.payload
     },
-    setCover(state, action) {
-      state.selectedCover = action.payload
-    },
     setIsModalOpen(state) {
       state.isModalOpen = true
     },
@@ -42,7 +39,7 @@ export const switchCoverSlice = createSlice({
   },
 })
 
-export const { setCategory, setCover, setIsModalOpen, setIsModalClose } =
+export const { setCategory, setIsModalOpen, setIsModalClose } =
   switchCoverSlice.actions
 
 export default switchCoverSlice.reducer

@@ -145,12 +145,14 @@ export const workSpaceSlice = createSlice({
       page.icon = icon
     },
     setPageCover(state, action) {
-      const { cover, pageId } = action.payload
-      const page = state.pages.find(page => page.id === pageId)
+      const { cover, id } = action.payload
+      const page = state.pages.find(page => page.id === id)
 
       if (!page) return
       page.isHasCover = true
       page.cover = cover
+      state.currentPage.isHasCover = true
+      state.currentPage.cover = cover
     },
     removeIcon(state, action) {
       const page = state.pages.find(page => page.id === action.payload)
@@ -165,6 +167,8 @@ export const workSpaceSlice = createSlice({
       if (!page) return
       page.isHasCover = false
       page.cover = CoverColors.WHITE
+      state.currentPage.cover = CoverColors.WHITE
+      state.currentPage.isHasCover = false
     },
     toggleFavorite(state, action) {
       const page = state.pages.find(page => page.id === action.payload)
