@@ -1,4 +1,4 @@
-import styles from '../../components/Templates/Board/Board.module.scss'
+import styles from '../../components/PageTemplates/Board/Board.module.scss'
 
 interface Params {
   isSmallText: boolean

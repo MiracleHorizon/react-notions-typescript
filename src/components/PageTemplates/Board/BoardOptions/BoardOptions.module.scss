@@ -21,13 +21,12 @@
 
     &:hover {
       background-color: rgba(28, 28, 28, 0.1);
-      transition: background-color 0.2s ease-out;
+      transition: background-color 0.1s ease-out;
     }
 
     img {
       width: 125px;
       height: 125px;
-      z-index: 10;
       border-radius: 4px;
     }
   }

@@ -2,7 +2,9 @@
   display: inline-flex;
   width: 100%;
   padding: 0 8px;
+  border-radius: 4px 4px 0 0;
   box-shadow: rgb(55 53 47 / 9%) 0px -1px 0px inset;
+  background: white;
 
   .removeBtnBlock {
     display: flex;

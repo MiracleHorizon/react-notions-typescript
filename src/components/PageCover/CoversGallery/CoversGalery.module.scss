@@ -46,6 +46,10 @@
         border-radius: 3px;
         object-position: center 60%;
         background-color: pink;
+
+        &:hover {
+          opacity: 0.9;
+        }
       }
     }
   }

@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import SwitchCoverNavbarItem from './NavbarItem'
 import { categoriesSelector } from '../../../redux/switchCoverSlice/selectors'
-import styles from './Navbar.module.scss'
 import { currentPageSelector } from '../../../redux/workSpaceSlice/selectors'
-import { removeCover } from '../../../redux/workSpaceSlice/slice'
 import { setIsModalClose } from '../../../redux/switchCoverSlice/slice'
+import { removeCover } from '../../../redux/workSpaceSlice/slice'
+import styles from './Navbar.module.scss'
 
 const SwitchCoverNavbar: React.FC = () => {
   const categories = useSelector(categoriesSelector)

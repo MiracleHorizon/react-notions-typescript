@@ -12,6 +12,8 @@ import pageHistorySvg from '../../assets/img/optionsImgs/pageHistory.svg'
 import lockPageSvg from '../../assets/img/optionsImgs/lockPage.svg'
 import unlockPageSvg from '../../assets/img/optionsImgs/unlockPage.svg'
 import customizePage from '../../assets/img/optionsImgs/customizePage.svg'
+import { useSelector } from 'react-redux'
+import { currentPageSelector } from '../workSpaceSlice/selectors'
 
 const isPageLock = false //!
 
@@ -38,6 +40,7 @@ const PAGE_FONTS: IPageFont[] = [
   { title: 'Serif', tooltipTitle: 'Good for publishing' },
   { title: 'Mono', tooltipTitle: 'Good for drafting and notes' },
 ]
+
 const PAGE_CUSTOMIZE_OPTIONS: IOptionItem[] = [
   {
     title: 'Customize page',
@@ -45,13 +48,13 @@ const PAGE_CUSTOMIZE_OPTIONS: IOptionItem[] = [
   },
   { title: 'Lock page', imgUrl: `${isPageLock ? lockPageSvg : unlockPageSvg}` },
 ]
-const PAGE_SHARE_OPTIONS: IOptionItem[] = [
-  { title: 'Add to Favorites', imgUrl: `${addFavorite}` },
-  { title: 'Copy link', imgUrl: `${copyLinkSvg}` },
-]
 const PAGE_CHANGES_OPTIONS: IOptionItem[] = [
   { title: 'Page history', imgUrl: `${pageHistorySvg}` },
   { title: 'Delete', imgUrl: `${trashSvg}` },
+]
+const PAGE_SHARE_OPTIONS: IOptionItem[] = [
+  { title: 'Add to Favorites', imgUrl: `${addFavorite}` },
+  { title: 'Copy link', imgUrl: `${copyLinkSvg}` },
 ]
 
 const BOARD_PAGE_OPTIONS: IPageSettingsOptions = {
@@ -63,7 +66,6 @@ const TASK_LIST_PAGE_OPTIONS: IPageSettingsOptions = {
   pageShareOptions: PAGE_SHARE_OPTIONS,
   pageChangesOptions: PAGE_CHANGES_OPTIONS,
 }
-
 // const TABLE_PAGE_OPTIONS: IPageSettingsOptions = []
 
 export {
