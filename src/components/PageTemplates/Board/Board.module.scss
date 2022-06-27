@@ -15,13 +15,13 @@
 }
 
 .shortWidth {
-  width: 60%;
-  transition: width 0.5s ease-out;
+  width: 50%;
+  transition: width 0.55s ease-in-out;
 }
 
 .fullWidth {
   width: 85%;
-  transition: width 0.5s ease-out;
+  transition: width 0.55s ease-in-out;
 }
 
 .smallText {}

@@ -16,6 +16,10 @@
     line-height: 1.2;
     border-radius: 3px;
 
+    span {
+      color: #37352f;
+    }
+
     &:hover {
       background-color: rgba(55, 53, 47, 0.08);
       transition: background-color 0.1s ease-out;
