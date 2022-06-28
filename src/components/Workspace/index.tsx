@@ -24,15 +24,15 @@ const Workspace: React.FC = () => {
   }
 
   return (
-    <Suspense fallback={<h1>Loading...</h1>}>
-      <div className={styles.workspace}>
+    <div className={styles.workspace}>
+      <Suspense fallback={<h1>Loading...</h1>}>
         <Sidebar />
         <div className={styles.content}>
           <Header />
           {pageTemplateHandler()}
         </div>
-      </div>
-    </Suspense>
+      </Suspense>
+    </div>
   )
 }
 

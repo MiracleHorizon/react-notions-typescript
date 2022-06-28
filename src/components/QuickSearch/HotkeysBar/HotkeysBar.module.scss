@@ -7,8 +7,10 @@
   box-shadow: rgb(55 53 47 / 9%) 0 -1px 0;
   user-select: none;
 
-  ul {
-    display: inline-flex;
+  .list {
+    display: flex;
+    flex-direction: row;
+    justify-content:  flex-start;
 
     li {
       display: inline-flex;

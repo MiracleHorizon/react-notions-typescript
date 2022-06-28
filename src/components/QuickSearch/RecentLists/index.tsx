@@ -1,66 +1,34 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import { useSelector } from 'react-redux'
 
-import { RecentList } from '../../../redux/recentSearchSlice/types'
-import styles from './RecentList.module.scss'
-import RecentPageItem from './RecentPageItem'
-import RecentSearchesItem from './RecentSearchesItem'
-import { useDispatch } from 'react-redux'
+import RecentPagesList from './RecentPagesList'
+import RecentSearchesList from './RecentSearchesList'
+import HotkeysBar from '../HotkeysBar'
 import {
-  clearPagesList,
-  clearSearchesList,
-} from '../../../redux/recentSearchSlice/slice'
+  recentPagesSelector,
+  recentSearchesSelector,
+} from '../../../redux/recentSearchSlice/selectors'
+import styles from '../QuickSearch.module.scss'
 
-interface SearchListProps {
-  listTitle: string
-  list: RecentList
-}
+const RecentLists: React.FC = () => {
+  const recentPages = useSelector(recentPagesSelector)
+  const recentSearches = useSelector(recentSearchesSelector)
 
-interface RecentItemProps {
-  title: string
-  img?: string
-}
+  const recentListHandler = (): JSX.Element | null => {
+    if (!(recentPages.length > 0 || recentSearches.length > 0)) return null
 
-const RecentSearchList: React.FC<SearchListProps> = ({ listTitle, list }) => {
-  // const [activeItem, setActiveItem] = useState()|
-  const [recentList, setRecentList] = useState<RecentList>([])
-
-  const dispatch = useDispatch()
-  const onClearList = (): void => {
-    listTitle === 'pages'
-      ? dispatch(clearPagesList())
-      : dispatch(clearSearchesList())
+    return <HotkeysBar />
   }
-
-  useEffect(() => {
-    setRecentList(list)
-  }, [list])
 
   return (
     <React.Fragment>
-      {recentList.length > 0 && (
-        <div className={styles.list}>
-          <div className={styles.titleBlock}>
-            <div className={styles.title}>
-              <span>Recent {listTitle}</span>
-            </div>
-            <div className={styles.clearBtn} onClick={onClearList}>
-              <span>Clear</span>
-            </div>
-          </div>
-          <ul>
-            {listTitle === 'pages'
-              ? recentList.map(({ title, img }) => (
-                  <RecentPageItem key={title} title={title} img={img} />
-                ))
-              : recentList.map(({ title }) => (
-                  <RecentSearchesItem key={title} title={title} />
-                ))}
-          </ul>
-        </div>
-      )}
+      <main className={styles.recent}>
+        <RecentPagesList listTitle='pages' list={recentPages} />
+        <RecentSearchesList listTitle='searches' list={recentSearches} />
+      </main>
+      {recentListHandler()}
     </React.Fragment>
   )
 }
 
-export default RecentSearchList
-export type { RecentItemProps }
+export default RecentLists

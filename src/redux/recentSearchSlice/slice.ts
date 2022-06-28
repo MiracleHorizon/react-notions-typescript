@@ -25,17 +25,7 @@ const initialState: RecentSearchState = {
       img: reactSvg,
     },
   ],
-  searches: [
-    {
-      title: 'zxc',
-    },
-    {
-      title: 'cxz',
-    },
-    {
-      title: 'wqe',
-    },
-  ],
+  searches: [],
 }
 
 export const recentSearchSlice = createSlice({
@@ -44,6 +34,12 @@ export const recentSearchSlice = createSlice({
   initialState: initialState,
 
   reducers: {
+    setSearchesValue(state, action) {
+      if (state.searches.length >= 3) state.searches.shift()
+      if (state.searches.includes(action.payload)) return
+
+      state.searches.push(action.payload)
+    },
     clearPagesList(state) {
       state.pages = []
     },
@@ -53,6 +49,7 @@ export const recentSearchSlice = createSlice({
   },
 })
 
-export const { clearPagesList, clearSearchesList } = recentSearchSlice.actions
+export const { setSearchesValue, clearPagesList, clearSearchesList } =
+  recentSearchSlice.actions
 
 export default recentSearchSlice.reducer

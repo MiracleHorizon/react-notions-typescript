@@ -1,5 +1,8 @@
-import React, { ChangeEvent, Dispatch, SetStateAction } from 'react'
+import React, { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react'
+import { useDispatch } from 'react-redux'
 
+import { setSearchesValue } from '../../../redux/recentSearchSlice/slice'
+import { closeQuickSearchModal } from '../../../redux/modalsSlice/slice'
 import { ACCOUNT_NAME } from '../../../utils/accountName'
 import styles from './SearchForm.module.scss'
 import searchSvg from '../../../assets/img/search.svg'
@@ -13,13 +16,21 @@ interface SearchFormProps {
 const QuickSearchForm: React.FC<SearchFormProps> = props => {
   const { inputValue, setInputValue } = props
 
+  const dispatch = useDispatch()
   const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>): void => {
     setInputValue(e.target.value)
   }
   const onClearInputValue = (): void => setInputValue('')
+  const onSubmitForm = (e: FormEvent): void => {
+    e.preventDefault()
+
+    dispatch(setSearchesValue(inputValue))
+    dispatch(closeQuickSearchModal())
+    setInputValue('')
+  }
 
   return (
-    <div className={styles.searchBlock}>
+    <form className={styles.searchBlock} onSubmit={onSubmitForm}>
       <div className={styles.searchImg}>
         <img src={searchSvg} alt='Search' />
       </div>
@@ -34,7 +45,7 @@ const QuickSearchForm: React.FC<SearchFormProps> = props => {
           <img src={clearInputSvg} alt='Clear' onClick={onClearInputValue} />
         </div>
       )}
-    </div>
+    </form>
   )
 }
 

@@ -29,6 +29,10 @@
     text-overflow: ellipsis;
   }
 
+  img {
+    user-select: none;
+  }
+
   .searchImg {
     position: absolute;
     top: 15px;

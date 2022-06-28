@@ -3,16 +3,9 @@ interface RecentPageItem {
   img: string
 }
 
-interface RecentSearchesItem {
-  title: string
-  img?: string
-}
-
 interface RecentSearchState {
   pages: RecentPageItem[]
-  searches: RecentSearchesItem[]
+  searches: string[]
 }
 
-type RecentList = RecentPageItem[] | RecentSearchesItem[]
-
-export type { RecentSearchState, RecentList }
+export type { RecentSearchState }

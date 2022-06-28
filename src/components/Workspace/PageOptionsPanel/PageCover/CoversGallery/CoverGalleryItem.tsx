@@ -1,10 +1,10 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { setPageCover } from '../../../redux/workSpaceSlice/slice'
-import { currentPageSelector } from '../../../redux/workSpaceSlice/selectors'
+import { setPageCover } from '../../../../../redux/workSpaceSlice/slice'
+import { currentPageSelector } from '../../../../../redux/workSpaceSlice/selectors'
+import { setIsCoverModalClose } from '../../../../../redux/pageDecorationSlice/slice'
 import styles from './CoversGalery.module.scss'
-import { setIsModalClose } from '../../../redux/switchCoverSlice/slice'
 
 interface CoverGalleryItemProps {
   cover: string
@@ -16,7 +16,7 @@ const CoverGalleryItem: React.FC<CoverGalleryItemProps> = ({ cover }) => {
   const dispatch = useDispatch()
   const onSelectPageCover = (): void => {
     dispatch(setPageCover({ cover, id }))
-    dispatch(setIsModalClose())
+    dispatch(setIsCoverModalClose())
   }
 
   return (

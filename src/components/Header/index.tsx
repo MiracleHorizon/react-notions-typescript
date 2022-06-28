@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useOnClickOutside } from 'usehooks-ts'
 
-import SwitchOpenButton from '../../shared/Buttons/SwitchSidebar/SwitchOpen'
 import ActionButtons from './ActionButtons'
 import ChangePageTitleModal from '../../shared/ModalWindows/ChangePageTitle'
+import SwitchSidebarButton from '../../shared/Buttons/SwitchSidebar'
 import { isSidebarOpenSelector } from '../../redux/sidebarSlice/selectors'
 import { currentPageSelector } from '../../redux/workSpaceSlice/selectors'
 import { changePageTitleModalSelector } from '../../redux/modalsSlice/selectors'
@@ -15,35 +16,28 @@ import styles from './Header.module.scss'
 import emptyIcon from '../../assets/img/emptyIcon.svg'
 
 const Header: React.FC = () => {
-  const changePageTitleModalRef = useRef<HTMLDivElement>(null)
   const { pageTitle, icon, isHasIcon } = useSelector(currentPageSelector)
-  const isSidebarOpen = useSelector(isSidebarOpenSelector)
-  const isChangePageTitleModalOpen = useSelector(changePageTitleModalSelector)
   const changePageTitleModalCoords = { left: '10px', top: '40px' }
 
+  const modalRef = useRef<HTMLDivElement>(null)
+  const isSidebarOpen = useSelector(isSidebarOpenSelector)
+  const isChangePageTitleModalOpen = useSelector(changePageTitleModalSelector)
+
   const dispatch = useDispatch()
-  const onOpenChangePageTitleModal = () => dispatch(openChangePageTitleModal())
+  const onOpenChangePageTitleModal = (): void => {
+    dispatch(openChangePageTitleModal())
+  }
+  const handleClickOutside = (): void => {
+    dispatch(closeChangePageTitleModal())
+  }
 
-  useEffect(() => {
-    const modalClickHandler = (e: MouseEvent): void => {
-      if (!changePageTitleModalRef.current) return
-
-      if (!e.composedPath().includes(changePageTitleModalRef.current)) {
-        dispatch(closeChangePageTitleModal())
-      }
-    }
-    document.body.addEventListener('click', modalClickHandler)
-
-    return () => {
-      document.body.removeEventListener('click', modalClickHandler)
-    }
-  }, [dispatch])
+  useOnClickOutside(modalRef, handleClickOutside)
 
   return (
     <header className={styles.header}>
-      {!isSidebarOpen && <SwitchOpenButton />}
-      <div className={styles.navbar} onClick={onOpenChangePageTitleModal}>
-        <div ref={changePageTitleModalRef}>
+      {!isSidebarOpen && <SwitchSidebarButton purpose='open' />}
+      <div className={styles.navbar}>
+        <div ref={modalRef} onClick={onOpenChangePageTitleModal}>
           <div className={styles.pageTitleBlock}>
             <img src={isHasIcon ? icon : emptyIcon} alt='Page icon' />
             <span>{pageTitle}</span>

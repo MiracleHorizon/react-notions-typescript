@@ -1,23 +1,18 @@
-import React from 'react'
+import React, { RefObject } from 'react'
 import styles from './ListTitle.module.scss'
 
-interface IListTitleProps {
+interface SidebarListTitleProps {
   title: string
+  reference: RefObject<HTMLDivElement>
   toggleList: () => void
-  toggleTooltip: () => void
 }
 
-const ListTitle: React.FC<IListTitleProps> = props => {
-  const { title, toggleList, toggleTooltip } = props
+const ListTitle: React.FC<SidebarListTitleProps> = props => {
+  const { title, reference, toggleList } = props
 
   return (
-    <div
-      className={styles.title}
-      onClick={toggleList}
-      onMouseEnter={toggleTooltip}
-      onMouseLeave={toggleTooltip}
-    >
-      <h3>{title.toUpperCase()}</h3>
+    <div className={styles.title} ref={reference} onClick={toggleList}>
+      <h3>{title}</h3>
     </div>
   )
 }

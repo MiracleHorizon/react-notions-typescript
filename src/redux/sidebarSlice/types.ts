@@ -1,6 +1,5 @@
 interface ISidebarSliceState {
   isOpen: boolean
-  isHover: boolean
   activeItem: number
 }
 

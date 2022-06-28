@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 
 import styles from './CoverLink.module.scss'
-import clearInputSvg from '../../../assets/img/clearInput.svg'
+import clearInputSvg from '../../../../../assets/img/clearInput.svg'
 
 const CoverLink: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null)

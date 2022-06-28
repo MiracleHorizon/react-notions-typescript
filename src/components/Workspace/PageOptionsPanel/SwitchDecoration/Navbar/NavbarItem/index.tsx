@@ -1,20 +1,17 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { setCategory } from '../../../../redux/switchCoverSlice/slice'
-import { selectedCategorySelector } from '../../../../redux/switchCoverSlice/selectors'
+import { setCoverCategory } from '../../../../../../redux/pageDecorationSlice/slice'
+import { selectedCoverCategorySelector } from '../../../../../../redux/pageDecorationSlice/selectors'
 import styles from './NavbarItem.module.scss'
 
-interface NavbarItemProps {
-  category: string
-}
-
-const SwitchCoverNavbarItem: React.FC<NavbarItemProps> = ({ category }) => {
-  const selectedCategory = useSelector(selectedCategorySelector)
+const SwitchDecorationNavbarItem: React.FC<{ category: string }> = props => {
+  const { category } = props
+  const selectedCategory = useSelector(selectedCoverCategorySelector)
 
   const dispatch = useDispatch()
   const onSelectCategory = (): void => {
-    dispatch(setCategory(category))
+    dispatch(setCoverCategory(category))
   }
 
   return (
@@ -27,4 +24,4 @@ const SwitchCoverNavbarItem: React.FC<NavbarItemProps> = ({ category }) => {
   )
 }
 
-export default SwitchCoverNavbarItem
+export default SwitchDecorationNavbarItem

@@ -1,5 +1,3 @@
-import { PageTemplates } from '../redux/popupsSlice/types'
-
 const DEFAULT_PAGE_SETTINGS = {
   id: null,
   title: 'Untitled',

@@ -1,7 +1,5 @@
-.switchBtnClose {
+.switchSidebarBtn {
   cursor: pointer;
-  position: absolute;
-  right: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,47 +9,29 @@
 
   &:hover {
     background-color: #e8e7e3;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
   }
 
   &:active {
     background-color: #d3d3d3;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
   }
 
   img {
     width: 25px;
     height: 25px;
     opacity: 0.5;
-    transform: rotate(180deg);
   }
 }
 
-.switchBtnOpen {
-  cursor: pointer;
+.open {
   position: relative;
   top: 10px;
   left: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 25px;
-  height: 25px;
-  border-radius: 3px;
+}
 
-  &:hover {
-    background-color: #e8e7e3;
-    transition: background-color 0.2s ease-in-out;
-  }
-
-  &:active {
-    background-color: #d3d3d3;
-    transition: background-color 0.2s ease-in-out;
-  }
-
-  img {
-    width: 25px;
-    height: 25px;
-    opacity: 0.5;
-  }
+.close {
+  position: absolute;
+  right: 10px;
+  transform: rotate(180deg);
 }

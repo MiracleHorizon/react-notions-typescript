@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import PageCover from '../../PageCover'
-import BoardOptions from './BoardOptions'
+import PageCover from '../../Workspace/PageOptionsPanel/PageCover'
+import PageOptionsPanel from '../../Workspace/PageOptionsPanel'
 import BoardContent from './BoardContent'
 import classNameHandler from '../../../utils/helpers/boardClassNameHandler'
 import { currentPageSelector } from '../../../redux/workSpaceSlice/selectors'
@@ -15,7 +15,7 @@ const Board: React.FC = () => {
     <div className={styles.board}>
       <PageCover />
       <div className={classNameHandler({ isSmallText, isFullWidth })}>
-        <BoardOptions />
+        <PageOptionsPanel />
         <BoardContent />
       </div>
     </div>

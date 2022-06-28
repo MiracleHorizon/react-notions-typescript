@@ -1,24 +1,43 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
-import OptionItem from '../../OptionsList/OptionItem'
-import { userBarOptionsSelector } from '../../../redux/optionsSlice/selectors'
+import QuickSearchModal from '../../../shared/ModalWindows/QuickSearch'
+import classNameHandler from '../../../utils/helpers/optionItemClassNameHandler'
+import { openQuickSearchModal } from '../../../redux/modalsSlice/slice'
+import { quickSearchModalSelector } from '../../../redux/modalsSlice/selectors'
+import searchSvg from '../../../assets/img/search.svg'
+import updatesSvg from '../../../assets/img/updates.svg'
+import settingsSvg from '../../../assets/img/settings.svg'
 import styles from './UserBar.module.scss'
 
 const UserBar: React.FC = () => {
-  const userBarOptions = useSelector(userBarOptionsSelector)
+  const dispatch = useDispatch()
+  const isQuickSearchModalOpen = useSelector(quickSearchModalSelector)
+
+  const onOpenQuickSearch = (): void => {
+    dispatch(openQuickSearchModal())
+  }
 
   return (
     <div className={styles.userBar}>
       <ul>
-        {userBarOptions.map(option => (
-          <OptionItem
-            key={option.title}
-            option={option}
-            className={'userBar'}
-          />
-        ))}
+        <div
+          className={classNameHandler('userBar')}
+          onClick={onOpenQuickSearch}
+        >
+          <img src={searchSvg} alt='Option' />
+          <span>Quick search</span>
+        </div>
+        <div className={classNameHandler('userBar')}>
+          <img src={updatesSvg} alt='Option' />
+          <span>All updates</span>
+        </div>
+        <div className={classNameHandler('userBar')}>
+          <img src={settingsSvg} alt='Option' />
+          <span>Settings & Members</span>
+        </div>
       </ul>
+      {isQuickSearchModalOpen && <QuickSearchModal />}
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
+import tooltipTitleHandler from '../../../utils/helpers/sidebarListTooltipHandler'
 import styles from '../Tooltip.module.scss'
 
 interface ITooltipProps {
@@ -9,21 +10,17 @@ interface ITooltipProps {
 
 const SidebarListTooltip: React.FC<ITooltipProps> = props => {
   const { isOpen, description } = props
-  const [title, setTitle] = useState('Untitled')
+  const [title, setTitle] = useState<string>('')
 
   useEffect(() => {
-    isOpen
-      ? setTitle('Click to hide section')
-      : setTitle('Click to show section')
+    setTitle(tooltipTitleHandler(isOpen))
   }, [isOpen])
 
   return (
-    <React.Fragment>
-      <div className={styles.tooltip} style={{ left: '5px', top: '-50px' }}>
-        <span className={styles.title}>{title}</span>
-        <span className={styles.description}>{description}</span>
-      </div>
-    </React.Fragment>
+    <div className={styles.tooltip} style={{ left: '5px', top: '-50px' }}>
+      <span className={styles.title}>{title}</span>
+      <span className={styles.description}>{description}</span>
+    </div>
   )
 }
 

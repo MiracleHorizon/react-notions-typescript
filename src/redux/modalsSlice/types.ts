@@ -1,5 +1,6 @@
 interface IAppModalsState {
-  isChangePageTitlePopupOpen: boolean
+  isChangePageTitleModalOpen: boolean
+  isQuickSearchModalOpen: boolean
 }
 
 export type { IAppModalsState }

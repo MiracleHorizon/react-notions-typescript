@@ -1,38 +1,37 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useRef } from 'react'
+import { useSelector } from 'react-redux'
+import { useHover } from 'usehooks-ts'
+import { useStylesHandler } from '../../hooks/useStylesHandler'
 
-import FavoritePages from './FavoritePages'
-import CommonPages from './CommonPages'
+import FavoritePagesList from './FavoritePagesList'
+import CommonPagesList from './CommonPagesList'
 import NewPageBar from './NewPageBar'
 import SwitcherBar from './SwitcherBar'
 import UserBar from './UserBar'
 import { isSidebarOpenSelector } from '../../redux/sidebarSlice/selectors'
-import { setIsHover, setIsNotHover } from '../../redux/sidebarSlice/slice'
 import styles from './Sidebar.module.scss'
 
 const Sidebar: React.FC = () => {
-  const isOpen = useSelector(isSidebarOpenSelector)
+  const isSidebarOpen = useSelector(isSidebarOpenSelector)
 
-  const dispatch = useDispatch()
-  const onEnterSidebar = () => dispatch(setIsHover()) //!
-  const onLeaveSidebar = () => dispatch(setIsNotHover())
+  const sidebarRef = useRef<HTMLDivElement>(null)
+  const isSidebarHovering = useHover(sidebarRef)
+
+  const className = useStylesHandler({
+    isTrue: isSidebarOpen,
+    basicClassName: styles.sidebar,
+    isTrueClassName: null,
+    isFalseClassName: styles.close,
+  })
 
   return (
-    <React.Fragment>
-      <div
-        className={
-          isOpen ? styles.sidebar : `${styles.sidebar} ${styles.close}`
-        }
-        onMouseEnter={onEnterSidebar}
-        onMouseLeave={onLeaveSidebar}
-      >
-        <SwitcherBar />
-        <UserBar />
-        <FavoritePages />
-        <CommonPages />
-        <NewPageBar />
-      </div>
-    </React.Fragment>
+    <div className={className} ref={sidebarRef}>
+      <SwitcherBar isHovering={isSidebarHovering} />
+      <UserBar />
+      <FavoritePagesList />
+      <CommonPagesList />
+      <NewPageBar />
+    </div>
   )
 }
 

@@ -109,7 +109,7 @@ const initialState: IWorkspaceSliceState = {
     icon: `${vue3Svg}`,
     isHasCover: true,
     template: PageTemplates.BOARD,
-    isFullWidth: false,
+    isFullWidth: true,
     isSmallText: false,
     isHasComments: false,
     isHasIcon: true,

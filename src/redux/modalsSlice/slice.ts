@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
-
 import { IAppModalsState } from './types'
 
 const initialState: IAppModalsState = {
-  isChangePageTitlePopupOpen: false,
+  isChangePageTitleModalOpen: false,
+  isQuickSearchModalOpen: false,
 }
 
 export const modalsSlice = createSlice({
@@ -12,16 +12,26 @@ export const modalsSlice = createSlice({
   initialState: initialState,
 
   reducers: {
-    closeChangePageTitleModal(state) {
-      state.isChangePageTitlePopupOpen = false
-    },
     openChangePageTitleModal(state) {
-      state.isChangePageTitlePopupOpen = true
+      state.isChangePageTitleModalOpen = true
+    },
+    closeChangePageTitleModal(state) {
+      state.isChangePageTitleModalOpen = false
+    },
+    openQuickSearchModal(state) {
+      state.isQuickSearchModalOpen = true
+    },
+    closeQuickSearchModal(state) {
+      state.isQuickSearchModalOpen = false
     },
   },
 })
 
-export const { closeChangePageTitleModal, openChangePageTitleModal } =
-  modalsSlice.actions
+export const {
+  openChangePageTitleModal,
+  openQuickSearchModal,
+  closeChangePageTitleModal,
+  closeQuickSearchModal,
+} = modalsSlice.actions
 
 export default modalsSlice.reducer

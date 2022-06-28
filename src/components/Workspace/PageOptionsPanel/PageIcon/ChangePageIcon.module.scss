@@ -1,0 +1,13 @@
+.root {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  min-width: 180px;
+  width: 420px;
+  height: 360px;
+  max-height: 70vh;
+  border-radius: 3px;
+  box-shadow: rgb(15 15 15 / 5%) 0 0 0 1px, rgb(15 15 15 / 10%) 0 3px 6px, rgb(15 15 15 / 20%) 0 9px 24px;
+  overflow: hidden;
+  background: rgb(255,255,255);
+}

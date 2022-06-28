@@ -1,12 +1,18 @@
 import React from 'react'
 
-import QuickFindModal from '../../../../shared/ModalWindows/QuickSearch'
 import styles from './BoardContent.module.scss'
 
 const BoardContent: React.FC = () => {
   return (
     <div className={styles.content}>
-      <QuickFindModal />
+      <h1>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad
+        aliquam aliquid, amet at cupiditate, eius enim esse in iure mollitia
+        natus nesciunt nisi numquam quam quasi qui quo? Eum expedita, hic iure
+        laborum magnam pariatur quos reiciendis repudiandae sequi suscipitate,
+        eius enim esse in iure mollitia natus nesciunt nisi numquam quam quasi
+        qui quo? Eum expedita, hic iure laborum
+      </h1>
     </div>
   )
 }

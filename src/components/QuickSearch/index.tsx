@@ -1,23 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useOnClickOutside } from 'usehooks-ts'
 
 import QuickSearchForm from './SearchForm'
-import RecentList from './RecentLists'
-import HotkeysBar from './HotkeysBar'
+import RecentLists from './RecentLists'
 import classNameHandler from '../../utils/helpers/quickSearchClassNameHandler'
+import { closeQuickSearchModal } from '../../redux/modalsSlice/slice'
 import styles from './QuickSearch.module.scss'
-import { useSelector } from 'react-redux'
-import {
-  recentPagesSelector,
-  recentSearchesSelector,
-} from '../../redux/recentSearchSlice/selectors'
 
 const QuickSearch: React.FC = () => {
+  const [rootClassName, setRootClassName] = useState<string>('') //!
   const [inputValue, setInputValue] = useState<string>('')
-  const recentPages = useSelector(recentPagesSelector)
-  const recentSearches = useSelector(recentSearchesSelector)
+  const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false)
+  const modalRef = useRef<HTMLDivElement>(null)
+
+  const dispatch = useDispatch()
+  const handlerClickOutside = (): void => {
+    dispatch(closeQuickSearchModal())
+  }
+
+  useOnClickOutside(modalRef, handlerClickOutside)
+
+  useEffect(() => {
+    setRootClassName(classNameHandler(inputValue))
+  }, [isFilterOpen]) //! useReducer
 
   return (
-    <div className={classNameHandler(inputValue)}>
+    <div className={rootClassName} ref={modalRef}>
       <div className={styles.container}>
         <div className={styles.contentBlock}>
           <div className={styles.content}>
@@ -25,21 +34,9 @@ const QuickSearch: React.FC = () => {
               inputValue={inputValue}
               setInputValue={setInputValue}
             />
-            {inputValue === '' ? (
-              <React.Fragment>
-                <main className={styles.recent}>
-                  <RecentList listTitle='pages' list={recentPages} />
-                  <RecentList listTitle='searches' list={recentSearches} />
-                </main>
-                {!recentPages && !recentSearches && <HotkeysBar />}
-              </React.Fragment>
-            ) : (
-              <div>
-                <span>Searching...</span>
-              </div>
-            )}
+            {inputValue === '' ? <RecentLists /> : <div></div>}
           </div>
-          {inputValue !== '' && <aside></aside>}
+          {isFilterOpen && <aside></aside>}
         </div>
       </div>
     </div>
@@ -48,3 +45,6 @@ const QuickSearch: React.FC = () => {
 
 export default QuickSearch
 // <footer style={{ flexShrink: 0 }}></footer>
+// <span>Searching...</span>
+// <button onClick={onOpenFilter}>Open filter</button>
+// const onOpenFilter = (): void => setIsFilterOpen(true)

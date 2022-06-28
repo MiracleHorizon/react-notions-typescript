@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 
 import sidebar from './sidebarSlice/slice'
 import workspace from './workSpaceSlice/slice'
-import switchCover from './switchCoverSlice/slice'
+import pageDecoration from './pageDecorationSlice/slice'
 import recentSearch from './recentSearchSlice/slice'
 import options from './optionsSlice/slice'
 import popups from './popupsSlice/slice'
@@ -14,7 +14,7 @@ export const store = configureStore({
     sidebar,
     workspace,
     recentSearch,
-    switchCover,
+    pageDecoration,
     options,
     modals,
     popups,
