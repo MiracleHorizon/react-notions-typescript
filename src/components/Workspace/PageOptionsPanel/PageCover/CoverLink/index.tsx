@@ -1,7 +1,7 @@
 import React from 'react'
-import { useInput } from '../../../../../hooks/useInput'
+import { useInput } from 'hooks/useInput'
 
-import OutlineInput from '../../../../../shared/Inputs/OutlineInput'
+import OutlineInput from 'shared/Inputs/OutlineInput'
 import styles from './CoverLink.module.scss'
 
 const CoverLink: React.FC = () => {

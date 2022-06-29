@@ -1,15 +1,15 @@
 import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useOnClickOutside } from 'usehooks-ts'
-import { useInput } from '../../../../hooks/useInput'
+import { useInput } from 'hooks/useInput'
 
 import SwitchDecorationNavbar from '../SwitchDecoration/Navbar'
-import OutlineInput from '../../../../shared/Inputs/OutlineInput'
-import { iconCategoriesSelector } from '../../../../redux/pageDecorationSlice/selectors'
+import OutlineInput from 'shared/Inputs/OutlineInput'
+import { iconCategoriesSelector } from 'redux/pageDecorationSlice/selectors'
 import {
   refreshIconCategory,
   setIsIconModalClose,
-} from '../../../../redux/pageDecorationSlice/slice'
+} from 'redux/pageDecorationSlice/slice'
 import styles from './ChangePageIcon.module.scss'
 
 const ChangePageIcon: React.FC = () => {

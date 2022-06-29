@@ -2,17 +2,17 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as _ from 'lodash'
 
-import { currentPageSelector } from '../../../../../redux/workSpaceSlice/selectors'
-import { getAllCovers } from '../../../../../utils/helpers/getAllCovers'
-import { coversListsSelector } from '../../../../../redux/pageDecorationSlice/selectors'
+import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
+import { getAllCovers } from 'utils/helpers/getAllCovers'
+import { coversListsSelector } from 'redux/pageDecorationSlice/selectors'
 import {
   removeCover,
   removeIcon,
   setPageCover,
   setPageIcon,
-} from '../../../../../redux/workSpaceSlice/slice'
-import coverSvg from '../../../../../assets/img/cover.svg'
-import smileSvg from '../../../../../assets/img/smile.svg'
+} from 'redux/workSpaceSlice/slice'
+import coverSvg from 'assets/img/cover.svg'
+import smileSvg from 'assets/img/smile.svg'
 import styles from './Navbar.module.scss'
 import SwitchDecorationNavbarItem from './NavbarItem'
 import {
@@ -20,7 +20,7 @@ import {
   refreshIconCategory,
   setIsCoverModalClose,
   setIsIconModalClose,
-} from '../../../../../redux/pageDecorationSlice/slice'
+} from 'redux/pageDecorationSlice/slice'
 
 enum DecorPurposes {
   COVER = 'cover',

@@ -2,14 +2,15 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { DecorPurposes } from '../index'
-import {
-  setCoverCategory,
-  setIconCategory,
-} from '../../../../../../redux/pageDecorationSlice/slice'
+
 import {
   selectedCoverCategorySelector,
   selectedIconCategorySelector,
-} from '../../../../../../redux/pageDecorationSlice/selectors'
+} from 'redux/pageDecorationSlice/selectors'
+import {
+  setCoverCategory,
+  setIconCategory,
+} from 'redux/pageDecorationSlice/slice'
 import styles from './NavbarItem.module.scss'
 
 interface SwitchNavbarItemProps {
