@@ -3,9 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import * as _ from 'lodash'
 
 import PageDecorOption from '../../PageDecorOption'
-import ChangePageIconModal from '../../../shared/ModalWindows/ChangePageIcon'
+import SwitchPageIconModal from '../../../shared/ModalWindows/SwitchIcon'
 import { currentPageSelector } from '../../../redux/workSpaceSlice/selectors'
-import { coversListsSelector } from '../../../redux/pageDecorationSlice/selectors'
+import {
+  coversListsSelector,
+  isIconModalOpenSelector,
+} from '../../../redux/pageDecorationSlice/selectors'
+import { setIsIconModalOpen } from '../../../redux/pageDecorationSlice/slice'
 import { setPageCover } from '../../../redux/workSpaceSlice/slice'
 import { getAllCovers } from '../../../utils/helpers/getAllCovers'
 import addIconSvg from '../../../assets/img/addIcon.svg'
@@ -17,13 +21,13 @@ const PageOptionsPanel: React.FC = () => {
   const { pageTitle, icon, isHasCover, isHasIcon, isHasComments, id } =
     useSelector(currentPageSelector)
   const covers = useSelector(coversListsSelector)
-
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-  const onChangeIcon = (): void => {
-    setIsModalOpen(!isModalOpen)
-  }
+  const isSwitchPageIconModalOpen = useSelector(isIconModalOpenSelector)
 
   const dispatch = useDispatch()
+  const onOpenSwitchPageIconModal = (): void => {
+    dispatch(setIsIconModalOpen())
+  }
+
   const onAddRandomCover = (): void => {
     dispatch(setPageCover({ cover: _.sample(getAllCovers(covers)), id }))
   }
@@ -33,10 +37,10 @@ const PageOptionsPanel: React.FC = () => {
     <div className={styles.options}>
       {isHasIcon && (
         <div>
-          <div className={styles.pageIcon} onClick={onChangeIcon}>
+          <div className={styles.pageIcon} onClick={onOpenSwitchPageIconModal}>
             <img src={icon} alt='Page icon' />
           </div>
-          {isModalOpen && <ChangePageIconModal />}
+          {isSwitchPageIconModalOpen && <SwitchPageIconModal />}
         </div>
       )}
       <div className={styles.optionsBlock}>

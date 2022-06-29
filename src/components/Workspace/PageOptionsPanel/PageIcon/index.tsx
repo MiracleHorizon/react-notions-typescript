@@ -1,15 +1,39 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useOnClickOutside } from 'usehooks-ts'
+import { useInput } from '../../../../hooks/useInput'
 
-import styles from './ChangePageIcon.module.scss'
 import SwitchDecorationNavbar from '../SwitchDecoration/Navbar'
+import OutlineInput from '../../../../shared/Inputs/OutlineInput'
+import { iconCategoriesSelector } from '../../../../redux/pageDecorationSlice/selectors'
+import {
+  refreshIconCategory,
+  setIsIconModalClose,
+} from '../../../../redux/pageDecorationSlice/slice'
+import styles from './ChangePageIcon.module.scss'
 
 const ChangePageIcon: React.FC = () => {
-  // const categories = useSelector(iconCategoriesSelector) //! сделать в cover
+  const modalRef = useRef<HTMLDivElement>(null)
+  const categories = useSelector(iconCategoriesSelector)
+  const { inputValue, onChangeInputValue, onClearInput } = useInput('')
+
+  const dispatch = useDispatch()
+  const handleClickOutside = (): void => {
+    dispatch(setIsIconModalClose())
+    dispatch(refreshIconCategory())
+  }
+
+  useOnClickOutside(modalRef, handleClickOutside)
 
   return (
-    <div className={styles.root}>
-      {/*<SwitchDecorationNavbar categories={categories} purpose='icon' />*/}
+    <div className={styles.root} ref={modalRef}>
+      <SwitchDecorationNavbar categories={categories} purpose='icon' />
+      <OutlineInput
+        placeholder='Filter...'
+        inputValue={inputValue}
+        onChange={onChangeInputValue}
+        onClear={onClearInput}
+      />
     </div>
   )
 }

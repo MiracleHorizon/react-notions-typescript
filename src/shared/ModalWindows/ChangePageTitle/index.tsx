@@ -1,11 +1,15 @@
-import React, { FormEvent, useEffect, useRef } from 'react'
+import React, { FormEvent, Fragment, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import SwitchPageIconModal from '../SwitchIcon'
 import { currentPageSelector } from '../../../redux/workSpaceSlice/selectors'
 import { closeChangePageTitleModal } from '../../../redux/modalsSlice/slice'
-import { setPageTitle } from '../../../redux/workSpaceSlice/slice'
+import { setIsIconModalOpen } from '../../../redux/pageDecorationSlice/slice'
+import { setPageIcon, setPageTitle } from '../../../redux/workSpaceSlice/slice'
 import styles from './ChangePageTitle.module.scss'
 import emptyIcon from '../../../assets/img/emptyIcon.svg'
+import { isIconModalOpenSelector } from '../../../redux/pageDecorationSlice/selectors'
+import { useOnClickOutside } from 'usehooks-ts'
 
 interface IPageTitleModalCoords {
   coords: {
@@ -19,14 +23,19 @@ interface IPageTitleModalCoords {
 const ChangePageTitleModal: React.FC<IPageTitleModalCoords> = ({ coords }) => {
   const { id, pageTitle, icon, isHasIcon } = useSelector(currentPageSelector)
   const inputRef = useRef<HTMLInputElement>(null)
+  const isChangePageIconModalOpen = useSelector(isIconModalOpenSelector)
 
   const dispatch = useDispatch()
-  const onChangePageTitle = () => {
-    if (!inputRef.current) return null
+  const onChangePageTitle = (): void => {
+    if (!inputRef.current) return
 
     dispatch(setPageTitle([inputRef.current.value, id]))
   }
-  const onSubmitPageTitle = (e: FormEvent) => {
+  const onChangePageIcon = (): void => {
+    // dispatch(setPageIcon(''))
+    dispatch(setIsIconModalOpen())
+  }
+  const onSubmitPageTitle = (e: FormEvent): void => {
     e.preventDefault()
 
     dispatch(closeChangePageTitleModal())
@@ -37,20 +46,22 @@ const ChangePageTitleModal: React.FC<IPageTitleModalCoords> = ({ coords }) => {
   }, [])
 
   return (
-    <div className={styles.root} style={{ ...coords }}>
-      <div>
-        <img src={isHasIcon ? icon : emptyIcon} alt='Page img' />
+    <Fragment>
+      <div className={styles.root} style={{ ...coords }}>
+        <div onClick={onChangePageIcon}>
+          <img src={isHasIcon ? icon : emptyIcon} alt='Page img' />
+        </div>
+        <form onSubmit={onSubmitPageTitle}>
+          <input
+            type='text'
+            placeholder='Untitled'
+            value={pageTitle}
+            ref={inputRef}
+            onChange={onChangePageTitle}
+          />
+        </form>
       </div>
-      <form onSubmit={onSubmitPageTitle}>
-        <input
-          type='text'
-          placeholder='Untitled'
-          value={pageTitle}
-          ref={inputRef}
-          onChange={onChangePageTitle}
-        />
-      </form>
-    </div>
+    </Fragment>
   )
 }
 

@@ -71,7 +71,11 @@ const SwitchDecorationNavbar: React.FC<SwitchDecorationNavbarProps> = props => {
   return (
     <div className={styles.navbar}>
       {categories.map(category => (
-        <SwitchDecorationNavbarItem key={category} category={category} />
+        <SwitchDecorationNavbarItem
+          key={category}
+          category={category}
+          purpose={purpose}
+        />
       ))}
       <div className={styles.actions}>
         <div className={styles.btn} onClick={onAddRandomDecoration}>
@@ -91,3 +95,4 @@ const SwitchDecorationNavbar: React.FC<SwitchDecorationNavbarProps> = props => {
 }
 
 export default SwitchDecorationNavbar
+export { DecorPurposes }

@@ -15,7 +15,6 @@ interface IPageSettingsOptions {
 }
 
 interface IPagesSliceState {
-  userBarOptions: IOptionItem[]
   favoritePageOptions: IOptionItem[]
   privatePagesOptions: IOptionItem[]
 }

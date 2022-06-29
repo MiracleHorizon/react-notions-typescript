@@ -17,7 +17,7 @@ import favoriteStarSvg from '../../../assets/img/star-favorite.svg'
 import optionsSvg from '../../../assets/img/three-dots.svg'
 
 const ActionButtons: React.FC = () => {
-  const [isPageFavorite, setFavorite] = useState<boolean>(false)
+  const [isPageFavorite, setFavorite] = useState<boolean>(false) //!
   const modalRef = useRef<HTMLDivElement>(null)
   const currentPage = useSelector(currentPageSelector)
   const isPageSettingsPopupOpen = useSelector(pageSettingsPopupSelector)
@@ -29,11 +29,11 @@ const ActionButtons: React.FC = () => {
   const toggleIsFavorite = (): void => {
     dispatch(toggleFavorite(currentPage?.id))
   }
-  const handleClickOutsideModal = (): void => {
+  const handleClickOutside = (): void => {
     dispatch(closeSettingsModal())
   }
 
-  useOnClickOutside(modalRef, handleClickOutsideModal)
+  useOnClickOutside(modalRef, handleClickOutside)
   useEffect(() => {
     if (currentPage) setFavorite(currentPage.isFavorite)
   }, [currentPage])

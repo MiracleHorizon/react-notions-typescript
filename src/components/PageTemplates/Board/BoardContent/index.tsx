@@ -1,6 +1,9 @@
 import React from 'react'
 
 import styles from './BoardContent.module.scss'
+import SidebarListOptions from '../../../../shared/ModalWindows/SidebarListOptions'
+import { useSelector } from 'react-redux'
+import { favoritePageOptionsSelector } from '../../../../redux/optionsSlice/selectors'
 
 const BoardContent: React.FC = () => {
   return (

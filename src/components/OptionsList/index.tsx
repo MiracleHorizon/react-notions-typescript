@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import OptionItem from './OptionItem'
 import Separator from '../../shared/Separator'
 import { IOptionItem } from '../../redux/optionsSlice/types'
@@ -10,7 +10,7 @@ interface OptionsListProps {
 
 const OptionsList: React.FC<OptionsListProps> = ({ options, className }) => {
   return (
-    <React.Fragment>
+    <Fragment>
       <div>
         {options.map(option => (
           <OptionItem
@@ -21,7 +21,7 @@ const OptionsList: React.FC<OptionsListProps> = ({ options, className }) => {
         ))}
       </div>
       <Separator />
-    </React.Fragment>
+    </Fragment>
   )
 }
 

@@ -62,7 +62,7 @@ export const pageDecorationSlice = createSlice({
       state.selectedCoverCategory = SwitchCoverCategories.GALLERY
     },
     refreshIconCategory(state) {
-      state.selectedCoverCategory = SwitchCoverCategories.GALLERY
+      state.selectedIconCategory = SwitchIconCategories.EMOJI
     },
   },
 })

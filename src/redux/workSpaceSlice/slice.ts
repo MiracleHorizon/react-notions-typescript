@@ -143,6 +143,8 @@ export const workSpaceSlice = createSlice({
       if (!page) return
       page.isHasIcon = true
       page.icon = icon
+      state.currentPage.isHasIcon = true
+      state.currentPage.icon = action.payload
     },
     setPageCover(state, action) {
       const { cover, id } = action.payload
@@ -160,6 +162,8 @@ export const workSpaceSlice = createSlice({
       if (!page) return
       page.isHasIcon = false
       page.icon = '' //!
+      state.currentPage.isHasIcon = false
+      state.currentPage.icon = action.payload
     },
     removeCover(state, action) {
       const page = state.pages.find(page => page.id === action.payload)

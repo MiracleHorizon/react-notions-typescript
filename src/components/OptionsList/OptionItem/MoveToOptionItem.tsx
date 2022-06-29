@@ -1,17 +1,17 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import OptionItem from './index'
-import moveToSvg from '../../../assets/img/optionsImgs/moveTo.svg'
 import Separator from '../../../shared/Separator'
+import moveToSvg from '../../../assets/img/optionsImgs/moveTo.svg'
 
 const MoveToOptionItem: React.FC = () => {
   return (
-    <React.Fragment>
+    <Fragment>
       <OptionItem
         option={{ title: 'MoveTo', imgUrl: moveToSvg }}
-        className={'workspace'}
+        className='workspace'
       />
       <Separator />
-    </React.Fragment>
+    </Fragment>
   )
 }
 

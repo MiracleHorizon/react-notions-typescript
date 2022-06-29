@@ -4,17 +4,21 @@ import { useOnClickOutside } from 'usehooks-ts'
 
 import SwitchCoverContent from '../../../components/Workspace/PageOptionsPanel/PageCover/SwitchCoverContent'
 import SwitchDecorationNavbar from '../../../components/Workspace/PageOptionsPanel/SwitchDecoration/Navbar'
-import styles from './SwitchCover.module.scss'
-import { setIsCoverModalClose } from '../../../redux/pageDecorationSlice/slice'
+import {
+  refreshCoverCategory,
+  setIsCoverModalClose,
+} from '../../../redux/pageDecorationSlice/slice'
 import { coverCategoriesSelector } from '../../../redux/pageDecorationSlice/selectors'
+import styles from './SwitchCover.module.scss'
 
-const SwitchCoverModal: React.FC = () => {
+const SwitchPageCoverModal: React.FC = () => {
   const modalRef = useRef<HTMLDivElement>(null)
   const categories = useSelector(coverCategoriesSelector)
 
   const dispatch = useDispatch()
   const handleClickOutside = (): void => {
     dispatch(setIsCoverModalClose()) //! Переписать названия
+    dispatch(refreshCoverCategory())
   }
 
   useOnClickOutside(modalRef, handleClickOutside)
@@ -31,4 +35,4 @@ const SwitchCoverModal: React.FC = () => {
   )
 }
 
-export default SwitchCoverModal
+export default SwitchPageCoverModal

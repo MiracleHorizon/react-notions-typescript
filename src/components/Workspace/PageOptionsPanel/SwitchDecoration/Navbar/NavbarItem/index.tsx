@@ -1,22 +1,49 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { setCoverCategory } from '../../../../../../redux/pageDecorationSlice/slice'
-import { selectedCoverCategorySelector } from '../../../../../../redux/pageDecorationSlice/selectors'
+import { DecorPurposes } from '../index'
+import {
+  setCoverCategory,
+  setIconCategory,
+} from '../../../../../../redux/pageDecorationSlice/slice'
+import {
+  selectedCoverCategorySelector,
+  selectedIconCategorySelector,
+} from '../../../../../../redux/pageDecorationSlice/selectors'
 import styles from './NavbarItem.module.scss'
 
-const SwitchDecorationNavbarItem: React.FC<{ category: string }> = props => {
-  const { category } = props
-  const selectedCategory = useSelector(selectedCoverCategorySelector)
+interface SwitchNavbarItemProps {
+  category: string
+  purpose: string
+}
+
+const SwitchDecorationNavbarItem: React.FC<SwitchNavbarItemProps> = props => {
+  const { category, purpose } = props
+  const selectedCategory = useSelector(
+    purpose === DecorPurposes.COVER
+      ? selectedCoverCategorySelector
+      : selectedIconCategorySelector
+  )
 
   const dispatch = useDispatch()
   const onSelectCategory = (): void => {
-    dispatch(setCoverCategory(category))
+    switch (purpose) {
+      case DecorPurposes.COVER:
+        dispatch(setCoverCategory(category))
+        break
+      case DecorPurposes.ICON:
+        dispatch(setIconCategory(category))
+        break
+    }
   }
 
   return (
-    <div className={styles.actionBtnBlock} onClick={onSelectCategory}>
-      <div role='button' className={styles.actionBtn}>
+    <div className={styles.actionBtnBlock}>
+      <div
+        role='button'
+        className={styles.actionBtn}
+        onClick={onSelectCategory}
+      >
         <span>{category}</span>
       </div>
       {selectedCategory === category && <div className={styles.border} />}
