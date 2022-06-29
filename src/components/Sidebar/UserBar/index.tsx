@@ -5,9 +5,9 @@ import QuickSearchModal from '../../../shared/ModalWindows/QuickSearch'
 import classNameHandler from '../../../utils/helpers/optionItemClassNameHandler'
 import { openQuickSearchModal } from '../../../redux/modalsSlice/slice'
 import { quickSearchModalSelector } from '../../../redux/modalsSlice/selectors'
-import searchSvg from '../../../assets/img/search.svg'
-import updatesSvg from '../../../assets/img/updates.svg'
-import settingsSvg from '../../../assets/img/settings.svg'
+import searchSvg from '../../../assets/img/inputs/search.svg'
+import updatesSvg from '../../../assets/img/optionsImgs/updates.svg'
+import settingsSvg from '../../../assets/img/optionsImgs/settings.svg'
 import styles from './UserBar.module.scss'
 
 const UserBar: React.FC = () => {

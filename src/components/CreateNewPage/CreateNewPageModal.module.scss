@@ -1,0 +1,12 @@
+.root {
+  position: relative;
+  top: 75px;
+  max-width: 970px;
+  height: calc(100% - 144px);
+  margin: 0 auto;
+  border-radius: 5px;
+  box-shadow: rgb(15 15 15 / 2%) 0 0 0 1px, rgb(15 15 15 / 3%) 0 3px 6px, rgb(15 15 15 / 6%) 0 9px 24px;
+  background: white;
+
+  .content {}
+}

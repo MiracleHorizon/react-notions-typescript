@@ -11,4 +11,10 @@
   overflow: hidden;
   background: rgb(255,255,255);
   z-index: 10;
+
+  .contentBlock {
+    padding: 5px 10px;
+
+    .content {}
+  }
 }

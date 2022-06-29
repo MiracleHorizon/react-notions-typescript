@@ -1,0 +1,9 @@
+.contentBlock {
+  flex-grow: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  .content {
+    padding-bottom: 8px;
+  }
+}

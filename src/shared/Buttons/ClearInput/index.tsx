@@ -1,6 +1,6 @@
 import React from 'react'
 
-import clearInputSvg from '../../../assets/img/input-clear.svg'
+import clearInputSvg from '../../../assets/img/inputs/input-clear.svg'
 import styles from './ClearInput.module.scss'
 
 interface IClearInputProps {

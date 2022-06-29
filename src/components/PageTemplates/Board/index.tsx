@@ -7,16 +7,17 @@ import BoardContent from './BoardContent'
 import classNameHandler from '../../../utils/helpers/boardClassNameHandler'
 import { currentPageSelector } from '../../../redux/workSpaceSlice/selectors'
 import styles from './Board.module.scss'
+import EmptyPage from '../EmptyPage'
 
 const Board: React.FC = () => {
-  const { isSmallText, isFullWidth } = useSelector(currentPageSelector)
+  const { isSmallText, isFullWidth, content } = useSelector(currentPageSelector)
 
   return (
     <div className={styles.board}>
       <PageCover />
       <div className={classNameHandler({ isSmallText, isFullWidth })}>
         <PageOptionsPanel />
-        <BoardContent />
+        {content ? <BoardContent /> : <EmptyPage />}
       </div>
     </div>
   )

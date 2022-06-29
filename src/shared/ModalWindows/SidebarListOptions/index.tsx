@@ -4,7 +4,7 @@ import MoveToOptionItem from '../../../components/OptionsList/OptionItem/MoveToO
 import PageChanges from '../../../components/PageChanges'
 import { IOptionItem } from '../../../redux/optionsSlice/types'
 import styles from './SidebarListOptions.module.scss'
-import Modal from '../../../components/Modal'
+import Modal from '../Modal'
 import { useDispatch } from 'react-redux'
 import { closeFavoritePagesOptionsModal } from '../../../redux/modalsSlice/slice'
 import { useOnClickOutside } from 'usehooks-ts'

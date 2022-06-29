@@ -1,9 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { CoverColors, IWorkspaceSliceState } from './types'
-import vue3Svg from '../../assets/img/technologies/vue3.svg'
-import reactSvg from '../../assets/img/technologies/react.svg'
+import { CoverColors, IWorkspacePage, IWorkspaceSliceState } from './types'
 import { PageTemplates } from '../popupsSlice/types'
+import vue3Svg from 'assets/img/technologies/vue3.svg'
+import reactSvg from 'assets/img/technologies/react.svg'
 
 const initialState: IWorkspaceSliceState = {
   pages: [
@@ -123,10 +123,21 @@ export const workSpaceSlice = createSlice({
   initialState: initialState,
 
   reducers: {
+    createNewPage(state, action: PayloadAction<IWorkspacePage>) {
+      const newPage = action.payload //*
+
+      state.pages = [...state.pages, action.payload]
+
+      console.log(newPage)
+    },
+    deletePage(state, action) {
+      state.pages = state.pages.filter(page => page.id !== action.payload)
+    },
     setCurrentPage(state, action) {
       const page = state.pages.find(page => page.id === action.payload)
 
       if (page) state.currentPage = page
+      document.title = state.currentPage.pageTitle //!
     },
     setPageTitle(state, action) {
       const [pageTitle, pageId] = action.payload
@@ -199,6 +210,7 @@ export const workSpaceSlice = createSlice({
 })
 
 export const {
+  createNewPage,
   setCurrentPage,
   setPageTitle,
   setPageCover,

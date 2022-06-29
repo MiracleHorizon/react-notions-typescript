@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useOnClickOutside } from 'usehooks-ts'
 import { useInput } from 'hooks/useInput'
 
-import SwitchDecorationNavbar from '../SwitchDecoration/Navbar'
 import OutlineInput from 'shared/Inputs/OutlineInput'
+import SwitchDecorationNavbar from '../SwitchDecoration/Navbar'
+import SwitchDecorationLists from '../SwitchDecoration/DecorLists'
 import { iconCategoriesSelector } from 'redux/pageDecorationSlice/selectors'
 import {
   refreshIconCategory,
@@ -28,12 +29,17 @@ const ChangePageIcon: React.FC = () => {
   return (
     <div className={styles.root} ref={modalRef}>
       <SwitchDecorationNavbar categories={categories} purpose='icon' />
-      <OutlineInput
-        placeholder='Filter...'
-        inputValue={inputValue}
-        onChange={onChangeInputValue}
-        onClear={onClearInput}
-      />
+      <div className={styles.contentBlock}>
+        <OutlineInput
+          placeholder='Filter...'
+          inputValue={inputValue}
+          onChange={onChangeInputValue}
+          onClear={onClearInput}
+        />
+        <div className={styles.content}>
+          <SwitchDecorationLists />
+        </div>
+      </div>
     </div>
   )
 }

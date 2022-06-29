@@ -5,8 +5,8 @@ import { setSearchesValue } from '../../../redux/recentSearchSlice/slice'
 import { closeQuickSearchModal } from '../../../redux/modalsSlice/slice'
 import { ACCOUNT_NAME } from '../../../utils/accountName'
 import styles from './SearchForm.module.scss'
-import searchSvg from '../../../assets/img/search.svg'
-import clearInputSvg from '../../../assets/img/clearInput.svg'
+import searchSvg from '../../../assets/img/inputs/search.svg'
+import clearInputSvg from '../../../assets/img/inputs/clearInput.svg'
 
 interface SearchFormProps {
   inputValue: string

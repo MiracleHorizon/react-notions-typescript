@@ -13,7 +13,7 @@ import {
   openChangePageTitleModal,
 } from '../../redux/modalsSlice/slice'
 import styles from './Header.module.scss'
-import emptyIcon from '../../assets/img/emptyIcon.svg'
+import emptyIcon from '../../assets/img/optionsImgs/emptyIcon.svg'
 
 const Header: React.FC = () => {
   const { pageTitle, icon, isHasIcon } = useSelector(currentPageSelector)

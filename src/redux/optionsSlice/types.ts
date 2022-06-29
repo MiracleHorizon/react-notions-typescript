@@ -19,4 +19,16 @@ interface IPagesSliceState {
   privatePagesOptions: IOptionItem[]
 }
 
-export type { IPagesSliceState, IOptionItem, IPageSettingsOptions, IPageFont }
+interface EmptyPageOption {
+  title: string
+  img: string
+  onClick: () => void
+}
+
+export type {
+  IPagesSliceState,
+  IOptionItem,
+  IPageSettingsOptions,
+  IPageFont,
+  EmptyPageOption,
+}

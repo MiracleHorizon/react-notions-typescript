@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useRef } from 'react'
 
 import styles from './OutlineInput.module.scss'
-import clearSvg from 'assets/img/clearInput.svg'
+import clearSvg from 'assets/img/inputs/clearInput.svg'
 
 interface OutlineInputProps {
   placeholder: string

@@ -11,26 +11,29 @@ import {
   openSettingsModal,
 } from '../../../redux/popupsSlice/slice'
 import styles from './ActionButtons.module.scss'
-import commentsSvg from '../../../assets/img/comments.svg'
-import starSvg from '../../../assets/img/star-notFavorite.svg'
-import favoriteStarSvg from '../../../assets/img/star-favorite.svg'
-import optionsSvg from '../../../assets/img/three-dots.svg'
+import commentsSvg from '../../../assets/img/optionsImgs/comments.svg'
+import starSvg from '../../../assets/img/optionsImgs/star-notFavorite.svg'
+import favoriteStarSvg from '../../../assets/img/optionsImgs/star-favorite.svg'
+import optionsSvg from '../../../assets/img/optionsImgs/three-dots.svg'
 
 const ActionButtons: React.FC = () => {
   const [isPageFavorite, setFavorite] = useState<boolean>(false) //!
   const modalRef = useRef<HTMLDivElement>(null)
   const currentPage = useSelector(currentPageSelector)
   const isPageSettingsPopupOpen = useSelector(pageSettingsPopupSelector)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const dispatch = useDispatch()
   const onToggleSettingsModal = (): void => {
-    dispatch(openSettingsModal())
+    // dispatch(openSettingsModal())
+    setIsModalOpen(true)
   }
   const toggleIsFavorite = (): void => {
     dispatch(toggleFavorite(currentPage?.id))
   }
   const handleClickOutside = (): void => {
-    dispatch(closeSettingsModal())
+    // dispatch(closeSettingsModal())
+    setIsModalOpen(false)
   }
 
   useOnClickOutside(modalRef, handleClickOutside)
@@ -51,7 +54,7 @@ const ActionButtons: React.FC = () => {
         <div className={styles.actionButton}>
           <img src={optionsSvg} alt='Options' />
         </div>
-        {isPageSettingsPopupOpen && <PageSettingsPopup />}
+        {isModalOpen && <PageSettingsPopup />}
       </div>
     </div>
   )

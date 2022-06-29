@@ -7,7 +7,7 @@ import { closeChangePageTitleModal } from '../../../redux/modalsSlice/slice'
 import { setIsIconModalOpen } from '../../../redux/pageDecorationSlice/slice'
 import { setPageIcon, setPageTitle } from '../../../redux/workSpaceSlice/slice'
 import styles from './ChangePageTitle.module.scss'
-import emptyIcon from '../../../assets/img/emptyIcon.svg'
+import emptyIcon from '../../../assets/img/optionsImgs/emptyIcon.svg'
 import { isIconModalOpenSelector } from '../../../redux/pageDecorationSlice/selectors'
 import { useOnClickOutside } from 'usehooks-ts'
 

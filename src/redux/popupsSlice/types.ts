@@ -1,7 +1,8 @@
 enum PageTemplates {
-  BOARD = 'board',
-  TASK_LIST = 'taskList',
-  CALENDAR = 'calendar',
+  BOARD = 'Board',
+  TASK_LIST = 'TaskList',
+  CALENDAR = 'Calendar',
+  TABLE = 'Table',
 }
 
 interface IAppPopupsState {

@@ -20,6 +20,8 @@ const PageCover: React.FC = () => {
     dispatch(setIsCoverModalOpen())
   }
 
+  if (!cover) return <></> //!!!!!!
+
   return (
     <Fragment>
       <div className={styles.coverBlock} ref={coverRef}>

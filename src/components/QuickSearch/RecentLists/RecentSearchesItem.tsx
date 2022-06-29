@@ -1,7 +1,7 @@
 import React from 'react'
 
 import styles from './RecentList.module.scss'
-import searchSvg from '../../../assets/img/search.svg'
+import searchSvg from '../../../assets/img/inputs/search.svg'
 
 interface RecentSearchesItemProps {
   title: string

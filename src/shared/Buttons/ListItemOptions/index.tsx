@@ -3,7 +3,7 @@ import { useHover } from 'usehooks-ts'
 
 import SidebarCategoryTooltip from '../../Tooltips/SidebarCategory'
 import styles from './ListItemOptions.module.scss'
-import optionsIcon from '../../../assets/img/three-dots.svg'
+import optionsIcon from '../../../assets/img/optionsImgs/three-dots.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { favoritePageOptionsSelector } from '../../../redux/optionsSlice/selectors'
 import SidebarListOptions from '../../ModalWindows/SidebarListOptions'

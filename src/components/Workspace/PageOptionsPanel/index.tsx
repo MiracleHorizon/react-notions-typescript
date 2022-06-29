@@ -1,20 +1,20 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as _ from 'lodash'
 
 import PageDecorOption from '../../PageDecorOption'
-import SwitchPageIconModal from '../../../shared/ModalWindows/SwitchIcon'
-import { currentPageSelector } from '../../../redux/workSpaceSlice/selectors'
+import SwitchPageIconModal from 'shared/ModalWindows/SwitchIcon'
+import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
 import {
   coversListsSelector,
   isIconModalOpenSelector,
-} from '../../../redux/pageDecorationSlice/selectors'
-import { setIsIconModalOpen } from '../../../redux/pageDecorationSlice/slice'
-import { setPageCover } from '../../../redux/workSpaceSlice/slice'
-import { getAllCovers } from '../../../utils/helpers/getAllCovers'
-import addIconSvg from '../../../assets/img/addIcon.svg'
-import coverSvg from '../../../assets/img/cover.svg'
-import commentSvg from '../../../assets/img/comments.svg'
+} from 'redux/pageDecorationSlice/selectors'
+import { setIsIconModalOpen } from 'redux/pageDecorationSlice/slice'
+import { setPageCover } from 'redux/workSpaceSlice/slice'
+import { getAllCovers } from 'utils/helpers/getAllCovers'
+import addIconSvg from 'assets/img/addIcon.svg'
+import coverSvg from 'assets/img/cover.svg'
+import commentSvg from 'assets/img/optionsImgs/comments.svg'
 import styles from './PageOptionsPanel.module.scss'
 
 const PageOptionsPanel: React.FC = () => {
@@ -33,12 +33,13 @@ const PageOptionsPanel: React.FC = () => {
   }
   const onAddRandomIcon = (): void => {}
 
+  //! icon!
   return (
     <div className={styles.options}>
       {isHasIcon && (
         <div>
           <div className={styles.pageIcon} onClick={onOpenSwitchPageIconModal}>
-            <img src={icon} alt='Page icon' />
+            <img src={icon!} alt='Page icon' />
           </div>
           {isSwitchPageIconModalOpen && <SwitchPageIconModal />}
         </div>

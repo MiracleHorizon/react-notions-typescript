@@ -2,13 +2,13 @@ import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 
-import ListItemOptionsButton from '../../../../shared/Buttons/ListItemOptions'
-import ChangeIconTooltip from '../../../../shared/Tooltips/ChangeIcon'
-import { IWorkspacePage } from '../../../../redux/workSpaceSlice/types'
-import { setCurrentPage } from '../../../../redux/workSpaceSlice/slice'
+import ListItemOptionsButton from 'shared/Buttons/ListItemOptions'
+import ChangeIconTooltip from 'shared/Tooltips/ChangeIcon'
+import { IWorkspacePage } from 'redux/workSpaceSlice/types'
+import { setCurrentPage } from 'redux/workSpaceSlice/slice'
+import toggleIcon from 'assets/img/sidebar-arrow.svg'
+import emptyIcon from 'assets/img/optionsImgs/empty.svg'
 import styles from './SidebarListItem.module.scss'
-import toggleIcon from '../../../../assets/img/sidebar-arrow.svg'
-import emptyIcon from '../../../../assets/img/emptyIcon.svg'
 
 interface SidebarListItemProps {
   page: IWorkspacePage

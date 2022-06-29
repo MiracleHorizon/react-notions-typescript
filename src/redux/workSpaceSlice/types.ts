@@ -13,17 +13,25 @@ enum CoverColors {
 }
 
 interface IWorkspacePage {
-  id: number
+  id: number | null
   pageTitle: string
-  icon: string
-  cover: CoverColors
-  template: PageTemplates
+  icon: string | null
+  cover: CoverColors | null
+  template?: PageTemplates
   isSmallText: boolean
   isFullWidth: boolean
   isHasIcon: boolean
   isHasCover: boolean
   isHasComments: boolean
   isFavorite: boolean
+  content?: {
+    blocks: {
+      block: {
+        title: string
+        content: {}
+      }
+    }
+  }
 }
 
 interface IPageHistoryNote {
