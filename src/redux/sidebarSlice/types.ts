@@ -1,6 +1,9 @@
-interface ISidebarSliceState {
+interface SidebarSliceState {
   isOpen: boolean
-  activeItem: number
+  activePage: {
+    title: string
+    id: number
+  }
 }
 
-export type { ISidebarSliceState }
+export type { SidebarSliceState }

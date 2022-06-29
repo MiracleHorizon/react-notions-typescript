@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 
 import ListItemOptionsButton from 'shared/Buttons/ListItemOptions'
@@ -9,15 +9,16 @@ import { setCurrentPage } from 'redux/workSpaceSlice/slice'
 import toggleIcon from 'assets/img/sidebar-arrow.svg'
 import emptyIcon from 'assets/img/optionsImgs/empty.svg'
 import styles from './SidebarListItem.module.scss'
-import { PagesListProps } from '../../index'
+import { activePageSelector } from 'redux/sidebarSlice/selectors'
+import { setActivePage } from 'redux/sidebarSlice/slice'
 
-interface SidebarListItemProps extends PagesListProps {
+interface SidebarListItemProps {
   page: IWorkspacePage
 }
 
-const SidebarListItem: React.FC<SidebarListItemProps> = props => {
-  const { page, activeItem, onSelect } = props
+const SidebarListItem: React.FC<SidebarListItemProps> = ({ page }) => {
   const { id, pageTitle, icon, isHasIcon, isFavorite } = page
+  const activePage = useSelector(activePageSelector)
 
   const itemRef = useRef<HTMLLIElement>(null)
   const isHovering = useHover(itemRef)
@@ -28,16 +29,18 @@ const SidebarListItem: React.FC<SidebarListItemProps> = props => {
   const dispatch = useDispatch()
   const onSelectCurrentPage = (): void => {
     dispatch(setCurrentPage(id))
-    onSelect(pageTitle)
+    dispatch(setActivePage({ title: pageTitle, id }))
   }
-
-  const className =
-    activeItem === pageTitle ? styles.item + ' ' + styles.active : styles.item
+  const classNameHandler = (): string => {
+    return activePage.title === pageTitle && activePage.id === id
+      ? styles.item + ' ' + styles.active
+      : styles.item
+  }
 
   return (
     <li
       draggable={true}
-      className={className}
+      className={classNameHandler()}
       ref={itemRef}
       onClick={onSelectCurrentPage}
     >

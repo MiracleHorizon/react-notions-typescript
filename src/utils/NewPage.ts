@@ -1,20 +1,7 @@
 import { CoverColors, IWorkspacePage } from '../redux/workSpaceSlice/types'
 import { PageTemplates } from '../redux/popupsSlice/types'
 
-const DEFAULT_PAGE_SETTINGS: IWorkspacePage = {
-  id: null,
-  pageTitle: 'Untitled',
-  cover: null,
-  icon: null,
-  isHasCover: false,
-  isHasIcon: false,
-  isFullWidth: false,
-  isSmallText: false,
-  isHasComments: false,
-  isFavorite: false,
-}
-
-class NewPage {
+class NewPage implements IWorkspacePage {
   id: number | null
   pageTitle: string
   cover: null | CoverColors
@@ -40,6 +27,19 @@ class NewPage {
     this.isFavorite = params.isFavorite
     this.template = PageTemplates.BOARD
   }
+}
+
+const DEFAULT_PAGE_SETTINGS: IWorkspacePage = {
+  id: null,
+  pageTitle: 'Untitled',
+  cover: null,
+  icon: null,
+  isHasCover: false,
+  isHasIcon: false,
+  isFullWidth: false,
+  isSmallText: false,
+  isHasComments: false,
+  isFavorite: false,
 }
 
 const newPageConstructor = (): IWorkspacePage => {

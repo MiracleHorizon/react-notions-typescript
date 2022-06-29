@@ -1,6 +1,6 @@
 import { RootState } from '../store'
 
 const isSidebarOpenSelector = (state: RootState) => state.sidebar.isOpen
-const activeItemSelector = (state: RootState) => state.sidebar.activeItem
+const activePageSelector = (state: RootState) => state.sidebar.activePage
 
-export { isSidebarOpenSelector, activeItemSelector }
+export { isSidebarOpenSelector, activePageSelector }

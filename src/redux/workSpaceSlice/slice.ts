@@ -124,11 +124,7 @@ export const workSpaceSlice = createSlice({
 
   reducers: {
     createNewPage(state, action: PayloadAction<IWorkspacePage>) {
-      const newPage = action.payload //*
-
       state.pages = [...state.pages, action.payload]
-
-      console.log(newPage)
     },
     deletePage(state, action) {
       state.pages = state.pages.filter(page => page.id !== action.payload)

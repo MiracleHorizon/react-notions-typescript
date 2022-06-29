@@ -9,12 +9,10 @@ import AddNewPageButton from 'shared/Buttons/AddNewPage'
 import SidebarListTooltip from 'shared/Tooltips/SidebarList'
 import { commonPagesSelector } from 'redux/workSpaceSlice/selectors'
 import sidebarStyles from './Sidebar.module.scss'
-import { PagesListProps } from './index'
 
-const CommonPagesList: React.FC<PagesListProps> = props => {
-  const { activeItem, onSelect } = props
-  const commonPages = useSelector(commonPagesSelector)
+const CommonPagesList: React.FC = () => {
   const { isOpen, toggleIsOpen } = useToggle(true)
+  const commonPages = useSelector(commonPagesSelector)
 
   const listRef = useRef<HTMLDivElement>(null)
   const isHovering = useHover(listRef)
@@ -30,13 +28,7 @@ const CommonPagesList: React.FC<PagesListProps> = props => {
         toggleList={toggleIsOpen}
       />
       {isHovering && <AddNewPageButton />}
-      {isOpen && (
-        <SidebarList
-          pages={commonPages}
-          activeItem={activeItem}
-          onSelect={onSelect}
-        />
-      )}
+      {isOpen && <SidebarList pages={commonPages} />}
       {isListTitleHovering && (
         <SidebarListTooltip isOpen={isOpen} description='Your regular pages.' />
       )}
