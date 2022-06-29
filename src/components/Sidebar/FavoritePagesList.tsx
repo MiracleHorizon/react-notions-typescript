@@ -8,8 +8,10 @@ import ListTitle from './PagesList/ListTitle'
 import SidebarListTooltip from '../../shared/Tooltips/SidebarList'
 import { favoritePagesSelector } from '../../redux/workSpaceSlice/selectors'
 import sidebarStyles from './Sidebar.module.scss'
+import { PagesListProps } from './index'
 
-const FavoritePagesList: React.FC = () => {
+const FavoritePagesList: React.FC<PagesListProps> = props => {
+  const { activeItem, onSelect } = props
   const { isOpen, toggleIsOpen } = useToggle(true)
   const favoritePages = useSelector(favoritePagesSelector)
 
@@ -23,7 +25,13 @@ const FavoritePagesList: React.FC = () => {
         reference={listTitleRef}
         toggleList={toggleIsOpen}
       />
-      {isOpen && <SidebarList pages={favoritePages} />}
+      {isOpen && (
+        <SidebarList
+          activeItem={activeItem}
+          onSelect={onSelect}
+          pages={favoritePages}
+        />
+      )}
       {isListTitleHovering && (
         <SidebarListTooltip
           isOpen={isOpen}

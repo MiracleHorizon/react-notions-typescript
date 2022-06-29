@@ -7,11 +7,11 @@ import styles from './EmptyPageList.module.scss'
 interface EmptyPageListProps {
   list: EmptyPageOption[]
   activeItem: string
-  onHover: (activeItem: string) => void
+  onSelect: (activeItem: string) => void
 }
 
 const EmptyPageList: React.FC<EmptyPageListProps> = props => {
-  const { list, activeItem, onHover } = props
+  const { list, activeItem, onSelect } = props
 
   return (
     <ul className={styles.list}>
@@ -21,7 +21,7 @@ const EmptyPageList: React.FC<EmptyPageListProps> = props => {
           title={title}
           img={img}
           activeItem={activeItem}
-          onHover={onHover}
+          onSelect={onSelect}
           onClick={onClick}
         />
       ))}

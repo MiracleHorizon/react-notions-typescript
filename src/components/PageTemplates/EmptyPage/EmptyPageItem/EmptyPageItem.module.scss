@@ -10,6 +10,11 @@
   border-radius: 3px;
   user-select: none;
 
+  &:active {
+    background: rgba(46, 170, 220, 0.25);
+    transition: background 0.1s ease-in-out;
+  }
+
   div {
     display: flex;
     align-items: center;
@@ -41,4 +46,5 @@
 
 .active {
   background: rgba(46, 170, 220, 0.15);
+  transition: background 0.05s ease-in-out;
 }

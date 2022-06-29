@@ -4,18 +4,21 @@ import { ToggleOption } from '../../utils/helpers/toggleOptionsHandler'
 
 interface ToggleOptionsProps {
   options: ToggleOption[]
+  activeItem: string
+  onSelect: (title: string) => void
 }
 
-const ToggleOptionsList: React.FC<ToggleOptionsProps> = ({ options }) => {
+const ToggleOptionsList: React.FC<ToggleOptionsProps> = props => {
+  const { options, activeItem, onSelect } = props
+
   return (
     <div>
-      {options.map(({ id, title, isActive, toggleIsActive }) => (
+      {options.map(option => (
         <ToggleOptionItem
-          key={title}
-          id={id}
-          title={title}
-          isActive={isActive}
-          toggleIsActive={toggleIsActive}
+          key={option.title}
+          option={option}
+          activeItem={activeItem}
+          onSelect={onSelect}
         />
       ))}
     </div>

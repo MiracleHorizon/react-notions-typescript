@@ -1,22 +1,24 @@
-import React, { useState } from 'react'
+import React, { useRef } from 'react'
+import { useHover } from 'usehooks-ts'
+import { useCreateNewPage } from 'hooks/useCreateNewPage'
 
 import AddNewPageToolkit from '../../Tooltips/AddNewPage'
 import addPageSvg from '../../../assets/img/plus-addPage.svg'
 import styles from './AddNewPageButton.module.scss'
 
 const AddNewPageButton: React.FC = () => {
-  const [isTooltipOpen, setIsTooltipOpen] = useState<boolean>(false)
-
-  const onToggleTooltip = () => setIsTooltipOpen(!isTooltipOpen)
+  const buttonRef = useRef<HTMLButtonElement>(null) //! div || button
+  const isHovering = useHover(buttonRef)
+  const onCreateNewPage = useCreateNewPage()
 
   return (
     <button
       className={styles.addPageBtn}
-      onMouseEnter={onToggleTooltip}
-      onMouseLeave={onToggleTooltip}
+      ref={buttonRef}
+      onClick={onCreateNewPage}
     >
       <img src={addPageSvg} alt='Add page' />
-      {isTooltipOpen && <AddNewPageToolkit />}
+      {isHovering && <AddNewPageToolkit />}
     </button>
   )
 }

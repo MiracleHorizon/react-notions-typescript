@@ -1,6 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { useSelectItem } from 'hooks/useSelectItem'
 
 import EmptyPageList from './EmptyPageList'
+import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
 import {
   EMPTY_PAGE_DECORATION_OPTIONS,
   EMPTY_PAGE_TEMPLATES_OPTIONS,
@@ -8,17 +11,24 @@ import {
 import styles from './EmptyPage.module.scss'
 
 const EmptyPage: React.FC = () => {
-  const [activeItem, setActiveItem] = useState<string>('Empty')
+  const { id } = useSelector(currentPageSelector)
+  const { activeItem, setActiveItem, onSelectItem } = useSelectItem('')
 
-  const onSelectItem = (title: string): void => setActiveItem(title)
+  useEffect((): void => setActiveItem(''), [id, setActiveItem])
 
   return (
     <div className={styles.empty}>
+      <div className={styles.description}>
+        <p>
+          Press Enter to continue with an empty page, or pick a template (↑↓ to
+          select)
+        </p>
+      </div>
       <div>
         <EmptyPageList
           list={EMPTY_PAGE_DECORATION_OPTIONS}
           activeItem={activeItem}
-          onHover={onSelectItem}
+          onSelect={onSelectItem}
         />
       </div>
       <div>
@@ -28,7 +38,7 @@ const EmptyPage: React.FC = () => {
         <EmptyPageList
           list={EMPTY_PAGE_TEMPLATES_OPTIONS}
           activeItem={activeItem}
-          onHover={onSelectItem}
+          onSelect={onSelectItem}
         />
       </div>
     </div>

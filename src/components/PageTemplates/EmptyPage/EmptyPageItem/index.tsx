@@ -5,12 +5,12 @@ interface EmptyPageItemProps {
   title: string
   img: string
   activeItem: string
-  onHover: (title: string) => void
+  onSelect: (title: string) => void
   onClick: () => void
 }
 
 const EmptyPageItem: React.FC<EmptyPageItemProps> = props => {
-  const { title, img, activeItem, onHover, onClick } = props
+  const { title, img, activeItem, onSelect, onClick } = props
   const itemRef = useRef<HTMLDivElement>(null)
 
   const className =
@@ -21,7 +21,7 @@ const EmptyPageItem: React.FC<EmptyPageItemProps> = props => {
       className={className}
       ref={itemRef}
       onClick={onClick}
-      onMouseEnter={() => onHover(title)}
+      onMouseEnter={() => onSelect(title)}
     >
       <div className={styles.image}>
         <img src={img} alt='Icon' />

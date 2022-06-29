@@ -1,15 +1,15 @@
 import React, { FormEvent, Fragment, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useOnClickOutside } from 'usehooks-ts'
 
 import SwitchPageIconModal from '../SwitchIcon'
 import { currentPageSelector } from '../../../redux/workSpaceSlice/selectors'
+import { isIconModalOpenSelector } from '../../../redux/pageDecorationSlice/selectors'
 import { closeChangePageTitleModal } from '../../../redux/modalsSlice/slice'
 import { setIsIconModalOpen } from '../../../redux/pageDecorationSlice/slice'
 import { setPageIcon, setPageTitle } from '../../../redux/workSpaceSlice/slice'
 import styles from './ChangePageTitle.module.scss'
-import emptyIcon from '../../../assets/img/optionsImgs/emptyIcon.svg'
-import { isIconModalOpenSelector } from '../../../redux/pageDecorationSlice/selectors'
-import { useOnClickOutside } from 'usehooks-ts'
+import emptyIcon from 'assets/img/optionsImgs/empty.svg'
 
 interface IPageTitleModalCoords {
   coords: {

@@ -4,20 +4,27 @@ import { useSelector } from 'react-redux'
 import PageCover from '../../Workspace/PageOptionsPanel/PageCover'
 import PageOptionsPanel from '../../Workspace/PageOptionsPanel'
 import BoardContent from './BoardContent'
+import EmptyPage from '../EmptyPage'
 import classNameHandler from '../../../utils/helpers/boardClassNameHandler'
 import { currentPageSelector } from '../../../redux/workSpaceSlice/selectors'
 import styles from './Board.module.scss'
-import EmptyPage from '../EmptyPage'
 
 const Board: React.FC = () => {
-  const { isSmallText, isFullWidth, content } = useSelector(currentPageSelector)
+  const { isSmallText, isFullWidth, content, isHasIcon, isHasCover } =
+    useSelector(currentPageSelector)
+
+  const isPageEmptyCheck = (): JSX.Element => {
+    if (isHasCover || isHasIcon || content) return <BoardContent />
+
+    return <EmptyPage />
+  }
 
   return (
     <div className={styles.board}>
       <PageCover />
       <div className={classNameHandler({ isSmallText, isFullWidth })}>
         <PageOptionsPanel />
-        {content ? <BoardContent /> : <EmptyPage />}
+        {isPageEmptyCheck()}
       </div>
     </div>
   )

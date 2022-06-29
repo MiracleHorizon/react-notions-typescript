@@ -3,17 +3,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useOnClickOutside } from 'usehooks-ts'
 
 import ActionButtons from './ActionButtons'
-import ChangePageTitleModal from '../../shared/ModalWindows/ChangePageTitle'
-import SwitchSidebarButton from '../../shared/Buttons/SwitchSidebar'
-import { isSidebarOpenSelector } from '../../redux/sidebarSlice/selectors'
-import { currentPageSelector } from '../../redux/workSpaceSlice/selectors'
-import { changePageTitleModalSelector } from '../../redux/modalsSlice/selectors'
+import ChangePageTitleModal from 'shared/ModalWindows/ChangePageTitle'
+import SwitchSidebarButton from 'shared/Buttons/SwitchSidebar'
+import { isSidebarOpenSelector } from 'redux/sidebarSlice/selectors'
+import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
+import { changePageTitleModalSelector } from 'redux/modalsSlice/selectors'
 import {
   closeChangePageTitleModal,
   openChangePageTitleModal,
-} from '../../redux/modalsSlice/slice'
+} from 'redux/modalsSlice/slice'
 import styles from './Header.module.scss'
-import emptyIcon from '../../assets/img/optionsImgs/emptyIcon.svg'
+import emptyIcon from 'assets/img/optionsImgs/empty.svg'
 
 const Header: React.FC = () => {
   const { pageTitle, icon, isHasIcon } = useSelector(currentPageSelector)
