@@ -14,7 +14,7 @@ enum CoverColors {
 
 interface IWorkspacePage {
   id: number | null
-  pageTitle: string
+  title: string
   icon: string | null
   cover: CoverColors | null
   template?: PageTemplates
@@ -36,8 +36,8 @@ interface IWorkspacePage {
 
 interface IPageHistoryNote {
   userName: string
-  pageTitle: string
-  pageIcon: string
+  title: string
+  icon: string
   updated: string //!
   deleted: string //!
 }
@@ -49,11 +49,11 @@ interface IPageOptions {
   history: IPageHistoryNote[]
 }
 
-interface IWorkspaceSliceState {
+interface WorkspaceSliceState {
   pages: IWorkspacePage[] | []
   currentPage: IWorkspacePage
   options?: IPageOptions
 }
 
-export type { IWorkspaceSliceState, IWorkspacePage }
+export type { WorkspaceSliceState, IWorkspacePage }
 export { CoverColors }

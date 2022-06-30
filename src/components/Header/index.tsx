@@ -16,7 +16,7 @@ import styles from './Header.module.scss'
 import emptyIcon from 'assets/img/optionsImgs/empty.svg'
 
 const Header: React.FC = () => {
-  const { pageTitle, icon, isHasIcon } = useSelector(currentPageSelector)
+  const { title, icon, isHasIcon } = useSelector(currentPageSelector)
   const changePageTitleModalCoords = { left: '10px', top: '40px' }
 
   const modalRef = useRef<HTMLDivElement>(null)
@@ -40,7 +40,7 @@ const Header: React.FC = () => {
         <div ref={modalRef} onClick={onOpenChangePageTitleModal}>
           <div className={styles.pageTitleBlock}>
             <img src={isHasIcon ? icon : emptyIcon} alt='Page icon' />
-            <span>{pageTitle}</span>
+            <span>{title}</span>
           </div>
           {isChangePageTitleModalOpen && (
             <ChangePageTitleModal coords={changePageTitleModalCoords} />

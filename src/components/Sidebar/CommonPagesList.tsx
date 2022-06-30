@@ -3,12 +3,12 @@ import { useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 import { useToggle } from 'hooks/useToggle'
 
-import SidebarList from './PagesList'
-import ListTitle from './PagesList/ListTitle'
+import { PagesList } from './Sidebar.styles'
+import SidebarList from './PagesList/PagesList'
+import ListTitle from './PagesList/ListTitle/ListTitle'
 import AddNewPageButton from 'shared/Buttons/AddNewPage'
 import SidebarListTooltip from 'shared/Tooltips/SidebarList'
 import { commonPagesSelector } from 'redux/workSpaceSlice/selectors'
-import sidebarStyles from './Sidebar.module.scss'
 
 const CommonPagesList: React.FC = () => {
   const { isOpen, toggleIsOpen } = useToggle(true)
@@ -21,7 +21,7 @@ const CommonPagesList: React.FC = () => {
   const isListTitleHovering = useHover(listTitleRef)
 
   return (
-    <div className={sidebarStyles.panel} ref={listRef}>
+    <PagesList>
       <ListTitle
         title='Common'
         reference={listTitleRef}
@@ -32,8 +32,21 @@ const CommonPagesList: React.FC = () => {
       {isListTitleHovering && (
         <SidebarListTooltip isOpen={isOpen} description='Your regular pages.' />
       )}
-    </div>
+    </PagesList>
   )
 }
 
 export default CommonPagesList
+// <div className={sidebarStyles.panel} ref={listRef}>
+//   <ListTitle
+// title='Common'
+// reference={listTitleRef}
+// toggleList={toggleIsOpen}
+// />
+// {isHovering && <AddNewPageButton />}
+// {isOpen && <SidebarList pages={commonPages} />}
+// {isListTitleHovering && (
+//   <SidebarListTooltip isOpen={isOpen} description='Your regular pages.' />
+// )}
+// </div>
+// import sidebarStyles from './Sidebar.module.scss'

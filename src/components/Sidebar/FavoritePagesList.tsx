@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 import { useToggle } from 'hooks/useToggle'
 
-import SidebarList from './PagesList'
-import ListTitle from './PagesList/ListTitle'
+import SidebarList from './PagesList/PagesList'
+import ListTitle from './PagesList/ListTitle/ListTitle'
 import SidebarListTooltip from 'shared/Tooltips/SidebarList'
 import { favoritePagesSelector } from 'redux/workSpaceSlice/selectors'
-import sidebarStyles from './Sidebar.module.scss'
+import { PagesList } from './Sidebar.styles'
 
 const FavoritePagesList: React.FC = () => {
   const { isOpen, toggleIsOpen } = useToggle(true)
@@ -17,7 +17,7 @@ const FavoritePagesList: React.FC = () => {
   const isListTitleHovering = useHover(listTitleRef)
 
   return (
-    <div className={sidebarStyles.panel}>
+    <PagesList>
       <ListTitle
         title='Favorites'
         reference={listTitleRef}
@@ -30,7 +30,7 @@ const FavoritePagesList: React.FC = () => {
           description={'Pages you have favorite.'}
         />
       )}
-    </div>
+    </PagesList>
   )
 }
 

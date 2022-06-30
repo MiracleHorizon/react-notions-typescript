@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { CoverColors, IWorkspacePage, IWorkspaceSliceState } from './types'
+import { CoverColors, IWorkspacePage, WorkspaceSliceState } from './types'
 import { PageTemplates } from '../popupsSlice/types'
 import vue3Svg from 'assets/img/technologies/vue3.svg'
 import reactSvg from 'assets/img/technologies/react.svg'
 
-const initialState: IWorkspaceSliceState = {
+const initialState: WorkspaceSliceState = {
   pages: [
     {
       id: 1,
-      pageTitle: 'React + TypeScript',
+      title: 'React + TypeScript',
       cover: CoverColors.YELLOW,
       icon: '',
       isFullWidth: true,
@@ -22,7 +22,7 @@ const initialState: IWorkspaceSliceState = {
     },
     {
       id: 2,
-      pageTitle: 'Redux + TypeScript',
+      title: 'Redux + TypeScript',
       cover: CoverColors.WHITE,
       icon: `${reactSvg}`,
       template: PageTemplates.BOARD,
@@ -35,7 +35,7 @@ const initialState: IWorkspaceSliceState = {
     },
     {
       id: 3,
-      pageTitle: 'React',
+      title: 'React',
       template: PageTemplates.BOARD,
       isFullWidth: true,
       isSmallText: false,
@@ -48,7 +48,7 @@ const initialState: IWorkspaceSliceState = {
     },
     {
       id: 4,
-      pageTitle: 'Redux',
+      title: 'Redux',
       template: PageTemplates.BOARD,
       isFullWidth: true,
       isSmallText: false,
@@ -62,7 +62,7 @@ const initialState: IWorkspaceSliceState = {
     },
     {
       id: 5,
-      pageTitle: 'NodeJS',
+      title: 'NodeJS',
       template: PageTemplates.BOARD,
       isFullWidth: false,
       isSmallText: false,
@@ -76,7 +76,7 @@ const initialState: IWorkspaceSliceState = {
     },
     {
       id: 6,
-      pageTitle: 'Angular',
+      title: 'Angular',
       cover: CoverColors.BEIGE,
       icon: `${reactSvg}`,
       template: PageTemplates.BOARD,
@@ -90,7 +90,7 @@ const initialState: IWorkspaceSliceState = {
     },
     {
       id: 7,
-      pageTitle: 'Vue 3',
+      title: 'Vue 3',
       cover: CoverColors.RED,
       icon: `${vue3Svg}`,
       isHasCover: true,
@@ -104,7 +104,7 @@ const initialState: IWorkspaceSliceState = {
   ],
   currentPage: {
     id: 7,
-    pageTitle: 'Vue 3',
+    title: 'Vue 3',
     cover: CoverColors.RED,
     icon: `${vue3Svg}`,
     isHasCover: true,
@@ -131,33 +131,34 @@ export const workSpaceSlice = createSlice({
     },
     setCurrentPage(state, action) {
       const page = state.pages.find(page => page.id === action.payload)
+      if (!page) return
 
-      if (page) state.currentPage = page
-      document.title = state.currentPage.pageTitle //!
+      state.currentPage = page
+      document.title = state.currentPage.title //!
     },
     setPageTitle(state, action) {
-      const [pageTitle, pageId] = action.payload
-      const page = state.pages.find(page => page.id === pageId)
-
+      const [title, id] = action.payload
+      const page = state.pages.find(page => page.id === id)
       if (!page) return
-      state.currentPage.pageTitle = pageTitle
-      page.pageTitle = pageTitle
+
+      state.currentPage.title = title
+      page.title = title
     },
     setPageIcon(state, action) {
       const { icon, pageId } = action.payload
       const page = state.pages.find(page => page.id === pageId)
-
       if (!page) return
+
       page.isHasIcon = true
       page.icon = icon
       state.currentPage.isHasIcon = true
       state.currentPage.icon = action.payload
     },
     setPageCover(state, action) {
-      const { cover, id } = action.payload
+      const { id, cover } = action.payload
       const page = state.pages.find(page => page.id === id)
-
       if (!page) return
+
       page.isHasCover = true
       page.cover = cover
       state.currentPage.isHasCover = true
@@ -165,8 +166,8 @@ export const workSpaceSlice = createSlice({
     },
     removeIcon(state, action) {
       const page = state.pages.find(page => page.id === action.payload)
-
       if (!page) return
+
       page.isHasIcon = false
       page.icon = '' //!
       state.currentPage.isHasIcon = false
@@ -174,8 +175,8 @@ export const workSpaceSlice = createSlice({
     },
     removeCover(state, action) {
       const page = state.pages.find(page => page.id === action.payload)
-
       if (!page) return
+
       page.isHasCover = false
       page.cover = CoverColors.WHITE
       state.currentPage.cover = CoverColors.WHITE
@@ -183,22 +184,22 @@ export const workSpaceSlice = createSlice({
     },
     toggleFavorite(state, action) {
       const page = state.pages.find(page => page.id === action.payload)
-
       if (!page) return
+
       state.currentPage.isFavorite = !state.currentPage.isFavorite
       page.isFavorite = !page.isFavorite
     },
     toggleFullWidth(state, action) {
       const page = state.pages.find(page => page.id === action.payload)
-
       if (!page) return
+
       state.currentPage.isFullWidth = !state.currentPage.isFullWidth
       page.isFullWidth = !page.isFullWidth
     },
     toggleSmallText(state, action) {
       const page = state.pages.find(page => page.id === action.payload)
-
       if (!page) return
+
       state.currentPage.isSmallText = !state.currentPage.isSmallText
       page.isSmallText = !page.isSmallText
     },

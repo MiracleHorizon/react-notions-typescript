@@ -1,32 +1,30 @@
-import React, { ChangeEvent, Dispatch, FormEvent, SetStateAction } from 'react'
+import React, { ChangeEvent, FormEvent } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { setSearchesValue } from '../../../redux/recentSearchSlice/slice'
-import { closeQuickSearchModal } from '../../../redux/modalsSlice/slice'
-import { ACCOUNT_NAME } from '../../../utils/accountName'
+import { setSearchesValue } from 'redux/recentSearchSlice/slice'
+import { closeQuickSearchModal } from 'redux/modalsSlice/slice'
+import { ACCOUNT_NAME } from 'utils/accountName'
+import searchSvg from 'assets/img/inputs/search.svg'
+import clearInputSvg from 'assets/img/inputs/clearInput.svg'
+
 import styles from './SearchForm.module.scss'
-import searchSvg from '../../../assets/img/inputs/search.svg'
-import clearInputSvg from '../../../assets/img/inputs/clearInput.svg'
 
 interface SearchFormProps {
   inputValue: string
-  setInputValue: Dispatch<SetStateAction<string>>
+  onChangeInputValue: (e: ChangeEvent<HTMLInputElement>) => void
+  onClearInput: () => void
 }
 
 const QuickSearchForm: React.FC<SearchFormProps> = props => {
-  const { inputValue, setInputValue } = props
+  const { inputValue, onChangeInputValue, onClearInput } = props
 
   const dispatch = useDispatch()
-  const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>): void => {
-    setInputValue(e.target.value)
-  }
-  const onClearInputValue = (): void => setInputValue('')
   const onSubmitForm = (e: FormEvent): void => {
     e.preventDefault()
 
     dispatch(setSearchesValue(inputValue))
     dispatch(closeQuickSearchModal())
-    setInputValue('')
+    onClearInput()
   }
 
   return (
@@ -42,7 +40,7 @@ const QuickSearchForm: React.FC<SearchFormProps> = props => {
       />
       {inputValue !== '' && (
         <div className={styles.clearImg}>
-          <img src={clearInputSvg} alt='Clear' onClick={onClearInputValue} />
+          <img src={clearInputSvg} alt='Clear' onClick={onClearInput} />
         </div>
       )}
     </form>

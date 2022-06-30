@@ -18,7 +18,7 @@ import commentSvg from 'assets/img/optionsImgs/comments.svg'
 import styles from './PageOptionsPanel.module.scss'
 
 const PageOptionsPanel: React.FC = () => {
-  const { pageTitle, icon, isHasCover, isHasIcon, isHasComments, id } =
+  const { title, icon, isHasCover, isHasIcon, isHasComments, id } =
     useSelector(currentPageSelector)
   const covers = useSelector(coversListsSelector)
   const isSwitchPageIconModalOpen = useSelector(isIconModalOpenSelector)
@@ -31,15 +31,14 @@ const PageOptionsPanel: React.FC = () => {
   const onAddRandomCover = (): void => {
     dispatch(setPageCover({ cover: _.sample(getAllCovers(covers)), id }))
   }
-  const onAddRandomIcon = (): void => {}
+  const onAddRandomIcon = (): void => {} //! icon!
 
-  //! icon!
   return (
     <div className={styles.options}>
       {isHasIcon && (
         <div>
           <div className={styles.pageIcon} onClick={onOpenSwitchPageIconModal}>
-            <img src={icon!} alt='Page icon' />
+            <img src={icon ? icon : ''} alt='Page icon' />
           </div>
           {isSwitchPageIconModalOpen && <SwitchPageIconModal />}
         </div>
@@ -64,7 +63,7 @@ const PageOptionsPanel: React.FC = () => {
         )}
       </div>
       <div className={styles.pageTitle}>
-        <h1>{pageTitle}</h1>
+        <h1>{title}</h1>
       </div>
     </div>
   )

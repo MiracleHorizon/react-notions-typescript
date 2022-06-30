@@ -21,7 +21,7 @@ interface IPageTitleModalCoords {
 }
 
 const ChangePageTitleModal: React.FC<IPageTitleModalCoords> = ({ coords }) => {
-  const { id, pageTitle, icon, isHasIcon } = useSelector(currentPageSelector)
+  const { id, title, icon, isHasIcon } = useSelector(currentPageSelector)
   const inputRef = useRef<HTMLInputElement>(null)
   const isChangePageIconModalOpen = useSelector(isIconModalOpenSelector)
 
@@ -55,7 +55,7 @@ const ChangePageTitleModal: React.FC<IPageTitleModalCoords> = ({ coords }) => {
           <input
             type='text'
             placeholder='Untitled'
-            value={pageTitle}
+            value={title}
             ref={inputRef}
             onChange={onChangePageTitle}
           />

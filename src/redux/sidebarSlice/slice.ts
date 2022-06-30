@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { SidebarSliceState } from './types'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { ActivePage, SidebarSliceState } from './types'
 
 const initialState: SidebarSliceState = {
   isOpen: true,
@@ -15,13 +15,13 @@ const sidebarSlice = createSlice({
   initialState: initialState,
 
   reducers: {
-    setSidebarClose(state): void {
+    setSidebarClose(state) {
       state.isOpen = false
     },
-    setSidebarOpen(state): void {
+    setSidebarOpen(state) {
       state.isOpen = true
     },
-    setActivePage(state, action): void {
+    setActivePage(state, action: PayloadAction<ActivePage>) {
       state.activePage = action.payload
     },
   },

@@ -3,7 +3,7 @@ import { PageTemplates } from '../redux/popupsSlice/types'
 
 class NewPage implements IWorkspacePage {
   id: number | null
-  pageTitle: string
+  title: string
   cover: null | CoverColors
   icon: null | string
   isHasCover: boolean
@@ -16,7 +16,7 @@ class NewPage implements IWorkspacePage {
 
   constructor(params: IWorkspacePage) {
     this.id = params.id
-    this.pageTitle = params.pageTitle
+    this.title = params.title
     this.cover = params.cover
     this.icon = params.icon
     this.isHasCover = params.isHasCover
@@ -31,7 +31,7 @@ class NewPage implements IWorkspacePage {
 
 const DEFAULT_PAGE_SETTINGS: IWorkspacePage = {
   id: null,
-  pageTitle: 'Untitled',
+  title: 'Untitled',
   cover: null,
   icon: null,
   isHasCover: false,

@@ -2,13 +2,13 @@ import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useOnClickOutside } from 'usehooks-ts'
 
-import SwitchCoverContent from '../../../components/Workspace/PageOptionsPanel/PageCover/SwitchCoverContent'
-import SwitchDecorationNavbar from '../../../components/Workspace/PageOptionsPanel/SwitchDecoration/Navbar'
+import SwitchCoverContent from 'components/Workspace/PageOptionsPanel/PageCover/SwitchCoverContent'
+import SwitchDecorationNavbar from 'components/Workspace/PageOptionsPanel/SwitchDecoration/Navbar'
 import {
   refreshCoverCategory,
   setIsCoverModalClose,
-} from '../../../redux/pageDecorationSlice/slice'
-import { coverCategoriesSelector } from '../../../redux/pageDecorationSlice/selectors'
+} from 'redux/pageDecorationSlice/slice'
+import { coverCategoriesSelector } from 'redux/pageDecorationSlice/selectors'
 import styles from './SwitchCover.module.scss'
 
 const SwitchPageCoverModal: React.FC = () => {

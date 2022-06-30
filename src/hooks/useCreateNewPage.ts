@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { workspacePagesSelector } from '../redux/workSpaceSlice/selectors'
-import { newPageConstructor } from '../utils/NewPage'
-import { createNewPage, setCurrentPage } from '../redux/workSpaceSlice/slice'
+import { createNewPage, setCurrentPage } from 'redux/workSpaceSlice/slice'
+import { setActivePage } from 'redux/sidebarSlice/slice'
+import { workspacePagesSelector } from 'redux/workSpaceSlice/selectors'
+import { newPageConstructor } from 'utils/NewPage'
 
-export const useCreateNewPage = (): (() => void) => {
+export const useCreateNewPage = (id: number): (() => void) => {
   const workspacePages = useSelector(workspacePagesSelector)
   const dispatch = useDispatch()
 
@@ -13,5 +14,6 @@ export const useCreateNewPage = (): (() => void) => {
 
     dispatch(createNewPage(newPage))
     dispatch(setCurrentPage(newPage.id))
+    dispatch(setActivePage({ title: newPage.title, id }))
   }
 }

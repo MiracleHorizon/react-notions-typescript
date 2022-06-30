@@ -1,9 +1,11 @@
-interface SidebarSliceState {
-  isOpen: boolean
-  activePage: {
-    title: string
-    id: number
-  }
+interface ActivePage {
+  title: string
+  id: number
 }
 
-export type { SidebarSliceState }
+interface SidebarSliceState {
+  isOpen: boolean
+  activePage: ActivePage
+}
+
+export type { SidebarSliceState, ActivePage }

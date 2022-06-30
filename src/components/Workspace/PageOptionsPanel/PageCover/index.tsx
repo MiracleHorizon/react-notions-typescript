@@ -2,10 +2,10 @@ import React, { Fragment, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 
-import SwitchPageCoverModal from '../../../../shared/ModalWindows/SwitchCover'
-import { currentPageSelector } from '../../../../redux/workSpaceSlice/selectors'
-import { isCoverModalOpenSelector } from '../../../../redux/pageDecorationSlice/selectors'
-import { setIsCoverModalOpen } from '../../../../redux/pageDecorationSlice/slice'
+import SwitchPageCoverModal from 'shared/ModalWindows/SwitchCover'
+import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
+import { isCoverModalOpenSelector } from 'redux/pageDecorationSlice/selectors'
+import { setIsCoverModalOpen } from 'redux/pageDecorationSlice/slice'
 import styles from './PageCover.module.scss'
 
 const PageCover: React.FC = () => {
