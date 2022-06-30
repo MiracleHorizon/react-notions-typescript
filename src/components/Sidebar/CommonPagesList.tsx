@@ -3,18 +3,24 @@ import { useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 import { useToggle } from 'hooks/useToggle'
 import { useTooltipTitle } from 'hooks/useTooltipTitle'
+import { useCreateNewPage } from 'hooks/useCreateNewPage'
 
 import SidebarList from './PagesList/PagesList'
 import ListTitle from './PagesList/ListTitle/ListTitle'
-import AddNewPageButton from 'shared/Buttons/AddNewPageButton'
+import AddNewPageButton from 'shared/Buttons/AddNewPage/AddNewPageButton'
 import Tooltip from 'shared/Tooltip/Tooltip'
-import { commonPagesSelector } from 'redux/workSpaceSlice/selectors'
+import {
+  commonPagesSelector,
+  currentPageSelector,
+} from 'redux/workSpaceSlice/selectors'
 import { PagesList } from './Sidebar.styles'
 
 const CommonPagesList: React.FC = () => {
   const { isOpen, toggleIsOpen } = useToggle(true)
+  const { id } = useSelector(currentPageSelector)
   const tooltipTitle = useTooltipTitle(isOpen)
   const commonPages = useSelector(commonPagesSelector)
+  const onCreateNewPage = useCreateNewPage(id!)
 
   const listTitleRef = useRef<HTMLDivElement>(null)
   const isListTitleHovering = useHover(listTitleRef)
@@ -23,13 +29,20 @@ const CommonPagesList: React.FC = () => {
   const isHovering = useHover(listRef)
 
   return (
-    <PagesList>
+    <PagesList ref={listRef}>
       <ListTitle
         title='Common'
         reference={listTitleRef}
         toggleList={toggleIsOpen}
       />
-      {isHovering && <AddNewPageButton />}
+      {isHovering && (
+        <AddNewPageButton
+          tooltipTitle='Add a page'
+          tooltipDescription='Your regular pages.'
+          coords={{ right: '13px', top: '-4px' }}
+          action={onCreateNewPage}
+        />
+      )}
       {isListTitleHovering && (
         <Tooltip
           title={`Click to ${tooltipTitle} section`}

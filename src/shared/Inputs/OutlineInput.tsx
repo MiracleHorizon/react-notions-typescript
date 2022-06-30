@@ -27,7 +27,7 @@ const StyledInput = styled.input`
   user-select: none;
 
   :focus {
-    outline: 3px solid #7bceff;
+    outline: 2px solid rgb(105, 192, 227, 0.8);
   }
 `
 const OutlineInput: React.FC<OutlineInputProps> = props => {

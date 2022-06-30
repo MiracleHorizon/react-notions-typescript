@@ -10,7 +10,13 @@ import AddNewPagePanel from './AddNewPagePanel/AddNewPagePanel'
 import { isSidebarOpenSelector } from 'redux/sidebarSlice/selectors'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
 import { setActivePage } from 'redux/sidebarSlice/slice'
-import { SidebarWrapper } from './Sidebar.styles'
+import {
+  SidebarWrapper,
+  SidebarContainer,
+  SidebarContentWrapper,
+  SidebarContentShadow,
+  SidebarContent,
+} from './Sidebar.styles'
 
 const Sidebar: React.FC = () => {
   const { title, id } = useSelector(currentPageSelector)
@@ -25,12 +31,19 @@ const Sidebar: React.FC = () => {
   }, [dispatch, id, title])
 
   return (
-    <SidebarWrapper isOpen={isSidebarOpen} ref={sidebarRef}>
-      <UserPanel isHovering={isSidebarHovering} />
-      <AppOptionsPanel />
-      <FavoritePagesList />
-      <CommonPagesList />
-      <AddNewPagePanel />
+    <SidebarWrapper isOpen={isSidebarOpen} width={300}>
+      <SidebarContainer>
+        <SidebarContentWrapper width={300}>
+          <SidebarContentShadow />
+          <SidebarContent>
+            <UserPanel isHovering={isSidebarHovering} />
+            <AppOptionsPanel />
+            <FavoritePagesList />
+            <CommonPagesList />
+            <AddNewPagePanel />
+          </SidebarContent>
+        </SidebarContentWrapper>
+      </SidebarContainer>
     </SidebarWrapper>
   )
 }

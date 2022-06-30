@@ -4,6 +4,8 @@ import { CoverColors, IWorkspacePage, WorkspaceSliceState } from './types'
 import { PageTemplates } from '../popupsSlice/types'
 import vue3Svg from 'assets/img/technologies/vue3.svg'
 import reactSvg from 'assets/img/technologies/react.svg'
+import reactPng from 'assets/img/react.png'
+import avatarKermitJpg from 'assets/img/Avatar1.jpg'
 
 const initialState: WorkspaceSliceState = {
   pages: [
@@ -24,7 +26,7 @@ const initialState: WorkspaceSliceState = {
       id: 2,
       title: 'Redux + TypeScript',
       cover: CoverColors.WHITE,
-      icon: `${reactSvg}`,
+      icon: `${reactPng}`,
       template: PageTemplates.BOARD,
       isFullWidth: false,
       isSmallText: false,
@@ -90,9 +92,9 @@ const initialState: WorkspaceSliceState = {
     },
     {
       id: 7,
-      title: 'Vue 3',
+      title: 'Kermit Notions',
       cover: CoverColors.RED,
-      icon: `${vue3Svg}`,
+      icon: `${avatarKermitJpg}`,
       isHasCover: true,
       template: PageTemplates.BOARD,
       isFullWidth: true,
@@ -104,9 +106,9 @@ const initialState: WorkspaceSliceState = {
   ],
   currentPage: {
     id: 7,
-    title: 'Vue 3',
+    title: 'Kermit Notions',
     cover: CoverColors.RED,
-    icon: `${vue3Svg}`,
+    icon: `${avatarKermitJpg}`,
     isHasCover: true,
     template: PageTemplates.BOARD,
     isFullWidth: true,

@@ -4,16 +4,16 @@ import LoginLayout from './layouts/Unlogin'
 import WorkspacePage from './pages/WorkspacePage'
 import LoggedInLayout from './layouts/Login'
 
-import './styles/App.scss'
+import { AppWrapper } from './styles/App.styles'
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   return (
-    <div className='notions-app'>
+    <AppWrapper>
       {/*{isLoggedIn ? <WorkspacePage /> : <LoginLayout />}*/}
       <LoggedInLayout />
-    </div>
+    </AppWrapper>
   )
 }
 

@@ -24,7 +24,7 @@ const EmptyPageItem: React.FC<EmptyPageItemProps> = props => {
       onMouseEnter={() => onSelect(title)}
     >
       <div className={styles.image}>
-        <img src={img} alt='Icon' />
+        <img src={img} alt='PageIcon' />
       </div>
       <div>
         <span>{title}</span>

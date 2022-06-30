@@ -14,8 +14,16 @@ import {
   closeChangePageTitleModal,
   openChangePageTitleModal,
 } from 'redux/modalsSlice/slice'
-import styles from './Header.module.scss'
 import emptyIcon from 'assets/img/optionsImgs/empty.svg'
+
+import {
+  HeaderWrapper,
+  HeaderContainer,
+  HeaderPanel,
+  PageTitleBlock,
+  PageTitle,
+  PageIcon,
+} from './Header.styles'
 
 const Header: React.FC = () => {
   const { title, icon, isHasIcon } = useSelector(currentPageSelector)
@@ -36,23 +44,25 @@ const Header: React.FC = () => {
   useOnClickOutside(modalRef, handleClickOutside)
 
   return (
-    <header className={styles.header}>
+    <HeaderWrapper>
       {!isSidebarOpen && (
         <ToggleSidebarButton purpose={ToggleSidebarBtnPurposes.OPEN} />
       )}
-      <div className={styles.navbar}>
-        <div ref={modalRef} onClick={onOpenChangePageTitleModal}>
-          <div className={styles.pageTitleBlock}>
-            <img src={isHasIcon ? icon : emptyIcon} alt='Page icon' />
-            <span>{title}</span>
+      <HeaderContainer>
+        <HeaderPanel>
+          <div ref={modalRef} onClick={onOpenChangePageTitleModal}>
+            <PageTitleBlock>
+              <PageIcon src={isHasIcon ? icon : emptyIcon} alt='Page icon' />
+              <PageTitle>{title}</PageTitle>
+            </PageTitleBlock>
+            {isChangePageTitleModalOpen && (
+              <ChangePageTitleModal coords={changePageTitleModalCoords} />
+            )}
           </div>
-          {isChangePageTitleModalOpen && (
-            <ChangePageTitleModal coords={changePageTitleModalCoords} />
-          )}
-        </div>
-        <ActionButtons />
-      </div>
-    </header>
+          <ActionButtons />
+        </HeaderPanel>
+      </HeaderContainer>
+    </HeaderWrapper>
   )
 }
 

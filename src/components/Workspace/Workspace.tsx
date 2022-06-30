@@ -2,15 +2,15 @@ import React, { lazy, Suspense } from 'react'
 import { useSelector } from 'react-redux'
 
 import { Wrapper, Content } from './Workspace.styles'
-import { PageTemplates } from '../../redux/popupsSlice/types'
-import { currentPageSelector } from '../../redux/workSpaceSlice/selectors'
+import { PageTemplates } from 'redux/popupsSlice/types'
+import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
 
 const Header = lazy(() => import('../Header'))
 const Board = lazy(() => import('../PageTemplates/Board'))
 const Sidebar = lazy(() => import('../Sidebar/Sidebar'))
 
 const Workspace: React.FC = () => {
-  const { template, content } = useSelector(currentPageSelector)
+  const { template } = useSelector(currentPageSelector)
 
   const pageTemplateHandler = (): JSX.Element | null => {
     switch (template) {
@@ -31,7 +31,7 @@ const Workspace: React.FC = () => {
         <Sidebar />
         <Content>
           <Header />
-          {pageTemplateHandler()}
+          <Board />
         </Content>
       </Suspense>
     </Wrapper>
@@ -39,13 +39,3 @@ const Workspace: React.FC = () => {
 }
 
 export default Workspace
-
-// <div className={styles.workspace}>
-//   <Suspense fallback={<h1>Loading...</h1>}>
-// <Sidebar />
-// <div className={styles.content}>
-//   <Header />
-//   {pageTemplateHandler()}
-// </div>
-// </Suspense>
-// </div>

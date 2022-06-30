@@ -10,16 +10,20 @@ import { openFavoritePagesOptionsModal } from 'redux/modalsSlice/slice'
 import optionsIcon from 'assets/img/optionsImgs/three-dots.svg'
 import styled from 'styled-components'
 
-const StyledItem = styled.div`
+const OptionsButton = styled.div`
   position: absolute;
-  right: 15px;
+  right: 35px;
   width: 20px;
   height: 20px;
   border-radius: 3px;
 
   :hover {
-    background: #d3d3d3;
-    transition: background 0.2s ease-in-out;
+    background: rgba(55, 53, 47, 0.08);
+    transition: background 0.1s ease-in-out;
+  }
+  :active {
+    background: rgba(55, 53, 47, 0.16);
+    transition: background 0.1s ease-in-out;
   }
 `
 
@@ -43,13 +47,13 @@ const ListItemOptionsButton: React.FC<{ title: string }> = ({ title }) => {
   }
 
   return (
-    <StyledItem onClick={onOpenModal}>
+    <OptionsButton onClick={onOpenModal}>
       <Icon src={optionsIcon} alt='Options' ref={optionsButtonRef} />
       {isHovering && <Tooltip title={`${title}, and more...`} />}
       {isFavPagesOptionsOpen && (
         <SidebarListOptions options={favoritePageOptions} />
       )}
-    </StyledItem>
+    </OptionsButton>
   )
 }
 
