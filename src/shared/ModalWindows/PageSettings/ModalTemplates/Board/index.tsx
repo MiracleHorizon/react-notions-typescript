@@ -4,7 +4,7 @@ import { useSelectItem } from 'hooks/useSelectItem'
 
 import OptionsList from 'components/OptionsList'
 import ToggleFontPanel from './ToggleFontPanel'
-import ToggleOptionsList from 'components/ToggleOptionsList'
+import ToggleOptionsList from 'components/ToggleOptionsList/ToggleOptionsList'
 import MoveToOptionItem from 'components/OptionsList/OptionItem/MoveToOptionItem'
 import Separator from '../../../../Separator'
 import PageChanges from 'components/PageChanges'

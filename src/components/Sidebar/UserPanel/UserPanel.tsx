@@ -1,7 +1,9 @@
 import React from 'react'
 
-import { Panel, Avatar, Title } from './UserPanel.styles'
-import SwitchSidebarButton from 'shared/Buttons/SwitchSidebar'
+import { Avatar, Panel, Title } from './UserPanel.styles'
+import ToggleSidebarButton, {
+  ToggleSidebarBtnPurposes,
+} from 'shared/Buttons/ToggleSidebar/ToggleSidebarButton'
 import { ACCOUNT_NAME } from 'utils/accountName'
 import avatarSvg from 'assets/img/appImgs/avatar.jpg'
 
@@ -14,7 +16,9 @@ const UserPanel: React.FC<SwitcherBarProps> = ({ isHovering }) => {
     <Panel>
       <Avatar src={avatarSvg} alt='Avatar' />
       <Title>{ACCOUNT_NAME}'s Notion</Title>
-      {isHovering && <SwitchSidebarButton purpose='close' />}
+      {isHovering && (
+        <ToggleSidebarButton purpose={ToggleSidebarBtnPurposes.CLOSE} />
+      )}
     </Panel>
   )
 }

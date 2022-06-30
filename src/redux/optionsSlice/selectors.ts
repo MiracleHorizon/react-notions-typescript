@@ -1,8 +1,8 @@
 import { RootState } from '../store'
 
-const favoritePageOptionsSelector = (state: RootState) =>
+const favPageOptionsSelector = (state: RootState) =>
   state.options.favoritePageOptions
 const privatePageOptionsSelector = (state: RootState) =>
   state.options.privatePagesOptions
 
-export { favoritePageOptionsSelector, privatePageOptionsSelector }
+export { favPageOptionsSelector, privatePageOptionsSelector }

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useOnClickOutside } from 'usehooks-ts'
 import { useInput } from 'hooks/useInput'
 
-import QuickSearchForm from './SearchForm'
+import QuickSearchForm from './SearchForm/QuickSearchForm'
 import RecentLists from './RecentLists/RecentLists'
 import { closeQuickSearchModal } from 'redux/modalsSlice/slice'
 

@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from 'react'
 
 import Authentication from './Authentication'
-import ClearInput from '../../shared/Buttons/ClearInput'
+import ClearInputButton from '../../shared/Buttons/ClearInputButton'
 
 import styles from './LoginForm.module.scss'
 import Separator from '../../shared/Separator'
@@ -28,7 +28,12 @@ const LoginForm: React.FC = () => {
             value={emailValue}
             onChange={emailValueHandler}
           />
-          {emailValue !== '' && <ClearInput action={onClearEmailInput} />}
+          {emailValue !== '' && (
+            <ClearInputButton
+              action={onClearEmailInput}
+              coords={{ left: '' }}
+            />
+          )}
         </label>
         <div>
           <span>Continue with email</span>

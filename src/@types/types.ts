@@ -3,4 +3,11 @@ interface ActiveListItem {
   onSelect: (title: string) => void
 }
 
-export type { ActiveListItem }
+interface IElementCoords {
+  top?: string
+  bottom?: string
+  left?: string
+  right?: string
+}
+
+export type { ActiveListItem, IElementCoords }

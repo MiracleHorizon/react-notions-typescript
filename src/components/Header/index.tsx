@@ -4,7 +4,9 @@ import { useOnClickOutside } from 'usehooks-ts'
 
 import ActionButtons from './ActionButtons'
 import ChangePageTitleModal from 'shared/ModalWindows/ChangePageTitle'
-import SwitchSidebarButton from 'shared/Buttons/SwitchSidebar'
+import ToggleSidebarButton, {
+  ToggleSidebarBtnPurposes,
+} from 'shared/Buttons/ToggleSidebar/ToggleSidebarButton'
 import { isSidebarOpenSelector } from 'redux/sidebarSlice/selectors'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
 import { changePageTitleModalSelector } from 'redux/modalsSlice/selectors'
@@ -35,7 +37,9 @@ const Header: React.FC = () => {
 
   return (
     <header className={styles.header}>
-      {!isSidebarOpen && <SwitchSidebarButton purpose='open' />}
+      {!isSidebarOpen && (
+        <ToggleSidebarButton purpose={ToggleSidebarBtnPurposes.OPEN} />
+      )}
       <div className={styles.navbar}>
         <div ref={modalRef} onClick={onOpenChangePageTitleModal}>
           <div className={styles.pageTitleBlock}>

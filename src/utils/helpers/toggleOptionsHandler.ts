@@ -4,7 +4,7 @@ import {
   toggleSmallText,
 } from '../../redux/workSpaceSlice/slice'
 
-interface ToggleOption {
+interface IToggleOption {
   id: number
   title: string
   isActive: boolean
@@ -17,7 +17,7 @@ interface Params {
   isFullWidth: boolean
 }
 
-const toggleOptionsHandler = (params: Params): ToggleOption[] => {
+const toggleOptionsHandler = (params: Params): IToggleOption[] => {
   const { id, isSmallText, isFullWidth } = params
 
   return [
@@ -37,4 +37,4 @@ const toggleOptionsHandler = (params: Params): ToggleOption[] => {
 }
 
 export default toggleOptionsHandler
-export type { ToggleOption }
+export type { IToggleOption }

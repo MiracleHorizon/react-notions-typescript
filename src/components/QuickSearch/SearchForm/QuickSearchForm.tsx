@@ -5,15 +5,19 @@ import { setSearchesValue } from 'redux/recentSearchSlice/slice'
 import { closeQuickSearchModal } from 'redux/modalsSlice/slice'
 import { ACCOUNT_NAME } from 'utils/accountName'
 import searchSvg from 'assets/img/inputs/search.svg'
-import clearInputSvg from 'assets/img/inputs/clearInput.svg'
-
-import styles from './SearchForm.module.scss'
+import {
+  StyledForm,
+  StyledInput,
+  SearchIconBlock,
+  SearchIcon,
+} from './QuickSearchForm.styles'
+import ClearInputButton from '../../../shared/Buttons/ClearInputButton'
 
 interface SearchFormProps {
   inputValue: string
   onChangeInputValue: (e: ChangeEvent<HTMLInputElement>) => void
   onClearInput: () => void
-}
+} // Унифицировать.
 
 const QuickSearchForm: React.FC<SearchFormProps> = props => {
   const { inputValue, onChangeInputValue, onClearInput } = props
@@ -28,22 +32,23 @@ const QuickSearchForm: React.FC<SearchFormProps> = props => {
   }
 
   return (
-    <form className={styles.searchBlock} onSubmit={onSubmitForm}>
-      <div className={styles.searchImg}>
-        <img src={searchSvg} alt='Search' />
-      </div>
-      <input
+    <StyledForm onSubmit={onSubmitForm}>
+      <SearchIconBlock>
+        <SearchIcon src={searchSvg} alt='Search' />
+      </SearchIconBlock>
+      <StyledInput
         type='text'
         placeholder={`Search ${ACCOUNT_NAME}'s Notion...`}
         value={inputValue}
         onChange={onChangeInputValue}
       />
       {inputValue !== '' && (
-        <div className={styles.clearImg}>
-          <img src={clearInputSvg} alt='Clear' onClick={onClearInput} />
-        </div>
+        <ClearInputButton
+          action={onClearInput}
+          coords={{ top: '18px', right: '15px' }}
+        />
       )}
-    </form>
+    </StyledForm>
   )
 }
 

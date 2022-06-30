@@ -1,11 +1,11 @@
 import React from 'react'
-import ToggleOptionItem from './ToggleOptionItem'
-import { ToggleOption } from '../../utils/helpers/toggleOptionsHandler'
 
-interface ToggleOptionsProps {
-  options: ToggleOption[]
-  activeItem: string
-  onSelect: (title: string) => void
+import ToggleOptionItem from './ToggleOptionItem/ToggleOptionItem'
+import { IToggleOption } from 'utils/helpers/toggleOptionsHandler'
+import { ActiveListItem } from '../../@types/types'
+
+interface ToggleOptionsProps extends ActiveListItem {
+  options: IToggleOption[]
 }
 
 const ToggleOptionsList: React.FC<ToggleOptionsProps> = props => {

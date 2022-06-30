@@ -6,7 +6,7 @@ const changePageTitleModalSelector = (state: RootState): boolean => {
 const quickSearchModalSelector = (state: RootState): boolean => {
   return state.modals.isQuickSearchModalOpen
 }
-const favoritePagesOptionsModalSelector = (state: RootState): boolean => {
+const favPagesOptionsModalSelector = (state: RootState): boolean => {
   return state.modals.isFavoritePagesOptionsModalOpen
 }
 const commonPagesOptionsModalSelector = (state: RootState): boolean => {
@@ -16,6 +16,6 @@ const commonPagesOptionsModalSelector = (state: RootState): boolean => {
 export {
   changePageTitleModalSelector,
   quickSearchModalSelector,
-  favoritePagesOptionsModalSelector,
+  favPagesOptionsModalSelector,
   commonPagesOptionsModalSelector,
 }

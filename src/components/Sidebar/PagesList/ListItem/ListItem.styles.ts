@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Item = styled.li<{ isActive: boolean }>`
+const StyledItem = styled.li<{ isActive: boolean }>`
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -74,4 +74,4 @@ const Title = styled.h4<{ isActive: boolean }>`
     props.isActive ? 'rgb(55, 53, 47)' : 'rgba(55, 53, 47, 0.65)'};
 `
 
-export { Item, ToggleIcon, Information, IconBlock, Icon, Title }
+export { StyledItem, ToggleIcon, Information, IconBlock, Icon, Title }

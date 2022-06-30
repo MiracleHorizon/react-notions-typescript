@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import PageSettingsFontTooltip from '../../Tooltips/PageSettingsFont'
+import React from 'react'
 import styles from './ToggleFont.module.scss'
 
 interface ToggleFontProps {
@@ -22,11 +21,12 @@ const ToggleFontButton: React.FC<ToggleFontProps> = props => {
         return styles.mono
     }
   }
-  const onSelectFontFamily = () => setActiveFont(title)
-  const fontAbbreviationClass = styles.abbreviation + ' ' + onToggleFontFamily()
+  const onSelectPageFont = (): void => setActiveFont(title)
+  const fontAbbreviationClass: string =
+    styles.abbreviation + ' ' + onToggleFontFamily()
 
   return (
-    <div role='button' className={styles.btn} onClick={onSelectFontFamily}>
+    <div role='button' className={styles.btn} onClick={onSelectPageFont}>
       <div className={styles.fontBlock}>
         <span
           className={

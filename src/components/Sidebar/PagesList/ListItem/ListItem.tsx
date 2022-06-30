@@ -2,8 +2,8 @@ import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 
+import Tooltip from 'shared/Tooltip/Tooltip'
 import ListItemOptionsButton from 'shared/Buttons/ListItemOptions'
-import ChangeIconTooltip from 'shared/Tooltips/ChangeIcon'
 import { IWorkspacePage } from 'redux/workSpaceSlice/types'
 import { activePageSelector } from 'redux/sidebarSlice/selectors'
 import { setCurrentPage } from 'redux/workSpaceSlice/slice'
@@ -11,7 +11,7 @@ import { setActivePage } from 'redux/sidebarSlice/slice'
 import toggleIcon from 'assets/img/sidebar-arrow.svg'
 import emptyIcon from 'assets/img/optionsImgs/empty.svg'
 import {
-  Item,
+  StyledItem,
   ToggleIcon,
   Information,
   IconBlock,
@@ -37,7 +37,7 @@ const SidebarListItem: React.FC<{ page: IWorkspacePage }> = ({ page }) => {
   }
 
   return (
-    <Item
+    <StyledItem
       draggable={true}
       ref={itemRef}
       isActive={isActive}
@@ -47,7 +47,12 @@ const SidebarListItem: React.FC<{ page: IWorkspacePage }> = ({ page }) => {
       <Information>
         <IconBlock ref={iconRef}>
           <Icon src={isHasIcon ? icon : emptyIcon} alt='Page icon' />
-          {isPageIconHovering && <ChangeIconTooltip />}
+          {isPageIconHovering && (
+            <Tooltip
+              title='Change icon'
+              coords={{ left: '-30px', top: '25px' }}
+            />
+          )}
         </IconBlock>
         <Title isActive={isActive}>{title}</Title>
       </Information>
@@ -56,7 +61,7 @@ const SidebarListItem: React.FC<{ page: IWorkspacePage }> = ({ page }) => {
           title={isFavorite ? 'Remove, rename' : 'Delete, duplicate'}
         />
       )}
-    </Item>
+    </StyledItem>
   )
 }
 
