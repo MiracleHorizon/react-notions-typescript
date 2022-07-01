@@ -16,14 +16,14 @@ const StyledButton = styled.div<{ purpose: ToggleSidebarBtnPurposes }>`
   transform: rotate(
     ${props => props.purpose === ToggleSidebarBtnPurposes.CLOSE && '180deg'}
   );
+  z-index: 20;
 
   :hover {
-    background: #e8e7e3;
+    background: rgba(55, 53, 47, 0.08);
     transition: background 0.1s ease-in-out;
   }
-
   :active {
-    background: #d3d3d3;
+    background: rgba(55, 53, 47, 0.16);
     transition: background 0.1s ease-in-out;
   }
 `

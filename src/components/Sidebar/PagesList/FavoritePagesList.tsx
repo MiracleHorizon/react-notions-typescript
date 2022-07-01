@@ -4,11 +4,11 @@ import { useHover } from 'usehooks-ts'
 import { useToggle } from 'hooks/useToggle'
 import { useTooltipTitle } from 'hooks/useTooltipTitle'
 
-import SidebarList from './PagesList/PagesList'
-import ListTitle from './PagesList/ListTitle/ListTitle'
+import PagesList from './PagesList'
+import ListTitle from './ListTitle/ListTitle'
 import Tooltip from 'shared/Tooltip/Tooltip'
 import { favoritePagesSelector } from 'redux/workSpaceSlice/selectors'
-import { PagesList } from './Sidebar.styles'
+import { Wrapper } from './PagesList.styles'
 
 const FavoritePagesList: React.FC = () => {
   const { isOpen, toggleIsOpen } = useToggle(true)
@@ -19,7 +19,7 @@ const FavoritePagesList: React.FC = () => {
   const isListTitleHovering = useHover(listTitleRef)
 
   return (
-    <PagesList>
+    <Wrapper>
       <ListTitle
         title='Favorites'
         reference={listTitleRef}
@@ -32,8 +32,8 @@ const FavoritePagesList: React.FC = () => {
           coords={{ left: '5px', top: '-50px' }}
         />
       )}
-      {isOpen && <SidebarList pages={favoritePages} />}
-    </PagesList>
+      {isOpen && <PagesList pages={favoritePages} />}
+    </Wrapper>
   )
 }
 

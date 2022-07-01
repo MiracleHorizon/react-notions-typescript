@@ -49,7 +49,12 @@ const ListItemOptionsButton: React.FC<{ title: string }> = ({ title }) => {
   return (
     <OptionsButton onClick={onOpenModal}>
       <Icon src={optionsIcon} alt='Options' ref={optionsButtonRef} />
-      {isHovering && <Tooltip title={`${title}, and more...`} />}
+      {isHovering && (
+        <Tooltip
+          title={`${title}, and more...`}
+          coords={{ left: '-70px', bottom: '-32px' }}
+        />
+      )}
       {isFavPagesOptionsOpen && (
         <SidebarListOptions options={favoritePageOptions} />
       )}

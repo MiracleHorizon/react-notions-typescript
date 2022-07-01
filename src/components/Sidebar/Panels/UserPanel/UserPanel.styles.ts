@@ -1,16 +1,14 @@
 import styled from 'styled-components'
 
-const Panel = styled.div`
+const StyledPanel = styled.div`
   cursor: pointer;
-  position: absolute;
-  bottom: 0;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   width: 100%;
   height: 45px;
-  padding: 5px 10px;
-  box-shadow: rgb(55 53 47 / 9%) 0 -1px 0;
-  background: rgb(247, 246, 243);
+  padding-left: 15px;
+  padding-right: 40px;
 
   :hover {
     background: rgba(55, 53, 47, 0.08);
@@ -22,24 +20,20 @@ const Panel = styled.div`
   }
 `
 
-const Button = styled.div`
-  cursor: pointer;
-  display: flex;
-`
-
-const Icon = styled.img`
-  width: 20px;
-  height: 20px;
+const Avatar = styled.img`
+  width: 18px;
+  height: 18px;
   border-radius: 3px;
-  opacity: 0.5;
 `
 
-const Title = styled.span`
+const Title = styled.h2`
   margin-left: 10px;
   font-size: 14px;
   font-weight: 500;
   line-height: 21px;
-  color: rgba(55, 53, 47, 0.65);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: rgb(55, 53, 47);
 `
 
-export { Panel, Button, Icon, Title }
+export { StyledPanel, Avatar, Title }

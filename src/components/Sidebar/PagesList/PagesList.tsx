@@ -1,25 +1,21 @@
 import React from 'react'
 
 import SidebarListItem from './ListItem/ListItem'
-import { IWorkspacePage } from 'redux/workSpaceSlice/types'
-import { ListWrapper, List } from './PagesList.styles'
+import { PagesListProps } from './PagesList.types'
+import { Container, List } from './PagesList.styles'
 
-interface SidebarListProps {
-  pages: IWorkspacePage[] | IWorkspacePage
-}
-
-const SidebarList: React.FC<SidebarListProps> = ({ pages }) => {
-  const listItemsHandler = () => {
-    if (!Array.isArray(pages)) return <li>{pages.title}</li> //!
+const PagesList: React.FC<PagesListProps> = ({ pages }) => {
+  const listItemsHandler = (): JSX.Element | JSX.Element[] => {
+    if (!Array.isArray(pages)) return <SidebarListItem page={pages} />
 
     return pages.map(page => <SidebarListItem key={page.id} page={page} />)
   }
 
   return (
-    <ListWrapper>
+    <Container>
       <List>{listItemsHandler()}</List>
-    </ListWrapper>
+    </Container>
   )
 }
 
-export default SidebarList
+export default PagesList

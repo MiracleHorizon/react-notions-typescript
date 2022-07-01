@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { IAppPopupsState, PageTemplates } from './types'
+import { AppModalsState, PageTemplates } from './types'
 
-const initialState: IAppPopupsState = {
+const initialState: AppModalsState = {
   isPageSettingsPopupOpen: false,
   template: PageTemplates.BOARD,
 }

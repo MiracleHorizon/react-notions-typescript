@@ -1,9 +1,8 @@
 import styled from 'styled-components'
 
-const Panel = styled.div`
+const StyledPanel = styled.div`
   display: flex;
   justify-content: center;
-  margin-bottom: 25px;
   user-select: none;
 `
 
@@ -50,4 +49,4 @@ const Icon = styled.img`
   opacity: 0.5;
 `
 
-export { Panel, OptionsList, Option, Title, Icon }
+export { StyledPanel, OptionsList, Option, Title, Icon }

@@ -8,7 +8,7 @@ import searchSvg from 'assets/img/inputs/search.svg'
 import updatesSvg from 'assets/img/optionsImgs/updates.svg'
 import settingsSvg from 'assets/img/optionsImgs/settings.svg'
 import {
-  Panel,
+  StyledPanel,
   OptionsList,
   Option,
   Title,
@@ -16,15 +16,15 @@ import {
 } from './AppOptionsPanel.styles'
 
 const AppOptionsPanel: React.FC = () => {
-  const dispatch = useDispatch()
   const isQuickSearchModalOpen = useSelector(quickSearchModalSelector)
 
+  const dispatch = useDispatch()
   const onOpenQuickSearch = (): void => {
     dispatch(openQuickSearchModal())
   }
 
   return (
-    <Panel>
+    <StyledPanel>
       <OptionsList>
         <Option onClick={onOpenQuickSearch}>
           <Icon src={searchSvg} alt='Option' />
@@ -40,7 +40,7 @@ const AppOptionsPanel: React.FC = () => {
         </Option>
       </OptionsList>
       {isQuickSearchModalOpen && <QuickSearchModal />}
-    </Panel>
+    </StyledPanel>
   )
 }
 

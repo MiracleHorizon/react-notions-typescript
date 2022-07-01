@@ -1,13 +1,17 @@
 import styled from 'styled-components'
 
-const ListWrapper = styled.div`
+const Wrapper = styled.div`
+  position: relative;
+  margin-top: 10px;
+`
+
+const Container = styled.div`
   display: flex;
   justify-content: center;
-  padding: 0 5px;
 `
 
 const List = styled.ul`
   width: 100%;
 `
 
-export { ListWrapper, List }
+export { Wrapper, Container, List }

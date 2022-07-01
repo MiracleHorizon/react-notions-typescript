@@ -5,15 +5,15 @@ import { useToggle } from 'hooks/useToggle'
 import { useTooltipTitle } from 'hooks/useTooltipTitle'
 import { useCreateNewPage } from 'hooks/useCreateNewPage'
 
-import SidebarList from './PagesList/PagesList'
-import ListTitle from './PagesList/ListTitle/ListTitle'
+import PagesList from './PagesList'
+import ListTitle from './ListTitle/ListTitle'
 import AddNewPageButton from 'shared/Buttons/AddNewPage/AddNewPageButton'
 import Tooltip from 'shared/Tooltip/Tooltip'
 import {
   commonPagesSelector,
   currentPageSelector,
 } from 'redux/workSpaceSlice/selectors'
-import { PagesList } from './Sidebar.styles'
+import { Wrapper } from './PagesList.styles'
 
 const CommonPagesList: React.FC = () => {
   const { isOpen, toggleIsOpen } = useToggle(true)
@@ -29,7 +29,7 @@ const CommonPagesList: React.FC = () => {
   const isHovering = useHover(listRef)
 
   return (
-    <PagesList ref={listRef}>
+    <Wrapper ref={listRef}>
       <ListTitle
         title='Common'
         reference={listTitleRef}
@@ -50,8 +50,8 @@ const CommonPagesList: React.FC = () => {
           coords={{ left: '5px', top: '-50px' }}
         />
       )}
-      {isOpen && <SidebarList pages={commonPages} />}
-    </PagesList>
+      {isOpen && <PagesList pages={commonPages} />}
+    </Wrapper>
   )
 }
 

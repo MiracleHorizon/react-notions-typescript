@@ -14,6 +14,10 @@ const TitleBlock = styled.div`
   :hover {
     background: rgba(55, 53, 47, 0.08);
     transition: background 0.1s ease-in-out;
+
+    span {
+      color: rgba(55, 53, 47, 0.8);
+    }
   }
   :active {
     background: rgba(55, 53, 47, 0.16);
@@ -28,10 +32,7 @@ const Title = styled.span`
   line-height: 1;
   letter-spacing: 0.3px;
   color: rgba(55, 53, 47, 0.5);
-
-  :hover {
-    color: rgba(55, 53, 47, 0.8);
-  }
+  user-select: none;
 `
 
 export { TitleBlock, Title }

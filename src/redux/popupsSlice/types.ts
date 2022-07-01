@@ -5,10 +5,10 @@ enum PageTemplates {
   TABLE = 'Table',
 }
 
-interface IAppPopupsState {
+interface AppModalsState {
   isPageSettingsPopupOpen: boolean
   template: PageTemplates
 }
 
-export type { IAppPopupsState }
 export { PageTemplates }
+export type { AppModalsState }

@@ -1,13 +1,9 @@
-import React, { RefObject } from 'react'
+import React from 'react'
+
+import { PagesListTitleProps } from './ListTitle.types'
 import { TitleBlock, Title } from './ListTitle.styles'
 
-interface SidebarListTitleProps {
-  title: string
-  reference: RefObject<HTMLDivElement>
-  toggleList: () => void
-}
-
-const ListTitle: React.FC<SidebarListTitleProps> = props => {
+const ListTitle: React.FC<PagesListTitleProps> = props => {
   const { title, reference, toggleList } = props
 
   return (
