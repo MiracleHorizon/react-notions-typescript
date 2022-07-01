@@ -1,7 +1,7 @@
 import React from 'react'
 
 import styles from './Unlogin.module.scss'
-import LoginForm from '../../components/LoginForm'
+import LoginForm from '../../components/Auth/LoginForm'
 
 const LoginLayout: React.FC = () => {
   return (

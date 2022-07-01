@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
-import CreateNewPageModal from '../../../CreateNewPage'
+import CreateNewPageModal from '../../../Popups/CreateNewPage'
 import styles from './BoardContent.module.scss'
 
 const BoardContent: React.FC = () => {

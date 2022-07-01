@@ -1,7 +1,11 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
-import { setSidebarClose, setSidebarOpen } from 'redux/sidebarSlice/slice'
+import {
+  setSidebarClose,
+  setSidebarOpen,
+  toggleSidebar,
+} from 'redux/sidebarSlice/slice'
 import { StyledButton, Icon } from './ToggleSidebarButton.styles'
 import switchSvg from 'assets/img/sidebar-twoArrows.svg'
 
@@ -21,8 +25,17 @@ const ToggleSidebarButton: React.FC<ToggleSidebarBtnProps> = ({ purpose }) => {
       ? () => dispatch(setSidebarOpen())
       : () => dispatch(setSidebarClose()) //! useCallback попробовать.
 
+  const onHover = (): void => {
+    // purpose === ToggleSidebarBtnPurposes.OPEN && dispatch(toggleSidebar())
+  }
+
   return (
-    <StyledButton purpose={purpose} onClick={onClickAction}>
+    <StyledButton
+      purpose={purpose}
+      onClick={onClickAction}
+      onMouseEnter={onHover}
+      onMouseLeave={onHover}
+    >
       <Icon src={switchSvg} alt='Switch' />
     </StyledButton>
   )

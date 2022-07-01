@@ -2,12 +2,12 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { useSelectItem } from 'hooks/useSelectItem'
 
-import OptionsList from 'components/OptionsList'
+import OptionsList from 'components/Options/OptionsList'
 import ToggleFontPanel from './ToggleFontPanel'
-import ToggleOptionsList from 'components/ToggleOptionsList/ToggleOptionsList'
-import MoveToOptionItem from 'components/OptionsList/OptionItem/MoveToOptionItem'
+import ToggleOptionsList from 'components/Options/ToggleOptionsList/ToggleOptionsList'
+import MoveToOptionItem from 'components/Options/OptionsList/OptionItem/MoveToOptionItem'
+import PageChanges from 'components/Options/PageChanges'
 import Separator from '../../../../Separator'
-import PageChanges from 'components/PageChanges'
 
 import toggleOptionsHandler from 'utils/helpers/toggleOptionsHandler'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
@@ -18,9 +18,11 @@ const BoardPageModal: React.FC = () => {
   const { isFullWidth, isSmallText, id } = useSelector(currentPageSelector)
   const { activeItem, onSelectItem } = useSelectItem('')
 
-  if (!id) return <></> //!!!!!!!
-
-  const toggleOptions = toggleOptionsHandler({ id, isSmallText, isFullWidth }!)
+  const toggleOptions = toggleOptionsHandler({
+    id: id!,
+    isSmallText,
+    isFullWidth,
+  })
 
   return (
     <div className={styles.pageSettings}>

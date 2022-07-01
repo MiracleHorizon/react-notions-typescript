@@ -5,6 +5,7 @@ interface ActivePage {
 
 interface SidebarSliceState {
   isOpen: boolean
+  isBubbling: boolean
   activePage: ActivePage
 }
 

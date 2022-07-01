@@ -1,4 +1,4 @@
-import styles from 'components/OptionsList/OptionItem/OptionItem.module.scss'
+import styles from 'components/Options/OptionsList/OptionItem/OptionItem.module.scss'
 
 const optionItemClassNameHandler = (
   className: string = 'workspace'

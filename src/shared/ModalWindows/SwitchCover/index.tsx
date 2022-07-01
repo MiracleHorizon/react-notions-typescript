@@ -2,8 +2,8 @@ import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useOnClickOutside } from 'usehooks-ts'
 
-import SwitchCoverContent from 'components/Workspace/PageOptionsPanel/PageCover/SwitchCoverContent'
-import SwitchDecorationNavbar from 'components/Workspace/PageOptionsPanel/SwitchDecoration/Navbar'
+import SwitchCoverContent from 'components/Workspace/PageContent/PageOptionsPanel/PageCover/SwitchCoverContent'
+import SwitchDecorationNavbar from 'components/Workspace/PageContent/PageOptionsPanel/SwitchDecoration/Navbar'
 import {
   refreshCoverCategory,
   setIsCoverModalClose,

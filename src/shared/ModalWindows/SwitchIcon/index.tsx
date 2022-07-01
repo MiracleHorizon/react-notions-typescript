@@ -1,5 +1,5 @@
 import React from 'react'
-import ChangePageIcon from '../../../components/Workspace/PageOptionsPanel/PageIcon'
+import ChangePageIcon from '../../../components/Workspace/PageContent/PageOptionsPanel/PageIcon'
 import styles from './ChangePageIcon.module.scss'
 
 const SwitchPageIconModal: React.FC = () => {

@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import PageCover from '../../Workspace/PageOptionsPanel/PageCover'
-import PageOptionsPanel from '../../Workspace/PageOptionsPanel'
+import PageCover from '../../Workspace/PageContent/PageOptionsPanel/PageCover'
+import PageOptionsPanel from '../../Workspace/PageContent/PageOptionsPanel'
 import BoardContent from './BoardContent'
 import EmptyPage from '../EmptyPage'
 import classNameHandler from '../../../utils/helpers/boardClassNameHandler'

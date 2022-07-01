@@ -1,7 +1,7 @@
 import React from 'react'
-import OptionsList from '../../../../../components/OptionsList'
-import MoveToOptionItem from '../../../../../components/OptionsList/OptionItem/MoveToOptionItem'
-import PageChanges from '../../../../../components/PageChanges'
+import OptionsList from '../../../../../components/Options/OptionsList'
+import MoveToOptionItem from '../../../../../components/Options/OptionsList/OptionItem/MoveToOptionItem'
+import PageChanges from '../../../../../components/Options/PageChanges'
 import { TASK_LIST_PAGE_OPTIONS } from '../../../../../redux/optionsSlice/optionsStorage'
 import styles from '../../PageSettings.module.scss'
 
