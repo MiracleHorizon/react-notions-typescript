@@ -4,26 +4,22 @@ import { useOnClickOutside } from 'usehooks-ts'
 
 import PageOptionsPanel from './PageOptionsPanel/PageOptionsPanel'
 import ChangePageTitleModal from 'shared/ModalWindows/ChangePageTitle'
-import ToggleSidebarButton, {
-  ToggleSidebarBtnPurposes,
-} from 'shared/Buttons/ToggleSidebar/ToggleSidebarButton'
-import {
-  isSidebarOpenSelector,
-  sidebarStateSelector,
-} from 'redux/sidebarSlice/selectors'
+import ToggleSidebarButton from 'shared/Buttons/ToggleSidebar/ToggleSidebarButton'
+import { leftSidebarSelector } from 'redux/sidebarsSlice/selectors'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
 import { changePageTitleModalSelector } from 'redux/modalsSlice/selectors'
 import {
   closeChangePageTitleModal,
   openChangePageTitleModal,
 } from 'redux/modalsSlice/slice'
+import { ToggleSidebarBtnPurposes as Purposes } from 'shared/Buttons/ToggleSidebar/ToggleSidebarButton.types'
 import {
-  Wrapper,
   Container,
   HeaderPanel,
-  PageTitle,
   PageIcon,
+  PageTitle,
   PageTitleBlock,
+  Wrapper,
 } from './Header.styles'
 import emptyIcon from 'assets/img/optionsImgs/empty.svg'
 
@@ -32,8 +28,11 @@ const Header: React.FC = () => {
   const changePageTitleModalCoords = { left: '10px', top: '40px' }
 
   const modalRef = useRef<HTMLDivElement>(null)
-  const { isOpen: isSidebarOpen, isBubbling } =
-    useSelector(sidebarStateSelector)
+  const {
+    isOpen: isLeftSidebarOpen,
+    isBubbling,
+    location,
+  } = useSelector(leftSidebarSelector)
   const isChangePageTitleModalOpen = useSelector(changePageTitleModalSelector)
 
   const dispatch = useDispatch()
@@ -48,8 +47,8 @@ const Header: React.FC = () => {
 
   return (
     <Wrapper>
-      {!isSidebarOpen || (isSidebarOpen && isBubbling) ? (
-        <ToggleSidebarButton purpose={ToggleSidebarBtnPurposes.OPEN} />
+      {!isLeftSidebarOpen || (isLeftSidebarOpen && isBubbling) ? (
+        <ToggleSidebarButton purpose={Purposes.OPEN} location={location} />
       ) : null}
       <Container>
         <HeaderPanel>
@@ -68,12 +67,3 @@ const Header: React.FC = () => {
 }
 
 export default Header
-// <div ref={modalRef} onClick={onOpenChangePageTitleModal}>
-//   <PageTitleBlock>
-//   <PageIcon src={isHasIcon ? icon : emptyIcon} alt='Page icon' />
-//   <PageTitle>{title}</PageTitle>
-// </PageTitleBlock>
-// {isChangePageTitleModalOpen && (
-//   <ChangePageTitleModal coords={changePageTitleModalCoords} />
-// )}
-// </div>

@@ -1,7 +1,18 @@
+enum SidebarLocations {
+  LEFT = 'left',
+  RIGHT = 'right',
+}
+
 interface SidebarWrapperProps {
+  location: SidebarLocations
   isOpen: boolean
-  isBubbling: boolean
+  isBubbling?: boolean
   width: number
 }
 
-export type { SidebarWrapperProps }
+interface SidebarResizerProps {
+  location: SidebarLocations
+}
+
+export { SidebarLocations }
+export type { SidebarWrapperProps, SidebarResizerProps }

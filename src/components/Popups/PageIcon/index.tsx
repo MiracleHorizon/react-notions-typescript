@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useOnClickOutside } from 'usehooks-ts'
-import { useInput } from 'hooks/useInput'
+import { useInput } from 'hooks/useInput/useInput'
 
 import OutlineInput from 'shared/Inputs/OutlineInput'
 import SwitchDecorationNavbar from '../SwitchDecoration/Navbar'

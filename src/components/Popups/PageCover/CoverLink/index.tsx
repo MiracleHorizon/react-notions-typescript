@@ -1,5 +1,5 @@
 import React from 'react'
-import { useInput } from 'hooks/useInput'
+import { useInput } from 'hooks/useInput/useInput'
 
 import OutlineInput from 'shared/Inputs/OutlineInput'
 import styles from './CoverLink.module.scss'

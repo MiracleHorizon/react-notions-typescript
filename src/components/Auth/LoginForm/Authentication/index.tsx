@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import styles from './Authentication.module.scss'
-import notionAppSvg from '../../../../assets/img/appImgs/notion.svg'
-import googleLogoPng from '../../../../assets/img/appImgs/google-logo.png'
-import appleLogoPng from '../../../../assets/img/appImgs/apple-logo.png'
+import notionAppSvg from 'assets/img/appImgs/notion.svg'
+import googleLogoPng from 'assets/img/appImgs/google-logo.png'
+import appleLogoPng from 'assets/img/appImgs/apple-logo.png'
 
 const Authentication: React.FC = () => {
   return (

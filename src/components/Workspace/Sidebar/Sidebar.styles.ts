@@ -1,19 +1,38 @@
 import styled from 'styled-components'
-import { SidebarWrapperProps } from './Sidebar.types'
+import {
+  SidebarLocations,
+  SidebarResizerProps,
+  SidebarWrapperProps,
+} from './Sidebar.types'
 
 const Wrapper = styled.div<SidebarWrapperProps>`
-  position: ${props => props.isBubbling && 'absolute'};
+  position: ${props =>
+    (props.isBubbling || props.location === SidebarLocations.RIGHT) &&
+    'absolute'};
   top: ${props => (props.isBubbling ? '60px' : 0)};
+  right: ${props => props.location === SidebarLocations.RIGHT && '0px'};
   flex-grow: 0;
   flex-shrink: 0;
   width: ${props => (!props.isOpen ? 0 : props.width + 'px')};
-  max-width: 450px;
-  min-width: ${props => (props.isOpen ? '180px' : 0)};
-  height: auto;
+  max-width: 480px;
+  min-width: ${props => {
+    if (props.location === SidebarLocations.LEFT) {
+      return !props.isOpen ? '0px' : '180px'
+    } else {
+      return !props.isOpen ? '0px' : '375px'
+    }
+  }};
+  height: 100%;
   max-height: ${props => props.isBubbling && 'calc(100vh - 120px)'};
   border-top-right-radius: ${props => props.isBubbling && '3px'};
   border-bottom-right-radius: ${props => props.isBubbling && '3px'};
-  background: rgb(247, 246, 243); // background: rgb(37, 37, 37);
+  ${props =>
+    props.location === SidebarLocations.RIGHT &&
+    'border-left: 1px solid rgba(55, 53, 47, 0.09)'};
+  background: ${props =>
+    props.location === SidebarLocations.LEFT
+      ? 'rgb(247, 246, 243)'
+      : 'transparent'}; // background: rgb(37, 37, 37);
   user-select: none;
   opacity: ${props =>
     !props.isOpen ? 0 : !props.isOpen && props.isBubbling ? 1 : 1};
@@ -21,8 +40,9 @@ const Wrapper = styled.div<SidebarWrapperProps>`
     ${props =>
       !props.isOpen ? -props.width + 'px' : props.isBubbling ? props.width : 0}
   );
-  z-index: 100;
-  transition: all 0.3s ease-in-out;
+  z-index: 10;
+  transition: width 0.4s ease-in-out, min-width 0.4s ease-in-out,
+    opacity 0.7s ease-in-out;
 `
 
 const Container = styled.div`
@@ -49,10 +69,11 @@ const Content = styled.div`
   padding: 5px;
 `
 
-const ResizerContainer = styled.div`
+const ResizerContainer = styled.div<SidebarResizerProps>`
   position: absolute;
   top: 0;
-  right: 0;
+  ${props =>
+    props.location === SidebarLocations.LEFT ? 'right: 0' : 'left: 0'};
   bottom: 0;
   flex-grow: 0;
   width: 1px;

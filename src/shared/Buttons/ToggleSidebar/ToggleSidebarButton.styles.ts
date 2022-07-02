@@ -1,21 +1,22 @@
 import styled from 'styled-components'
-import { ToggleSidebarBtnPurposes } from './ToggleSidebarButton'
+import {
+  StyledButtonProps,
+  ToggleSidebarBtnPurposes as Purposes,
+} from './ToggleSidebarButton.types'
 
-const StyledButton = styled.div<{ purpose: ToggleSidebarBtnPurposes }>`
+const StyledButton = styled.div<StyledButtonProps>`
   position: ${props =>
-    props.purpose === ToggleSidebarBtnPurposes.OPEN ? 'relative' : 'absolute'};
-  top: ${props => props.purpose === ToggleSidebarBtnPurposes.OPEN && '10px'};
-  left: ${props => props.purpose === ToggleSidebarBtnPurposes.OPEN && '10px'};
-  right: ${props => props.purpose === ToggleSidebarBtnPurposes.CLOSE && '10px'};
+    props.purpose === Purposes.OPEN ? 'relative' : 'absolute'};
+  top: ${props => props.properties.coords.top};
+  bottom: ${props => props.properties.coords.bottom};
+  left: ${props => props.properties.coords.left};
+  right: ${props => props.properties.coords.right};
   align-items: center;
   justify-content: center;
   display: flex;
   width: 25px;
   height: 25px;
   border-radius: 3px;
-  transform: rotate(
-    ${props => props.purpose === ToggleSidebarBtnPurposes.CLOSE && '180deg'}
-  );
   z-index: 20;
 
   :hover {
@@ -25,6 +26,10 @@ const StyledButton = styled.div<{ purpose: ToggleSidebarBtnPurposes }>`
   :active {
     background: rgba(55, 53, 47, 0.16);
     transition: background 0.1s ease-in-out;
+  }
+
+  img {
+    transform: rotate(${props => props.properties.imgRotate + 'deg'});
   }
 `
 

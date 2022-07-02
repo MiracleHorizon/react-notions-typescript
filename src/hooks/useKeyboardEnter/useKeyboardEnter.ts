@@ -12,7 +12,7 @@ export const useKeyboardEnter = (params: HookParams): HookResult => {
       if (e.key !== 'Enter') return
 
       const activeOption = options.find(({ title }) => title === activeItem)
-      if (activeOption) activeOption.onClick()
+      if (activeOption) activeOption.action()
     },
     [activeItem, options]
   )

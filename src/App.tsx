@@ -7,12 +7,12 @@ import LoggedInLayout from './layouts/Login'
 import { AppWrapper } from './styles/App.styles'
 
 const App: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(true)
 
   return (
     <AppWrapper>
-      {/*{isLoggedIn ? <WorkspacePage /> : <LoginLayout />}*/}
-      <LoggedInLayout />
+      {isLoggedIn ? <LoggedInLayout /> : <LoginLayout />}
+      {/*<LoggedInLayout />*/}
     </AppWrapper>
   )
 }

@@ -1,6 +1,6 @@
 interface Option {
   title: string
-  onClick: () => void
+  action: () => void
 }
 
 interface UseKeyboardEnterParams {

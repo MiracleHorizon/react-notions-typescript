@@ -30,28 +30,28 @@ const EMPTY_PAGE_DECORATION_OPTIONS: EmptyPageOption[] = [
   {
     title: 'Empty with icon',
     img: emptyIconSvg,
-    onClick: () => {
+    action: () => {
       console.log('Empty with icon')
     },
   },
   {
     title: 'Empty with cover',
     img: emptyCoverSvg,
-    onClick: () => {
+    action: () => {
       console.log('Empty with cover')
     },
   },
   {
     title: 'Empty',
     img: emptySvg,
-    onClick: () => {
+    action: () => {
       console.log('Empty ')
     },
   },
   {
     title: 'Ready-made templates',
     img: templatesSvg,
-    onClick: () => {
+    action: () => {
       console.log('Ready-made templates')
     },
   },
@@ -60,28 +60,28 @@ const EMPTY_PAGE_TEMPLATES_OPTIONS: EmptyPageOption[] = [
   {
     title: PageTemplates.BOARD,
     img: boardSvg,
-    onClick: () => {
+    action: () => {
       console.log('Board')
     },
   },
   {
     title: PageTemplates.TASK_LIST,
     img: taskListSvg,
-    onClick: () => {
+    action: () => {
       console.log('Task List')
     },
   },
   {
     title: PageTemplates.CALENDAR,
     img: calendarSvg,
-    onClick: () => {
+    action: () => {
       console.log('Calendar')
     },
   },
   {
     title: PageTemplates.TABLE,
     img: tableSvg,
-    onClick: () => {
+    action: () => {
       console.log('Table')
     },
   },

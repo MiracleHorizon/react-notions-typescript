@@ -8,8 +8,8 @@ import FavoritePagesList from './PagesList/FavoritePagesList'
 import CommonPagesList from './PagesList/CommonPagesList'
 import AddNewPagePanel from './Panels/AddNewPagePanel/AddNewPagePanel'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
-import { sidebarStateSelector } from 'redux/sidebarSlice/selectors'
-import { setActivePage } from 'redux/sidebarSlice/slice'
+import { leftSidebarSelector } from 'redux/sidebarsSlice/selectors'
+import { setActivePage } from 'redux/sidebarsSlice/slice'
 import {
   Wrapper,
   Container,
@@ -17,14 +17,14 @@ import {
   Content,
   ResizerContainer,
   Resizer,
-} from './Sidebar.styles'
+} from '../Sidebar.styles'
 
-const Sidebar: React.FC = () => {
+const LeftSidebar: React.FC = () => {
   const [width, setWidth] = useState<number>(300)
   const { title, id } = useSelector(currentPageSelector)
-  const { isOpen, isBubbling } = useSelector(sidebarStateSelector)
-  const resizerRef = useRef<HTMLDivElement>(null)
+  const { isOpen, isBubbling, location } = useSelector(leftSidebarSelector)
 
+  const resizerRef = useRef<HTMLDivElement>(null)
   const sidebarRef = useRef<HTMLDivElement>(null)
   const isHovering = useHover(sidebarRef)
 
@@ -34,9 +34,9 @@ const Sidebar: React.FC = () => {
   }, [id, title, dispatch])
 
   return (
-    <Wrapper ref={sidebarRef} {...{ isOpen, isBubbling, width }}>
+    <Wrapper ref={sidebarRef} {...{ isOpen, isBubbling, width, location }}>
       <Container>
-        <UserPanel isHovering={isHovering} />
+        <UserPanel {...{ isHovering, location }} />
         <AppOptionsPanel />
         <ShadowSeparator />
         <Content>
@@ -45,11 +45,19 @@ const Sidebar: React.FC = () => {
         </Content>
         <AddNewPagePanel />
       </Container>
-      <ResizerContainer draggable={true} ref={resizerRef}>
+      <ResizerContainer draggable={true} ref={resizerRef} location={location}>
         <Resizer />
       </ResizerContainer>
     </Wrapper>
   )
 }
 
-export default Sidebar
+export default LeftSidebar
+
+// const onKeyboardBindToggleSidebar = useKeyboardBind({
+//   keyboardCode: 'Backslash',
+//   ctrlKey: true,
+//   action: toggleSidebar(),
+// })
+
+// useEventListener('keydown', onKeyboardBindToggleSidebar)

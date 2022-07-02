@@ -4,7 +4,7 @@ import { useSelectItem } from 'hooks/useSelectItem'
 import { useKeyboardSelect } from 'hooks/useKeyboardSelect/useKeyboardSelect'
 import { useKeyboardEnter } from 'hooks/useKeyboardEnter/useKeyboardEnter'
 
-import EmptyPageList from './EmptyPageList'
+import EmptyPageList from './EmptyPageList/EmptyPageList'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
 import {
   EMPTY_PAGE_DECORATION_OPTIONS as emptyPageDecorationOptions,

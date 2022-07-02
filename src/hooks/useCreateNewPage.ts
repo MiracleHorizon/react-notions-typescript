@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { createNewPage, setCurrentPage } from 'redux/workSpaceSlice/slice'
-import { setActivePage } from 'redux/sidebarSlice/slice'
+import { setActivePage } from 'redux/sidebarsSlice/slice'
 import { workspacePagesSelector } from 'redux/workSpaceSlice/selectors'
 import { newPageConstructor } from 'utils/NewPage'
 

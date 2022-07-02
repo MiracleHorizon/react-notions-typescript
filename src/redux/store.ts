@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
 
-import sidebar from './sidebarSlice/slice'
+import sidebar from './sidebarsSlice/slice'
 import workspace from './workSpaceSlice/slice'
 import pageDecoration from './pageDecorationSlice/slice'
 import recentSearch from './recentSearchSlice/slice'

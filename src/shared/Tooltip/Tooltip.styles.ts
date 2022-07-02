@@ -1,18 +1,12 @@
 import styled from 'styled-components'
+import { IElementCoords } from '../../@types/types'
 
-interface TooltipCoords {
-  top?: string
-  bottom?: string
-  left?: string
-  right?: string
-}
-
-const TooltipWrapper = styled.div<TooltipCoords>`
+const TooltipWrapper = styled.div<IElementCoords>`
   position: absolute;
-  top: ${props => props?.top};
-  bottom: ${props => props?.bottom};
-  left: ${props => props?.left};
-  right: ${props => props?.right};
+  top: ${props => props.top};
+  bottom: ${props => props.bottom};
+  left: ${props => props.left};
+  right: ${props => props.right};
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -40,4 +34,3 @@ const Description = styled.p`
 `
 
 export { TooltipWrapper, Title, Description }
-export type { TooltipCoords }

@@ -1,45 +1,42 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import React, { Fragment, useRef } from 'react'
+import { useHover } from 'usehooks-ts'
+import { useSidebarActionHandler } from 'hooks/useSidebarActionHandler/useSidebarActionHandler'
 
-import {
-  setSidebarClose,
-  setSidebarOpen,
-  toggleSidebar,
-} from 'redux/sidebarSlice/slice'
-import { StyledButton, Icon } from './ToggleSidebarButton.styles'
+import Tooltip from '../../Tooltip/Tooltip'
+import { ToggleSidebarBtnProps } from './ToggleSidebarButton.types'
+import { toggleSidebarBtnCoordsHandler } from 'utils/helpers/toggleSidebarBtnCoordsHandler'
+import { toggleSidebarTooltipHandler } from 'utils/helpers/toggleSidebarTooltipHandler'
+import { Icon, StyledButton } from './ToggleSidebarButton.styles'
 import switchSvg from 'assets/img/sidebar-twoArrows.svg'
 
-enum ToggleSidebarBtnPurposes {
-  OPEN = 'open',
-  CLOSE = 'close',
-}
+const ToggleSidebarButton: React.FC<ToggleSidebarBtnProps> = props => {
+  const { purpose, location } = props
+  const properties = toggleSidebarBtnCoordsHandler({ purpose, location })
+  const tooltipParams = toggleSidebarTooltipHandler({ purpose, location })
 
-interface ToggleSidebarBtnProps {
-  purpose: ToggleSidebarBtnPurposes
-}
+  const buttonRef = useRef<HTMLDivElement>(null)
+  const isHovering = useHover(buttonRef)
 
-const ToggleSidebarButton: React.FC<ToggleSidebarBtnProps> = ({ purpose }) => {
-  const dispatch = useDispatch()
-  const onClickAction =
-    purpose === ToggleSidebarBtnPurposes.OPEN
-      ? () => dispatch(setSidebarOpen())
-      : () => dispatch(setSidebarClose()) //! useCallback попробовать.
-
-  const onHover = (): void => {
-    // purpose === ToggleSidebarBtnPurposes.OPEN && dispatch(toggleSidebar())
-  }
+  const onClickAction = useSidebarActionHandler({ purpose, location })
 
   return (
-    <StyledButton
-      purpose={purpose}
-      onClick={onClickAction}
-      onMouseEnter={onHover}
-      onMouseLeave={onHover}
-    >
-      <Icon src={switchSvg} alt='Switch' />
-    </StyledButton>
+    <Fragment>
+      <StyledButton
+        role='button'
+        ref={buttonRef}
+        purpose={purpose}
+        properties={properties}
+        onClick={onClickAction}
+      >
+        <Icon src={switchSvg} alt='Switch' />
+      </StyledButton>
+      {isHovering && <Tooltip {...tooltipParams} />}
+    </Fragment>
   )
 }
 
 export default ToggleSidebarButton
-export { ToggleSidebarBtnPurposes }
+
+// const onHover = () => {}
+// onMouseEnter={onHover}
+// onMouseLeave={onHover}

@@ -22,7 +22,7 @@ interface IPagesSliceState {
 interface EmptyPageOption {
   title: string
   img: string
-  onClick: () => void
+  action: () => void
 }
 
 export type {

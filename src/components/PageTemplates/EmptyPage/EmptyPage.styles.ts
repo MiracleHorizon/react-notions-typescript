@@ -7,10 +7,11 @@ const EmptyPageWrapper = styled.div`
 `
 
 const DescriptionContainer = styled.div`
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 `
 
 const Description = styled.p`
+  margin-top: -15px;
   font-size: 16px;
   color: rgba(55, 53, 47, 0.5);
 `
@@ -23,7 +24,7 @@ const TemplatesTitleContainer = styled.div`
 const StyledTitle = styled.h5`
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 1px;
+  letter-spacing: 0.7px;
   text-transform: uppercase;
   color: rgba(55, 53, 47, 0.5);
   user-select: none;

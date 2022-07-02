@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { WorkspaceContentProps } from './Workspace.types'
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -9,9 +10,16 @@ const Wrapper = styled.div`
   //background: #ffc73e;
 `
 
-const Content = styled.div`
+const Container = styled.div`
   width: 100%;
   //overflow: auto;
 `
 
-export { Wrapper, Content }
+const Content = styled.div<WorkspaceContentProps>`
+  width: ${props =>
+    props.isRightSidebarOpen
+      ? `calc(100% - ${props.rightSidebarWidth}px)`
+      : '100%'};
+`
+
+export { Wrapper, Container, Content }

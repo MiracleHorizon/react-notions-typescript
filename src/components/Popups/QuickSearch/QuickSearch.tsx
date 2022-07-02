@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useOnClickOutside } from 'usehooks-ts'
-import { useInput } from 'hooks/useInput'
+import { useInput } from 'hooks/useInput/useInput'
 
 import QuickSearchForm from './SearchForm/QuickSearchForm'
 import RecentLists from './RecentLists/RecentLists'

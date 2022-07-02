@@ -1,12 +1,7 @@
 import { ChangeEvent, useState } from 'react'
+import { UseInputResult as HookResult } from './useInput.types'
 
-interface UseInputResult {
-  inputValue: string
-  onChangeInputValue: (e: ChangeEvent<HTMLInputElement>) => void
-  onClearInput: () => void
-}
-
-export const useInput = (initialValue: string): UseInputResult => {
+export const useInput = (initialValue: string): HookResult => {
   const [inputValue, setInputValue] = useState<string>(initialValue)
 
   const onChangeInputValue = (e: ChangeEvent<HTMLInputElement>): void => {
