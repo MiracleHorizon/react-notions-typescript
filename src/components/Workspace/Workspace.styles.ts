@@ -6,14 +6,12 @@ const Wrapper = styled.div`
   position: relative;
   display: flex;
   flex: 1 1 0;
-  background: #ffc73e;
+  //background: #ffc73e;
 `
 
 const Content = styled.div`
   width: 100%;
-  overflow: auto;
+  //overflow: auto;
 `
 
-const StyledBoard = styled.div``
-
-export { Wrapper, Content, StyledBoard }
+export { Wrapper, Content }

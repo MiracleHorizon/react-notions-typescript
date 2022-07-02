@@ -136,7 +136,6 @@ export const workSpaceSlice = createSlice({
       if (!page) return
 
       state.currentPage = page
-      document.title = state.currentPage.title //!
     },
     setPageTitle(state, action) {
       const [title, id] = action.payload

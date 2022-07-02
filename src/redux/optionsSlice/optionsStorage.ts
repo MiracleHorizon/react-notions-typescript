@@ -5,12 +5,9 @@ import {
   IPageSettingsOptions,
 } from './types'
 import { PageTemplates } from '../popupsSlice/types'
-import searchSvg from 'assets/img/inputs/search.svg'
-import updatesSvg from 'assets/img/optionsImgs/updates.svg'
-import settingsSvg from 'assets/img/optionsImgs/settings.svg'
-import trashSvg from 'assets/img/optionsImgs/trash.svg'
+import trashSvg from 'assets/img/optionsImgs/trash.svg' //!
 import addFavorite from 'assets/img/optionsImgs/star-favorite.svg'
-import removeFavorite from 'assets/img/optionsImgs/star-notFavorite.svg' //!
+import removeFavorite from 'assets/img/optionsImgs/star-notFavorite.svg'
 import copyLinkSvg from 'assets/img/optionsImgs/copyLink.svg'
 import duplicateSvg from 'assets/img/optionsImgs/copy.svg'
 import renameSvg from 'assets/img/optionsImgs/rename.svg'
@@ -59,7 +56,6 @@ const EMPTY_PAGE_DECORATION_OPTIONS: EmptyPageOption[] = [
     },
   },
 ]
-
 const EMPTY_PAGE_TEMPLATES_OPTIONS: EmptyPageOption[] = [
   {
     title: PageTemplates.BOARD,
@@ -89,6 +85,14 @@ const EMPTY_PAGE_TEMPLATES_OPTIONS: EmptyPageOption[] = [
       console.log('Table')
     },
   },
+]
+const EMPTY_PAGE_OPTION_TITLES: string[] = [
+  ...EMPTY_PAGE_DECORATION_OPTIONS.map(option => option.title),
+  ...EMPTY_PAGE_TEMPLATES_OPTIONS.map(option => option.title),
+]
+const EMPTY_PAGE_OPTIONS_LIST: EmptyPageOption[] = [
+  ...EMPTY_PAGE_DECORATION_OPTIONS,
+  ...EMPTY_PAGE_TEMPLATES_OPTIONS,
 ]
 
 const FAVORITE_PAGE_OPTIONS: IOptionItem[] = [
@@ -145,4 +149,6 @@ export {
   PAGE_FONTS,
   EMPTY_PAGE_DECORATION_OPTIONS,
   EMPTY_PAGE_TEMPLATES_OPTIONS,
+  EMPTY_PAGE_OPTION_TITLES,
+  EMPTY_PAGE_OPTIONS_LIST,
 }

@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 
 import EmptyPageItem from '../EmptyPageItem'
 import { EmptyPageOption } from '../../../../redux/optionsSlice/types'
 import styles from './EmptyPageList.module.scss'
+import { useKeyboardSelect } from '../../../../hooks/useKeyboardSelect/useKeyboardSelect'
 
 interface EmptyPageListProps {
   list: EmptyPageOption[]
   activeItem: string
   onSelect: (activeItem: string) => void
+  setActiveItem?: (title: string) => void
 }
 
 const EmptyPageList: React.FC<EmptyPageListProps> = props => {

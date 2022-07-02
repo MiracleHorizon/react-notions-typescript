@@ -1,8 +1,9 @@
 import React, { lazy, Suspense } from 'react'
-import { Wrapper, Content, StyledBoard } from './Workspace.styles'
+import { Wrapper, Content } from './Workspace.styles'
 
+import PageCover from '../Popups/PageCover'
 const Header = lazy(() => import('./Header/Header'))
-const Board = lazy(() => import('../PageTemplates/Board'))
+const Board = lazy(() => import('../PageTemplates/Board/BoardTemplate'))
 const Sidebar = lazy(() => import('./Sidebar/Sidebar'))
 
 const Workspace: React.FC = () => {
@@ -12,7 +13,8 @@ const Workspace: React.FC = () => {
         <Sidebar />
         <Content>
           <Header />
-          <StyledBoard />
+          <PageCover />
+          <Board />
         </Content>
       </Suspense>
     </Wrapper>

@@ -21,6 +21,7 @@ const Wrapper = styled.div<SidebarWrapperProps>`
     ${props =>
       !props.isOpen ? -props.width + 'px' : props.isBubbling ? props.width : 0}
   );
+  z-index: 100;
   transition: all 0.3s ease-in-out;
 `
 

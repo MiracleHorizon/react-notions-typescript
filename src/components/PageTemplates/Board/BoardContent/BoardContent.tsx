@@ -2,15 +2,13 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
-import CreateNewPageModal from '../../../Popups/CreateNewPage'
-import styles from './BoardContent.module.scss'
+import { Content } from './BoardContent.styles'
 
 const BoardContent: React.FC = () => {
   const { content } = useSelector(currentPageSelector)
 
   return (
-    <div className={styles.content}>
-      {/*<CreateNewPageModal />*/}
+    <Content>
       <h1>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad
         aliquam aliquid, amet at cupiditate, eius enim esse in iure mollitia
@@ -38,7 +36,7 @@ const BoardContent: React.FC = () => {
         sequi suscipitate, eius enim esse in iure mollitia natus nesciunt nisi
         numquam quam quasi qui quo? Eum expedita, hic iure laborum
       </h1>
-    </div>
+    </Content>
   )
 }
 

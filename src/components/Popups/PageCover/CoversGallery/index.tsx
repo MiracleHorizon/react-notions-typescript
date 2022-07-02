@@ -1,7 +1,7 @@
 import React from 'react'
 
 import CoverGalleryItem from './CoverGalleryItem'
-import { CoverColors } from '../../../../../../redux/workSpaceSlice/types'
+import { CoverColors } from '../../../../redux/workSpaceSlice/types'
 import styles from './CoversGalery.module.scss'
 
 interface CoverGalleryProps {

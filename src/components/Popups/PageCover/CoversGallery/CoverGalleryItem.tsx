@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { setPageCover } from '../../../../../../redux/workSpaceSlice/slice'
-import { currentPageSelector } from '../../../../../../redux/workSpaceSlice/selectors'
-import { setIsCoverModalClose } from '../../../../../../redux/pageDecorationSlice/slice'
+import { setPageCover } from '../../../../redux/workSpaceSlice/slice'
+import { currentPageSelector } from '../../../../redux/workSpaceSlice/selectors'
+import { setIsCoverModalClose } from '../../../../redux/pageDecorationSlice/slice'
 import styles from './CoversGalery.module.scss'
 
 interface CoverGalleryItemProps {
