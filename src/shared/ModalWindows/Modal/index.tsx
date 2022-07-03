@@ -1,8 +1,12 @@
 import React from 'react'
 import styles from './Modal.module.scss'
+import { createPortal } from 'react-dom'
 
 const Modal: React.FC<{ children: JSX.Element }> = ({ children }) => {
-  return <div className={styles.modal}>{children}</div>
+  return createPortal(
+    <div className={styles.modal}>{children}</div>,
+    document.getElementById('root')!
+  )
 }
 
 export default Modal

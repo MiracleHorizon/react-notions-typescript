@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 
+import RightSidebarHeader from './RightSidebarHeader/RightSidebarHeader'
 import EmptyRightSidebar from './EmptyRightSidebar/EmptyRightSidebar'
 import ToggleSidebarButton from 'shared/Buttons/ToggleSidebar/ToggleSidebarButton'
 import { rightSidebarSelector } from 'redux/sidebarsSlice/selectors'
@@ -14,13 +15,12 @@ import {
   ResizerContainer,
   Resizer,
 } from '../Sidebar.styles'
-import RightSidebarHeader from './RightSidebarHeader/RightSidebarHeader'
 
 const RightSidebar: React.FC = () => {
   const { isOpen, location, width } = useSelector(rightSidebarSelector)
   const { isHasComments } = useSelector(currentPageSelector)
 
-  const [emptyCommentsTitle, setEmptyCommentsTitle] = useState<string>('open')
+  const [emptyCommentsTitle, setEmptyCommentsTitle] = useState<string>('open') //!
 
   const sidebarRef = useRef<HTMLDivElement>(null)
   const isHovering = useHover(sidebarRef)

@@ -20,7 +20,7 @@ const CommonPagesList: React.FC = () => {
   const { id } = useSelector(currentPageSelector)
   const tooltipTitle = useTooltipTitle(isOpen)
   const commonPages = useSelector(commonPagesSelector)
-  const onCreateNewPage = useCreateNewPage(id!)
+  const onCreateNewPage = useCreateNewPage(id)
 
   const listTitleRef = useRef<HTMLDivElement>(null)
   const isListTitleHovering = useHover(listTitleRef)

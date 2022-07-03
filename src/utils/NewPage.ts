@@ -6,7 +6,7 @@ import {
 import { PageTemplates } from 'redux/popupsSlice/types'
 
 class NewPage implements IWorkspacePage {
-  id: number | null
+  id: number
   title: string
   cover: null | CoverColors
   icon: null | string
@@ -36,7 +36,7 @@ class NewPage implements IWorkspacePage {
 }
 
 const DEFAULT_PAGE_SETTINGS: IWorkspacePage = {
-  id: null,
+  id: -1,
   title: 'Untitled',
   cover: null,
   icon: null,

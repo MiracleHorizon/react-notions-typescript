@@ -27,6 +27,7 @@ const SidebarListItem: React.FC<{ page: IWorkspacePage }> = ({ page }) => {
   const { isOpen, toggleIsOpen } = useToggle(false)
   const activePage = useSelector(activePageSelector)
   const isActive = activePage.title === title && activePage.id === id
+  const dispatch = useDispatch()
 
   const itemRef = useRef<HTMLLIElement>(null)
   const isHovering = useHover(itemRef)
@@ -34,9 +35,8 @@ const SidebarListItem: React.FC<{ page: IWorkspacePage }> = ({ page }) => {
   const iconRef = useRef<HTMLDivElement>(null)
   const isPageIconHovering = useHover(iconRef) //!
 
-  const dispatch = useDispatch()
   const onSelectCurrentPage = (): void => {
-    dispatch(setActivePage({ title, id: id! }))
+    dispatch(setActivePage({ title, id }))
     dispatch(setCurrentPage(id))
   }
   const onAddNewPageInside = (): void => {}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import BoardPageModal from './ModalTemplates/Board'
+import BoardPageModal from './ModalTemplates/Board/BoardTemplateSettings'
 import TaskListPageModal from './ModalTemplates/TaskList'
 import { PageTemplates } from '../../../redux/popupsSlice/types'
 import { currentPageSelector } from '../../../redux/workSpaceSlice/selectors'

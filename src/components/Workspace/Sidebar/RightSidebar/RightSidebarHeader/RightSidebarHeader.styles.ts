@@ -17,8 +17,11 @@ const Header = styled.div`
   padding: 0 5px;
 `
 
-const Title = styled.h4``
+const Title = styled.h4`
+  padding-left: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(55, 53, 47);
+`
 
-const StyledDropdown = styled.div``
-
-export { Wrapper, Header, Title, StyledDropdown }
+export { Wrapper, Header, Title }

@@ -173,16 +173,16 @@ export const workSpaceSlice = createSlice({
       state.currentPage.isHasCover = true
       state.currentPage.cover = cover
     },
-    removeIcon(state, action) {
+    removeIcon(state, action: PayloadAction<number>) {
       const page = state.pages.find(page => page.id === action.payload)
       if (!page) return
 
       page.isHasIcon = false
       page.icon = '' //!
       state.currentPage.isHasIcon = false
-      state.currentPage.icon = action.payload
+      state.currentPage.icon = ''
     },
-    removeCover(state, action) {
+    removeCover(state, action: PayloadAction<number>) {
       const page = state.pages.find(page => page.id === action.payload)
       if (!page) return
 
@@ -205,21 +205,21 @@ export const workSpaceSlice = createSlice({
       state.currentPage.isFavorite = false
       page.isFavorite = false
     },
-    toggleFavorite(state, action) {
+    toggleFavorite(state, action: PayloadAction<number>) {
       const page = state.pages.find(page => page.id === action.payload)
       if (!page) return
 
       state.currentPage.isFavorite = !state.currentPage.isFavorite
       page.isFavorite = !page.isFavorite
     },
-    toggleFullWidth(state, action) {
+    toggleFullWidth(state, action: PayloadAction<number>) {
       const page = state.pages.find(page => page.id === action.payload)
       if (!page) return
 
       state.currentPage.isFullWidth = !state.currentPage.isFullWidth
       page.isFullWidth = !page.isFullWidth
     },
-    toggleSmallText(state, action) {
+    toggleSmallText(state, action: PayloadAction<number>) {
       const page = state.pages.find(page => page.id === action.payload)
       if (!page) return
 

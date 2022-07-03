@@ -8,7 +8,7 @@ import { StyledPanel, Button, Icon, Title } from './AddNewPagePanel.styles'
 
 const AddNewPagePanel: React.FC = () => {
   const { id } = useSelector(currentPageSelector)
-  const onCreateNewPage = useCreateNewPage(id!)
+  const onCreateNewPage = useCreateNewPage(id)
 
   return (
     <StyledPanel onClick={onCreateNewPage}>

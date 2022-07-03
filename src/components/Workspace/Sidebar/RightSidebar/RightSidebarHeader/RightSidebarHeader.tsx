@@ -1,31 +1,14 @@
 import React from 'react'
+import CommentsFilter from './CommentsFilter/CommentsFilter'
+import { Wrapper, Header, Title } from './RightSidebarHeader.styles'
 
-import {
-  Wrapper,
-  Header,
-  Title,
-  StyledDropdown,
-} from './RightSidebarHeader.styles'
-import DropdownItem from './DropdownItem/DropdownItem'
-
-const options = [
-  { title: 'Open', description: 'Open comments' },
-  { title: 'Resolved', description: 'Resolved comments' },
-]
-
-const RightSidebarHeader: React.FC = () => {
-  return (
-    <Wrapper>
-      <Header>
-        <Title>Comments</Title>
-        <StyledDropdown>
-          {options.map(({ title, description }) => (
-            <DropdownItem key={description} />
-          ))}
-        </StyledDropdown>
-      </Header>
-    </Wrapper>
-  )
-}
+const RightSidebarHeader: React.FC = () => (
+  <Wrapper>
+    <Header>
+      <Title>Comments</Title>
+      <CommentsFilter />
+    </Header>
+  </Wrapper>
+)
 
 export default RightSidebarHeader

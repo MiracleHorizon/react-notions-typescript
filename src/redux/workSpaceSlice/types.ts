@@ -18,7 +18,7 @@ interface IComment {
 }
 
 interface IWorkspacePage {
-  id: number | null
+  id: number
   title: string
   icon: string | null
   cover: CoverColors | null

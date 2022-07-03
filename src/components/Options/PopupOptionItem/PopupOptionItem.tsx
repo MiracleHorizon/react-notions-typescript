@@ -7,17 +7,16 @@ import { StyledContainer, Title } from './PopupOptionItem.styles'
 
 const PopupOptionItem: React.FC<PopupOptionItemProps> = props => {
   const { title, SVGComponent, action, activeItem, onSelect } = props
-  const isActive = activeItem === title
-
   const dispatch = useDispatch()
+
   const onClickAction = (): void => {
-    if (action) action() //*
     dispatch(closePageSettingsPopup())
+    action()
   }
 
   return (
     <StyledContainer
-      isActive={isActive}
+      {...{ isActive: activeItem === title }}
       onClick={onClickAction}
       onMouseEnter={() => onSelect(title)}
     >

@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
-import Separator from '../../../../../Separator'
-import ToggleFontButton from '../../../../../Buttons/ToggleFont'
-import { PAGE_FONTS as fonts } from '../../../../../../redux/optionsSlice/optionsStorage'
+import React, { Fragment, useState } from 'react'
+
+import Separator from 'shared/Separator'
+import ToggleFontButton from 'shared/Buttons/ToggleFont'
+
+import { PAGE_FONTS as fonts } from 'redux/optionsSlice/optionsStorage'
 import styles from './ToggleFontBar.module.scss'
 
 const ToggleFontPanel: React.FC = () => {
   const [activeFont, setActiveFont] = useState<string>('Default')
 
   return (
-    <React.Fragment>
+    <Fragment>
       <div className={styles.bar}>
         <h5>STYLE</h5>
         <div className={styles.fontsBlock}>
@@ -24,7 +26,7 @@ const ToggleFontPanel: React.FC = () => {
         </div>
       </div>
       <Separator />
-    </React.Fragment>
+    </Fragment>
   )
 }
 

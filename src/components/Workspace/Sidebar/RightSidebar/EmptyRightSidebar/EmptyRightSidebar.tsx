@@ -1,5 +1,5 @@
 import React from 'react'
-import EmptyCommentsSVG from '../../../../../shared/SVG/EmptyComments'
+import EmptyCommentsSVG from '../../../../../shared/SVG/LightThene/EmptyComments'
 import wordCapitalize from 'utils/helpers/wordCapitalize'
 import { StyledContainer, Title, Description } from './EmptyRightSidebar.styles'
 

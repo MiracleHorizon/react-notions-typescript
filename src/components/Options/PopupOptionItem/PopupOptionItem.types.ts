@@ -3,7 +3,7 @@ import { ActiveListItem } from '../../../@types/types'
 interface PopupOptionItemProps extends ActiveListItem {
   title: string
   SVGComponent: JSX.Element
-  action?: () => void
+  action: () => void
 }
 
 interface StyledContainerProps {}
