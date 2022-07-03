@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ActivePage, SidebarSliceState } from './types'
+import { ActivePage, CommentsFilters, SidebarSliceState } from './types'
 import { SidebarLocations } from 'components/Workspace/Sidebar/Sidebar.types'
 
 const initialState: SidebarSliceState = {
@@ -8,7 +8,12 @@ const initialState: SidebarSliceState = {
     isBubbling: false,
     location: SidebarLocations.LEFT,
   },
-  rightSidebar: { isOpen: true, location: SidebarLocations.RIGHT, width: 400 },
+  rightSidebar: {
+    isOpen: false,
+    location: SidebarLocations.RIGHT,
+    width: 400,
+    activeCommentsFilter: CommentsFilters.OPEN,
+  },
   activePage: {
     title: '',
     id: -1,
@@ -48,6 +53,9 @@ const sidebarSlice = createSlice({
     setRightSidebarWidth(state, action: PayloadAction<number>) {
       state.rightSidebar.width = action.payload
     },
+    setCommentsFilter(state, action: PayloadAction<CommentsFilters>) {
+      state.rightSidebar.activeCommentsFilter = action.payload
+    },
   },
 })
 
@@ -58,6 +66,7 @@ export const {
   openRightSidebar,
   setActivePage,
   setRightSidebarWidth,
+  setCommentsFilter,
   toggleLeftSidebar,
   toggleRightSidebar,
 } = sidebarSlice.actions

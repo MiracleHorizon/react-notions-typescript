@@ -20,10 +20,10 @@ const RightSidebar: React.FC = () => {
   const { isOpen, location, width } = useSelector(rightSidebarSelector)
   const { isHasComments } = useSelector(currentPageSelector)
 
-  const [emptyCommentsTitle, setEmptyCommentsTitle] = useState<string>('open') //!
-
   const sidebarRef = useRef<HTMLDivElement>(null)
   const isHovering = useHover(sidebarRef)
+
+  const [emptyCommentsTitle, setEmptyCommentsTitle] = useState<string>('open') //!
 
   return (
     <Wrapper ref={sidebarRef} {...{ isOpen, width, location }}>

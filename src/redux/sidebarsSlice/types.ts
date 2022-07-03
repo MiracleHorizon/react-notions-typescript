@@ -1,5 +1,10 @@
 import { SidebarLocations } from 'components/Workspace/Sidebar/Sidebar.types'
 
+enum CommentsFilters {
+  OPEN = 'Open',
+  RESOLVED = 'Resolved',
+}
+
 interface ActivePage {
   title: string
   id: number
@@ -15,8 +20,10 @@ interface SidebarSliceState {
     isOpen: boolean
     location: SidebarLocations.RIGHT
     width: number
+    activeCommentsFilter: CommentsFilters
   }
   activePage: ActivePage
 }
 
 export type { SidebarSliceState, ActivePage }
+export { CommentsFilters }

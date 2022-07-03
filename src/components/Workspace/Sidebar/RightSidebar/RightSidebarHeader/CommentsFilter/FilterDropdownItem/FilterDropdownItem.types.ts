@@ -1,9 +1,10 @@
 import { ActiveListItem } from '../../../../../../../@types/types'
+import { CommentsFilters } from 'redux/sidebarsSlice/types'
 
 interface DropdownItemProps extends ActiveListItem {
-  title: string
+  title: CommentsFilters
   description: string
-  onClick: (title: string) => void
+  onClick: (filter: CommentsFilters) => void
 }
 
 export type { DropdownItemProps }
