@@ -1,6 +1,7 @@
 interface IOptionItem {
   title: string
-  imgUrl: string
+  imgUrl?: string
+  SVG?: JSX.Element
 }
 
 interface IPageFont {

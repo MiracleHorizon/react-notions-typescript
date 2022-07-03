@@ -5,6 +5,7 @@ import {
 } from './ToggleSidebarButton.types'
 
 const StyledButton = styled.div<StyledButtonProps>`
+  cursor: pointer;
   position: ${props =>
     props.purpose === Purposes.OPEN ? 'relative' : 'absolute'};
   top: ${props => props.properties.coords.top};
@@ -18,6 +19,8 @@ const StyledButton = styled.div<StyledButtonProps>`
   height: 25px;
   border-radius: 3px;
   z-index: 20;
+  opacity: ${props => (props.isParentHovering ? 1 : 0)};
+  transition: opacity 0.12s ease-in-out 0.1s;
 
   :hover {
     background: rgba(55, 53, 47, 0.08);
@@ -34,10 +37,10 @@ const StyledButton = styled.div<StyledButtonProps>`
 `
 
 const Icon = styled.img`
-  cursor: pointer;
   width: 25px;
   height: 25px;
   opacity: 0.5;
+  pointer-events: none;
 `
 
 export { StyledButton, Icon }

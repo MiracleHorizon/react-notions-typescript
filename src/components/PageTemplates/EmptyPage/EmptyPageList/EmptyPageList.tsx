@@ -1,13 +1,13 @@
 import React from 'react'
 import EmptyPageItem from '../EmptyPageItem/EmptyPageItem'
 import { EmptyPageListProps } from './EmptyPageList.types'
-import { StylesList } from './EmptyPageList.styles'
+import { StyledList } from './EmptyPageList.styles'
 
 const EmptyPageList: React.FC<EmptyPageListProps> = props => {
   const { list, activeItem, onSelect } = props
 
   return (
-    <StylesList>
+    <StyledList>
       {list.map(({ title, img, action }) => (
         <EmptyPageItem
           key={title}
@@ -18,7 +18,7 @@ const EmptyPageList: React.FC<EmptyPageListProps> = props => {
           onSelect={onSelect}
         />
       ))}
-    </StylesList>
+    </StyledList>
   )
 }
 

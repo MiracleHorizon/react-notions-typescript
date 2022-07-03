@@ -14,6 +14,7 @@ const initialState: WorkspaceSliceState = {
       title: 'React + TypeScript',
       cover: CoverColors.YELLOW,
       icon: '',
+      comments: [],
       isFullWidth: true,
       isSmallText: false,
       template: PageTemplates.BOARD,
@@ -34,6 +35,7 @@ const initialState: WorkspaceSliceState = {
       isHasCover: false,
       isHasComments: false,
       isFavorite: false,
+      comments: [],
     },
     {
       id: 3,
@@ -47,6 +49,7 @@ const initialState: WorkspaceSliceState = {
       isHasCover: true,
       isHasComments: false,
       isFavorite: true,
+      comments: [{ title: '' }],
     },
     {
       id: 4,
@@ -59,6 +62,7 @@ const initialState: WorkspaceSliceState = {
       isHasCover: false,
       isHasIcon: true,
       isHasComments: false,
+      comments: [],
 
       isFavorite: true,
     },
@@ -73,6 +77,7 @@ const initialState: WorkspaceSliceState = {
       isHasCover: true,
       isHasIcon: true,
       isHasComments: false,
+      comments: [],
 
       isFavorite: false,
     },
@@ -86,6 +91,7 @@ const initialState: WorkspaceSliceState = {
       isSmallText: false,
       isHasCover: true,
       isHasComments: false,
+      comments: [],
 
       isHasIcon: true,
       isFavorite: false,
@@ -102,6 +108,7 @@ const initialState: WorkspaceSliceState = {
       isHasComments: false,
       isHasIcon: true,
       isFavorite: true,
+      comments: [],
     },
   ],
   currentPage: {
@@ -116,6 +123,7 @@ const initialState: WorkspaceSliceState = {
     isHasComments: false,
     isHasIcon: true,
     isFavorite: true,
+    comments: [],
   },
 }
 
@@ -183,6 +191,20 @@ export const workSpaceSlice = createSlice({
       state.currentPage.cover = CoverColors.WHITE
       state.currentPage.isHasCover = false
     },
+    addToFavorite(state, action: PayloadAction<number>) {
+      const page = state.pages.find(page => page.id === action.payload)
+      if (!page) return
+
+      state.currentPage.isFavorite = true
+      page.isFavorite = true
+    },
+    removeFavorite(state, action: PayloadAction<number>) {
+      const page = state.pages.find(page => page.id === action.payload)
+      if (!page) return
+
+      state.currentPage.isFavorite = false
+      page.isFavorite = false
+    },
     toggleFavorite(state, action) {
       const page = state.pages.find(page => page.id === action.payload)
       if (!page) return
@@ -209,6 +231,7 @@ export const workSpaceSlice = createSlice({
 
 export const {
   createNewPage,
+  deletePage,
   setCurrentPage,
   setPageTitle,
   setPageCover,
@@ -218,6 +241,8 @@ export const {
   toggleFavorite,
   toggleFullWidth,
   toggleSmallText,
+  addToFavorite,
+  removeFavorite,
 } = workSpaceSlice.actions
 
 export default workSpaceSlice.reducer

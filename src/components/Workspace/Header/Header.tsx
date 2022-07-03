@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useOnClickOutside } from 'usehooks-ts'
+import { useHover, useOnClickOutside } from 'usehooks-ts'
 
 import PageOptionsPanel from './PageOptionsPanel/PageOptionsPanel'
 import ChangePageTitleModal from 'shared/ModalWindows/ChangePageTitle'
@@ -13,6 +13,7 @@ import {
   openChangePageTitleModal,
 } from 'redux/modalsSlice/slice'
 import { ToggleSidebarBtnPurposes as Purposes } from 'shared/Buttons/ToggleSidebar/ToggleSidebarButton.types'
+import emptyIcon from 'assets/img/optionsImgs/empty.svg'
 import {
   Container,
   HeaderPanel,
@@ -21,13 +22,14 @@ import {
   PageTitleBlock,
   Wrapper,
 } from './Header.styles'
-import emptyIcon from 'assets/img/optionsImgs/empty.svg'
 
 const Header: React.FC = () => {
   const { title, icon, isHasIcon } = useSelector(currentPageSelector)
-  const changePageTitleModalCoords = { left: '10px', top: '40px' }
-
   const modalRef = useRef<HTMLDivElement>(null)
+
+  const headerRef = useRef<HTMLHeadElement>(null)
+  const isHovering = useHover(headerRef)
+
   const {
     isOpen: isLeftSidebarOpen,
     isBubbling,
@@ -46,18 +48,22 @@ const Header: React.FC = () => {
   useOnClickOutside(modalRef, handleClickOutside)
 
   return (
-    <Wrapper>
-      {!isLeftSidebarOpen || (isLeftSidebarOpen && isBubbling) ? (
-        <ToggleSidebarButton purpose={Purposes.OPEN} location={location} />
-      ) : null}
+    <Wrapper ref={headerRef}>
+      {(!isLeftSidebarOpen || (isLeftSidebarOpen && isBubbling)) && (
+        <ToggleSidebarButton
+          isParentHovering={isHovering}
+          purpose={Purposes.OPEN}
+          location={location}
+        />
+      )}
       <Container>
         <HeaderPanel>
-          <PageTitleBlock>
+          <PageTitleBlock onClick={onOpenChangePageTitleModal}>
             <PageIcon src={isHasIcon ? icon : emptyIcon} alt='Page icon' />
             <PageTitle>{title}</PageTitle>
           </PageTitleBlock>
           {isChangePageTitleModalOpen && (
-            <ChangePageTitleModal coords={changePageTitleModalCoords} />
+            <ChangePageTitleModal coords={{ left: '10px', top: '40px' }} />
           )}
           <PageOptionsPanel />
         </HeaderPanel>

@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-
 import { AppModalsState, PageTemplates } from './types'
 
 const initialState: AppModalsState = {
@@ -13,19 +12,16 @@ export const pageSettingsPopupSlice = createSlice({
   initialState: initialState,
 
   reducers: {
-    openSettingsModal(state): void {
+    openPageSettingsPopup(state): void {
       state.isPageSettingsPopupOpen = true
     },
-    closeSettingsModal(state): void {
+    closePageSettingsPopup(state): void {
       state.isPageSettingsPopupOpen = false
-    },
-    toggleSettingsModal(state) {
-      state.isPageSettingsPopupOpen = !state.isPageSettingsPopupOpen
     },
   },
 })
 
-export const { openSettingsModal, closeSettingsModal, toggleSettingsModal } =
+export const { openPageSettingsPopup, closePageSettingsPopup } =
   pageSettingsPopupSlice.actions
 
 export default pageSettingsPopupSlice.reducer

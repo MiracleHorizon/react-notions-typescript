@@ -20,8 +20,8 @@ const OptionsList: React.FC<OptionsListProps> = props => {
           <OptionItem
             key={option.title}
             option={option}
-            activeItem={activeItem!}
-            onSelect={onSelect!}
+            activeItem={activeItem}
+            onSelect={onSelect}
             className={className}
           />
         ))}

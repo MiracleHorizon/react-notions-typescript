@@ -12,6 +12,11 @@ enum CoverColors {
   ORANGE = '#FDDFCC',
 }
 
+interface IComment {
+  title: string
+  createDate?: Date
+}
+
 interface IWorkspacePage {
   id: number | null
   title: string
@@ -24,6 +29,7 @@ interface IWorkspacePage {
   isHasCover: boolean
   isHasComments: boolean
   isFavorite: boolean
+  comments: IComment[] | []
   content?: {
     blocks: {
       block: {
@@ -55,5 +61,5 @@ interface WorkspaceSliceState {
   options?: IPageOptions
 }
 
-export type { WorkspaceSliceState, IWorkspacePage }
+export type { WorkspaceSliceState, IWorkspacePage, IComment }
 export { CoverColors }

@@ -1,11 +1,16 @@
-import { CoverColors, IWorkspacePage } from '../redux/workSpaceSlice/types'
-import { PageTemplates } from '../redux/popupsSlice/types'
+import {
+  CoverColors,
+  IComment,
+  IWorkspacePage,
+} from 'redux/workSpaceSlice/types'
+import { PageTemplates } from 'redux/popupsSlice/types'
 
 class NewPage implements IWorkspacePage {
   id: number | null
   title: string
   cover: null | CoverColors
   icon: null | string
+  comments: IComment[] | []
   isHasCover: boolean
   isHasIcon: boolean
   isFullWidth: boolean
@@ -19,6 +24,7 @@ class NewPage implements IWorkspacePage {
     this.title = params.title
     this.cover = params.cover
     this.icon = params.icon
+    this.comments = params.comments
     this.isHasCover = params.isHasCover
     this.isHasIcon = params.isHasIcon
     this.isFullWidth = params.isFullWidth
@@ -34,6 +40,7 @@ const DEFAULT_PAGE_SETTINGS: IWorkspacePage = {
   title: 'Untitled',
   cover: null,
   icon: null,
+  comments: [],
   isHasCover: false,
   isHasIcon: false,
   isFullWidth: false,

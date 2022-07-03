@@ -7,7 +7,6 @@ const Wrapper = styled.div`
   position: relative;
   display: flex;
   flex: 1 1 0;
-  //background: #ffc73e;
 `
 
 const Container = styled.div`
@@ -20,6 +19,7 @@ const Content = styled.div<WorkspaceContentProps>`
     props.isRightSidebarOpen
       ? `calc(100% - ${props.rightSidebarWidth}px)`
       : '100%'};
+  transition: width 0.35s ease-in-out;
 `
 
 export { Wrapper, Container, Content }

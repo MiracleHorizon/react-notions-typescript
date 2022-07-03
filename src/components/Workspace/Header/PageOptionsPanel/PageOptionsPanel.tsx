@@ -2,41 +2,47 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useOnClickOutside } from 'usehooks-ts'
 
+import FavoriteStarSVG from '../../../../shared/SVG/FavoriteStar'
+import UnfavoriteStarSVG from '../../../../shared/SVG/UnfavoriteStar'
+import HeaderCommentsSVG from '../../../../shared/SVG/HeaderComments'
+import OptionsDotsSVG from '../../../../shared/SVG/OptionsDots'
 import PageSettingsPopup from 'shared/ModalWindows/PageSettings'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
 import { toggleFavorite } from 'redux/workSpaceSlice/slice'
 import { pageSettingsPopupSelector } from 'redux/popupsSlice/selectors'
-import { closeSettingsModal, openSettingsModal } from 'redux/popupsSlice/slice'
-import commentsSvg from 'assets/img/optionsImgs/comments.svg'
-import starSvg from 'assets/img/optionsImgs/star-notFavorite.svg'
-import favoriteStarSvg from 'assets/img/optionsImgs/star-favorite.svg'
-import optionsSvg from 'assets/img/optionsImgs/three-dots.svg'
+import {
+  closePageSettingsPopup,
+  openPageSettingsPopup,
+} from 'redux/popupsSlice/slice'
+import { openRightSidebar } from 'redux/sidebarsSlice/slice'
 import {
   StyledPanel,
   ShareTitle,
   OptionButton,
-  OptionIcon,
 } from './PageOptionsPanel.styles'
 
 const PageOptionsPanel: React.FC = () => {
-  const [isPageFavorite, setFavorite] = useState<boolean>(false) //!
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
-  const modalRef = useRef<HTMLDivElement>(null)
+  const [isPageFavorite, setFavorite] = useState<boolean>(false)
   const { id, isFavorite } = useSelector(currentPageSelector)
   const isPageSettingsPopupOpen = useSelector(pageSettingsPopupSelector)
-
+  const pageSettingsPopupRef = useRef<HTMLDivElement>(null)
   const dispatch = useDispatch()
+
   const onToggleSettingsModal = (): void => {
-    setIsModalOpen(true)
+    dispatch(openPageSettingsPopup())
+  }
+  const onOpenRightSidebar = (): void => {
+    dispatch(openRightSidebar())
   }
   const toggleIsFavorite = (): void => {
     dispatch(toggleFavorite(id))
   }
   const handleClickOutside = (): void => {
-    setIsModalOpen(false)
+    dispatch(closePageSettingsPopup())
   }
 
-  useOnClickOutside(modalRef, handleClickOutside)
+  useOnClickOutside(pageSettingsPopupRef, handleClickOutside)
+
   useEffect(() => setFavorite(isFavorite), [isFavorite])
 
   return (
@@ -44,26 +50,24 @@ const PageOptionsPanel: React.FC = () => {
       <OptionButton role='button'>
         <ShareTitle>Share</ShareTitle>
       </OptionButton>
-      <OptionButton role='button'>
-        <OptionIcon src={commentsSvg} alt='Comments' />
+      <OptionButton role='button' onClick={onOpenRightSidebar}>
+        <HeaderCommentsSVG />
       </OptionButton>
       <OptionButton role='button' onClick={toggleIsFavorite}>
-        <OptionIcon
-          src={isPageFavorite ? favoriteStarSvg : starSvg}
-          alt='Favorites'
-        />
+        {isPageFavorite ? (
+          <FavoriteStarSVG />
+        ) : (
+          <UnfavoriteStarSVG sizes={{ width: 20, height: 20 }} />
+        )}
       </OptionButton>
-      <div ref={modalRef} onClick={onToggleSettingsModal}>
-        <OptionButton>
-          <OptionIcon src={optionsSvg} alt='Options' />
+      <div ref={pageSettingsPopupRef}>
+        <OptionButton role='button' onClick={onToggleSettingsModal}>
+          <OptionsDotsSVG />
         </OptionButton>
-        {isModalOpen && <PageSettingsPopup />}
+        {isPageSettingsPopupOpen && <PageSettingsPopup />}
       </div>
     </StyledPanel>
   )
 }
 
 export default PageOptionsPanel
-
-// dispatch(openSettingsModal())
-// dispatch(closeSettingsModal())

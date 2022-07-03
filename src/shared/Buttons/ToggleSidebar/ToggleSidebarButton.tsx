@@ -10,7 +10,7 @@ import { Icon, StyledButton } from './ToggleSidebarButton.styles'
 import switchSvg from 'assets/img/sidebar-twoArrows.svg'
 
 const ToggleSidebarButton: React.FC<ToggleSidebarBtnProps> = props => {
-  const { purpose, location } = props
+  const { purpose, location, isParentHovering } = props
   const properties = toggleSidebarBtnCoordsHandler({ purpose, location })
   const tooltipParams = toggleSidebarTooltipHandler({ purpose, location })
 
@@ -24,9 +24,8 @@ const ToggleSidebarButton: React.FC<ToggleSidebarBtnProps> = props => {
       <StyledButton
         role='button'
         ref={buttonRef}
-        purpose={purpose}
-        properties={properties}
         onClick={onClickAction}
+        {...{ purpose, properties, isParentHovering }}
       >
         <Icon src={switchSvg} alt='Switch' />
       </StyledButton>

@@ -11,9 +11,11 @@ const UserPanel: React.FC<UserPanelProps> = ({ isHovering, location }) => (
   <StyledPanel>
     <Avatar src={avatarSvg} alt='Avatar' />
     <Title>{ACCOUNT_NAME}'s Notion</Title>
-    {isHovering && (
-      <ToggleSidebarButton purpose={Purposes.CLOSE} location={location} />
-    )}
+    <ToggleSidebarButton
+      isParentHovering={isHovering}
+      purpose={Purposes.CLOSE}
+      location={location}
+    />
   </StyledPanel>
 )
 

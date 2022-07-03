@@ -35,10 +35,4 @@ const OptionButton = styled.div`
   }
 `
 
-const OptionIcon = styled.img`
-  width: 20px;
-  height: 20px;
-  opacity: 0.8;
-`
-
-export { StyledPanel, ShareTitle, OptionButton, OptionIcon }
+export { StyledPanel, ShareTitle, OptionButton }

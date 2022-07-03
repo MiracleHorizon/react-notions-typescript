@@ -21,7 +21,7 @@ const EmptyPageItem: React.FC<EmptyPageItemProps> = props => {
       onMouseEnter={() => onSelect(title)}
     >
       <IconContainer>
-        <Icon src={img} alt='PageIcon' />
+        <Icon src={img} alt='Option' />
       </IconContainer>
       <TitleContainer>
         <Title>{title}</Title>

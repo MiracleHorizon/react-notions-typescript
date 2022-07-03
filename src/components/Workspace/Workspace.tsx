@@ -17,6 +17,7 @@ const Workspace: React.FC = () => {
     <Wrapper>
       <Suspense fallback={<h1>Loading...</h1>}>
         <LeftSidebar />
+        <RightSidebar />
         <Container>
           <Header />
           <Content isRightSidebarOpen={isOpen} rightSidebarWidth={width}>
@@ -24,7 +25,6 @@ const Workspace: React.FC = () => {
             <Board />
           </Content>
         </Container>
-        <RightSidebar />
       </Suspense>
     </Wrapper>
   )

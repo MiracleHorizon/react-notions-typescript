@@ -23,12 +23,12 @@ const LeftSidebar: React.FC = () => {
   const [width, setWidth] = useState<number>(300)
   const { title, id } = useSelector(currentPageSelector)
   const { isOpen, isBubbling, location } = useSelector(leftSidebarSelector)
+  const dispatch = useDispatch()
 
   const resizerRef = useRef<HTMLDivElement>(null)
   const sidebarRef = useRef<HTMLDivElement>(null)
   const isHovering = useHover(sidebarRef)
 
-  const dispatch = useDispatch()
   useEffect(() => {
     dispatch(setActivePage({ title, id: id! })) //!
   }, [id, title, dispatch])

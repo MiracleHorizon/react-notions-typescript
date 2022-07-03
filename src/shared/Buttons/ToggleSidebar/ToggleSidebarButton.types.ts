@@ -9,6 +9,7 @@ enum ToggleSidebarBtnPurposes {
 interface ToggleSidebarBtnProps {
   purpose: ToggleSidebarBtnPurposes
   location: SidebarLocations
+  isParentHovering: boolean
 }
 
 interface StyledButtonProps {
@@ -17,6 +18,7 @@ interface StyledButtonProps {
     coords: IElementCoords
     imgRotate: number
   }
+  isParentHovering: boolean
 }
 
 export { ToggleSidebarBtnPurposes }

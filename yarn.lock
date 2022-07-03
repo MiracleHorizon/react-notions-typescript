@@ -1883,6 +1883,11 @@
   resolved "https://registry.npmjs.org/@rushstack/eslint-patch/-/eslint-patch-1.1.3.tgz"
   integrity sha512-WiBSI6JBIhC6LRIsB2Kwh8DsGTlbBU+mLRxJmAe3LjHTdkDpwIbEOZgoXBbZilk/vlfjK8i6nKRAvIRn1XaIMw==
 
+"@simonwep/selection-js@*":
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/@simonwep/selection-js/-/selection-js-2.1.2.tgz#ec4eae826e4b31a06f77f5c1f3c46b95f3515804"
+  integrity sha512-IEufEqueHuSOR2KfQ/djSRC/6N6J6oca9eosDK2SY1+boe99ZW20kJ7yre43kb+jO9jhouG5adlmVQhbQrnH+g==
+
 "@sinclair/typebox@^0.23.3":
   version "0.23.5"
   resolved "https://registry.npmjs.org/@sinclair/typebox/-/typebox-0.23.5.tgz"
@@ -2373,6 +2378,13 @@
     "@types/mime" "^1"
     "@types/node" "*"
 
+"@types/simonwep__selection-js@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@types/simonwep__selection-js/-/simonwep__selection-js-1.7.0.tgz#af579f3fb656e9dfca2aea6496b0d5e82673691f"
+  integrity sha512-RCAedI+jPP2fq4IPLok56ACb8sZonRzKpGJjSesgHsxGaURl63zJJHMyV+qFsOIORZuMeQ5MN/tbvGQHzVNLSA==
+  dependencies:
+    "@simonwep/selection-js" "*"
+
 "@types/sockjs@^0.3.33":
   version "0.3.33"
   resolved "https://registry.npmjs.org/@types/sockjs/-/sockjs-0.3.33.tgz"
@@ -2531,6 +2543,11 @@
   dependencies:
     "@typescript-eslint/types" "5.29.0"
     eslint-visitor-keys "^3.3.0"
+
+"@viselect/react@^3.0.0-beta.13":
+  version "3.0.0-beta.13"
+  resolved "https://registry.yarnpkg.com/@viselect/react/-/react-3.0.0-beta.13.tgz#5ff1b8e5badc922060cd1c7216668c40c2f82d5d"
+  integrity sha512-/4hOrKg9lasrLar19c3zom5z+XOx+K1XEqNpwclkASsofByRM0kuMMa3l7BRClVX763zTcEk9bVLYnHj+CgtCw==
 
 "@webassemblyjs/ast@1.11.1":
   version "1.11.1"

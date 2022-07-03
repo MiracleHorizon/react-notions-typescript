@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import {
   SidebarLocations,
-  SidebarResizerProps,
   SidebarWrapperProps,
+  SidebarResizerProps,
 } from './Sidebar.types'
 
 const Wrapper = styled.div<SidebarWrapperProps>`
@@ -32,17 +32,24 @@ const Wrapper = styled.div<SidebarWrapperProps>`
   background: ${props =>
     props.location === SidebarLocations.LEFT
       ? 'rgb(247, 246, 243)'
-      : 'transparent'}; // background: rgb(37, 37, 37);
+      : 'white'}; // background: rgb(37, 37, 37);
   user-select: none;
   opacity: ${props =>
     !props.isOpen ? 0 : !props.isOpen && props.isBubbling ? 1 : 1};
   transform: translateX(
-    ${props =>
-      !props.isOpen ? -props.width + 'px' : props.isBubbling ? props.width : 0}
+    ${props => {
+      if (!props.isOpen) {
+        return props.location === SidebarLocations.LEFT
+          ? -props.width + 'px'
+          : props.width + 'px'
+      }
+
+      return props.isBubbling ? props.width + 'px' : 0
+    }}
   );
   z-index: 10;
   transition: width 0.4s ease-in-out, min-width 0.4s ease-in-out,
-    opacity 0.7s ease-in-out;
+    opacity 0.1s ease-in-out, transform 0.4s ease-in-out;
 `
 
 const Container = styled.div`
@@ -66,19 +73,20 @@ const Content = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  padding: 5px;
+  padding: 4px;
 `
 
 const ResizerContainer = styled.div<SidebarResizerProps>`
   position: absolute;
   top: 0;
   ${props =>
-    props.location === SidebarLocations.LEFT ? 'right: 0' : 'left: 0'};
+    props.location === SidebarLocations.LEFT ? 'right: 0' : 'left: -1px'};
   bottom: 0;
   flex-grow: 0;
   width: 1px;
   background: #89857c;
   opacity: 0;
+  z-index: -1;
 
   :hover {
     opacity: 1;

@@ -51,6 +51,7 @@ const PageIcon = styled.img`
   height: 20px;
   margin-right: 5px;
   object-fit: cover;
+  pointer-events: none;
 `
 
 const PageTitle = styled.h4`

@@ -18,14 +18,15 @@ interface IPageTitleModalCoords {
     left?: string
     right?: string
   }
-}
+} //!
 
 const ChangePageTitleModal: React.FC<IPageTitleModalCoords> = ({ coords }) => {
   const { id, title, icon, isHasIcon } = useSelector(currentPageSelector)
   const inputRef = useRef<HTMLInputElement>(null)
+  const modalRef = useRef<HTMLDivElement>(null)
   const isChangePageIconModalOpen = useSelector(isIconModalOpenSelector)
-
   const dispatch = useDispatch()
+
   const onChangePageTitle = (): void => {
     if (!inputRef.current) return
 
@@ -40,14 +41,20 @@ const ChangePageTitleModal: React.FC<IPageTitleModalCoords> = ({ coords }) => {
 
     dispatch(closeChangePageTitleModal())
   }
+  const handlerClickOutside = (): void => {
+    dispatch(closeChangePageTitleModal())
+  }
 
   useEffect(() => {
     if (inputRef.current) inputRef.current.focus()
   }, [])
 
+  useOnClickOutside(modalRef, handlerClickOutside)
+  useEffect(() => {}, [])
+
   return (
     <Fragment>
-      <div className={styles.root} style={{ ...coords }}>
+      <div ref={modalRef} className={styles.root} style={{ ...coords }}>
         <div onClick={onChangePageIcon}>
           <img src={isHasIcon ? icon : emptyIcon} alt='Page img' />
         </div>
