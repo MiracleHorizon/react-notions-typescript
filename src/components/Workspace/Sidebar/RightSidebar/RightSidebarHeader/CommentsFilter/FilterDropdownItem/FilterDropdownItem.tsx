@@ -5,7 +5,14 @@ import { DropdownItemProps } from './FilterDropdownItem.types'
 import { StyledItem, Description } from './FilterDropdownItem.styles'
 
 const FilterDropdownItem: React.FC<DropdownItemProps> = props => {
-  const { title, description, onClick, activeItem, onSelect } = props
+  const {
+    title,
+    description,
+    activeCommentsFilter,
+    activeItem,
+    onClick,
+    onSelect,
+  } = props
 
   return (
     <StyledItem
@@ -14,7 +21,7 @@ const FilterDropdownItem: React.FC<DropdownItemProps> = props => {
       onMouseEnter={() => onSelect(title)}
     >
       <Description>{description}</Description>
-      <CheckSVG />
+      {activeCommentsFilter === title && <CheckSVG />}
     </StyledItem>
   )
 }

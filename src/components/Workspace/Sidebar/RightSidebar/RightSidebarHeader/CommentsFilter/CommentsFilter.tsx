@@ -18,8 +18,8 @@ import {
 } from './CommentsFilter.styles'
 
 const CommentsFilter: React.FC = () => {
-  const { activeCommentsFilter } = useSelector(rightSidebarSelector)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const { activeCommentsFilter } = useSelector(rightSidebarSelector)
   const { activeItem, onSelectItem } = useSelectItem('Open comments')
   const modalRef = useRef<HTMLDivElement>(null)
   const dispatch = useDispatch()
@@ -29,8 +29,8 @@ const CommentsFilter: React.FC = () => {
     dispatch(setCommentsFilter(filter))
     setIsModalOpen(false)
   }
-  const handleClickOutside = (): void => setIsModalOpen(false)
 
+  const handleClickOutside = (): void => setIsModalOpen(false)
   useOnClickOutside(modalRef, handleClickOutside)
 
   return (
@@ -47,7 +47,7 @@ const CommentsFilter: React.FC = () => {
             {options.map(({ title, description }) => (
               <FilterDropdownItem
                 key={description}
-                {...{ title, description, activeItem }}
+                {...{ title, description, activeItem, activeCommentsFilter }}
                 onSelect={onSelectItem}
                 onClick={onCloseDropdown}
               />

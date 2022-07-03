@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 
@@ -17,13 +17,12 @@ import {
 } from '../Sidebar.styles'
 
 const RightSidebar: React.FC = () => {
-  const { isOpen, location, width } = useSelector(rightSidebarSelector)
+  const { isOpen, location, width, activeCommentsFilter } =
+    useSelector(rightSidebarSelector)
   const { isHasComments } = useSelector(currentPageSelector)
 
   const sidebarRef = useRef<HTMLDivElement>(null)
   const isHovering = useHover(sidebarRef)
-
-  const [emptyCommentsTitle, setEmptyCommentsTitle] = useState<string>('open') //!
 
   return (
     <Wrapper ref={sidebarRef} {...{ isOpen, width, location }}>
@@ -37,7 +36,7 @@ const RightSidebar: React.FC = () => {
         {isHasComments ? (
           <Content></Content>
         ) : (
-          <EmptyRightSidebar title={emptyCommentsTitle} />
+          <EmptyRightSidebar title={activeCommentsFilter.toLowerCase()} />
         )}
       </Container>
       <ResizerContainer location={location}>
