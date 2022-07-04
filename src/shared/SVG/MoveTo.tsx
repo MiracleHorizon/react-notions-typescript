@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { AppThemes } from '../../@types/types'
+import { AppThemes } from '../../@types/generalTypes'
 
 const MoveToSVG: React.FC<{ theme: AppThemes }> = ({ theme }) => {
   return (

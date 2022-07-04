@@ -1,10 +1,16 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+
 import PageOptionItem from './PageOptionItem'
 import { RemoveFavoriteSVG } from 'shared/SVG'
-import { ActiveListItem } from '../../../../@types/types'
+import { closePageOptionsModal } from 'redux/modalsSlice/slice'
+import { ActiveListItem } from '../../../../@types/generalTypes'
 
 const RemoveFavoriteItem: React.FC<ActiveListItem> = props => {
-  const onRemoveFavorite = (): void => {}
+  const dispatch = useDispatch()
+  const onRemoveFavorite = (): void => {
+    dispatch(closePageOptionsModal())
+  }
 
   return (
     <PageOptionItem

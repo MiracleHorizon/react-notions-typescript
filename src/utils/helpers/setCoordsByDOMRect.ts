@@ -1,4 +1,4 @@
-import { ElementPositions, IElementCoords } from '../../@types/types'
+import { ElementPositions, IElementCoords } from '../../@types/generalTypes'
 
 interface Params {
   element: HTMLElement | null

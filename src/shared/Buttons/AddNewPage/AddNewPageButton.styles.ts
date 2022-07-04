@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { IElementCoords } from '../../../@types/types'
+import { IElementCoords } from '../../../@types/generalTypes'
 
 const StyledButton = styled.div<{ coords: IElementCoords }>`
   cursor: pointer;

@@ -1,10 +1,15 @@
-import { IElementCoords } from '../../@types/types'
-import { IOptionItem } from '../optionsSlice/types'
+import { IElementCoords } from '../../@types/generalTypes'
+
+enum PageOptionsEnum {
+  FAVORITES = 'Favorites',
+  COMMON = 'Common',
+}
 
 interface PageOptionsModal {
   isOpen: boolean
-  options: IOptionItem[]
+  options: PageOptionsEnum | []
   coords: IElementCoords
+  pageId: number
 }
 
 interface IAppModalsState {
@@ -15,3 +20,4 @@ interface IAppModalsState {
 }
 
 export type { IAppModalsState, PageOptionsModal }
+export { PageOptionsEnum }

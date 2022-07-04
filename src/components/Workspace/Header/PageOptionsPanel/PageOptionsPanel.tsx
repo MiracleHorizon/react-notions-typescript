@@ -18,7 +18,7 @@ import {
   openPageSettingsPopup,
 } from 'redux/popupsSlice/slice'
 import setCoordsByDOMRect from 'utils/helpers/setCoordsByDOMRect'
-import { ElementPositions } from '../../../../@types/types'
+import { ElementPositions } from '../../../../@types/generalTypes'
 import {
   StyledPanel,
   ShareTitle,

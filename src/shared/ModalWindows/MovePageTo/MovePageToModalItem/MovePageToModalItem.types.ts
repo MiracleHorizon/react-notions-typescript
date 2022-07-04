@@ -1,4 +1,4 @@
-import { ActiveListItem } from '../../../../@types/types'
+import { ActiveListItem } from '../../../../@types/generalTypes'
 
 interface MovePageToModalItemProps extends ActiveListItem {
   id: number

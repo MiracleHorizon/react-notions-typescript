@@ -1,4 +1,4 @@
-import { ActiveListItem } from '../../../@types/types'
+import { ActiveListItem } from '../../../@types/generalTypes'
 import { CommentsFilters } from 'redux/sidebarsSlice/types'
 
 interface DropdownItemProps extends ActiveListItem {

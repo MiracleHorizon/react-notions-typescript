@@ -1,5 +1,5 @@
 import React from 'react'
-import { IElementCoords } from '../../@types/types'
+import { IElementCoords } from '../../@types/generalTypes'
 import { TooltipWrapper, Title, Description } from './Tooltip.styles'
 
 interface TooltipProps {

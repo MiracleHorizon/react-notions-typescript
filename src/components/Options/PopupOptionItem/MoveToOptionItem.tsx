@@ -5,7 +5,7 @@ import PopupOptionItem from './index'
 import Separator from 'shared/Separator'
 import MoveToSVG from 'shared/SVG/MoveTo'
 import { openMovePageToModal } from 'redux/modalsSlice/slice'
-import { ActiveListItem, AppThemes } from '../../../@types/types'
+import { ActiveListItem, AppThemes } from '../../../@types/generalTypes'
 
 const MoveToOptionItem: React.FC<ActiveListItem> = props => {
   const { activeItem, onSelect } = props

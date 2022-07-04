@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { ActiveListItem } from '../../../../@types/types'
+import { ActiveListItem } from '../../../../@types/generalTypes'
 
 interface EmptyPageItemProps extends ActiveListItem {
   title: string

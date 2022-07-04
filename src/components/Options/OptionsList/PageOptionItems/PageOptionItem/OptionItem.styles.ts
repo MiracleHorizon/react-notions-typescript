@@ -19,13 +19,14 @@ const StyledItem = styled.div<{ isActive: boolean }>`
   svg {
     width: 18px;
     height: 18px;
+    margin-left: 4px;
   }
 `
 
 const Title = styled.span`
   margin-left: 10px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
 `
 
 export { StyledItem, Title }

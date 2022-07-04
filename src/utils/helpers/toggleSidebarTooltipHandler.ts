@@ -3,7 +3,7 @@ import {
   ToggleSidebarBtnPurposes,
 } from 'shared/Buttons/ToggleSidebar/ToggleSidebarButton.types'
 import { SidebarLocations } from 'components/Workspace/Sidebar/Sidebar.types'
-import { IElementCoords } from '../../@types/types'
+import { IElementCoords } from '../../@types/generalTypes'
 
 interface Params {
   purpose: ToggleSidebarBtnPurposes

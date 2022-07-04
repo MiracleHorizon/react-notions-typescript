@@ -1,7 +1,7 @@
 import { SetStateAction } from 'react'
 
 import { IWorkspacePage } from 'redux/workSpaceSlice/types'
-import { IElementCoords } from '../../../../../@types/types'
+import { IElementCoords } from '../../../../../@types/generalTypes'
 
 interface PagesListProps {
   pages: IWorkspacePage[] | IWorkspacePage

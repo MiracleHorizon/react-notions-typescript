@@ -5,7 +5,7 @@ import sidebar from './sidebarsSlice/slice'
 import workspace from './workSpaceSlice/slice'
 import pageDecoration from './pageDecorationSlice/slice'
 import recentSearch from './recentSearchSlice/slice'
-import options from './optionsSlice/slice'
+// import options from './optionsSlice/slice'
 import popups from './popupsSlice/slice'
 import modals from './modalsSlice/slice'
 
@@ -15,7 +15,7 @@ export const store = configureStore({
     workspace,
     recentSearch,
     pageDecoration,
-    options,
+    // options,
     modals,
     popups,
   },

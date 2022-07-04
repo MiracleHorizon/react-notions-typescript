@@ -82,7 +82,7 @@ const SidebarListItem: React.FC<SidebarListItemProps> = ({ page }) => {
       </Information>
       {isHovering && (
         <Fragment>
-          <ListItemOptionsButton title={listItemOptionsTitle} />
+          <ListItemOptionsButton id={id} title={listItemOptionsTitle} />
           <AddNewPageButton
             coords={{ top: '4px', right: '8px' }}
             tooltipTitle='Quickly add a page inside'

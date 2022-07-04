@@ -1,11 +1,16 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
 import PageOptionItem from './PageOptionItem'
 import { DeleteTrashSVG } from 'shared/SVG'
-import { ActiveListItem } from '../../../../@types/types'
+import { closePageOptionsModal } from 'redux/modalsSlice/slice'
+import { ActiveListItem } from '../../../../@types/generalTypes'
 
 const DeletePageItem: React.FC<ActiveListItem> = props => {
-  const onRemovePage = (): void => {}
+  const dispatch = useDispatch()
+  const onRemovePage = (): void => {
+    dispatch(closePageOptionsModal())
+  }
 
   return (
     <PageOptionItem

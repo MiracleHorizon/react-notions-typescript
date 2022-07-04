@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 import styled from 'styled-components'
 
@@ -8,14 +8,10 @@ import OptionsDotsSVG from 'shared/SVG/OptionsDots'
 import {
   openPageOptionsModal,
   setPageOptions,
+  setPageOptionsId,
   setPageOptionsModalCoords,
 } from 'redux/modalsSlice/slice'
-import {
-  commonPageOptionsSelector,
-  favPageOptionsSelector,
-} from 'redux/optionsSlice/selectors'
-import setCoordsByDOMRect from 'utils/helpers/setCoordsByDOMRect'
-import { ElementPositions } from '../../@types/types'
+import pageOptionsHandler from 'utils/helpers/pageOptionsHandler'
 
 const OptionsButton = styled.div`
   position: absolute;
@@ -38,28 +34,29 @@ const OptionsButton = styled.div`
   }
 `
 
-const ListItemOptionsButton: React.FC<{ title: string }> = ({ title }) => {
+interface Props {
+  id: number
+  title: string
+}
+
+const ListItemOptionsButton: React.FC<Props> = ({ id, title }) => {
   const optionsButtonRef = useRef<HTMLImageElement>(null)
   const isHovering = useHover(optionsButtonRef)
+  const options = pageOptionsHandler(title)
+
   const dispatch = useDispatch()
-
-  const commonPageOptions = useSelector(commonPageOptionsSelector)
-  const favoritePageOptions = useSelector(favPageOptionsSelector)
-
-  const optionButtonCoords = setCoordsByDOMRect({
-    requiredProperties: [ElementPositions.TOP, ElementPositions.LEFT],
-    element: optionsButtonRef.current,
-  })
-
   const onOpenPageOptionsModal = (e: React.MouseEvent): void => {
     e.stopPropagation()
-    dispatch(setPageOptionsModalCoords(optionButtonCoords))
+
+    const pointerCoords = {
+      top: e.clientY - 2 + 'px',
+      left: e.clientX - 2 + 'px',
+    }
+
+    dispatch(setPageOptionsModalCoords(pointerCoords))
     dispatch(openPageOptionsModal())
-    dispatch(
-      setPageOptions(
-        title === 'Remove, rename' ? favoritePageOptions : commonPageOptions
-      )
-    )
+    dispatch(setPageOptions(options))
+    dispatch(setPageOptionsId(id))
   }
 
   return (

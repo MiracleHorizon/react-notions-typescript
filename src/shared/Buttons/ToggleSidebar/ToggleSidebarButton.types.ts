@@ -1,5 +1,5 @@
 import { SidebarLocations } from 'components/Workspace/Sidebar/Sidebar.types'
-import { IElementCoords } from '../../../@types/types'
+import { IElementCoords } from '../../../@types/generalTypes'
 
 enum ToggleSidebarBtnPurposes {
   OPEN = 'open',

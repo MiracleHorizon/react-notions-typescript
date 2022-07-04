@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { IElementCoords } from '../../../@types/types'
+import { IElementCoords } from '../../../@types/generalTypes'
 
 const StyledModal = styled.div<{ coords: IElementCoords }>`
   position: absolute;

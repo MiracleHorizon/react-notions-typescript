@@ -1,11 +1,16 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
 import PageOptionItem from './PageOptionItem'
 import { RenameSVG } from 'shared/SVG'
-import { ActiveListItem } from '../../../../@types/types'
+import { closePageOptionsModal } from 'redux/modalsSlice/slice'
+import { ActiveListItem } from '../../../../@types/generalTypes'
 
 const RenamePageItem: React.FC<ActiveListItem> = props => {
-  const onRenamePage = (): void => {}
+  const dispatch = useDispatch()
+  const onRenamePage = (): void => {
+    dispatch(closePageOptionsModal())
+  }
 
   return (
     <PageOptionItem

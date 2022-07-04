@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { IElementCoords } from '../../@types/types'
+import { IElementCoords } from '../../@types/generalTypes'
 import clearInputSvg from 'assets/img/inputs/clearInput.svg'
 
 interface IClearInputProps {

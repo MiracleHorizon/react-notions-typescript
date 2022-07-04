@@ -12,7 +12,7 @@ import {
   workspacePagesSelector,
 } from 'redux/workSpaceSlice/selectors'
 import { closeMovePageToModal } from 'redux/modalsSlice/slice'
-import { IElementCoords } from '../../../@types/types'
+import { IElementCoords } from '../../../@types/generalTypes'
 import {
   StyledModal,
   Container,
