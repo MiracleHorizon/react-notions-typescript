@@ -1,13 +1,14 @@
 import { EmptyPageOption, IOptionItem, IPageFont } from './types'
 import { PageTemplates } from '../popupsSlice/types'
-
-import EmptyPageIconSVG from 'shared/SVG/EmptyPage'
-import EmptyWidthIconSVG from 'shared/SVG/EmptyWithIcon'
-import TemplatesSVG from 'shared/SVG/Templates'
-import BoardTemplateSVG from 'shared/SVG/BoardTemplate'
-import TaskListTemplateSVG from 'shared/SVG/TaskListTemplate'
-import TableTemplateSVG from 'shared/SVG/TableTemplate'
-import CalendarTemplateSVG from 'shared/SVG/CalendarTemplate'
+import {
+  TemplatesSVG,
+  CalendarTemplateSVG,
+  BoardTemplateSVG,
+  TableTemplateSVG,
+  EmptyPageIconSVG,
+  EmptyWithIconSVG,
+  TaskListTemplateSVG,
+} from 'shared/SVG'
 
 import trashSvg from 'assets/img/optionsImgs/trash.svg' //!
 import addFavorite from 'assets/img/optionsImgs/star-favorite.svg'
@@ -26,7 +27,7 @@ const EMPTY_PAGE_DECORATION_OPTIONS: EmptyPageOption[] = [
   },
   {
     title: 'Empty',
-    IconSVG: EmptyWidthIconSVG,
+    IconSVG: EmptyWithIconSVG,
     action: () => {
       console.log('Empty ')
     },

@@ -10,12 +10,12 @@ import {
   setPageOptions,
   setPageOptionsModalCoords,
 } from 'redux/modalsSlice/slice'
-import setCoordsByDOMRect from 'utils/helpers/setCoordsByDOMRect'
-import { ElementPositions } from '../../@types/types'
 import {
   commonPageOptionsSelector,
   favPageOptionsSelector,
-} from '../../redux/optionsSlice/selectors'
+} from 'redux/optionsSlice/selectors'
+import setCoordsByDOMRect from 'utils/helpers/setCoordsByDOMRect'
+import { ElementPositions } from '../../@types/types'
 
 const OptionsButton = styled.div`
   position: absolute;

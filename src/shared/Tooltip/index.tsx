@@ -1,11 +1,11 @@
 import React from 'react'
-import { TooltipWrapper, Title, Description } from './Tooltip.styles'
 import { IElementCoords } from '../../@types/types'
+import { TooltipWrapper, Title, Description } from './Tooltip.styles'
 
 interface TooltipProps {
   title?: string
   description?: string
-  coords?: IElementCoords
+  coords: IElementCoords
 }
 
 const Tooltip: React.FC<TooltipProps> = ({ title, description, coords }) => (

@@ -7,7 +7,7 @@ import Tooltip from 'shared/Tooltip'
 import ListItemOptionsButton from 'shared/Buttons/ListItemOptions'
 import AddNewPageButton from 'shared/Buttons/AddNewPage'
 import EmptyPageIconSVG from 'shared/SVG/EmptyPage'
-import TriangleSVG from 'shared/SVG/Sidebars/Triangle'
+import TriangleSVG from 'shared/SVG/Triangle'
 import { activePageSelector } from 'redux/sidebarsSlice/selectors'
 import { setCurrentPage } from 'redux/workSpaceSlice/slice'
 import { closeRightSidebar, setActivePage } from 'redux/sidebarsSlice/slice'
@@ -22,7 +22,7 @@ import {
 } from './ListItem.styles'
 
 const SidebarListItem: React.FC<SidebarListItemProps> = ({ page }) => {
-  const { id, title, icon, isHasIcon, isFavorite } = page
+  const { id, title, icon, isHasIcon, isFavorite } = page // isChild.
   const { isOpen, toggleIsOpen } = useToggle(false)
   const listItemOptionsTitle = isFavorite
     ? ListItemOptions.FAVORITE
@@ -45,6 +45,7 @@ const SidebarListItem: React.FC<SidebarListItemProps> = ({ page }) => {
   }
   const onAddNewPageInside = (e: React.MouseEvent): void => {
     e.stopPropagation()
+    //...
   }
   const onTogglePageContent = (e: React.MouseEvent): void => {
     e.stopPropagation()

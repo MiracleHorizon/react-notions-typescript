@@ -5,7 +5,7 @@ import { useSelectItem } from 'hooks/useSelectItem'
 
 import Modal from '../Modal'
 import MoveToOptionItem from 'components/Options/PopupOptionItem/MoveToOptionItem'
-import PageChangesBar from 'shared/PageChangesBar/PageChangesBar'
+import PageChangesBar from 'shared/PageChangesBar'
 import { closePageOptionsModal } from 'redux/modalsSlice/slice'
 import { PagesListOptionsProps } from './PagesListOptions.types'
 import { StyledModalContainer } from './PagesListOptions.styles'

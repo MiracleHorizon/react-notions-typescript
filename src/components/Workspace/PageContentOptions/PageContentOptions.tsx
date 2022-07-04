@@ -4,9 +4,9 @@ import * as _ from 'lodash'
 
 import PageDecorOption from './PageDecorOption/PageDecorOption'
 import SwitchPageIconModal from 'shared/ModalWindows/SwitchIcon'
-import AddIconSVG from 'shared/SVG/DecorOptions/AddIcon'
-import AddCoverSVG from 'shared/SVG/DecorOptions/AddCover'
-import AddCommentSVG from 'shared/SVG/DecorOptions/AddComment'
+import AddIconSVG from 'shared/SVG/AddIcon'
+import AddCoverSVG from 'shared/SVG/AddCover'
+import AddCommentSVG from 'shared/SVG/AddComment'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
 import {
   coversListsSelector,

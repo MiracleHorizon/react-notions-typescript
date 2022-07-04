@@ -13,7 +13,7 @@ const StyledContainer = styled.div<{ isActive: boolean }>`
 
   :active {
     background: rgba(55, 53, 47, 0.16);
-    transition: background 0.1s ease-in-out;
+    transition: background 50ms ease-in-out;
   }
 `
 
