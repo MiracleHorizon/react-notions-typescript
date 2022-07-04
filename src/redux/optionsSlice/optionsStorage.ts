@@ -8,14 +8,13 @@ import {
   EmptyPageIconSVG,
   EmptyWithIconSVG,
   TaskListTemplateSVG,
+  RemoveFavoriteSVG,
+  LinkSVG,
+  RenameSVG,
+  DeleteTrashSVG,
+  UnfavoriteStarSVG,
+  DuplicateSVG,
 } from 'shared/SVG'
-
-import trashSvg from 'assets/img/optionsImgs/trash.svg' //!
-import addFavorite from 'assets/img/optionsImgs/star-favorite.svg'
-import removeFavorite from 'assets/img/optionsImgs/star-notFavorite.svg'
-import copyLinkSvg from 'assets/img/optionsImgs/copyLink.svg'
-import duplicateSvg from 'assets/img/optionsImgs/copy.svg'
-import renameSvg from 'assets/img/optionsImgs/rename.svg'
 
 const EMPTY_PAGE_DECORATION_OPTIONS: EmptyPageOption[] = [
   {
@@ -81,16 +80,64 @@ const EMPTY_PAGE_OPTIONS_LIST: EmptyPageOption[] = [
 ]
 
 const FAVORITE_PAGE_OPTIONS: IOptionItem[] = [
-  { title: 'Remove from Favorites', imgUrl: `${removeFavorite}` },
-  { title: 'Copy link', imgUrl: `${copyLinkSvg}` },
-  { title: 'Rename', imgUrl: `${renameSvg}` },
+  {
+    title: 'Remove from Favorites',
+    IconSVG: RemoveFavoriteSVG,
+    action: () => {
+      console.log('remove favorite')
+    },
+  },
+  {
+    title: 'Copy link',
+    IconSVG: LinkSVG,
+    action: () => {
+      console.log('copy link')
+    },
+  },
+  {
+    title: 'Rename',
+    IconSVG: RenameSVG,
+    action: () => {
+      console.log('rename')
+    },
+  },
 ]
-const PRIVATE_PAGE_OPTIONS: IOptionItem[] = [
-  { title: 'Delete', imgUrl: `${trashSvg}` },
-  { title: 'Add to Favorites', imgUrl: `${addFavorite}` },
-  { title: 'Duplicate', imgUrl: `${duplicateSvg}` },
-  { title: 'Copy link', imgUrl: `${copyLinkSvg}` },
-  { title: 'Rename', imgUrl: `${renameSvg}` },
+const COMMON_PAGE_OPTIONS: IOptionItem[] = [
+  {
+    title: 'Delete',
+    IconSVG: DeleteTrashSVG,
+    action: () => {
+      console.log('deleted')
+    },
+  },
+  {
+    title: 'Add to Favorites',
+    IconSVG: UnfavoriteStarSVG,
+    action: () => {
+      console.log('add to favorite')
+    },
+  },
+  {
+    title: 'Duplicate',
+    IconSVG: DuplicateSVG,
+    action: () => {
+      console.log('duplicated')
+    },
+  },
+  {
+    title: 'Copy link',
+    IconSVG: LinkSVG,
+    action: () => {
+      console.log('copy link')
+    },
+  },
+  {
+    title: 'Rename',
+    IconSVG: RenameSVG,
+    action: () => {
+      console.log('rename')
+    },
+  },
 ]
 
 const PAGE_FONTS: IPageFont[] = [
@@ -101,7 +148,7 @@ const PAGE_FONTS: IPageFont[] = [
 
 export {
   FAVORITE_PAGE_OPTIONS,
-  PRIVATE_PAGE_OPTIONS,
+  COMMON_PAGE_OPTIONS,
   PAGE_FONTS,
   EMPTY_PAGE_DECORATION_OPTIONS,
   EMPTY_PAGE_TEMPLATES_OPTIONS,

@@ -4,7 +4,7 @@ import { useSelectItem } from 'hooks/useSelectItem'
 
 import ToggleFontPanel from './ToggleFontPanel'
 import ToggleOptionsList from 'components/Options/ToggleOptionsList/ToggleOptionsList'
-import PopupOptionItem from 'components/Options/PopupOptionItem/PopupOptionItem'
+import PopupOptionItem from 'components/Options/PopupOptionItem'
 import MoveToOptionItem from 'components/Options/PopupOptionItem/MoveToOptionItem'
 import PageChangesBar from 'shared/PageChangesBar'
 import CustomizePageSVG from 'shared/SVG/CustomizePage'

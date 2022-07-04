@@ -1,15 +1,15 @@
 import React from 'react'
 
 interface Props {
-  sizes: { width: number; height: number }
+  sizes?: { width: number; height: number }
 }
 
-const UnfavoriteStarSVG: React.FC<Props> = ({ sizes: { width, height } }) => (
+const UnfavoriteStarSVG: React.FC<Props> = ({ sizes }) => (
   <svg
     viewBox='0 0 20 20'
     style={{
-      width: width,
-      height: height,
+      width: sizes?.width,
+      height: sizes?.height,
       display: 'block',
       fill: 'rgba(55, 53, 47, 0.85)',
       flexShrink: 0,

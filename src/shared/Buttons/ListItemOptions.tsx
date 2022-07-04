@@ -57,7 +57,7 @@ const ListItemOptionsButton: React.FC<{ title: string }> = ({ title }) => {
     dispatch(openPageOptionsModal())
     dispatch(
       setPageOptions(
-        title === 'Remove, rename' ? commonPageOptions : favoritePageOptions
+        title === 'Remove, rename' ? favoritePageOptions : commonPageOptions
       )
     )
   }

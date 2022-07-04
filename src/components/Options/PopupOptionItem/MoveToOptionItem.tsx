@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { useDispatch } from 'react-redux'
 
-import PopupOptionItem from './PopupOptionItem'
+import PopupOptionItem from './index'
 import Separator from 'shared/Separator'
 import MoveToSVG from 'shared/SVG/MoveTo'
 import { openMovePageToModal } from 'redux/modalsSlice/slice'

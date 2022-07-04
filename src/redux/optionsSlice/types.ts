@@ -2,8 +2,15 @@ import { FC } from 'react'
 
 interface IOptionItem {
   title: string
-  imgUrl?: string
+  IconSVG: FC
+  action: () => void
 }
+
+interface EmptyPageOption {
+  title: string
+  IconSVG: FC
+  action: () => void
+} //!
 
 interface IPageFont {
   title: string
@@ -12,13 +19,7 @@ interface IPageFont {
 
 interface IPagesSliceState {
   favoritePageOptions: IOptionItem[]
-  privatePagesOptions: IOptionItem[]
-}
-
-interface EmptyPageOption {
-  title: string
-  IconSVG: FC
-  action: () => void
+  commonPageOptions: IOptionItem[]
 }
 
 export type { IPagesSliceState, IOptionItem, IPageFont, EmptyPageOption }

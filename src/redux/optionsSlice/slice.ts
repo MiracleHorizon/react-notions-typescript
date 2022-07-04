@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { IPagesSliceState } from './types'
 
-import { FAVORITE_PAGE_OPTIONS, PRIVATE_PAGE_OPTIONS } from './optionsStorage'
+import { FAVORITE_PAGE_OPTIONS, COMMON_PAGE_OPTIONS } from './optionsStorage'
 
 const initialState: IPagesSliceState = {
   favoritePageOptions: FAVORITE_PAGE_OPTIONS,
-  privatePagesOptions: PRIVATE_PAGE_OPTIONS,
+  commonPageOptions: COMMON_PAGE_OPTIONS,
 }
 
 export const optionsSlice = createSlice({
