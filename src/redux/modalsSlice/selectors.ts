@@ -1,4 +1,5 @@
 import { RootState } from '../store'
+import { PageOptionsModal } from './types'
 
 const changePageTitleModalSelector = (state: RootState): boolean => {
   return state.modals.isChangePageTitleModalOpen
@@ -6,16 +7,16 @@ const changePageTitleModalSelector = (state: RootState): boolean => {
 const quickSearchModalSelector = (state: RootState): boolean => {
   return state.modals.isQuickSearchModalOpen
 }
-const favPagesOptionsModalSelector = (state: RootState): boolean => {
-  return state.modals.isFavoritePagesOptionsModalOpen
+const movePageToModalSelector = (state: RootState): boolean => {
+  return state.modals.isMovePageToModalOpen
 }
-const commonPagesOptionsModalSelector = (state: RootState): boolean => {
-  return state.modals.isCommonPagesOptionsModalOpen
+const pageOptionsModalSelector = (state: RootState): PageOptionsModal => {
+  return state.modals.pageOptionsModal
 }
 
 export {
   changePageTitleModalSelector,
   quickSearchModalSelector,
-  favPagesOptionsModalSelector,
-  commonPagesOptionsModalSelector,
+  movePageToModalSelector,
+  pageOptionsModalSelector,
 }

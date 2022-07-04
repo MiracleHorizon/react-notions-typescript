@@ -9,7 +9,7 @@ class NewPage implements IWorkspacePage {
   id: number
   title: string
   cover: null | CoverColors
-  icon: null | string
+  icon: string
   comments: IComment[] | []
   isHasCover: boolean
   isHasIcon: boolean
@@ -39,7 +39,7 @@ const DEFAULT_PAGE_SETTINGS: IWorkspacePage = {
   id: -1,
   title: 'Untitled',
   cover: null,
-  icon: null,
+  icon: '',
   comments: [],
   isHasCover: false,
   isHasIcon: false,

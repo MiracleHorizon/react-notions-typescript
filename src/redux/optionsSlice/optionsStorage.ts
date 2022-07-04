@@ -1,45 +1,39 @@
 import { EmptyPageOption, IOptionItem, IPageFont } from './types'
 import { PageTemplates } from '../popupsSlice/types'
+
+import EmptyPageIconSVG from 'shared/SVG/EmptyPage'
+import EmptyWidthIconSVG from 'shared/SVG/EmptyWithIcon'
+import TemplatesSVG from 'shared/SVG/Templates'
+import BoardTemplateSVG from 'shared/SVG/BoardTemplate'
+import TaskListTemplateSVG from 'shared/SVG/TaskListTemplate'
+import TableTemplateSVG from 'shared/SVG/TableTemplate'
+import CalendarTemplateSVG from 'shared/SVG/CalendarTemplate'
+
 import trashSvg from 'assets/img/optionsImgs/trash.svg' //!
 import addFavorite from 'assets/img/optionsImgs/star-favorite.svg'
 import removeFavorite from 'assets/img/optionsImgs/star-notFavorite.svg'
 import copyLinkSvg from 'assets/img/optionsImgs/copyLink.svg'
 import duplicateSvg from 'assets/img/optionsImgs/copy.svg'
 import renameSvg from 'assets/img/optionsImgs/rename.svg'
-import tableSvg from 'assets/img/optionsImgs/table.svg'
-import boardSvg from 'assets/img/optionsImgs/board.svg'
-import emptySvg from 'assets/img/optionsImgs/empty.svg'
-import emptyIconSvg from 'assets/img/optionsImgs/emptyIcon.svg'
-import emptyCoverSvg from 'assets/img/optionsImgs/emptyCover.svg'
-import calendarSvg from 'assets/img/optionsImgs/calendar.svg'
-import taskListSvg from 'assets/img/optionsImgs/taskList.svg'
-import templatesSvg from 'assets/img/optionsImgs/templates.svg'
 
 const EMPTY_PAGE_DECORATION_OPTIONS: EmptyPageOption[] = [
   {
     title: 'Empty with icon',
-    img: emptyIconSvg,
+    IconSVG: EmptyPageIconSVG,
     action: () => {
       console.log('Empty with icon')
     },
   },
   {
-    title: 'Empty with cover',
-    img: emptyCoverSvg,
-    action: () => {
-      console.log('Empty with cover')
-    },
-  },
-  {
     title: 'Empty',
-    img: emptySvg,
+    IconSVG: EmptyWidthIconSVG,
     action: () => {
       console.log('Empty ')
     },
   },
   {
     title: 'Ready-made templates',
-    img: templatesSvg,
+    IconSVG: TemplatesSVG,
     action: () => {
       console.log('Ready-made templates')
     },
@@ -48,33 +42,34 @@ const EMPTY_PAGE_DECORATION_OPTIONS: EmptyPageOption[] = [
 const EMPTY_PAGE_TEMPLATES_OPTIONS: EmptyPageOption[] = [
   {
     title: PageTemplates.BOARD,
-    img: boardSvg,
+    IconSVG: BoardTemplateSVG,
     action: () => {
       console.log('Board')
     },
   },
   {
     title: PageTemplates.TASK_LIST,
-    img: taskListSvg,
+    IconSVG: TaskListTemplateSVG,
     action: () => {
       console.log('Task List')
     },
   },
   {
     title: PageTemplates.CALENDAR,
-    img: calendarSvg,
+    IconSVG: CalendarTemplateSVG,
     action: () => {
       console.log('Calendar')
     },
   },
   {
     title: PageTemplates.TABLE,
-    img: tableSvg,
+    IconSVG: TableTemplateSVG,
     action: () => {
       console.log('Table')
     },
   },
 ]
+
 const EMPTY_PAGE_OPTION_TITLES: string[] = [
   ...EMPTY_PAGE_DECORATION_OPTIONS.map(option => option.title),
   ...EMPTY_PAGE_TEMPLATES_OPTIONS.map(option => option.title),

@@ -1,23 +1,28 @@
 import React, { Fragment } from 'react'
-import OptionItem from './index'
-import Separator from '../../../../shared/Separator'
-import moveToSvg from '../../../../assets/img/optionsImgs/moveTo.svg'
+import { useDispatch } from 'react-redux'
 
-interface MoveToOptionItemProps {
-  activeItem?: string
-  onSelect?: (title: string) => void
-}
+import PopupOptionItem from '../../PopupOptionItem/PopupOptionItem'
+import Separator from 'shared/Separator'
+import MoveToSVG from 'shared/SVG/MoveTo'
+import { openMovePageToModal } from 'redux/modalsSlice/slice'
+import { ActiveListItem, AppThemes } from '../../../../@types/types'
 
-const MoveToOptionItem: React.FC<MoveToOptionItemProps> = props => {
+const MoveToOptionItem: React.FC<ActiveListItem> = props => {
   const { activeItem, onSelect } = props
+  const dispatch = useDispatch()
+
+  const onOpenMovePageToModal = (): void => {
+    dispatch(openMovePageToModal())
+  }
 
   return (
     <Fragment>
-      <OptionItem
-        option={{ title: 'MoveTo', imgUrl: moveToSvg }}
+      <PopupOptionItem
+        title='Move to'
+        SVGComponent={<MoveToSVG theme={AppThemes.LIGHT} />}
+        action={onOpenMovePageToModal}
         activeItem={activeItem}
         onSelect={onSelect}
-        className='workspace'
       />
       <Separator />
     </Fragment>

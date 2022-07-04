@@ -20,7 +20,7 @@ interface IComment {
 interface IWorkspacePage {
   id: number
   title: string
-  icon: string | null
+  icon: string
   cover: CoverColors | null
   template?: PageTemplates
   isSmallText: boolean

@@ -2,7 +2,7 @@ import { RootState } from '../store'
 
 const favPageOptionsSelector = (state: RootState) =>
   state.options.favoritePageOptions
-const privatePageOptionsSelector = (state: RootState) =>
+const commonPageOptionsSelector = (state: RootState) =>
   state.options.privatePagesOptions
 
-export { favPageOptionsSelector, privatePageOptionsSelector }
+export { favPageOptionsSelector, commonPageOptionsSelector }

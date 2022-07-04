@@ -8,12 +8,10 @@ const EmptyPageList: React.FC<EmptyPageListProps> = props => {
 
   return (
     <StyledList>
-      {list.map(({ title, img, action }) => (
+      {list.map(({ title, IconSVG, action }) => (
         <EmptyPageItem
           key={title}
-          title={title}
-          img={img}
-          action={action}
+          {...{ title, IconSVG, action }}
           activeItem={activeItem}
           onSelect={onSelect}
         />

@@ -1,62 +1,62 @@
 import React, { useRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useHover } from 'usehooks-ts'
-
-import SidebarListOptions from '../ModalWindows/SidebarListOptions'
-import Tooltip from '../Tooltip/Tooltip'
-import { favPageOptionsSelector } from 'redux/optionsSlice/selectors'
-import { favPagesOptionsModalSelector } from 'redux/modalsSlice/selectors'
-import { openFavoritePagesOptionsModal } from 'redux/modalsSlice/slice'
-import optionsIcon from 'assets/img/optionsImgs/three-dots.svg'
 import styled from 'styled-components'
+
+import Tooltip from '../Tooltip/Tooltip'
+import OptionsDotsSVG from 'shared/SVG/OptionsDots'
+import {
+  openPageOptionsModal,
+  setCommonItemCoords,
+} from 'redux/modalsSlice/slice'
+import setCoordsByDOMRect from 'utils/helpers/setCoordsByDOMRect'
+import { ElementPositions } from '../../@types/types'
 
 const OptionsButton = styled.div`
   position: absolute;
   right: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 20px;
   height: 20px;
+  padding: 1px;
   border-radius: 3px;
 
   :hover {
     background: rgba(55, 53, 47, 0.08);
-    transition: background 0.1s ease-in-out;
+    transition: background 0.15s ease-in-out;
   }
   :active {
     background: rgba(55, 53, 47, 0.16);
-    transition: background 0.1s ease-in-out;
+    transition: background 0.15s ease-in-out;
   }
-`
-
-const Icon = styled.img`
-  width: 20px;
-  height: 20px;
-  padding: 1px;
-  z-index: 1;
 `
 
 const ListItemOptionsButton: React.FC<{ title: string }> = ({ title }) => {
   const optionsButtonRef = useRef<HTMLImageElement>(null)
   const isHovering = useHover(optionsButtonRef)
-
-  const isFavPagesOptionsOpen = useSelector(favPagesOptionsModalSelector)
-  const favoritePageOptions = useSelector(favPageOptionsSelector)
-
   const dispatch = useDispatch()
-  const onOpenModal = (): void => {
-    dispatch(openFavoritePagesOptionsModal())
+
+  const optionButtonCoords = setCoordsByDOMRect({
+    requiredProperties: [ElementPositions.TOP, ElementPositions.LEFT],
+    element: optionsButtonRef.current,
+  })
+
+  const onOpenPageOptionsModal = (e: React.MouseEvent): void => {
+    e.stopPropagation()
+    dispatch(setCommonItemCoords(optionButtonCoords))
+    dispatch(openPageOptionsModal())
   }
 
   return (
-    <OptionsButton onClick={onOpenModal}>
-      <Icon src={optionsIcon} alt='Options' ref={optionsButtonRef} />
+    <OptionsButton ref={optionsButtonRef} onClick={onOpenPageOptionsModal}>
+      <OptionsDotsSVG sizes={{ width: 14, height: 14 }} />
       {isHovering && (
         <Tooltip
           title={`${title}, and more...`}
           coords={{ left: '-70px', bottom: '-32px' }}
         />
-      )}
-      {isFavPagesOptionsOpen && (
-        <SidebarListOptions options={favoritePageOptions} />
       )}
     </OptionsButton>
   )

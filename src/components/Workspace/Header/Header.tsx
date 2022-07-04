@@ -13,7 +13,6 @@ import {
   openChangePageTitleModal,
 } from 'redux/modalsSlice/slice'
 import { ToggleSidebarBtnPurposes as Purposes } from 'shared/Buttons/ToggleSidebar/ToggleSidebarButton.types'
-import emptyIcon from 'assets/img/optionsImgs/empty.svg'
 import {
   Container,
   HeaderPanel,
@@ -25,19 +24,19 @@ import {
 
 const Header: React.FC = () => {
   const { title, icon, isHasIcon } = useSelector(currentPageSelector)
+  const isChangePageTitleModalOpen = useSelector(changePageTitleModalSelector)
   const modalRef = useRef<HTMLDivElement>(null)
+  const dispatch = useDispatch()
 
   const headerRef = useRef<HTMLHeadElement>(null)
   const isHovering = useHover(headerRef)
 
   const {
     isOpen: isLeftSidebarOpen,
-    isBubbling,
-    location,
+    isBubbling: isLeftSidebarBubbling,
+    location: leftSidebarLocation,
   } = useSelector(leftSidebarSelector)
-  const isChangePageTitleModalOpen = useSelector(changePageTitleModalSelector)
 
-  const dispatch = useDispatch()
   const onOpenChangePageTitleModal = (): void => {
     dispatch(openChangePageTitleModal())
   }
@@ -49,17 +48,17 @@ const Header: React.FC = () => {
 
   return (
     <Wrapper ref={headerRef}>
-      {(!isLeftSidebarOpen || (isLeftSidebarOpen && isBubbling)) && (
+      {(!isLeftSidebarOpen || (isLeftSidebarOpen && isLeftSidebarBubbling)) && (
         <ToggleSidebarButton
           isParentHovering={isHovering}
           purpose={Purposes.OPEN}
-          location={location}
+          location={leftSidebarLocation}
         />
       )}
       <Container>
         <HeaderPanel>
           <PageTitleBlock onClick={onOpenChangePageTitleModal}>
-            <PageIcon src={isHasIcon ? icon : emptyIcon} alt='Page icon' />
+            {isHasIcon && <PageIcon src={icon} alt='Page icon' />}
             <PageTitle>{title}</PageTitle>
           </PageTitleBlock>
           {isChangePageTitleModalOpen && (

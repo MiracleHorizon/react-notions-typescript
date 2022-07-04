@@ -10,7 +10,6 @@ const EmptyWidthIconSVG: React.FC = () => (
       fill: 'rgba(55, 53, 47, 0.35)',
       flexShrink: 0,
       backfaceVisibility: 'hidden',
-      marginRight: 10,
     }}
   >
     <g>

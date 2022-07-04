@@ -41,14 +41,6 @@ const ToggleIconBlock = styled.div<{ isChild: boolean }>`
   }
 `
 
-const ToggleIcon = styled.img<{ isOpen: boolean }>`
-  width: 16px;
-  height: 16px;
-  opacity: 0.35;
-  transform: rotate(${props => props.isOpen && '90deg'});
-  transition: transform 0.2s ease-in-out;
-`
-
 const Information = styled.div`
   display: flex;
   align-items: center;
@@ -88,12 +80,4 @@ const Title = styled.h4<{ isActive: boolean }>`
     props.isActive ? 'rgb(55, 53, 47)' : 'rgba(55, 53, 47, 0.65)'};
 `
 
-export {
-  StyledItem,
-  ToggleIconBlock,
-  ToggleIcon,
-  Information,
-  IconBlock,
-  PageIcon,
-  Title,
-}
+export { StyledItem, ToggleIconBlock, Information, IconBlock, PageIcon, Title }

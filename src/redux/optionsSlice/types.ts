@@ -1,18 +1,13 @@
+import { FC } from 'react'
+
 interface IOptionItem {
   title: string
   imgUrl?: string
-  SVG?: JSX.Element
 }
 
 interface IPageFont {
   title: string
   tooltipTitle: string
-}
-
-interface IPageSettingsOptions {
-  pageCustomizeOptions?: IOptionItem[]
-  pageShareOptions: IOptionItem[]
-  pageChangesOptions: IOptionItem[]
 }
 
 interface IPagesSliceState {
@@ -22,14 +17,8 @@ interface IPagesSliceState {
 
 interface EmptyPageOption {
   title: string
-  img: string
+  IconSVG: FC
   action: () => void
 }
 
-export type {
-  IPagesSliceState,
-  IOptionItem,
-  IPageSettingsOptions,
-  IPageFont,
-  EmptyPageOption,
-}
+export type { IPagesSliceState, IOptionItem, IPageFont, EmptyPageOption }

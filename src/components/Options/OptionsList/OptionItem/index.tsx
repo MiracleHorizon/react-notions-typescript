@@ -9,7 +9,7 @@ interface OptionItemProps {
   activeItem?: string
   onSelect?: (title: string) => void
   className?: string
-  svgComponents?: JSX.Element
+  svgComponent?: JSX.Element
 }
 
 const OptionItem: React.FC<OptionItemProps> = props => {
@@ -19,7 +19,7 @@ const OptionItem: React.FC<OptionItemProps> = props => {
     activeItem,
     onSelect,
     className,
-    svgComponents,
+    svgComponent,
   } = props
 
   const isActive = activeItem === title && styles.active
@@ -29,8 +29,8 @@ const OptionItem: React.FC<OptionItemProps> = props => {
       className={classNameHandler(className) + ' ' + isActive}
       onMouseEnter={() => onSelect && onSelect(title)}
     >
-      {/*<img src={imgUrl} alt='Option' />*/}
-      {svgComponents}
+      {/*<img src={icon} alt='Option' />*/}
+      {svgComponent}
       <span>{title}</span>
     </div>
   )

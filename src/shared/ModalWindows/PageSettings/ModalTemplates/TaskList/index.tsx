@@ -1,15 +1,22 @@
 import React from 'react'
-import OptionsList from '../../../../../components/Options/OptionsList'
-import MoveToOptionItem from '../../../../../components/Options/OptionsList/OptionItem/MoveToOptionItem'
-import PageChanges from '../../../../../components/Options/PageChanges'
+import { useSelectItem } from 'hooks/useSelectItem'
 
-const TaskListPageModal: React.FC = () => (
-  <div>
-    {/*<OptionsList options={TASK_LIST_PAGE_OPTIONS.pageShareOptions} />*/}
-    {/*<OptionsList options={TASK_LIST_PAGE_OPTIONS.pageChangesOptions} />*/}
-    <MoveToOptionItem />
-    <PageChanges />
-  </div>
-)
+import MoveToOptionItem from 'components/Options/OptionsList/OptionItem/MoveToOptionItem'
+import PageChangesBar from 'shared/PageChangesBar/PageChangesBar'
+
+import OptionsList from 'components/Options/OptionsList'
+
+const TaskListPageModal: React.FC = () => {
+  const { activeItem, onSelectItem } = useSelectItem('')
+
+  return (
+    <div>
+      {/*<OptionsList options={TASK_LIST_PAGE_OPTIONS.pageShareOptions} />*/}
+      {/*<OptionsList options={TASK_LIST_PAGE_OPTIONS.pageChangesOptions} />*/}
+      <MoveToOptionItem activeItem={activeItem} onSelect={onSelectItem} />
+      <PageChangesBar />
+    </div>
+  )
+}
 
 export default TaskListPageModal

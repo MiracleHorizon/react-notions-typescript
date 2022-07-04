@@ -1,8 +1,15 @@
+import { IElementCoords } from '../../@types/types'
+
+interface PageOptionsModal {
+  isOpen: boolean
+  coords: IElementCoords
+}
+
 interface IAppModalsState {
   isChangePageTitleModalOpen: boolean
   isQuickSearchModalOpen: boolean
-  isFavoritePagesOptionsModalOpen: boolean
-  isCommonPagesOptionsModalOpen: boolean
+  isMovePageToModalOpen: boolean
+  pageOptionsModal: PageOptionsModal
 }
 
-export type { IAppModalsState }
+export type { IAppModalsState, PageOptionsModal }

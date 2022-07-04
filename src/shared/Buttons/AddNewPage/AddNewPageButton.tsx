@@ -10,11 +10,12 @@ interface AddNewPageButtonProps {
   tooltipTitle?: string
   tooltipDescription?: string
   coords: IElementCoords
-  action: () => void
+  onClickAction: (e: React.MouseEvent) => void
 }
 
 const AddNewPageButton: React.FC<AddNewPageButtonProps> = props => {
-  const { tooltipTitle, tooltipDescription, coords, action } = props
+  const { tooltipTitle, tooltipDescription, coords, onClickAction } = props
+
   const buttonRef = useRef<HTMLDivElement>(null)
   const isHovering = useHover(buttonRef)
 
@@ -23,7 +24,7 @@ const AddNewPageButton: React.FC<AddNewPageButtonProps> = props => {
       role='button'
       ref={buttonRef}
       coords={coords}
-      onClick={action}
+      onClick={onClickAction}
     >
       <Icon src={addPageSvg} alt='Add page' />
       {isHovering && (

@@ -1,11 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IAppModalsState } from './types'
+import { IElementCoords } from '../../@types/types'
 
 const initialState: IAppModalsState = {
   isChangePageTitleModalOpen: false,
   isQuickSearchModalOpen: false,
-  isFavoritePagesOptionsModalOpen: false,
-  isCommonPagesOptionsModalOpen: false,
+  isMovePageToModalOpen: false,
+  pageOptionsModal: {
+    isOpen: false,
+    coords: {},
+  },
 }
 
 export const modalsSlice = createSlice({
@@ -14,17 +18,23 @@ export const modalsSlice = createSlice({
   initialState: initialState,
 
   reducers: {
+    setCommonItemCoords(state, action: PayloadAction<IElementCoords>) {
+      state.pageOptionsModal.coords = action.payload
+    },
+    openPageOptionsModal(state) {
+      state.pageOptionsModal.isOpen = true
+    },
+    closePageOptionsModal(state) {
+      state.pageOptionsModal.isOpen = false
+    },
     openChangePageTitleModal(state) {
       state.isChangePageTitleModalOpen = true
     },
     openQuickSearchModal(state) {
       state.isQuickSearchModalOpen = true
     },
-    openFavoritePagesOptionsModal(state) {
-      state.isFavoritePagesOptionsModalOpen = true
-    },
-    openCommonPagesOptionsModal(state) {
-      state.isCommonPagesOptionsModalOpen = true
+    openMovePageToModal(state) {
+      state.isMovePageToModalOpen = true
     },
     closeChangePageTitleModal(state) {
       state.isChangePageTitleModalOpen = false
@@ -32,24 +42,22 @@ export const modalsSlice = createSlice({
     closeQuickSearchModal(state) {
       state.isQuickSearchModalOpen = false
     },
-    closeFavoritePagesOptionsModal(state) {
-      state.isFavoritePagesOptionsModalOpen = false
-    },
-    closeCommonPagesOptionsModal(state) {
-      state.isCommonPagesOptionsModalOpen = false
+    closeMovePageToModal(state) {
+      state.isMovePageToModalOpen = false
     },
   },
 })
 
 export const {
+  setCommonItemCoords,
+  openPageOptionsModal,
+  closePageOptionsModal,
   openChangePageTitleModal,
   openQuickSearchModal,
-  openFavoritePagesOptionsModal,
-  openCommonPagesOptionsModal,
+  openMovePageToModal,
   closeChangePageTitleModal,
   closeQuickSearchModal,
-  closeFavoritePagesOptionsModal,
-  closeCommonPagesOptionsModal,
+  closeMovePageToModal,
 } = modalsSlice.actions
 
 export default modalsSlice.reducer

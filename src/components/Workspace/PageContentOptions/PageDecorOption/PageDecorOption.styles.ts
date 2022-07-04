@@ -6,7 +6,7 @@ const StyledOption = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 24px;
-  padding: 2px 4px;
+  padding: 2px 6px;
   border-radius: 3px;
   margin-right: 3px;
 
@@ -20,19 +20,11 @@ const StyledOption = styled.div`
   }
 `
 
-const Icon = styled.img`
-  width: 16px;
-  height: 16px;
-  margin-right: 4px;
-  object-fit: cover;
-  pointer-events: none;
-  opacity: 0.5;
-`
-
 const Title = styled.span`
+  margin-left: 5px;
   font-size: 14px;
   font-weight: 400;
   color: rgba(55, 53, 47, 0.5);
 `
 
-export { StyledOption, Icon, Title }
+export { StyledOption, Title }

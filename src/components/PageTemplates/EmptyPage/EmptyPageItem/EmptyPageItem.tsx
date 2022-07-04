@@ -3,25 +3,23 @@ import { EmptyPageItemProps } from './EmptyPageItem.types'
 import {
   StyledItem,
   IconContainer,
-  Icon,
   TitleContainer,
   Title,
 } from './EmptyPageItem.styles'
 
 const EmptyPageItem: React.FC<EmptyPageItemProps> = props => {
-  const { title, img, action, activeItem, onSelect } = props
-  const isActive = activeItem === title
+  const { title, IconSVG, activeItem, action, onSelect } = props
   const itemRef = useRef<HTMLDivElement>(null)
 
   return (
     <StyledItem
-      isActive={isActive}
+      {...{ isActive: activeItem === title }}
       ref={itemRef}
       onClick={action}
       onMouseEnter={() => onSelect(title)}
     >
       <IconContainer>
-        <Icon src={img} alt='Option' />
+        <IconSVG />
       </IconContainer>
       <TitleContainer>
         <Title>{title}</Title>

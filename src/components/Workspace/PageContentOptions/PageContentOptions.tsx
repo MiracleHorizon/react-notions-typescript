@@ -4,6 +4,9 @@ import * as _ from 'lodash'
 
 import PageDecorOption from './PageDecorOption/PageDecorOption'
 import SwitchPageIconModal from 'shared/ModalWindows/SwitchIcon'
+import AddIconSVG from 'shared/SVG/DecorOptions/AddIcon'
+import AddCoverSVG from 'shared/SVG/DecorOptions/AddCover'
+import AddCommentSVG from 'shared/SVG/DecorOptions/AddComment'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
 import {
   coversListsSelector,
@@ -12,9 +15,6 @@ import {
 import { setIsIconModalOpen } from 'redux/pageDecorationSlice/slice'
 import { setPageCover } from 'redux/workSpaceSlice/slice'
 import { getAllCovers } from 'utils/helpers/getAllCovers'
-import addIconSvg from 'assets/img/addIcon.svg'
-import addCoverSvg from 'assets/img/cover.svg'
-import addCommentSvg from 'assets/img/optionsImgs/comments.svg'
 import {
   OptionsPanel,
   OptionsContainer,
@@ -29,15 +29,16 @@ const PageContentOptions: React.FC = () => {
   const covers = useSelector(coversListsSelector)
   const isSwitchPageIconModalOpen = useSelector(isIconModalOpenSelector)
   const pageTitleRef = useRef<HTMLDivElement>(null)
-
   const dispatch = useDispatch()
+
   const onOpenSwitchPageIconModal = (): void => {
     dispatch(setIsIconModalOpen())
   }
   const onAddRandomCover = (): void => {
     dispatch(setPageCover({ cover: _.sample(getAllCovers(covers)), id }))
   }
-  const onAddRandomIcon = (): void => {} //! icon!
+  const onAddRandomIcon = (): void => {}
+  const onAddComment = (): void => {}
 
   useEffect(() => {
     document.title = title
@@ -56,20 +57,24 @@ const PageContentOptions: React.FC = () => {
       <OptionsContainer>
         {!isHasIcon && (
           <PageDecorOption
-            icon={addIconSvg}
+            IconSVG={AddIconSVG}
             optionTitle='icon'
             onClickAction={onAddRandomIcon}
           />
         )}
         {!isHasCover && (
           <PageDecorOption
-            icon={addCoverSvg}
+            IconSVG={AddCoverSVG}
             optionTitle='cover'
             onClickAction={onAddRandomCover}
           />
         )}
         {!isHasComments && (
-          <PageDecorOption icon={addCommentSvg} optionTitle='comment' />
+          <PageDecorOption
+            IconSVG={AddCommentSVG}
+            optionTitle='comment'
+            onClickAction={onAddRandomIcon}
+          />
         )}
       </OptionsContainer>
       <PageTitle ref={pageTitleRef}>{title}</PageTitle>

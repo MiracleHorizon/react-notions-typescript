@@ -7,8 +7,8 @@ import { useKeyboardEnter } from 'hooks/useKeyboardEnter/useKeyboardEnter'
 import EmptyPageList from './EmptyPageList/EmptyPageList'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
 import {
-  EMPTY_PAGE_DECORATION_OPTIONS as emptyPageDecorationOptions,
-  EMPTY_PAGE_TEMPLATES_OPTIONS as emptyPageTemplateOptions,
+  EMPTY_PAGE_DECORATION_OPTIONS,
+  EMPTY_PAGE_TEMPLATES_OPTIONS,
   EMPTY_PAGE_OPTION_TITLES as titles,
   EMPTY_PAGE_OPTIONS_LIST as options,
 } from 'redux/optionsSlice/optionsStorage'
@@ -56,7 +56,7 @@ const EmptyPage: React.FC = () => {
         </Description>
       </DescriptionContainer>
       <EmptyPageList
-        list={emptyPageDecorationOptions}
+        list={EMPTY_PAGE_DECORATION_OPTIONS}
         activeItem={activeItem}
         onSelect={onSelectItem}
         setActiveItem={setActiveItem}
@@ -66,7 +66,7 @@ const EmptyPage: React.FC = () => {
           <StyledTitle>Templates</StyledTitle>
         </TemplatesTitleContainer>
         <EmptyPageList
-          list={emptyPageTemplateOptions}
+          list={EMPTY_PAGE_TEMPLATES_OPTIONS}
           activeItem={activeItem}
           onSelect={onSelectItem}
         />

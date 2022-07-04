@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useOnClickOutside } from 'usehooks-ts'
 
 import SwitchPageIconModal from '../SwitchIcon'
-import { currentPageSelector } from '../../../redux/workSpaceSlice/selectors'
-import { isIconModalOpenSelector } from '../../../redux/pageDecorationSlice/selectors'
-import { closeChangePageTitleModal } from '../../../redux/modalsSlice/slice'
-import { setIsIconModalOpen } from '../../../redux/pageDecorationSlice/slice'
-import { setPageIcon, setPageTitle } from '../../../redux/workSpaceSlice/slice'
+import EmptyPageIconSVG from 'shared/SVG/EmptyPage'
+import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
+import { isIconModalOpenSelector } from 'redux/pageDecorationSlice/selectors'
+import { closeChangePageTitleModal } from 'redux/modalsSlice/slice'
+import { setIsIconModalOpen } from 'redux/pageDecorationSlice/slice'
+import { setPageIcon, setPageTitle } from 'redux/workSpaceSlice/slice'
 import styles from './ChangePageTitle.module.scss'
-import emptyIcon from 'assets/img/optionsImgs/empty.svg'
 
 interface IPageTitleModalCoords {
   coords: {
@@ -56,7 +56,13 @@ const ChangePageTitleModal: React.FC<IPageTitleModalCoords> = ({ coords }) => {
     <Fragment>
       <div ref={modalRef} className={styles.root} style={{ ...coords }}>
         <div onClick={onChangePageIcon}>
-          <img src={isHasIcon ? icon : emptyIcon} alt='Page img' />
+          {isHasIcon ? (
+            <img src={icon} alt='Page icon' />
+          ) : (
+            <EmptyPageIconSVG
+              {...{ sizes: { width: 18, height: 18 }, transparency: 0.85 }}
+            />
+          )}
         </div>
         <form onSubmit={onSubmitPageTitle}>
           <input

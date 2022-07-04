@@ -33,13 +33,6 @@ const IconContainer = styled.div`
   margin-right: 8px;
 `
 
-const Icon = styled.img`
-  width: inherit;
-  height: inherit;
-  opacity: 0.4;
-  pointer-events: none;
-`
-
 const TitleContainer = styled.div`
   margin-bottom: 1px;
 `
@@ -49,4 +42,4 @@ const Title = styled.span`
   color: rgba(55, 53, 47, 0.5);
 `
 
-export { StyledItem, IconContainer, Icon, TitleContainer, Title }
+export { StyledItem, IconContainer, TitleContainer, Title }

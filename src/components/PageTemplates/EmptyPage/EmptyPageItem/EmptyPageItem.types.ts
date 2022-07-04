@@ -1,8 +1,9 @@
+import { FC } from 'react'
 import { ActiveListItem } from '../../../../@types/types'
 
 interface EmptyPageItemProps extends ActiveListItem {
   title: string
-  img: string
+  IconSVG: FC
   action: () => void
 }
 

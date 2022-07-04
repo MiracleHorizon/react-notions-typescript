@@ -6,17 +6,18 @@ import ToggleFontPanel from './ToggleFontPanel'
 import ToggleOptionsList from 'components/Options/ToggleOptionsList/ToggleOptionsList'
 import PopupOptionItem from 'components/Options/PopupOptionItem/PopupOptionItem'
 import MoveToOptionItem from 'components/Options/OptionsList/OptionItem/MoveToOptionItem'
-import PageChanges from 'components/Options/PageChanges'
-import CustomizePageSVG from 'shared/SVG/LightThene/CustomizePage'
-import LockPageSVG from 'shared/SVG/LightThene/LockPage'
-import UnlockPageSVG from 'shared/SVG/LightThene/UnlockPage'
-import RemoveFavoriteSVG from 'shared/SVG/LightThene/RemoveFavorite'
-import UnfavoriteStarSVG from 'shared/SVG/LightThene/UnfavoriteStar'
-import LinkSVG from 'shared/SVG/LightThene/Link'
-import DeleteTrashSVG from 'shared/SVG/LightThene/DeleteTrash'
+import PageChangesBar from 'shared/PageChangesBar/PageChangesBar'
+import CustomizePageSVG from 'shared/SVG/CustomizePage'
+import LockPageSVG from 'shared/SVG/LockPage'
+import UnlockPageSVG from 'shared/SVG/UnlockPage'
+import RemoveFavoriteSVG from 'shared/SVG/RemoveFavorite'
+import UnfavoriteStarSVG from 'shared/SVG/UnfavoriteStar'
+import LinkSVG from 'shared/SVG/Link'
+import DeleteTrashSVG from 'shared/SVG/DeleteTrash'
 import Separator from 'shared/Separator'
 import toggleOptionsHandler from 'utils/helpers/toggleOptionsHandler'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
+import { closeRightSidebar } from 'redux/sidebarsSlice/slice'
 import {
   addToFavorite,
   deletePage,
@@ -25,7 +26,7 @@ import {
 } from 'redux/workSpaceSlice/slice'
 import { Wrapper, StyledList } from '../../PageSettingsPopup.styles'
 
-const BoardPageModal: React.FC = () => {
+const BoardPageSettingsModal: React.FC = () => {
   const { id, isFavorite, isFullWidth, isSmallText } =
     useSelector(currentPageSelector)
   const { activeItem, onSelectItem } = useSelectItem('')
@@ -49,6 +50,7 @@ const BoardPageModal: React.FC = () => {
   const onDeletePage = (): void => {
     dispatch(deletePage(id))
     dispatch(setCurrentPage(id - 1)) //!
+    dispatch(closeRightSidebar())
   }
 
   const toggleOptions = toggleOptionsHandler({
@@ -116,9 +118,9 @@ const BoardPageModal: React.FC = () => {
         />
         <MoveToOptionItem activeItem={activeItem} onSelect={onSelectItem} />
       </StyledList>
-      <PageChanges />
+      <PageChangesBar />
     </Wrapper>
   )
 }
 
-export default BoardPageModal
+export default BoardPageSettingsModal

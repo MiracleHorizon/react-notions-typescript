@@ -1,13 +1,13 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { useEventListener } from 'usehooks-ts'
+// import { useEventListener } from 'usehooks-ts'
 // import { useKeyboardBind } from 'hooks/useKeyboardBind/useKeyboardBind'
 
 import PageContentOptions from '../../Workspace/PageContentOptions/PageContentOptions'
 import BoardContent from './BoardContent/BoardContent'
 import EmptyPage from '../EmptyPage/EmptyPage'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
-import { toggleFullWidth } from 'redux/workSpaceSlice/slice'
+// import { toggleFullWidth } from 'redux/workSpaceSlice/slice'
 import { BoardWrapper, Container } from './BoardTemplate.styles'
 
 const BoardTemplate: React.FC = () => {

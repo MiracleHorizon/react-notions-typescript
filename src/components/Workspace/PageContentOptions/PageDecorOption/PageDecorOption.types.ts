@@ -1,7 +1,9 @@
+import { FC } from 'react'
+
 interface PageDecorOptionProps {
-  icon: string
+  IconSVG: FC
   optionTitle: string
-  onClickAction?: () => void
+  onClickAction: () => void
 }
 
 export type { PageDecorOptionProps }

@@ -9,11 +9,11 @@ import { rightSidebarSelector } from 'redux/sidebarsSlice/selectors'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
 import { ToggleSidebarBtnPurposes as Purposes } from 'shared/Buttons/ToggleSidebar/ToggleSidebarButton.types'
 import {
-  Wrapper,
   Container,
   Content,
-  ResizerContainer,
   Resizer,
+  ResizerContainer,
+  Wrapper,
 } from '../Sidebar.styles'
 
 const RightSidebar: React.FC = () => {

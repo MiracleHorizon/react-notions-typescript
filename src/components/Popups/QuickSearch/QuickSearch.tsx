@@ -47,8 +47,3 @@ const QuickSearch: React.FC = () => {
 }
 
 export default QuickSearch
-
-// <footer style={{ flexShrink: 0 }}></footer>
-// <span>Searching...</span>
-// <button onClick={onOpenFilter}>Open filter</button>
-// const onOpenFilter = (): void => setIsFilterOpen(true)

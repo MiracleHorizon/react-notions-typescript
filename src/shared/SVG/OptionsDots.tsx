@@ -1,11 +1,12 @@
 import React from 'react'
+import { SVGSizes } from './types'
 
-const OptionsDotsSVG: React.FC = () => (
+const OptionsDotsSVG: React.FC<{ sizes?: SVGSizes }> = ({ sizes }) => (
   <svg
     viewBox='0 0 13 3'
     style={{
-      width: 18,
-      height: 18,
+      width: sizes ? sizes.width : 18,
+      height: sizes ? sizes.height : 18,
       display: 'block',
       fill: 'rgba(55, 53, 47, 0.85)',
       flexShrink: 0,
