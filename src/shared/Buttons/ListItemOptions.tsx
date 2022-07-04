@@ -1,16 +1,21 @@
 import React, { useRef } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 import styled from 'styled-components'
 
-import Tooltip from '../Tooltip/Tooltip'
+import Tooltip from '../Tooltip'
 import OptionsDotsSVG from 'shared/SVG/OptionsDots'
 import {
   openPageOptionsModal,
-  setCommonItemCoords,
+  setPageOptions,
+  setPageOptionsModalCoords,
 } from 'redux/modalsSlice/slice'
 import setCoordsByDOMRect from 'utils/helpers/setCoordsByDOMRect'
 import { ElementPositions } from '../../@types/types'
+import {
+  commonPageOptionsSelector,
+  favPageOptionsSelector,
+} from '../../redux/optionsSlice/selectors'
 
 const OptionsButton = styled.div`
   position: absolute;
@@ -38,6 +43,9 @@ const ListItemOptionsButton: React.FC<{ title: string }> = ({ title }) => {
   const isHovering = useHover(optionsButtonRef)
   const dispatch = useDispatch()
 
+  const commonPageOptions = useSelector(commonPageOptionsSelector)
+  const favoritePageOptions = useSelector(favPageOptionsSelector)
+
   const optionButtonCoords = setCoordsByDOMRect({
     requiredProperties: [ElementPositions.TOP, ElementPositions.LEFT],
     element: optionsButtonRef.current,
@@ -45,8 +53,13 @@ const ListItemOptionsButton: React.FC<{ title: string }> = ({ title }) => {
 
   const onOpenPageOptionsModal = (e: React.MouseEvent): void => {
     e.stopPropagation()
-    dispatch(setCommonItemCoords(optionButtonCoords))
+    dispatch(setPageOptionsModalCoords(optionButtonCoords))
     dispatch(openPageOptionsModal())
+    dispatch(
+      setPageOptions(
+        title === 'Remove, rename' ? commonPageOptions : favoritePageOptions
+      )
+    )
   }
 
   return (

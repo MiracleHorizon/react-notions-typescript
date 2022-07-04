@@ -7,7 +7,7 @@ import { Wrapper, Container, Content } from './Workspace.styles'
 
 const Header = lazy(() => import('./Header/Header'))
 const Board = lazy(() => import('../PageTemplates/Board/BoardTemplate'))
-const LeftSidebar = lazy(() => import('./Sidebar/LeftSidebar/LeftSidebar'))
+const LeftSidebar = lazy(() => import('./Sidebar/LeftSidebar'))
 const RightSidebar = lazy(() => import('./Sidebar/RightSidebar/RightSidebar'))
 
 const Workspace: React.FC = () => {

@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { IAppModalsState } from './types'
 import { IElementCoords } from '../../@types/types'
+import { IOptionItem } from '../optionsSlice/types'
 
 const initialState: IAppModalsState = {
   isChangePageTitleModalOpen: false,
@@ -8,6 +9,7 @@ const initialState: IAppModalsState = {
   isMovePageToModalOpen: false,
   pageOptionsModal: {
     isOpen: false,
+    options: [],
     coords: {},
   },
 }
@@ -18,8 +20,11 @@ export const modalsSlice = createSlice({
   initialState: initialState,
 
   reducers: {
-    setCommonItemCoords(state, action: PayloadAction<IElementCoords>) {
+    setPageOptionsModalCoords(state, action: PayloadAction<IElementCoords>) {
       state.pageOptionsModal.coords = action.payload
+    },
+    setPageOptions(state, action: PayloadAction<IOptionItem[]>) {
+      state.pageOptionsModal.options = action.payload
     },
     openPageOptionsModal(state) {
       state.pageOptionsModal.isOpen = true
@@ -49,7 +54,8 @@ export const modalsSlice = createSlice({
 })
 
 export const {
-  setCommonItemCoords,
+  setPageOptionsModalCoords,
+  setPageOptions,
   openPageOptionsModal,
   closePageOptionsModal,
   openChangePageTitleModal,

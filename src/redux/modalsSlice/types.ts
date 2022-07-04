@@ -1,7 +1,9 @@
 import { IElementCoords } from '../../@types/types'
+import { IOptionItem } from '../optionsSlice/types'
 
 interface PageOptionsModal {
   isOpen: boolean
+  options: IOptionItem[]
   coords: IElementCoords
 }
 

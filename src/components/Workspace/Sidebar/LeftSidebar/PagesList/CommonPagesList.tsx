@@ -6,25 +6,20 @@ import { useTooltipTitle } from 'hooks/useTooltipTitle'
 import { useCreateNewPage } from 'hooks/useCreateNewPage'
 
 import PagesList from './PagesList'
-import ListTitle from './ListTitle/ListTitle'
-import AddNewPageButton from 'shared/Buttons/AddNewPage/AddNewPageButton'
-import Tooltip from 'shared/Tooltip/Tooltip'
+import ListTitle from './ListTitle'
+import AddNewPageButton from 'shared/Buttons/AddNewPage'
+import Tooltip from 'shared/Tooltip'
 import {
   commonPagesSelector,
   currentPageSelector,
 } from 'redux/workSpaceSlice/selectors'
 import { Wrapper } from './PagesList.styles'
-import { commonPageOptionsSelector } from 'redux/optionsSlice/selectors'
-import PagesListOptionsModal from 'shared/ModalWindows/PagesListOptions'
-import { pageOptionsModalSelector } from '../../../../../redux/modalsSlice/selectors'
 
 const CommonPagesList: React.FC = () => {
   const { id } = useSelector(currentPageSelector)
   const { isOpen, toggleIsOpen } = useToggle(true)
   const commonPages = useSelector(commonPagesSelector)
-  const commonPageOptions = useSelector(commonPageOptionsSelector)
   const onCreateNewPage = useCreateNewPage(id)
-
   const tooltipTitle = useTooltipTitle(isOpen)
 
   const listTitleRef = useRef<HTMLDivElement>(null)
@@ -33,13 +28,10 @@ const CommonPagesList: React.FC = () => {
   const listRef = useRef<HTMLDivElement>(null)
   const isHovering = useHover(listRef)
 
-  const optionsButtonCoords = useSelector(pageOptionsModalSelector).coords
-  const isPageOptionsModalOpen = useSelector(pageOptionsModalSelector).isOpen
-
   return (
     <Wrapper ref={listRef}>
       <ListTitle
-        title={'Common'}
+        title='Common'
         reference={listTitleRef}
         toggleList={toggleIsOpen}
       />
@@ -59,13 +51,6 @@ const CommonPagesList: React.FC = () => {
         />
       )}
       {isOpen && <PagesList pages={commonPages} />}
-      {isPageOptionsModalOpen && (
-        <PagesListOptionsModal
-          listTitle={'Common'}
-          options={commonPageOptions}
-          coords={optionsButtonCoords}
-        />
-      )}
     </Wrapper>
   )
 }

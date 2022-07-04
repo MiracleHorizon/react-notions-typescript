@@ -7,9 +7,11 @@ import AppOptionsPanel from './Panels/AppOptionsPanel/AppOptionsPanel'
 import FavoritePagesList from './PagesList/FavoritePagesList'
 import CommonPagesList from './PagesList/CommonPagesList'
 import AddNewPagePanel from './Panels/AddNewPagePanel/AddNewPagePanel'
+import PagesListOptionsModal from 'shared/ModalWindows/PagesListOptions'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
 import { leftSidebarSelector } from 'redux/sidebarsSlice/selectors'
 import { setActivePage } from 'redux/sidebarsSlice/slice'
+import { pageOptionsModalSelector } from 'redux/modalsSlice/selectors'
 import {
   Wrapper,
   Container,
@@ -28,6 +30,9 @@ const LeftSidebar: React.FC = () => {
   const resizerRef = useRef<HTMLDivElement>(null)
   const sidebarRef = useRef<HTMLDivElement>(null)
   const isHovering = useHover(sidebarRef)
+
+  const isPageOptionsModalOpen = useSelector(pageOptionsModalSelector).isOpen
+  const optionsButtonCoords = useSelector(pageOptionsModalSelector).coords
 
   useEffect(() => {
     dispatch(setActivePage({ title, id }))
@@ -48,6 +53,9 @@ const LeftSidebar: React.FC = () => {
       <ResizerContainer draggable={true} ref={resizerRef} location={location}>
         <Resizer />
       </ResizerContainer>
+      {isPageOptionsModalOpen && (
+        <PagesListOptionsModal coords={optionsButtonCoords} />
+      )}
     </Wrapper>
   )
 }

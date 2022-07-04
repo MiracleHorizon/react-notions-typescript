@@ -4,6 +4,7 @@ const StyledContainer = styled.div<{ isActive: boolean }>`
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  width: 100%;
   min-height: 28px;
   margin: 1px 0;
   padding: 1px 0 1px 8px;
