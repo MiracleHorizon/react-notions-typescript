@@ -1,9 +1,8 @@
 import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHover } from 'usehooks-ts'
-import styled from 'styled-components'
 
-import Tooltip from '../Tooltip'
+import Tooltip from 'shared/Tooltip'
 import OptionsDotsSVG from 'shared/SVG/OptionsDots'
 import {
   openPageOptionsModal,
@@ -11,35 +10,11 @@ import {
   setPageOptionsId,
   setPageOptionsModalCoords,
 } from 'redux/modalsSlice/slice'
+import { PagesListItemOptionsButtonProps as Props } from './PagesListItemOptionsButton.types'
 import pageOptionsHandler from 'utils/helpers/pageOptionsHandler'
+import StyledButton from './PagesListItemOptionsButton.styles'
 
-const OptionsButton = styled.div`
-  position: absolute;
-  right: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  padding: 1px;
-  border-radius: 3px;
-
-  :hover {
-    background: rgba(55, 53, 47, 0.08);
-    transition: background 0.15s ease-in-out;
-  }
-  :active {
-    background: rgba(55, 53, 47, 0.16);
-    transition: background 0.15s ease-in-out;
-  }
-`
-
-interface Props {
-  id: number
-  title: string
-}
-
-const ListItemOptionsButton: React.FC<Props> = ({ id, title }) => {
+const PagesListItemOptionsButton: React.FC<Props> = ({ id, title }) => {
   const optionsButtonRef = useRef<HTMLImageElement>(null)
   const isHovering = useHover(optionsButtonRef)
   const options = pageOptionsHandler(title)
@@ -53,14 +28,14 @@ const ListItemOptionsButton: React.FC<Props> = ({ id, title }) => {
       left: e.clientX - 2 + 'px',
     }
 
-    dispatch(setPageOptionsModalCoords(pointerCoords))
     dispatch(openPageOptionsModal())
+    dispatch(setPageOptionsModalCoords(pointerCoords))
     dispatch(setPageOptions(options))
     dispatch(setPageOptionsId(id))
   }
 
   return (
-    <OptionsButton ref={optionsButtonRef} onClick={onOpenPageOptionsModal}>
+    <StyledButton ref={optionsButtonRef} onClick={onOpenPageOptionsModal}>
       <OptionsDotsSVG sizes={{ width: 14, height: 14 }} />
       {isHovering && (
         <Tooltip
@@ -68,8 +43,8 @@ const ListItemOptionsButton: React.FC<Props> = ({ id, title }) => {
           coords={{ left: '-70px', bottom: '-32px' }}
         />
       )}
-    </OptionsButton>
+    </StyledButton>
   )
 }
 
-export default ListItemOptionsButton
+export default PagesListItemOptionsButton

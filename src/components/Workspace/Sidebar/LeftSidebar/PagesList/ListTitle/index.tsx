@@ -1,9 +1,8 @@
 import React from 'react'
-
 import { PagesListTitleProps } from './ListTitle.types'
 import { TitleBlock, Title } from './ListTitle.styles'
 
-const ListTitle: React.FC<PagesListTitleProps> = props => {
+const PagesListTitle: React.FC<PagesListTitleProps> = props => {
   const { title, reference, toggleList } = props
 
   return (
@@ -13,4 +12,4 @@ const ListTitle: React.FC<PagesListTitleProps> = props => {
   )
 }
 
-export default ListTitle
+export default PagesListTitle

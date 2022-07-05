@@ -5,10 +5,10 @@ import PageCover from '../Popups/PageCover'
 import { rightSidebarSelector } from 'redux/sidebarsSlice/selectors'
 import { Wrapper, Container, Content } from './Workspace.styles'
 
-const Header = lazy(() => import('./Header/Header'))
-const Board = lazy(() => import('../PageTemplates/Board/BoardTemplate'))
-const LeftSidebar = lazy(() => import('./Sidebar/LeftSidebar/index'))
-const RightSidebar = lazy(() => import('./Sidebar/RightSidebar/RightSidebar'))
+const Header = lazy(() => import('./Header'))
+const Board = lazy(() => import('../PageTemplates/Board'))
+const LeftSidebar = lazy(() => import('./Sidebar/LeftSidebar'))
+const RightSidebar = lazy(() => import('./Sidebar/RightSidebar'))
 
 const Workspace: React.FC = () => {
   const { isOpen, width } = useSelector(rightSidebarSelector)

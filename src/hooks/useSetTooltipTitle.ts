@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export const useTooltipTitle = (isOpen: boolean): string => {
+export const useSetTooltipTitle = (isOpen: boolean): string => {
   const [tooltipTitle, setTooltipTitle] = useState<string>('')
 
   useEffect(() => {

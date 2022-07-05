@@ -27,6 +27,10 @@ const Title = styled.span`
   margin-left: 10px;
   font-size: 14px;
   font-weight: 400;
+  line-height: 21px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `
 
 export { StyledItem, Title }

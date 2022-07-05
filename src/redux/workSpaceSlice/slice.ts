@@ -125,6 +125,7 @@ const initialState: WorkspaceSliceState = {
     isFavorite: true,
     comments: [],
   },
+  recentlyDeleted: [],
 }
 
 export const workSpaceSlice = createSlice({
@@ -136,35 +137,50 @@ export const workSpaceSlice = createSlice({
     createNewPage(state, action: PayloadAction<IWorkspacePage>) {
       state.pages = [...state.pages, action.payload]
     },
-    deletePage(state, action) {
+    deletePage(state, action: PayloadAction<number>) {
+      const page = state.pages.find(page => page.id === action.payload)
+      if (!page) return
+
+      if (state.recentlyDeleted.length === 5) state.recentlyDeleted.shift()
+      state.recentlyDeleted = [...state.recentlyDeleted, page]
       state.pages = state.pages.filter(page => page.id !== action.payload)
     },
-    setCurrentPage(state, action) {
+    duplicatePage(state, action: PayloadAction<number>) {
+      const page = state.pages.find(page => page.id === action.payload)
+      if (!page) return
+
+      const pageDuplicate = JSON.parse(JSON.stringify(page))
+      pageDuplicate.title = `${pageDuplicate.title} (1)`
+      pageDuplicate.id = state.pages.length + 1
+
+      state.pages = [...state.pages, pageDuplicate]
+    },
+    setCurrentPage(state, action: PayloadAction<number>) {
       const page = state.pages.find(page => page.id === action.payload)
       if (!page) return
 
       state.currentPage = page
     },
-    setPageTitle(state, action) {
-      const [title, id] = action.payload
+    setPageTitle(state, action: PayloadAction<{ title: string; id: number }>) {
+      const { title, id } = action.payload
       const page = state.pages.find(page => page.id === id)
       if (!page) return
 
       state.currentPage.title = title
       page.title = title
     },
-    setPageIcon(state, action) {
-      const { icon, pageId } = action.payload
-      const page = state.pages.find(page => page.id === pageId)
+    setPageIcon(state, action: PayloadAction<{ icon: string; id: number }>) {
+      const { icon, id } = action.payload
+      const page = state.pages.find(page => page.id === id)
       if (!page) return
 
       page.isHasIcon = true
       page.icon = icon
       state.currentPage.isHasIcon = true
-      state.currentPage.icon = action.payload
+      state.currentPage.icon = icon
     },
-    setPageCover(state, action) {
-      const { id, cover } = action.payload
+    setPageCover(state, action: PayloadAction<{ cover: any; id: number }>) {
+      const { cover, id } = action.payload //!
       const page = state.pages.find(page => page.id === id)
       if (!page) return
 
@@ -232,6 +248,7 @@ export const workSpaceSlice = createSlice({
 export const {
   createNewPage,
   deletePage,
+  duplicatePage,
   setCurrentPage,
   setPageTitle,
   setPageCover,

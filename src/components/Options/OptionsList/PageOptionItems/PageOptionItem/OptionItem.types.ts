@@ -3,7 +3,7 @@ import { ActiveListItem } from '../../../../../@types/generalTypes'
 
 interface OptionItemProps extends ActiveListItem {
   title: string
-  IconSVG: FC
+  IconSvg: FC
   action: () => void
 }
 

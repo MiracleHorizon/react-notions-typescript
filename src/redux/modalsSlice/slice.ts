@@ -6,6 +6,7 @@ const initialState: IAppModalsState = {
   isChangePageTitleModalOpen: false,
   isQuickSearchModalOpen: false,
   isMovePageToModalOpen: false,
+  isPagesTrashModalOpen: false,
   pageOptionsModal: {
     isOpen: false,
     options: [],

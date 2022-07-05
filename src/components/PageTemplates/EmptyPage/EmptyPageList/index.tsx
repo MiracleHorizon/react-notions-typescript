@@ -1,5 +1,5 @@
 import React from 'react'
-import EmptyPageItem from '../EmptyPageItem/EmptyPageItem'
+import EmptyPageItem from '../EmptyPageItem'
 import { EmptyPageListProps } from './EmptyPageList.types'
 import { StyledList } from './EmptyPageList.styles'
 

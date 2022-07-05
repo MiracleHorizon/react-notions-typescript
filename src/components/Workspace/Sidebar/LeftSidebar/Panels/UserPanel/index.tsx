@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ToggleSidebarButton from 'shared/Buttons/ToggleSidebar/ToggleSidebarButton'
+import ToggleSidebarButton from 'shared/Buttons/ToggleSidebar'
 import { UserPanelProps } from './UserPanel.types'
 import { ToggleSidebarBtnPurposes as Purposes } from 'shared/Buttons/ToggleSidebar/ToggleSidebarButton.types'
 import { ACCOUNT_NAME } from 'utils/accountName' //!

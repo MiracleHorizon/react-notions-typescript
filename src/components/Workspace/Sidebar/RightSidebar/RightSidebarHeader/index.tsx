@@ -1,5 +1,5 @@
 import React from 'react'
-import CommentsFilter from './CommentsFilter/CommentsFilter'
+import CommentsFilter from './CommentsFilter'
 import { Wrapper, Header, Title } from './RightSidebarHeader.styles'
 
 const RightSidebarHeader: React.FC = () => (

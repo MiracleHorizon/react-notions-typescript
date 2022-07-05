@@ -2,29 +2,30 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import PageOptionItem from './PageOptionItem'
-import { UnfavoriteStarSVG } from 'shared/SVG'
+import { DeleteTrashSVG } from 'shared/SVG'
 import { closePageOptionsModal } from 'redux/modalsSlice/slice'
 import { pageOptionsModalSelector } from 'redux/modalsSlice/selectors'
-import { addToFavorite } from 'redux/workSpaceSlice/slice'
+import { deletePage } from 'redux/workSpaceSlice/slice'
 import { ActiveListItem } from '../../../../@types/generalTypes'
 
-const AddFavoriteItem: React.FC<ActiveListItem> = props => {
+const DeleteItem: React.FC<ActiveListItem> = props => {
   const pageId = useSelector(pageOptionsModalSelector).pageId
   const dispatch = useDispatch()
 
-  const onAddToFavorite = (): void => {
-    dispatch(closePageOptionsModal()) //*
-    dispatch(addToFavorite(pageId))
+  const onDeletePage = (): void => {
+    dispatch(closePageOptionsModal())
+    dispatch(deletePage(pageId))
   }
+  const onDeleteNotion = (): void => {}
 
   return (
     <PageOptionItem
-      title='Add to Favorites'
-      IconSvg={UnfavoriteStarSVG}
-      action={onAddToFavorite}
+      title='Delete'
+      IconSvg={DeleteTrashSVG}
+      action={onDeletePage}
       {...props}
     />
   )
 }
 
-export default AddFavoriteItem
+export default DeleteItem

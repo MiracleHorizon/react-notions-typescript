@@ -4,9 +4,9 @@ import { useOnClickOutside } from 'usehooks-ts'
 import { useInput } from 'hooks/useInput/useInput'
 import { useSelectItem } from 'hooks/useSelectItem'
 
-import Modal from '../Modal'
-import OutlineInput from '../../Inputs/OutlineInput'
 import MovePageToModalItem from './MovePageToModalItem/MovePageToModalItem'
+import Modal from '../ModalWrapper'
+import OutlineInput from 'shared/Inputs/OutlineInput'
 import {
   currentPageSelector,
   workspacePagesSelector,
@@ -87,6 +87,7 @@ const MovePageToModal: React.FC<{ coords: IElementCoords }> = ({ coords }) => {
           </Container>
         </StyledModal>
       </Modal>
+      {/*{<MoveToTrashButton isActive={} />}*/}
     </Fragment>
   )
 }

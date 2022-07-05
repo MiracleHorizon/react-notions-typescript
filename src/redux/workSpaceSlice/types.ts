@@ -58,7 +58,7 @@ interface IPageOptions {
 interface WorkspaceSliceState {
   pages: IWorkspacePage[] | []
   currentPage: IWorkspacePage
-  options?: IPageOptions
+  recentlyDeleted: IWorkspacePage[] | []
 }
 
 export type { WorkspaceSliceState, IWorkspacePage, IComment }

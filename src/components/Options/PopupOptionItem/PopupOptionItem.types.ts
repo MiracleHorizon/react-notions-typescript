@@ -6,6 +6,4 @@ interface PopupOptionItemProps extends ActiveListItem {
   action: () => void
 }
 
-interface StyledContainerProps {}
-
 export type { PopupOptionItemProps }

@@ -29,8 +29,9 @@ const ChangePageTitleModal: React.FC<IPageTitleModalCoords> = ({ coords }) => {
 
   const onChangePageTitle = (): void => {
     if (!inputRef.current) return
+    const pageTitle = inputRef.current.value
 
-    dispatch(setPageTitle([inputRef.current.value, id]))
+    dispatch(setPageTitle({ title: pageTitle, id }))
   }
   const onChangePageIcon = (): void => {
     // dispatch(setPageIcon(''))

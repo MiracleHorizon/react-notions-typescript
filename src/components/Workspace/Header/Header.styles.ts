@@ -33,6 +33,7 @@ const PageTitleBlock = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 300px;
   padding: 3px 7px;
   border-radius: 3px;
 
@@ -54,11 +55,14 @@ const PageIcon = styled.img`
   pointer-events: none;
 `
 
-const PageTitle = styled.h4`
+const PageTitle = styled.p`
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
   color: #37352f;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `
 
 export { Wrapper, Container, HeaderPanel, PageTitleBlock, PageTitle, PageIcon }

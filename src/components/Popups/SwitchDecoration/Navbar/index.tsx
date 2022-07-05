@@ -2,8 +2,8 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as _ from 'lodash'
 
+import SwitchDecorationNavbarItem from './NavbarItem'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
-import { getAllCovers } from 'utils/helpers/getAllCovers'
 import { coversListsSelector } from 'redux/pageDecorationSlice/selectors'
 import {
   removeCover,
@@ -11,16 +11,16 @@ import {
   setPageCover,
   setPageIcon,
 } from 'redux/workSpaceSlice/slice'
-import coverSvg from 'assets/img/cover.svg'
-import smileSvg from 'assets/img/smile.svg'
-import styles from './Navbar.module.scss'
-import SwitchDecorationNavbarItem from './NavbarItem'
 import {
   refreshCoverCategory,
   refreshIconCategory,
   setIsCoverModalClose,
   setIsIconModalClose,
 } from 'redux/pageDecorationSlice/slice'
+import { getAllCovers } from 'utils/helpers/getAllCovers'
+import coverSvg from 'assets/img/cover.svg'
+import smileSvg from 'assets/img/smile.svg'
+import styles from './Navbar.module.scss'
 
 enum DecorPurposes {
   COVER = 'cover',
@@ -47,7 +47,7 @@ const SwitchDecorationNavbar: React.FC<SwitchDecorationNavbarProps> = props => {
         dispatch(refreshCoverCategory())
         break
       case DecorPurposes.ICON:
-        dispatch(setPageIcon(''))
+        dispatch(setPageIcon({ icon: '', id }))
         dispatch(setIsIconModalClose())
         dispatch(refreshIconCategory())
         break

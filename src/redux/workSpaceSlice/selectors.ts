@@ -1,11 +1,11 @@
 import { RootState } from '../store'
 import { IWorkspacePage } from './types'
 
-const workspacePagesSelector = (state: RootState): IWorkspacePage[] | [] => {
-  return state.workspace.pages
-}
 const currentPageSelector = (state: RootState): IWorkspacePage => {
   return state.workspace.currentPage
+}
+const workspacePagesSelector = (state: RootState): IWorkspacePage[] | [] => {
+  return state.workspace.pages
 }
 const favoritePagesSelector = (state: RootState): IWorkspacePage[] | [] => {
   return state.workspace.pages.filter(page => page.isFavorite)
@@ -13,10 +13,16 @@ const favoritePagesSelector = (state: RootState): IWorkspacePage[] | [] => {
 const commonPagesSelector = (state: RootState): IWorkspacePage[] | [] => {
   return state.workspace.pages.filter(page => !page.isFavorite)
 }
+const recentlyDeletedPagesSelector = (
+  state: RootState
+): IWorkspacePage[] | [] => {
+  return state.workspace.recentlyDeleted
+}
 
 export {
-  workspacePagesSelector,
   currentPageSelector,
+  workspacePagesSelector,
   favoritePagesSelector,
   commonPagesSelector,
+  recentlyDeletedPagesSelector,
 }

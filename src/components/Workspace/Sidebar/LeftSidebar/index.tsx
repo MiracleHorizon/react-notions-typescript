@@ -2,13 +2,16 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 
-import UserPanel from './Panels/UserPanel/UserPanel'
-import AppOptionsPanel from './Panels/AppOptionsPanel/AppOptionsPanel'
+import UserPanel from './Panels/UserPanel'
+import AppOptionsPanel from './Panels/AppOptionsPanel'
 import FavoritePagesList from './PagesList/FavoritePagesList'
 import CommonPagesList from './PagesList/CommonPagesList'
-import AddNewPagePanel from './Panels/AddNewPagePanel/AddNewPagePanel'
+import AddNewPagePanel from './Panels/AddNewPagePanel'
 import PagesListOptionsModal from 'shared/ModalWindows/PagesListOptions'
-import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
+import {
+  currentPageSelector,
+  favoritePagesSelector,
+} from 'redux/workSpaceSlice/selectors'
 import { leftSidebarSelector } from 'redux/sidebarsSlice/selectors'
 import { setActivePage } from 'redux/sidebarsSlice/slice'
 import { pageOptionsModalSelector } from 'redux/modalsSlice/selectors'
@@ -25,6 +28,7 @@ const LeftSidebar: React.FC = () => {
   const [width, setWidth] = useState<number>(300)
   const { id, title } = useSelector(currentPageSelector)
   const { isOpen, isBubbling, location } = useSelector(leftSidebarSelector)
+  const isHasFavoritePages = useSelector(favoritePagesSelector).length > 0
   const dispatch = useDispatch()
 
   const resizerRef = useRef<HTMLDivElement>(null)
@@ -45,7 +49,7 @@ const LeftSidebar: React.FC = () => {
         <AppOptionsPanel />
         <ShadowSeparator />
         <Content>
-          <FavoritePagesList />
+          {isHasFavoritePages && <FavoritePagesList />}
           <CommonPagesList />
         </Content>
         <AddNewPagePanel />

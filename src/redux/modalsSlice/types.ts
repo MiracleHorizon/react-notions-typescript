@@ -16,6 +16,7 @@ interface IAppModalsState {
   isChangePageTitleModalOpen: boolean
   isQuickSearchModalOpen: boolean
   isMovePageToModalOpen: boolean
+  isPagesTrashModalOpen: boolean
   pageOptionsModal: PageOptionsModal
 }
 

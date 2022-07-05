@@ -4,7 +4,7 @@ import { useOnClickOutside } from 'usehooks-ts'
 import { useSelectItem } from 'hooks/useSelectItem'
 
 import DropdownItem from 'shared/Dropdowns/DropdownItem/DropdownItem'
-import Modal from 'shared/ModalWindows/Modal'
+import Modal from 'shared/ModalWindows/ModalWrapper'
 import ChevronDownSVG from 'shared/SVG/ChevronDown'
 import { CommentsFilters } from 'redux/sidebarsSlice/types'
 import { activeCommentsFilterSelector } from 'redux/sidebarsSlice/selectors'

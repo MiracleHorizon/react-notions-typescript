@@ -3,7 +3,7 @@ import React from 'react'
 import {
   RemoveFavoriteItem,
   CopyPageLinkItem,
-  RenamePageItem,
+  RenameItem,
 } from '../PageOptionItems'
 import { ActiveListItem } from '../../../../@types/generalTypes'
 import StyledList from '../OptionsList.styles'
@@ -13,7 +13,7 @@ const FavoritePageOptions: React.FC<ActiveListItem> = props => {
     <StyledList>
       <RemoveFavoriteItem {...props} />
       <CopyPageLinkItem {...props} />
-      <RenamePageItem {...props} />
+      <RenameItem {...props} />
     </StyledList>
   )
 }

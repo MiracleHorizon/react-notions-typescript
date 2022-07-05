@@ -1,9 +1,9 @@
 import React from 'react'
 
 import {
-  DeletePageItem,
+  DeleteItem,
   AddFavoriteItem,
-  DuplicatePageItem,
+  DuplicateItem,
   CopyPageLinkItem,
 } from '../PageOptionItems'
 import { ActiveListItem } from '../../../../@types/generalTypes'
@@ -12,9 +12,9 @@ import StyledList from '../OptionsList.styles'
 const CommonPageOptions: React.FC<ActiveListItem> = props => {
   return (
     <StyledList>
-      <DeletePageItem {...props} />
+      <DeleteItem {...props} />
       <AddFavoriteItem {...props} />
-      <DuplicatePageItem {...props} />
+      <DuplicateItem {...props} />
       <CopyPageLinkItem {...props} />
     </StyledList>
   )

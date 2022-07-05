@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as _ from 'lodash'
 
-import PageDecorOption from './PageDecorOption/PageDecorOption'
+import PageDecorOption from './PageDecorOption'
 import SwitchPageIconModal from 'shared/ModalWindows/SwitchIcon'
 import AddIconSVG from 'shared/SVG/AddIcon'
 import AddCoverSVG from 'shared/SVG/AddCover'

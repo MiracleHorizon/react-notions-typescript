@@ -4,7 +4,7 @@ import { OptionItemProps } from './OptionItem.types'
 import { StyledItem, Title } from './OptionItem.styles'
 
 const PageOptionItem: React.FC<OptionItemProps> = props => {
-  const { title, IconSVG, action, activeItem, onSelect } = props
+  const { title, IconSvg, action, activeItem, onSelect } = props
   const isActive = activeItem === title
 
   return (
@@ -13,7 +13,7 @@ const PageOptionItem: React.FC<OptionItemProps> = props => {
       onClick={action}
       onMouseEnter={() => onSelect(title)}
     >
-      <IconSVG />
+      <IconSvg />
       <Title>{title}</Title>
     </StyledItem>
   )

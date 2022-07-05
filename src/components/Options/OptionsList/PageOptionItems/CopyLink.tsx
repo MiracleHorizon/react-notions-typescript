@@ -1,25 +1,29 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import PageOptionItem from './PageOptionItem'
 import { LinkSVG } from 'shared/SVG'
 import { closePageOptionsModal } from 'redux/modalsSlice/slice'
+import { pageOptionsModalSelector } from 'redux/modalsSlice/selectors'
 import { ActiveListItem } from '../../../../@types/generalTypes'
 
-const CopyPageLinkItem: React.FC<ActiveListItem> = props => {
+const CopyLinkItem: React.FC<ActiveListItem> = props => {
+  const pageId = useSelector(pageOptionsModalSelector).pageId
   const dispatch = useDispatch()
+
   const onCopyPageLink = (): void => {
     dispatch(closePageOptionsModal())
+    // ...
   }
 
   return (
     <PageOptionItem
       title='Copy link'
-      IconSVG={LinkSVG}
+      IconSvg={LinkSVG}
       action={onCopyPageLink}
       {...props}
     />
   )
 }
 
-export default CopyPageLinkItem
+export default CopyLinkItem

@@ -2,11 +2,11 @@ import React, { useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 import { useToggle } from 'hooks/useToggle'
-import { useTooltipTitle } from 'hooks/useTooltipTitle'
+import { useSetTooltipTitle } from 'hooks/useSetTooltipTitle'
 import { useCreateNewPage } from 'hooks/useCreateNewPage'
 
-import PagesList from './PagesList'
-import ListTitle from './ListTitle'
+import PagesList from './index'
+import PagesListTitle from './ListTitle'
 import AddNewPageButton from 'shared/Buttons/AddNewPage'
 import Tooltip from 'shared/Tooltip'
 import {
@@ -20,7 +20,7 @@ const CommonPagesList: React.FC = () => {
   const { isOpen, toggleIsOpen } = useToggle(true)
   const commonPages = useSelector(commonPagesSelector)
   const onCreateNewPage = useCreateNewPage(id)
-  const tooltipTitle = useTooltipTitle(isOpen)
+  const tooltipTitle = useSetTooltipTitle(isOpen)
 
   const listTitleRef = useRef<HTMLDivElement>(null)
   const isListTitleHovering = useHover(listTitleRef)
@@ -30,7 +30,7 @@ const CommonPagesList: React.FC = () => {
 
   return (
     <Wrapper ref={listRef}>
-      <ListTitle
+      <PagesListTitle
         title='Common'
         reference={listTitleRef}
         toggleList={toggleIsOpen}

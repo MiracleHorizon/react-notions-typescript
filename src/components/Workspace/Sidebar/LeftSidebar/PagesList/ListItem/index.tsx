@@ -4,7 +4,7 @@ import { useHover } from 'usehooks-ts'
 import { useToggle } from 'hooks/useToggle'
 
 import Tooltip from 'shared/Tooltip'
-import ListItemOptionsButton from 'shared/Buttons/ListItemOptions'
+import PagesListItemOptionsButton from 'shared/Buttons/PagesListItemOptions'
 import AddNewPageButton from 'shared/Buttons/AddNewPage'
 import EmptyPageIconSVG from 'shared/SVG/EmptyPage'
 import TriangleSVG from 'shared/SVG/Triangle'
@@ -21,8 +21,8 @@ import {
   ToggleIconBlock,
 } from './ListItem.styles'
 
-const SidebarListItem: React.FC<SidebarListItemProps> = ({ page }) => {
-  const { id, title, icon, isHasIcon, isFavorite } = page // isChild.
+const PagesListItem: React.FC<SidebarListItemProps> = ({ page }) => {
+  const { id, title, icon, isHasIcon, isFavorite } = page //* isChild.
   const { isOpen, toggleIsOpen } = useToggle(false)
   const listItemOptionsTitle = isFavorite
     ? ListItemOptions.FAVORITE
@@ -51,19 +51,22 @@ const SidebarListItem: React.FC<SidebarListItemProps> = ({ page }) => {
     e.stopPropagation()
     toggleIsOpen()
   }
+  const onChangePageIcon = (e: React.MouseEvent): void => {
+    e.stopPropagation()
+  }
 
   return (
     <StyledItem
       draggable={true}
       ref={itemRef}
-      isActive={isActive}
+      {...{ isActive, isHovering }}
       onClick={onSelectCurrentPage}
     >
       <ToggleIconBlock isChild={false} onClick={onTogglePageContent}>
         <TriangleSVG isOpen={isOpen} />
       </ToggleIconBlock>
       <Information>
-        <IconBlock ref={iconRef}>
+        <IconBlock ref={iconRef} onClick={onChangePageIcon}>
           {isHasIcon ? (
             <PageIcon src={icon} alt='Page icon' />
           ) : (
@@ -82,7 +85,7 @@ const SidebarListItem: React.FC<SidebarListItemProps> = ({ page }) => {
       </Information>
       {isHovering && (
         <Fragment>
-          <ListItemOptionsButton id={id} title={listItemOptionsTitle} />
+          <PagesListItemOptionsButton id={id} title={listItemOptionsTitle} />
           <AddNewPageButton
             coords={{ top: '4px', right: '8px' }}
             tooltipTitle='Quickly add a page inside'
@@ -94,4 +97,4 @@ const SidebarListItem: React.FC<SidebarListItemProps> = ({ page }) => {
   )
 }
 
-export default SidebarListItem
+export default PagesListItem

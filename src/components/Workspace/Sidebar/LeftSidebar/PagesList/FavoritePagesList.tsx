@@ -2,10 +2,10 @@ import React, { useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 import { useToggle } from 'hooks/useToggle'
-import { useTooltipTitle } from 'hooks/useTooltipTitle'
+import { useSetTooltipTitle } from 'hooks/useSetTooltipTitle'
 
-import PagesList from './PagesList'
-import ListTitle from './ListTitle'
+import PagesList from './index'
+import PagesListTitle from './ListTitle'
 import Tooltip from 'shared/Tooltip'
 import { favoritePagesSelector } from 'redux/workSpaceSlice/selectors'
 import { Wrapper } from './PagesList.styles'
@@ -13,14 +13,14 @@ import { Wrapper } from './PagesList.styles'
 const FavoritePagesList: React.FC = () => {
   const { isOpen, toggleIsOpen } = useToggle(true)
   const favoritePages = useSelector(favoritePagesSelector)
-  const tooltipTitle = useTooltipTitle(isOpen)
+  const tooltipTitle = useSetTooltipTitle(isOpen)
 
   const listTitleRef = useRef<HTMLDivElement>(null)
   const isListTitleHovering = useHover(listTitleRef)
 
   return (
     <Wrapper>
-      <ListTitle
+      <PagesListTitle
         title='Favorites'
         reference={listTitleRef}
         toggleList={toggleIsOpen}
