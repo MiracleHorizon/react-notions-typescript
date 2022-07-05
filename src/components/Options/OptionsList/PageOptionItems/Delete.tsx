@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import PageOptionItem from './PageOptionItem'
-import { DeleteTrashSVG } from 'shared/SVG'
+import { DeleteTrashSvg } from 'shared/SVG'
 import { closePageOptionsModal } from 'redux/modalsSlice/slice'
 import { pageOptionsModalSelector } from 'redux/modalsSlice/selectors'
 import { deletePage } from 'redux/workSpaceSlice/slice'
@@ -21,7 +21,7 @@ const DeleteItem: React.FC<ActiveListItem> = props => {
   return (
     <PageOptionItem
       title='Delete'
-      IconSvg={DeleteTrashSVG}
+      IconSvg={DeleteTrashSvg}
       action={onDeletePage}
       {...props}
     />

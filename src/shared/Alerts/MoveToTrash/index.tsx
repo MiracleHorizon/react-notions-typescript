@@ -7,9 +7,9 @@ import {
   Title,
   UndoButtonContainer,
   UndoTitle,
-} from './MoveToTrashButton.styles'
+} from './MoveToTrashAlert.styles'
 
-const MoveToTrashButton: React.FC<{ isActive: boolean }> = ({ isActive }) => {
+const MoveToTrashAlert: React.FC<{ isActive: boolean }> = ({ isActive }) => {
   return createPortal(
     <StyledContainer {...{ isActive }}>
       <TitleBlock>
@@ -23,4 +23,4 @@ const MoveToTrashButton: React.FC<{ isActive: boolean }> = ({ isActive }) => {
   )
 }
 
-export default MoveToTrashButton
+export default MoveToTrashAlert

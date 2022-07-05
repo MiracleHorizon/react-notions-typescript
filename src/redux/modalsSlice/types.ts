@@ -1,4 +1,4 @@
-import { IElementCoords } from '../../@types/generalTypes'
+import { ElementCoords } from '../../@types/generalTypes'
 
 enum PageOptionsEnum {
   FAVORITES = 'Favorites',
@@ -8,7 +8,7 @@ enum PageOptionsEnum {
 interface PageOptionsModal {
   isOpen: boolean
   options: PageOptionsEnum | []
-  coords: IElementCoords
+  coords: ElementCoords
   pageId: number
 }
 

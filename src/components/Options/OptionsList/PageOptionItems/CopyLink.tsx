@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import PageOptionItem from './PageOptionItem'
-import { LinkSVG } from 'shared/SVG'
+import { LinkSvg } from 'shared/SVG'
 import { closePageOptionsModal } from 'redux/modalsSlice/slice'
 import { pageOptionsModalSelector } from 'redux/modalsSlice/selectors'
 import { ActiveListItem } from '../../../../@types/generalTypes'
@@ -19,7 +19,7 @@ const CopyLinkItem: React.FC<ActiveListItem> = props => {
   return (
     <PageOptionItem
       title='Copy link'
-      IconSvg={LinkSVG}
+      IconSvg={LinkSvg}
       action={onCopyPageLink}
       {...props}
     />

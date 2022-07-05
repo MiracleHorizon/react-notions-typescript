@@ -2,14 +2,14 @@ import React, { useRef } from 'react'
 import { useHover } from 'usehooks-ts'
 
 import Tooltip from '../../Tooltip'
-import { IElementCoords } from '../../../@types/generalTypes'
+import { ElementCoords } from '../../../@types/generalTypes'
 import addPageSvg from 'assets/img/plus-addPage.svg'
 import { StyledButton, Icon } from './AddNewPageButton.styles'
 
 interface AddNewPageButtonProps {
   tooltipTitle?: string
   tooltipDescription?: string
-  coords: IElementCoords
+  coords: ElementCoords
   onClickAction: (e: React.MouseEvent) => void
 }
 

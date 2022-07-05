@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { RecentSearchState } from './types'
-import reactSvg from '../../assets/img/technologies/react.svg'
+import reactSvg from 'assets/img/technologies/react.svg'
 
 const initialState: RecentSearchState = {
   pages: [

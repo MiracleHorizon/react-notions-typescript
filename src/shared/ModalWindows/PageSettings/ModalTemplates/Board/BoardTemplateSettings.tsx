@@ -71,14 +71,14 @@ const BoardPageSettingsModal: React.FC = () => {
       <StyledList>
         <PopupOptionItem
           title='Customize page'
-          SVGComponent={<CustomizePageSVG />}
+          icon={<CustomizePageSVG />}
           action={onOpenPageCustomizer}
           activeItem={activeItem}
           onSelect={onSelectItem}
         />
         <PopupOptionItem
           title={isLocked ? 'Unlock page' : 'Lock page'}
-          SVGComponent={isLocked ? <UnlockPageSVG /> : <LockPageSVG />}
+          icon={isLocked ? <UnlockPageSVG /> : <LockPageSVG />}
           action={isLocked ? onUnlockPage : onLockPage}
           activeItem={activeItem}
           onSelect={onSelectItem}
@@ -88,7 +88,7 @@ const BoardPageSettingsModal: React.FC = () => {
       <StyledList>
         <PopupOptionItem
           title={isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
-          SVGComponent={
+          icon={
             isFavorite ? (
               <RemoveFavoriteSVG />
             ) : (
@@ -101,7 +101,7 @@ const BoardPageSettingsModal: React.FC = () => {
         />
         <PopupOptionItem
           title='Copy link'
-          SVGComponent={<LinkSVG />}
+          icon={<LinkSVG />}
           action={onCopyPageLink}
           activeItem={activeItem}
           onSelect={onSelectItem}
@@ -111,7 +111,7 @@ const BoardPageSettingsModal: React.FC = () => {
       <StyledList>
         <PopupOptionItem
           title='Delete'
-          SVGComponent={<DeleteTrashSVG />}
+          icon={<DeleteTrashSVG />}
           action={onDeletePage}
           activeItem={activeItem}
           onSelect={onSelectItem}

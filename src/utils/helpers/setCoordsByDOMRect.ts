@@ -1,13 +1,13 @@
-import { ElementPositions, IElementCoords } from '../../@types/generalTypes'
+import { ElementPositions, ElementCoords } from '../../@types/generalTypes'
 
 interface Params {
   element: HTMLElement | null
   requiredProperties: ElementPositions[] | ElementPositions
 }
 
-type Result = IElementCoords | null
+type Result = ElementCoords | null
 
-const setCoordsByDOMRect = (params: Params): IElementCoords => {
+const setCoordsByDOMRect = (params: Params): ElementCoords => {
   const { element, requiredProperties } = params
   if (!element) return {}
 

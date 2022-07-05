@@ -1,7 +1,7 @@
-import { IElementCoords } from '../../../@types/generalTypes'
+import { ElementCoords } from '../../../@types/generalTypes'
 
 interface PagesListOptionsProps {
-  coords: IElementCoords
+  coords: ElementCoords
 }
 
 export type { PagesListOptionsProps }

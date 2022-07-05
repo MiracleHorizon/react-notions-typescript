@@ -8,6 +8,7 @@ import recentSearch from './recentSearchSlice/slice'
 // import options from './optionsSlice/slice'
 import popups from './popupsSlice/slice'
 import modals from './modalsSlice/slice'
+import alerts from './alertsSlice/slice'
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     // options,
     modals,
     popups,
+    alerts,
   },
 })
 

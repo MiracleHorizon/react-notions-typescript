@@ -11,17 +11,16 @@ import PageChangesBar from 'shared/PageChangesBar'
 import Separator from 'shared/Separator'
 import { closePageOptionsModal } from 'redux/modalsSlice/slice'
 import { pageOptionsModalSelector } from 'redux/modalsSlice/selectors'
-import { PagesListOptionsProps } from './PagesListOptions.types'
 import { PageOptionsEnum } from 'redux/modalsSlice/types'
 import {
   StyledModalContainer,
   MoveToItemContainer,
 } from './PagesListOptions.styles'
 
-const PagesListOptionsModal: React.FC<PagesListOptionsProps> = ({ coords }) => {
+const PagesListOptionsModal: React.FC = () => {
   const { activeItem, onSelectItem } = useSelectItem('')
+  const { options, coords } = useSelector(pageOptionsModalSelector)
   const modalRef = useRef<HTMLDivElement>(null)
-  const options = useSelector(pageOptionsModalSelector).options
   const dispatch = useDispatch()
 
   const handleClickOutside = (): void => {

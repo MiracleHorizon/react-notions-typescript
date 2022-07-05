@@ -1,11 +1,12 @@
 import React from 'react'
+import { SVGSizes } from './types'
 
-const DeleteTrashSVG: React.FC = () => (
+const DeleteTrashSVG: React.FC<{ sizes?: SVGSizes }> = ({ sizes }) => (
   <svg
     viewBox='0 0 16 16'
     style={{
-      width: 16,
-      height: 16,
+      width: sizes ? sizes.width : 16,
+      height: sizes ? sizes.height : 16,
       display: 'block',
       fill: 'rgba(55, 53, 47, 0.85)',
       flexShrink: 0,

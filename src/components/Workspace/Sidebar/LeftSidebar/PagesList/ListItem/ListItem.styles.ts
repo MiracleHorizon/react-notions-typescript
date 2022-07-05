@@ -11,6 +11,7 @@ const StyledItem = styled.li<{ isActive: boolean; isHovering: boolean }>`
   margin: 2px 0;
   border-radius: 3px;
   background: ${props => props.isActive && 'rgba(55, 53, 47, 0.08)'};
+  transition: background 50ms ease-in-out;
 
   p {
     ${props => (props.isHovering ? 'max-width: 65%;' : 'max-width: 85%;')};
@@ -18,11 +19,9 @@ const StyledItem = styled.li<{ isActive: boolean; isHovering: boolean }>`
 
   :hover {
     background: rgba(55, 53, 47, 0.08);
-    transition: background 0.1s ease-in-out;
   }
   :active {
     background: rgba(55, 53, 47, 0.16);
-    transition: background 0.1s ease-in-out;
   }
 `
 
@@ -37,14 +36,13 @@ const ToggleIconBlock = styled.div<{ isChild: boolean }>`
   padding-left: 1px;
   border-radius: 3px;
   user-select: none;
+  transition: background 50ms ease-in-out;
 
   :hover {
     background: rgba(55, 53, 47, 0.08);
-    transition: background 0.1s ease-in-out;
   }
   :active {
     background: rgba(55, 53, 47, 0.16);
-    transition: background 0.1s ease-in-out;
   }
 `
 
@@ -53,32 +51,6 @@ const Information = styled.div`
   align-items: center;
   width: 100%;
   overflow: hidden;
-`
-
-const IconBlock = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  margin-right: 5px;
-  border-radius: 3px;
-
-  :hover {
-    background: rgba(55, 53, 47, 0.08);
-    transition: background 0.1s ease-in-out;
-  }
-  :active {
-    background: rgba(55, 53, 47, 0.16);
-    transition: background 0.1s ease-in-out;
-  }
-`
-
-const PageIcon = styled.img`
-  width: 17px;
-  height: 17px;
-  object-fit: cover;
 `
 
 const Title = styled.p<{ isActive: boolean }>`
@@ -93,4 +65,4 @@ const Title = styled.p<{ isActive: boolean }>`
     props.isActive ? 'rgb(55, 53, 47)' : 'rgba(55, 53, 47, 0.65)'};
 `
 
-export { StyledItem, ToggleIconBlock, Information, IconBlock, PageIcon, Title }
+export { StyledItem, ToggleIconBlock, Information, Title }

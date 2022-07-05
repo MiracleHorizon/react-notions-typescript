@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { IElementCoords } from '../../@types/generalTypes'
+import { ElementCoords } from '../../@types/generalTypes'
 
-const TooltipWrapper = styled.div<IElementCoords>`
+const TooltipWrapper = styled.div<ElementCoords>`
   position: absolute;
   top: ${props => props.top};
   bottom: ${props => props.bottom};
@@ -15,7 +15,7 @@ const TooltipWrapper = styled.div<IElementCoords>`
   padding: 3px 7px;
   border-radius: 3px;
   background: #1c1c1c;
-  z-index: 100;
+  z-index: 2000;
 
   h5,
   p {

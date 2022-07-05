@@ -14,6 +14,7 @@ const Wrapper = styled.div<SidebarWrapperProps>`
   flex-grow: 0;
   flex-shrink: 0;
   width: ${props => (!props.isOpen ? 0 : props.width + 'px')};
+  //width: ${props => props.width};
   max-width: 480px;
   min-width: ${props => {
     if (props.location === SidebarLocations.LEFT) {
@@ -48,9 +49,10 @@ const Wrapper = styled.div<SidebarWrapperProps>`
     }}
   );
   z-index: 10;
-  transition: width 0.4s ease-in-out, min-width 0.4s ease-in-out,
-    opacity 0.1s ease-in-out, transform 0.4s ease-in-out;
+  transition: width 0.3s ease-in-out, min-width 0.3s ease-in-out,
+    opacity 0.5s ease-in-out;
 `
+// , transform 0.1s ease-in-out
 
 const Container = styled.div`
   position: relative;

@@ -6,7 +6,7 @@ import { closePageSettingsPopup } from 'redux/popupsSlice/slice'
 import { StyledContainer, Title } from './PopupOptionItem.styles'
 
 const PopupOptionItem: React.FC<PopupOptionItemProps> = props => {
-  const { title, SVGComponent, action, activeItem, onSelect } = props
+  const { title, icon, action, activeItem, onSelect } = props
   const dispatch = useDispatch()
 
   const onClickAction = (): void => {
@@ -20,7 +20,7 @@ const PopupOptionItem: React.FC<PopupOptionItemProps> = props => {
       onClick={onClickAction}
       onMouseEnter={() => onSelect(title)}
     >
-      {SVGComponent}
+      {icon}
       <Title>{title}</Title>
     </StyledContainer>
   )

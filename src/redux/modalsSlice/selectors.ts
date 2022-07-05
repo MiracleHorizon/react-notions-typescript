@@ -13,10 +13,14 @@ const movePageToModalSelector = (state: RootState): boolean => {
 const pageOptionsModalSelector = (state: RootState): PageOptionsModal => {
   return state.modals.pageOptionsModal
 }
+const pagesTrashPopupSelector = (state: RootState): boolean => {
+  return state.modals.isPagesTrashModalOpen
+}
 
 export {
   changePageTitleModalSelector,
   quickSearchModalSelector,
   movePageToModalSelector,
   pageOptionsModalSelector,
+  pagesTrashPopupSelector,
 }

@@ -1,11 +1,11 @@
 import { SetStateAction } from 'react'
 
 import { IWorkspacePage } from 'redux/workSpaceSlice/types'
-import { IElementCoords } from '../../../../../@types/generalTypes'
+import { ElementCoords } from '../../../../../@types/generalTypes'
 
 interface PagesListProps {
   pages: IWorkspacePage[] | IWorkspacePage
-  setItemCoords?: SetStateAction<IElementCoords>
+  setItemCoords?: SetStateAction<ElementCoords>
 }
 
 export type { PagesListProps }

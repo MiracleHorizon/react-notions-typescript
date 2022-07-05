@@ -17,39 +17,41 @@ import {
   FilterDropdown,
 } from './CommentsFilter.styles'
 
+// tabIndex={0}
+
 const CommentsFilter: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
   const { activeItem, onSelectItem } = useSelectItem('Open comments')
   const activeFilter = useSelector(activeCommentsFilterSelector)
-  const modalRef = useRef<HTMLDivElement>(null)
+  const dropdownRef = useRef<HTMLDivElement>(null)
   const dispatch = useDispatch()
 
-  const onOpenDropdown = (): void => setIsModalOpen(true)
-  const onCloseDropdown = (filter: CommentsFilters): void => {
+  const onOpenDropdown = (): void => setIsDropdownOpen(true)
+  const onSelectFilter = (filter: CommentsFilters): void => {
     dispatch(setCommentsFilter(filter))
-    setIsModalOpen(false)
+    setIsDropdownOpen(false)
   }
+  const handleClickOutside = (): void => setIsDropdownOpen(false)
 
-  const handleClickOutside = (): void => setIsModalOpen(false)
-  useOnClickOutside(modalRef, handleClickOutside)
+  useOnClickOutside(dropdownRef, handleClickOutside)
 
   return (
     <Fragment>
       <StyledContainer>
-        <TitleContainer tabIndex={0} onClick={onOpenDropdown}>
+        <TitleContainer onClick={onOpenDropdown}>
           <FilterTitle>{activeFilter}</FilterTitle>
           <ChevronDownSVG />
         </TitleContainer>
       </StyledContainer>
-      {isModalOpen && (
+      {isDropdownOpen && (
         <Modal>
-          <FilterDropdown ref={modalRef}>
+          <FilterDropdown ref={dropdownRef}>
             {options.map(({ title, description }) => (
               <DropdownItem
                 key={description}
                 {...{ title, description, activeFilter, activeItem }}
                 onSelect={onSelectItem}
-                onClick={onCloseDropdown}
+                onClick={onSelectFilter}
               />
             ))}
           </FilterDropdown>

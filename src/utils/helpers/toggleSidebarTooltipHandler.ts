@@ -3,7 +3,7 @@ import {
   ToggleSidebarBtnPurposes,
 } from 'shared/Buttons/ToggleSidebar/ToggleSidebarButton.types'
 import { SidebarLocations } from 'components/Workspace/Sidebar/Sidebar.types'
-import { IElementCoords } from '../../@types/generalTypes'
+import { ElementCoords } from '../../@types/generalTypes'
 
 interface Params {
   purpose: ToggleSidebarBtnPurposes
@@ -13,18 +13,18 @@ interface Params {
 interface Result {
   title: string
   description: string
-  coords: IElementCoords
+  coords: ElementCoords
 }
 
-const leftOpenButtonTooltipCoords: IElementCoords = {
+const leftOpenButtonTooltipCoords: ElementCoords = {
   top: '10px',
   left: '40px',
 }
-const leftCloseButtonTooltipCoords: IElementCoords = {
+const leftCloseButtonTooltipCoords: ElementCoords = {
   top: '43px',
   right: '-20px',
 }
-const rightCloseButtonTooltipCoords: IElementCoords = {
+const rightCloseButtonTooltipCoords: ElementCoords = {
   top: '43px',
   left: '-20px',
 }
@@ -36,7 +36,7 @@ export const toggleSidebarTooltipHandler = (params: Params): Result => {
     purpose === Purposes.OPEN ? 'Lock sidebar open' : 'Close sidebar'
   const description: string =
     location === SidebarLocations.RIGHT ? 'Shift + /' : '/'
-  let coords: IElementCoords
+  let coords: ElementCoords
 
   purpose === Purposes.OPEN && location === SidebarLocations.LEFT
     ? (coords = leftOpenButtonTooltipCoords)

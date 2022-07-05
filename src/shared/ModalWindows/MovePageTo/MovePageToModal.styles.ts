@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { IElementCoords } from '../../../@types/generalTypes'
+import { ElementCoords } from '../../../@types/generalTypes'
 
-const StyledModal = styled.div<{ coords: IElementCoords }>`
+const StyledModal = styled.div<{ coords: ElementCoords }>`
   position: absolute;
   top: ${props => props.coords?.top};
   bottom: ${props => props.coords?.bottom};

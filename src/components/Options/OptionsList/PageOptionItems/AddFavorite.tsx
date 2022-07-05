@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import PageOptionItem from './PageOptionItem'
-import { UnfavoriteStarSVG } from 'shared/SVG'
+import { UnfavoriteStarSvg } from 'shared/SVG'
 import { closePageOptionsModal } from 'redux/modalsSlice/slice'
 import { pageOptionsModalSelector } from 'redux/modalsSlice/selectors'
 import { addToFavorite } from 'redux/workSpaceSlice/slice'
@@ -20,7 +20,7 @@ const AddFavoriteItem: React.FC<ActiveListItem> = props => {
   return (
     <PageOptionItem
       title='Add to Favorites'
-      IconSvg={UnfavoriteStarSVG}
+      IconSvg={UnfavoriteStarSvg}
       action={onAddToFavorite}
       {...props}
     />

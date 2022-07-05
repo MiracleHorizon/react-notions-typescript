@@ -1,5 +1,5 @@
 import { SidebarLocations } from 'components/Workspace/Sidebar/Sidebar.types'
-import { IElementCoords } from '../../../@types/generalTypes'
+import { ElementCoords } from '../../../@types/generalTypes'
 
 enum ToggleSidebarBtnPurposes {
   OPEN = 'open',
@@ -15,7 +15,7 @@ interface ToggleSidebarBtnProps {
 interface StyledButtonProps {
   purpose: ToggleSidebarBtnPurposes
   properties: {
-    coords: IElementCoords
+    coords: ElementCoords
     imgRotate: number
   }
   isParentHovering: boolean

@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { AppThemes } from '../../@types/generalTypes'
+import { Themes } from '../../@types/generalTypes'
 
-const MoveToSVG: React.FC<{ theme: AppThemes }> = ({ theme }) => {
+const MoveToSVG: React.FC<{ theme: Themes }> = ({ theme }) => {
   return (
     <svg
       viewBox='0 0 16 16'
@@ -10,7 +10,7 @@ const MoveToSVG: React.FC<{ theme: AppThemes }> = ({ theme }) => {
         height: 16,
         display: 'block',
         fill:
-          theme === AppThemes.LIGHT
+          theme === Themes.LIGHT
             ? 'rgba(55, 53, 47, 0.85)'
             : 'rgba(255, 255, 255, 0.81)',
         flexShrink: 0,

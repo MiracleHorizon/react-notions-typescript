@@ -30,7 +30,12 @@ const StyledInput = styled.input`
     box-shadow: rgb(46 170 220 / 70%) 0 0 0 1px inset,
       rgb(46 170 220 / 40%) 0 0 0 2px !important;
   }
+
+  ::placeholder {
+    opacity: 0.6;
+  }
 `
+
 const OutlineInput: React.FC<OutlineInputProps> = props => {
   const { placeholder, inputValue, onChange, onClear } = props
   const inputRef = useRef<HTMLInputElement>(null)

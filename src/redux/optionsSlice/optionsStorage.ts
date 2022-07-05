@@ -1,39 +1,33 @@
-import { EmptyPageOption, IOptionItem, IPageFont } from './types'
-import { PageTemplates } from '../popupsSlice/types'
+import { EmptyPageOption, IPageFont } from './types'
+import { PageTemplates } from 'redux/popupsSlice/types'
 import {
-  TemplatesSVG,
-  CalendarTemplateSVG,
-  BoardTemplateSVG,
-  TableTemplateSVG,
-  EmptyPageIconSVG,
-  EmptyWithIconSVG,
-  TaskListTemplateSVG,
-  RemoveFavoriteSVG,
-  LinkSVG,
-  RenameSVG,
-  DeleteTrashSVG,
-  UnfavoriteStarSVG,
-  DuplicateSVG,
+  TemplatesSvg,
+  CalendarTemplateSvg,
+  BoardTemplateSvg,
+  TableTemplateSvg,
+  EmptyPageIconSvg,
+  EmptyWithIconSvg,
+  TaskListTemplateSvg,
 } from 'shared/SVG'
 
 const EMPTY_PAGE_DECORATION_OPTIONS: EmptyPageOption[] = [
   {
     title: 'Empty with icon',
-    IconSVG: EmptyPageIconSVG,
+    IconSVG: EmptyPageIconSvg,
     action: () => {
       console.log('Empty with icon')
     },
   },
   {
     title: 'Empty',
-    IconSVG: EmptyWithIconSVG,
+    IconSVG: EmptyWithIconSvg,
     action: () => {
       console.log('Empty ')
     },
   },
   {
     title: 'Ready-made templates',
-    IconSVG: TemplatesSVG,
+    IconSVG: TemplatesSvg,
     action: () => {
       console.log('Ready-made templates')
     },
@@ -42,28 +36,28 @@ const EMPTY_PAGE_DECORATION_OPTIONS: EmptyPageOption[] = [
 const EMPTY_PAGE_TEMPLATES_OPTIONS: EmptyPageOption[] = [
   {
     title: PageTemplates.BOARD,
-    IconSVG: BoardTemplateSVG,
+    IconSVG: BoardTemplateSvg,
     action: () => {
       console.log('Board')
     },
   },
   {
     title: PageTemplates.TASK_LIST,
-    IconSVG: TaskListTemplateSVG,
+    IconSVG: TaskListTemplateSvg,
     action: () => {
       console.log('Task List')
     },
   },
   {
     title: PageTemplates.CALENDAR,
-    IconSVG: CalendarTemplateSVG,
+    IconSVG: CalendarTemplateSvg,
     action: () => {
       console.log('Calendar')
     },
   },
   {
     title: PageTemplates.TABLE,
-    IconSVG: TableTemplateSVG,
+    IconSVG: TableTemplateSvg,
     action: () => {
       console.log('Table')
     },
@@ -79,67 +73,6 @@ const EMPTY_PAGE_OPTIONS_LIST: EmptyPageOption[] = [
   ...EMPTY_PAGE_TEMPLATES_OPTIONS,
 ]
 
-const FAVORITE_PAGE_OPTIONS: IOptionItem[] = [
-  {
-    title: 'Remove from Favorites',
-    IconSVG: RemoveFavoriteSVG,
-    action: () => {
-      console.log('remove favorite')
-    },
-  },
-  {
-    title: 'Copy link',
-    IconSVG: LinkSVG,
-    action: () => {
-      console.log('copy link')
-    },
-  },
-  {
-    title: 'Rename',
-    IconSVG: RenameSVG,
-    action: () => {
-      console.log('rename')
-    },
-  },
-]
-const COMMON_PAGE_OPTIONS: IOptionItem[] = [
-  {
-    title: 'Delete',
-    IconSVG: DeleteTrashSVG,
-    action: () => {
-      console.log('deleted')
-    },
-  },
-  {
-    title: 'Add to Favorites',
-    IconSVG: UnfavoriteStarSVG,
-    action: () => {
-      console.log('add to favorite')
-    },
-  },
-  {
-    title: 'Duplicate',
-    IconSVG: DuplicateSVG,
-    action: () => {
-      console.log('duplicated')
-    },
-  },
-  {
-    title: 'Copy link',
-    IconSVG: LinkSVG,
-    action: () => {
-      console.log('copy link')
-    },
-  },
-  {
-    title: 'Rename',
-    IconSVG: RenameSVG,
-    action: () => {
-      console.log('rename')
-    },
-  },
-]
-
 const PAGE_FONTS: IPageFont[] = [
   { title: 'Default', tooltipTitle: 'The default sans-serif workhorse' },
   { title: 'Serif', tooltipTitle: 'Good for publishing' },
@@ -147,8 +80,6 @@ const PAGE_FONTS: IPageFont[] = [
 ]
 
 export {
-  FAVORITE_PAGE_OPTIONS,
-  COMMON_PAGE_OPTIONS,
   PAGE_FONTS,
   EMPTY_PAGE_DECORATION_OPTIONS,
   EMPTY_PAGE_TEMPLATES_OPTIONS,

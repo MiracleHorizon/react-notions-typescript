@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import PageOptionItem from './PageOptionItem'
-import { RemoveFavoriteSVG } from 'shared/SVG'
+import { RemoveFavoriteSvg } from 'shared/SVG'
 import { closePageOptionsModal } from 'redux/modalsSlice/slice'
 import { pageOptionsModalSelector } from 'redux/modalsSlice/selectors'
 import { removeFavorite } from 'redux/workSpaceSlice/slice'
@@ -20,7 +20,7 @@ const RemoveFavoriteItem: React.FC<ActiveListItem> = props => {
   return (
     <PageOptionItem
       title='Remove from Favorites'
-      IconSvg={RemoveFavoriteSVG}
+      IconSvg={RemoveFavoriteSvg}
       action={onRemoveFavorite}
       {...props}
     />

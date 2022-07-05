@@ -1,14 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
-import { IElementCoords } from '../../@types/generalTypes'
+
+import { ElementCoords } from '../../@types/generalTypes'
 import clearInputSvg from 'assets/img/inputs/clearInput.svg'
 
 interface IClearInputProps {
   action: () => void
-  coords: IElementCoords
+  coords: ElementCoords
 }
 
-const InputBlock = styled.div<IElementCoords>`
+const InputBlock = styled.div<ElementCoords>`
   position: absolute;
   top: ${props => props?.top};
   bottom: ${props => props?.bottom};

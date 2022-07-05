@@ -3,40 +3,34 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 import { useToggle } from 'hooks/useToggle'
 
-import Tooltip from 'shared/Tooltip'
 import PagesListItemOptionsButton from 'shared/Buttons/PagesListItemOptions'
 import AddNewPageButton from 'shared/Buttons/AddNewPage'
-import EmptyPageIconSVG from 'shared/SVG/EmptyPage'
 import TriangleSVG from 'shared/SVG/Triangle'
 import { activePageSelector } from 'redux/sidebarsSlice/selectors'
 import { setCurrentPage } from 'redux/workSpaceSlice/slice'
 import { closeRightSidebar, setActivePage } from 'redux/sidebarsSlice/slice'
 import { ListItemOptions, SidebarListItemProps } from './ListItem.types'
 import {
-  IconBlock,
   Information,
-  PageIcon,
   StyledItem,
   Title,
   ToggleIconBlock,
 } from './ListItem.styles'
+import PagesListItemIcon from './ItemIcon'
 
 const PagesListItem: React.FC<SidebarListItemProps> = ({ page }) => {
   const { id, title, icon, isHasIcon, isFavorite } = page //* isChild.
   const { isOpen, toggleIsOpen } = useToggle(false)
   const listItemOptionsTitle = isFavorite
     ? ListItemOptions.FAVORITE
-    : ListItemOptions.COMMON
+    : ListItemOptions.COMMON //* Переработать.
   const dispatch = useDispatch()
 
   const activePage = useSelector(activePageSelector)
-  const isActive = activePage.title === title && activePage.id === id
+  const isActive: boolean = activePage.title === title && activePage.id === id
 
   const itemRef = useRef<HTMLLIElement>(null)
-  const isHovering = useHover(itemRef)
-
-  const iconRef = useRef<HTMLDivElement>(null)
-  const isPageIconHovering = useHover(iconRef)
+  const isHovering: boolean = useHover(itemRef)
 
   const onSelectCurrentPage = (): void => {
     dispatch(setActivePage({ title, id }))
@@ -51,9 +45,6 @@ const PagesListItem: React.FC<SidebarListItemProps> = ({ page }) => {
     e.stopPropagation()
     toggleIsOpen()
   }
-  const onChangePageIcon = (e: React.MouseEvent): void => {
-    e.stopPropagation()
-  }
 
   return (
     <StyledItem
@@ -66,21 +57,7 @@ const PagesListItem: React.FC<SidebarListItemProps> = ({ page }) => {
         <TriangleSVG isOpen={isOpen} />
       </ToggleIconBlock>
       <Information>
-        <IconBlock ref={iconRef} onClick={onChangePageIcon}>
-          {isHasIcon ? (
-            <PageIcon src={icon} alt='Page icon' />
-          ) : (
-            <EmptyPageIconSVG
-              {...{ sizes: { width: 16, height: 16 }, transparency: 0.85 }}
-            />
-          )}
-          {isPageIconHovering && (
-            <Tooltip
-              title='Change icon'
-              coords={{ left: '-30px', top: '25px' }}
-            />
-          )}
-        </IconBlock>
+        <PagesListItemIcon {...{ icon, isHasIcon }} />
         <Title isActive={isActive}>{title}</Title>
       </Information>
       {isHovering && (

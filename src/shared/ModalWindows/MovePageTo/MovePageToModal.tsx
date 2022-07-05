@@ -12,7 +12,7 @@ import {
   workspacePagesSelector,
 } from 'redux/workSpaceSlice/selectors'
 import { closeMovePageToModal } from 'redux/modalsSlice/slice'
-import { IElementCoords } from '../../../@types/generalTypes'
+import { ElementCoords } from '../../../@types/generalTypes'
 import {
   StyledModal,
   Container,
@@ -26,7 +26,7 @@ import {
 } from './MovePageToModal.styles'
 import avatar from 'assets/img/Avatar1.jpg'
 
-const MovePageToModal: React.FC<{ coords: IElementCoords }> = ({ coords }) => {
+const MovePageToModal: React.FC<{ coords: ElementCoords }> = ({ coords }) => {
   const { inputValue, onChangeInputValue, onClearInput } = useInput('')
   const { activeItem, onSelectItem } = useSelectItem('')
   const { id } = useSelector(currentPageSelector)
@@ -87,7 +87,7 @@ const MovePageToModal: React.FC<{ coords: IElementCoords }> = ({ coords }) => {
           </Container>
         </StyledModal>
       </Modal>
-      {/*{<MoveToTrashButton isActive={} />}*/}
+      {/*{<MoveToTrashAlert isActive={} />}*/}
     </Fragment>
   )
 }

@@ -3,7 +3,7 @@ interface ActiveListItem {
   onSelect: (title: string) => void
 }
 
-enum AppThemes {
+enum Themes {
   DARK = 'Dark',
   LIGHT = 'Light',
   SYSTEM = 'System',
@@ -16,12 +16,12 @@ enum ElementPositions {
   RIGHT = 'right',
 }
 
-interface IElementCoords {
+interface ElementCoords {
   top?: string
   bottom?: string
   left?: string
   right?: string
 }
 
-export type { ActiveListItem, IElementCoords }
-export { AppThemes, ElementPositions }
+export type { ActiveListItem, ElementCoords }
+export { Themes, ElementPositions }

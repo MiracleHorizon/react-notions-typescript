@@ -4,9 +4,11 @@ import { useHover } from 'usehooks-ts'
 
 import UserPanel from './Panels/UserPanel'
 import AppOptionsPanel from './Panels/AppOptionsPanel'
+import PagesTrashPanel from './Panels/PagesTrashPanel'
+import AddNewPagePanel from './Panels/AddNewPagePanel'
 import FavoritePagesList from './PagesList/FavoritePagesList'
 import CommonPagesList from './PagesList/CommonPagesList'
-import AddNewPagePanel from './Panels/AddNewPagePanel'
+import PagesTrashPopup from 'components/Popups/PagesTrash'
 import PagesListOptionsModal from 'shared/ModalWindows/PagesListOptions'
 import {
   currentPageSelector,
@@ -14,7 +16,10 @@ import {
 } from 'redux/workSpaceSlice/selectors'
 import { leftSidebarSelector } from 'redux/sidebarsSlice/selectors'
 import { setActivePage } from 'redux/sidebarsSlice/slice'
-import { pageOptionsModalSelector } from 'redux/modalsSlice/selectors'
+import {
+  pageOptionsModalSelector,
+  pagesTrashPopupSelector,
+} from 'redux/modalsSlice/selectors'
 import {
   Wrapper,
   Container,
@@ -29,14 +34,13 @@ const LeftSidebar: React.FC = () => {
   const { id, title } = useSelector(currentPageSelector)
   const { isOpen, isBubbling, location } = useSelector(leftSidebarSelector)
   const isHasFavoritePages = useSelector(favoritePagesSelector).length > 0
+  const isPageOptionsModalOpen = useSelector(pageOptionsModalSelector).isOpen
+  const isPagesTrashPopupOpen = useSelector(pagesTrashPopupSelector)
   const dispatch = useDispatch()
 
   const resizerRef = useRef<HTMLDivElement>(null)
   const sidebarRef = useRef<HTMLDivElement>(null)
   const isHovering = useHover(sidebarRef)
-
-  const isPageOptionsModalOpen = useSelector(pageOptionsModalSelector).isOpen
-  const optionsButtonCoords = useSelector(pageOptionsModalSelector).coords
 
   useEffect(() => {
     dispatch(setActivePage({ title, id }))
@@ -52,24 +56,16 @@ const LeftSidebar: React.FC = () => {
           {isHasFavoritePages && <FavoritePagesList />}
           <CommonPagesList />
         </Content>
+        <PagesTrashPanel />
         <AddNewPagePanel />
       </Container>
       <ResizerContainer draggable={true} ref={resizerRef} location={location}>
         <Resizer />
       </ResizerContainer>
-      {isPageOptionsModalOpen && (
-        <PagesListOptionsModal coords={optionsButtonCoords} />
-      )}
+      {isPageOptionsModalOpen && <PagesListOptionsModal />}
+      {isPagesTrashPopupOpen && <PagesTrashPopup sidebarWidth={width} />}
     </Wrapper>
   )
 }
 
 export default LeftSidebar
-
-// const onKeyboardBindToggleSidebar = useKeyboardBind({
-//   keyboardCode: 'Backslash',
-//   ctrlKey: true,
-//   action: toggleSidebar(),
-// })
-
-// useEventListener('keydown', onKeyboardBindToggleSidebar)

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { IElementCoords } from '../../../@types/generalTypes'
+import { ElementCoords } from '../../../@types/generalTypes'
 
-const StyledButton = styled.div<{ coords: IElementCoords }>`
+const StyledButton = styled.div<{ coords: ElementCoords }>`
   cursor: pointer;
   position: absolute;
   top: ${props => props.coords?.top};

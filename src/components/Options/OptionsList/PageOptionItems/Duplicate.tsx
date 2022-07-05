@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import PageOptionItem from './PageOptionItem'
-import { DuplicateSVG } from 'shared/SVG'
+import { DuplicateSvg } from 'shared/SVG'
 import { closePageOptionsModal } from 'redux/modalsSlice/slice'
 import { pageOptionsModalSelector } from 'redux/modalsSlice/selectors'
 import { duplicatePage } from 'redux/workSpaceSlice/slice'
@@ -21,7 +21,7 @@ const DuplicateItem: React.FC<ActiveListItem> = props => {
   return (
     <PageOptionItem
       title='Duplicate'
-      IconSvg={DuplicateSVG}
+      IconSvg={DuplicateSvg}
       action={onDuplicatePage}
       {...props}
     />

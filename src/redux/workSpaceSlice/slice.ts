@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
 import { CoverColors, IWorkspacePage, WorkspaceSliceState } from './types'
-import { PageTemplates } from '../popupsSlice/types'
+import { PageTemplates } from 'redux/popupsSlice/types'
+
 import vue3Svg from 'assets/img/technologies/vue3.svg'
 import reactSvg from 'assets/img/technologies/react.svg'
 import reactPng from 'assets/img/react.png'
@@ -141,9 +141,15 @@ export const workSpaceSlice = createSlice({
       const page = state.pages.find(page => page.id === action.payload)
       if (!page) return
 
-      if (state.recentlyDeleted.length === 5) state.recentlyDeleted.shift()
+      if (state.recentlyDeleted.length === 20) state.recentlyDeleted.shift()
       state.recentlyDeleted = [...state.recentlyDeleted, page]
       state.pages = state.pages.filter(page => page.id !== action.payload)
+      // state.currentPage =
+    },
+    deletePagePermanently(state, action: PayloadAction<number>) {
+      state.recentlyDeleted = state.recentlyDeleted.filter(
+        page => page.id !== action.payload
+      )
     },
     duplicatePage(state, action: PayloadAction<number>) {
       const page = state.pages.find(page => page.id === action.payload)
@@ -151,9 +157,22 @@ export const workSpaceSlice = createSlice({
 
       const pageDuplicate = JSON.parse(JSON.stringify(page))
       pageDuplicate.title = `${pageDuplicate.title} (1)`
-      pageDuplicate.id = state.pages.length + 1
+      pageDuplicate.id = Math.random()
 
       state.pages = [...state.pages, pageDuplicate]
+    },
+    restorePage(state, action: PayloadAction<number>) {
+      const id = action.payload
+      const page = state.recentlyDeleted.find(page => page.id === id)
+      if (!page) return
+
+      state.recentlyDeleted = state.recentlyDeleted.filter(
+        page => page.id !== id
+      )
+
+      page.id = Math.random()
+      page.isFavorite = false
+      state.pages = [...state.pages, page]
     },
     setCurrentPage(state, action: PayloadAction<number>) {
       const page = state.pages.find(page => page.id === action.payload)
@@ -248,6 +267,8 @@ export const workSpaceSlice = createSlice({
 export const {
   createNewPage,
   deletePage,
+  deletePagePermanently,
+  restorePage,
   duplicatePage,
   setCurrentPage,
   setPageTitle,
