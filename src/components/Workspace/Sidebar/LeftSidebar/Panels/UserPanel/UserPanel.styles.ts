@@ -9,14 +9,13 @@ const StyledPanel = styled.div`
   height: 45px;
   padding-left: 15px;
   padding-right: 40px;
+  transition: background 50ms ease-in-out;
 
   :hover {
     background: rgba(55, 53, 47, 0.08);
-    transition: background 0.1s ease-in-out;
   }
   :active {
     background: rgba(55, 53, 47, 0.16);
-    transition: background 0.1s ease-in-out;
   }
 `
 

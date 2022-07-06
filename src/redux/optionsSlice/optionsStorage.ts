@@ -74,9 +74,23 @@ const EMPTY_PAGE_OPTIONS_LIST: EmptyPageOption[] = [
 ]
 
 const PAGE_FONTS: IPageFont[] = [
-  { title: 'Default', tooltipTitle: 'The default sans-serif workhorse' },
-  { title: 'Serif', tooltipTitle: 'Good for publishing' },
-  { title: 'Mono', tooltipTitle: 'Good for drafting and notes' },
+  {
+    title: 'Default',
+    tooltipTitle: 'The default sans-serif workhorse',
+    fontFamily: `ui-sans-serif, -apple-system, BlinkMacSystemFont, 
+      Segoe UI,Helvetica, Apple Color Emoji, Arial, sans-serif, Segoe 
+      UI Emoji,Segoe UI Symbol`,
+  },
+  {
+    title: 'Serif',
+    tooltipTitle: 'Good for publishing',
+    fontFamily: 'Lyon-Text, Georgia, ui-serif, serif',
+  },
+  {
+    title: 'Mono',
+    tooltipTitle: 'Good for drafting and notes',
+    fontFamily: 'iawriter-mono, Nitti, Menlo, Courier, monospace',
+  },
 ]
 
 export {

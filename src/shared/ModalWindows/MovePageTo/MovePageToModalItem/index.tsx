@@ -1,18 +1,20 @@
 import React from 'react'
 
-import EmptyPageIconSVG from 'shared/SVG/EmptyPage'
+import EmptyPageIconSVG from 'shared/SVG/EmptyPageIcon'
 import { MovePageToModalItemProps } from './MovePageToModalItem.types'
+import { selectedItemHandler } from 'utils/helpers/selectedItemHandler'
 import { StyledItem, Icon, Title, Subtitle } from './MovePageToModalItem.styles'
 
 const MovePageToModalItem: React.FC<MovePageToModalItemProps> = props => {
-  const { id, icon, title, isHasIcon, action, activeItem, onSelect } = props
-  const isActive = activeItem === title
+  const { id, icon, title, isHasIcon, action, activeItem, onSelectActiveItem } =
+    props
+  const isActive = selectedItemHandler({ activeItem, item: { id, title } })
 
   return (
     <StyledItem
       {...{ isActive }}
-      onMouseEnter={() => onSelect(title)}
       onClick={() => action(id)}
+      onMouseEnter={() => onSelectActiveItem({ title, id })}
     >
       {isHasIcon ? (
         <Icon src={icon} />

@@ -1,6 +1,6 @@
 import React, { Fragment, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useInput } from 'hooks/useInput/useInput'
+import { useInput } from 'hooks/useInput'
 import { useSelectItem } from 'hooks/useSelectItem'
 import { useOnClickOutside } from 'usehooks-ts'
 

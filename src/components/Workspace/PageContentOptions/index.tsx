@@ -24,13 +24,17 @@ import {
 } from './PageContentOptions.styles'
 
 const PageContentOptions: React.FC = () => {
-  const { id, title, icon, isHasCover, isHasIcon, isHasComments } =
-    useSelector(currentPageSelector)
+  const {
+    id,
+    title,
+    iconInfo: { icon, isHasIcon },
+    coverInfo: { isHasCover },
+    commentsInfo: { isHasComments },
+  } = useSelector(currentPageSelector)
   const covers = useSelector(coversListsSelector)
   const isSwitchPageIconModalOpen = useSelector(isIconModalOpenSelector)
   const pageTitleRef = useRef<HTMLDivElement>(null)
   const dispatch = useDispatch()
-
   const onOpenSwitchPageIconModal = (): void => {
     dispatch(setIsIconModalOpen())
   }

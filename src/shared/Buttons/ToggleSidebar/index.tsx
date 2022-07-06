@@ -1,13 +1,13 @@
 import React, { Fragment, useRef } from 'react'
 import { useHover } from 'usehooks-ts'
-import { useSidebarActionHandler } from 'hooks/useSidebarActionHandler/useSidebarActionHandler'
 
-import Tooltip from '../../Tooltip'
+import { useSidebarActionHandler } from 'hooks/useSidebarActionHandler'
+import Tooltip from 'shared/Tooltip'
+import DoubleChevronSvg from 'shared/SVG/DoubleChevron'
 import { ToggleSidebarBtnProps } from './ToggleSidebarButton.types'
 import { toggleSidebarBtnCoordsHandler } from 'utils/helpers/toggleSidebarBtnCoordsHandler'
 import { toggleSidebarTooltipHandler } from 'utils/helpers/toggleSidebarTooltipHandler'
-import { Icon, StyledButton } from './ToggleSidebarButton.styles'
-import switchSvg from 'assets/img/sidebar-twoArrows.svg'
+import { StyledButton } from './ToggleSidebarButton.styles'
 
 const ToggleSidebarButton: React.FC<ToggleSidebarBtnProps> = props => {
   const { purpose, location, isParentHovering } = props
@@ -27,7 +27,7 @@ const ToggleSidebarButton: React.FC<ToggleSidebarBtnProps> = props => {
         onClick={onClickAction}
         {...{ purpose, properties, isParentHovering }}
       >
-        <Icon src={switchSvg} alt='Switch' />
+        <DoubleChevronSvg />
       </StyledButton>
       {isHovering && <Tooltip {...tooltipParams} />}
     </Fragment>
@@ -35,7 +35,3 @@ const ToggleSidebarButton: React.FC<ToggleSidebarBtnProps> = props => {
 }
 
 export default ToggleSidebarButton
-
-// const onHover = () => {}
-// onMouseEnter={onHover}
-// onMouseLeave={onHover}

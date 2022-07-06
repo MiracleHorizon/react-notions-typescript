@@ -9,10 +9,12 @@ import { setIsCoverModalOpen } from 'redux/pageDecorationSlice/slice'
 import styles from './PageCover.module.scss'
 
 const PageCover: React.FC = () => {
-  const { isHasCover, cover } = useSelector(currentPageSelector)
+  const {
+    coverInfo: { isHasCover, cover },
+  } = useSelector(currentPageSelector)
   const isModalOpen = useSelector(isCoverModalOpenSelector)
 
-  const coverRef = useRef<HTMLDivElement>(null) //! bar
+  const coverRef = useRef<HTMLDivElement>(null)
   const isHovering = useHover(coverRef)
 
   const dispatch = useDispatch()
@@ -20,7 +22,7 @@ const PageCover: React.FC = () => {
     dispatch(setIsCoverModalOpen())
   }
 
-  if (!cover) return <></> //!!!!!!
+  if (!isHasCover) return <></> //!!!
 
   return (
     <Fragment>

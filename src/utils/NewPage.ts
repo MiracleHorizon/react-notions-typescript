@@ -6,47 +6,64 @@ import {
 import { PageTemplates } from 'redux/popupsSlice/types'
 
 class NewPage implements IWorkspacePage {
+  template: PageTemplates.BOARD
   id: number
   title: string
-  cover: null | CoverColors
-  icon: string
-  comments: IComment[] | []
-  isHasCover: boolean
-  isHasIcon: boolean
-  isFullWidth: boolean
-  isSmallText: boolean
-  isHasComments: boolean
   isFavorite: boolean
-  template: PageTemplates
+  pageSettings: {
+    isSmallText: boolean
+    isFullWidth: boolean
+    selectedFont: string
+  }
+  coverInfo: {
+    isHasCover: boolean
+    cover: CoverColors | string
+    coverType: string
+  }
+  iconInfo: {
+    isHasIcon: boolean
+    icon: string
+  }
+  commentsInfo: {
+    isHasComments: boolean
+    comments: IComment[] | []
+  }
 
   constructor(params: IWorkspacePage) {
     this.id = params.id
     this.title = params.title
-    this.cover = params.cover
-    this.icon = params.icon
-    this.comments = params.comments
-    this.isHasCover = params.isHasCover
-    this.isHasIcon = params.isHasIcon
-    this.isFullWidth = params.isFullWidth
-    this.isSmallText = params.isSmallText
-    this.isHasComments = params.isHasComments
+    this.pageSettings = params.pageSettings
     this.isFavorite = params.isFavorite
+    this.coverInfo = params.coverInfo
+    this.iconInfo = params.iconInfo
+    this.commentsInfo = params.commentsInfo
     this.template = PageTemplates.BOARD
   }
 }
 
 const DEFAULT_PAGE_SETTINGS: IWorkspacePage = {
-  id: -1,
+  template: PageTemplates.BOARD,
+  id: Math.random(),
   title: 'Untitled',
-  cover: null,
-  icon: '',
-  comments: [],
-  isHasCover: false,
-  isHasIcon: false,
-  isFullWidth: false,
-  isSmallText: false,
-  isHasComments: false,
   isFavorite: false,
+  pageSettings: {
+    isSmallText: false,
+    isFullWidth: false,
+    selectedFont: '',
+  },
+  coverInfo: {
+    isHasCover: false,
+    cover: '',
+    coverType: '',
+  },
+  iconInfo: {
+    isHasIcon: false,
+    icon: '',
+  },
+  commentsInfo: {
+    isHasComments: false,
+    comments: [],
+  },
 }
 
 const newPageConstructor = (): IWorkspacePage => {

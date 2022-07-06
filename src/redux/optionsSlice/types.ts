@@ -15,6 +15,7 @@ interface EmptyPageOption {
 interface IPageFont {
   title: string
   tooltipTitle: string
+  fontFamily: string
 }
 
 interface IPagesSliceState {

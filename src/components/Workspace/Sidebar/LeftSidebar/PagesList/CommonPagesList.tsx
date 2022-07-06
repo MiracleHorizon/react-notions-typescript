@@ -1,25 +1,21 @@
 import React, { useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
+
 import { useToggle } from 'hooks/useToggle'
 import { useSetTooltipTitle } from 'hooks/useSetTooltipTitle'
 import { useCreateNewPage } from 'hooks/useCreateNewPage'
-
 import PagesList from './index'
 import PagesListTitle from './ListTitle'
 import AddNewPageButton from 'shared/Buttons/AddNewPage'
 import Tooltip from 'shared/Tooltip'
-import {
-  commonPagesSelector,
-  currentPageSelector,
-} from 'redux/workSpaceSlice/selectors'
+import { commonPagesSelector } from 'redux/workSpaceSlice/selectors'
 import { Wrapper } from './PagesList.styles'
 
 const CommonPagesList: React.FC = () => {
-  const { id } = useSelector(currentPageSelector)
   const { isOpen, toggleIsOpen } = useToggle(true)
   const commonPages = useSelector(commonPagesSelector)
-  const onCreateNewPage = useCreateNewPage(id)
+  const onCreateNewPage = useCreateNewPage()
   const tooltipTitle = useSetTooltipTitle(isOpen)
 
   const listTitleRef = useRef<HTMLDivElement>(null)

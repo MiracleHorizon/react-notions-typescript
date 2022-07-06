@@ -1,45 +1,35 @@
-import React from 'react'
-import styles from './ToggleFont.module.scss'
+import React, { useRef } from 'react'
+import { useHover } from 'usehooks-ts'
 
-interface ToggleFontProps {
-  title: string
-  tooltipTitle: string
-  activeFont: string
-  setActiveFont: (title: string) => void
-}
+import Props from './ToggleFontButton.types'
+import {
+  ButtonContainer,
+  FontButton,
+  Title,
+  Abbreviation,
+} from './ToggleFontButton.styles'
 
-const ToggleFontButton: React.FC<ToggleFontProps> = props => {
-  const { title, tooltipTitle, activeFont, setActiveFont } = props
+const ToggleFontButton: React.FC<Props> = props => {
+  const { title, fontFamily, tooltipTitle, activeFont, setActiveFont } = props
+  const isActive = activeFont === title
 
-  const onToggleFontFamily = () => {
-    switch (title) {
-      case 'Default':
-        return styles.sansSerif
-      case 'Serif':
-        return styles.serif
-      case 'Mono':
-        return styles.mono
-    }
-  }
+  const buttonRef = useRef<HTMLDivElement>(null)
+  const isHovering = useHover(buttonRef)
+
   const onSelectPageFont = (): void => setActiveFont(title)
-  const fontAbbreviationClass: string =
-    styles.abbreviation + ' ' + onToggleFontFamily()
 
   return (
-    <div role='button' className={styles.btn} onClick={onSelectPageFont}>
-      <div className={styles.fontBlock}>
-        <span
-          className={
-            activeFont === title
-              ? fontAbbreviationClass + ' ' + styles.activeFont
-              : fontAbbreviationClass
-          }
-        >
-          Ag
-        </span>
-        <span className={styles.title}>{title}</span>
-      </div>
-    </div>
+    <ButtonContainer
+      role='button'
+      tabIndex={0}
+      ref={buttonRef}
+      onClick={onSelectPageFont}
+    >
+      <FontButton>
+        <Abbreviation {...{ isActive, fontFamily }}>Ag</Abbreviation>
+        <Title>{title}</Title>
+      </FontButton>
+    </ButtonContainer>
   )
 }
 

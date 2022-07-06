@@ -4,8 +4,8 @@ const TriangleSVG: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
   <svg
     viewBox='0 0 100 100'
     style={{
-      width: '0.6875em',
-      height: '0.6875em',
+      width: '0.6em',
+      height: '0.6em',
       display: 'block',
       fill: 'rgba(55, 53, 47, 0.45)',
       flexShrink: 0,

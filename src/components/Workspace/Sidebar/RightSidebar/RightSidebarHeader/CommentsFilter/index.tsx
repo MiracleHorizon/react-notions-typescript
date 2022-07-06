@@ -5,7 +5,7 @@ import { useSelectItem } from 'hooks/useSelectItem'
 
 import DropdownItem from 'shared/Dropdowns/DropdownItem/DropdownItem'
 import Modal from 'shared/ModalWindows/ModalWrapper'
-import ChevronDownSVG from 'shared/SVG/ChevronDown'
+import ChevronDownSvg from 'shared/SVG/ChevronDown'
 import { CommentsFilters } from 'redux/sidebarsSlice/types'
 import { activeCommentsFilterSelector } from 'redux/sidebarsSlice/selectors'
 import { setCommentsFilter } from 'redux/sidebarsSlice/slice'
@@ -40,7 +40,7 @@ const CommentsFilter: React.FC = () => {
       <StyledContainer>
         <TitleContainer onClick={onOpenDropdown}>
           <FilterTitle>{activeFilter}</FilterTitle>
-          <ChevronDownSVG />
+          <ChevronDownSvg />
         </TitleContainer>
       </StyledContainer>
       {isDropdownOpen && (

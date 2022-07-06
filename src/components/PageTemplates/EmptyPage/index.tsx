@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useSelectItem } from 'hooks/useSelectItem'
-import { useKeyboardSelect } from 'hooks/useKeyboardSelect/useKeyboardSelect'
-import { useKeyboardEnter } from 'hooks/useKeyboardEnter/useKeyboardEnter'
+import { useKeyboardSelect } from 'hooks/useKeyboardSelect'
+import { useKeyboardEnter } from 'hooks/useKeyboardEnter'
 
 import EmptyPageList from './EmptyPageList'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'

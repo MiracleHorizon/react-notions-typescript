@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ChevronDownSVG: React.FC = () => (
+const ChevronDownSvg: React.FC = () => (
   <svg
     viewBox='0 0 30 30'
     style={{
@@ -17,4 +17,4 @@ const ChevronDownSVG: React.FC = () => (
   </svg>
 )
 
-export default ChevronDownSVG
+export default ChevronDownSvg

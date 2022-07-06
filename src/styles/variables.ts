@@ -9,3 +9,4 @@ export { modalBoxShadow }
 // $ui_color_gray: #8F8E8A;
 // $ui_color_lightGray: #efefef;
 // $ui_color_icons_gray: #5F5D59;
+// color: rgb(55, 53, 47); Основной

@@ -9,7 +9,11 @@ import CommonPageOptions from 'components/Options/OptionsList/CommonPageOptions'
 import MoveToOptionItem from 'components/Options/OptionsList/PageOptionItems/MoveToOptionItem'
 import PageChangesBar from 'shared/PageChangesBar'
 import Separator from 'shared/Separator'
-import { closePageOptionsModal } from 'redux/modalsSlice/slice'
+import {
+  closePageOptionsModal,
+  openMovePageToModal,
+  setMovePageToPopupCoords,
+} from 'redux/modalsSlice/slice'
 import { pageOptionsModalSelector } from 'redux/modalsSlice/selectors'
 import { PageOptionsEnum } from 'redux/modalsSlice/types'
 import {
@@ -23,6 +27,11 @@ const PagesListOptionsModal: React.FC = () => {
   const modalRef = useRef<HTMLDivElement>(null)
   const dispatch = useDispatch()
 
+  const onOpenMovePageToPopup = (): void => {
+    dispatch(openMovePageToModal())
+    dispatch(setMovePageToPopupCoords(coords))
+    dispatch(closePageOptionsModal())
+  }
   const handleClickOutside = (): void => {
     dispatch(closePageOptionsModal())
   }
@@ -42,7 +51,11 @@ const PagesListOptionsModal: React.FC = () => {
         )}
         <Separator />
         <MoveToItemContainer>
-          <MoveToOptionItem activeItem={activeItem} onSelect={onSelectItem} />
+          <MoveToOptionItem
+            action={onOpenMovePageToPopup}
+            activeItem={activeItem}
+            onSelect={onSelectItem}
+          />
         </MoveToItemContainer>
         <PageChangesBar />
       </StyledModalContainer>

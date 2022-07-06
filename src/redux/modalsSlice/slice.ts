@@ -1,13 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { IAppModalsState, PageOptionsEnum } from './types'
+import { AppModalsState, PageOptionsEnum } from './types'
 import { ElementCoords } from '../../@types/generalTypes'
 
-const initialState: IAppModalsState = {
+const initialState: AppModalsState = {
   isChangePageTitleModalOpen: false,
   isQuickSearchModalOpen: false,
-  isMovePageToModalOpen: false,
   isPagesTrashModalOpen: false,
-  pageOptionsModal: {
+  isChangePageIconPopupOpen: false,
+  movePageToPopup: {
+    isOpen: false,
+    coords: {},
+  },
+  pageOptionsPopup: {
     isOpen: false,
     options: [],
     coords: {},
@@ -22,19 +26,19 @@ export const modalsSlice = createSlice({
 
   reducers: {
     setPageOptionsModalCoords(state, action: PayloadAction<ElementCoords>) {
-      state.pageOptionsModal.coords = action.payload
+      state.pageOptionsPopup.coords = action.payload
     },
     setPageOptions(state, action: PayloadAction<PageOptionsEnum>) {
-      state.pageOptionsModal.options = action.payload
+      state.pageOptionsPopup.options = action.payload
     },
     setPageOptionsId(state, action: PayloadAction<number>) {
-      state.pageOptionsModal.pageId = action.payload
+      state.pageOptionsPopup.pageId = action.payload
     },
     openPageOptionsModal(state) {
-      state.pageOptionsModal.isOpen = true
+      state.pageOptionsPopup.isOpen = true
     },
     closePageOptionsModal(state) {
-      state.pageOptionsModal.isOpen = false
+      state.pageOptionsPopup.isOpen = false
     },
     openPagesTrashModal(state) {
       state.isPagesTrashModalOpen = true
@@ -42,23 +46,33 @@ export const modalsSlice = createSlice({
     closePagesTrashModal(state) {
       state.isPagesTrashModalOpen = false
     },
-    openChangePageTitleModal(state) {
+    openChangePageTitlePopup(state) {
       state.isChangePageTitleModalOpen = true
+    },
+    closeChangePageTitlePopup(state) {
+      state.isChangePageTitleModalOpen = false
+    },
+    openChangePageIconPopup(state) {
+      state.isChangePageIconPopupOpen = true
+    },
+    closeChangePageIconPopup(state) {
+      state.isChangePageIconPopupOpen = false
     },
     openQuickSearchModal(state) {
       state.isQuickSearchModalOpen = true
     },
-    openMovePageToModal(state) {
-      state.isMovePageToModalOpen = true
-    },
-    closeChangePageTitleModal(state) {
-      state.isChangePageTitleModalOpen = false
-    },
     closeQuickSearchModal(state) {
       state.isQuickSearchModalOpen = false
     },
+    setMovePageToPopupCoords(state, action: PayloadAction<ElementCoords>) {
+      state.movePageToPopup.coords = action.payload
+    },
+    openMovePageToModal(state) {
+      state.movePageToPopup.isOpen = true
+    },
     closeMovePageToModal(state) {
-      state.isMovePageToModalOpen = false
+      state.movePageToPopup.isOpen = false
+      state.movePageToPopup.coords = {}
     },
   },
 })
@@ -71,10 +85,13 @@ export const {
   closePageOptionsModal,
   openPagesTrashModal,
   closePagesTrashModal,
-  openChangePageTitleModal,
-  closeChangePageTitleModal,
+  openChangePageTitlePopup,
+  closeChangePageTitlePopup,
+  openChangePageIconPopup,
+  closeChangePageIconPopup,
   openQuickSearchModal,
   closeQuickSearchModal,
+  setMovePageToPopupCoords,
   openMovePageToModal,
   closeMovePageToModal,
 } = modalsSlice.actions

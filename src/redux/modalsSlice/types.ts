@@ -5,20 +5,26 @@ enum PageOptionsEnum {
   COMMON = 'Common',
 }
 
-interface PageOptionsModal {
+interface PageOptionsPopup {
   isOpen: boolean
   options: PageOptionsEnum | []
   coords: ElementCoords
   pageId: number
 }
 
-interface IAppModalsState {
-  isChangePageTitleModalOpen: boolean
-  isQuickSearchModalOpen: boolean
-  isMovePageToModalOpen: boolean
-  isPagesTrashModalOpen: boolean
-  pageOptionsModal: PageOptionsModal
+interface MovePageToPopup {
+  isOpen: boolean
+  coords: ElementCoords
 }
 
-export type { IAppModalsState, PageOptionsModal }
+interface AppModalsState {
+  isChangePageTitleModalOpen: boolean
+  isQuickSearchModalOpen: boolean
+  isPagesTrashModalOpen: boolean
+  isChangePageIconPopupOpen: boolean
+  movePageToPopup: MovePageToPopup
+  pageOptionsPopup: PageOptionsPopup
+}
+
+export type { AppModalsState, PageOptionsPopup, MovePageToPopup }
 export { PageOptionsEnum }

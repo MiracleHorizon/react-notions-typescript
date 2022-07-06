@@ -1,12 +1,9 @@
-import {
-  ToggleSidebarBtnPurposes as Purposes,
-  ToggleSidebarBtnPurposes,
-} from 'shared/Buttons/ToggleSidebar/ToggleSidebarButton.types'
+import { ToggleSidebarBtnPurposes as Purposes } from 'shared/Buttons/ToggleSidebar/ToggleSidebarButton.types'
 import { SidebarLocations } from 'components/Workspace/Sidebar/Sidebar.types'
 import { ElementCoords } from '../../@types/generalTypes'
 
 interface Params {
-  purpose: ToggleSidebarBtnPurposes
+  purpose: Purposes
   location: SidebarLocations
 }
 
@@ -36,8 +33,8 @@ export const toggleSidebarTooltipHandler = (params: Params): Result => {
     purpose === Purposes.OPEN ? 'Lock sidebar open' : 'Close sidebar'
   const description: string =
     location === SidebarLocations.RIGHT ? 'Shift + /' : '/'
-  let coords: ElementCoords
 
+  let coords: ElementCoords
   purpose === Purposes.OPEN && location === SidebarLocations.LEFT
     ? (coords = leftOpenButtonTooltipCoords)
     : (coords = leftCloseButtonTooltipCoords)

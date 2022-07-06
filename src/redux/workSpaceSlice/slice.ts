@@ -1,130 +1,142 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { CoverColors, IWorkspacePage, WorkspaceSliceState } from './types'
+import _ from 'lodash'
 import { PageTemplates } from 'redux/popupsSlice/types'
+import {
+  CoverColors,
+  IWorkspacePage,
+  SetPageFontPayloadAction,
+  WorkspaceSliceState,
+} from './types'
 
 import vue3Svg from 'assets/img/technologies/vue3.svg'
-import reactSvg from 'assets/img/technologies/react.svg'
 import reactPng from 'assets/img/react.png'
 import avatarKermitJpg from 'assets/img/Avatar1.jpg'
+import coverTest from 'assets/img/banner-test.jpg'
 
 const initialState: WorkspaceSliceState = {
   pages: [
     {
+      template: PageTemplates.BOARD,
       id: 1,
-      title: 'React + TypeScript',
-      cover: CoverColors.YELLOW,
-      icon: '',
-      comments: [],
-      isFullWidth: true,
-      isSmallText: false,
-      template: PageTemplates.BOARD,
-      isHasCover: true,
-      isHasIcon: false,
-      isHasComments: false,
-      isFavorite: true,
-    },
-    {
-      id: 2,
-      title: 'Redux + TypeScript',
-      cover: CoverColors.WHITE,
-      icon: `${reactPng}`,
-      template: PageTemplates.BOARD,
-      isFullWidth: false,
-      isSmallText: false,
-      isHasIcon: true,
-      isHasCover: false,
-      isHasComments: false,
+      title: 'Redux',
       isFavorite: false,
-      comments: [],
+      pageSettings: {
+        isSmallText: false,
+        isFullWidth: false,
+        selectedFont: '',
+      },
+      coverInfo: {
+        isHasCover: true,
+        cover: `${coverTest}`,
+        coverType: 'imgUrl',
+      },
+      iconInfo: {
+        isHasIcon: true,
+        icon: `${vue3Svg}`,
+      },
+      commentsInfo: {
+        isHasComments: false,
+        comments: [],
+      },
     },
     {
-      id: 3,
-      title: 'React',
       template: PageTemplates.BOARD,
-      isFullWidth: true,
-      isSmallText: false,
-      cover: CoverColors.YELLOW,
-      icon: `${vue3Svg}`,
-      isHasIcon: true,
-      isHasCover: true,
-      isHasComments: false,
+      id: 2,
+      title: 'React',
       isFavorite: true,
-      comments: [{ title: '' }],
+      pageSettings: {
+        isSmallText: false,
+        isFullWidth: true,
+        selectedFont: '',
+      },
+      coverInfo: {
+        isHasCover: true,
+        cover: CoverColors.RED,
+        coverType: 'CoverColors',
+      },
+      iconInfo: {
+        isHasIcon: true,
+        icon: `${reactPng}`,
+      },
+      commentsInfo: {
+        isHasComments: false,
+        comments: [],
+      },
     },
     {
+      template: PageTemplates.BOARD,
+      id: 3,
+      title: 'Typescript',
+      isFavorite: false,
+      pageSettings: {
+        isSmallText: false,
+        isFullWidth: false,
+        selectedFont: '',
+      },
+      coverInfo: {
+        isHasCover: true,
+        cover: CoverColors.RED,
+        coverType: 'CoverColors',
+      },
+      iconInfo: {
+        isHasIcon: true,
+        icon: `${avatarKermitJpg}`,
+      },
+      commentsInfo: {
+        isHasComments: false,
+        comments: [],
+      },
+    },
+    {
+      template: PageTemplates.BOARD,
       id: 4,
       title: 'Redux',
-      template: PageTemplates.BOARD,
-      isFullWidth: true,
-      isSmallText: false,
-      cover: CoverColors.WHITE,
-      icon: `${reactSvg}`,
-      isHasCover: false,
-      isHasIcon: true,
-      isHasComments: false,
-      comments: [],
-
       isFavorite: true,
-    },
-    {
-      id: 5,
-      title: 'NodeJS',
-      template: PageTemplates.BOARD,
-      isFullWidth: false,
-      isSmallText: false,
-      cover: CoverColors.PINK,
-      icon: `${vue3Svg}`,
-      isHasCover: true,
-      isHasIcon: true,
-      isHasComments: false,
-      comments: [],
-
-      isFavorite: false,
-    },
-    {
-      id: 6,
-      title: 'Angular',
-      cover: CoverColors.BEIGE,
-      icon: `${reactSvg}`,
-      template: PageTemplates.BOARD,
-      isFullWidth: true,
-      isSmallText: false,
-      isHasCover: true,
-      isHasComments: false,
-      comments: [],
-
-      isHasIcon: true,
-      isFavorite: false,
-    },
-    {
-      id: 7,
-      title: 'Kermit Notions',
-      cover: CoverColors.RED,
-      icon: `${avatarKermitJpg}`,
-      isHasCover: true,
-      template: PageTemplates.BOARD,
-      isFullWidth: true,
-      isSmallText: false,
-      isHasComments: false,
-      isHasIcon: true,
-      isFavorite: true,
-      comments: [],
+      pageSettings: {
+        isSmallText: false,
+        isFullWidth: true,
+        selectedFont: '',
+      },
+      coverInfo: {
+        isHasCover: true,
+        cover: CoverColors.RED,
+        coverType: 'CoverColors',
+      },
+      iconInfo: {
+        isHasIcon: true,
+        icon: `${vue3Svg}`,
+      },
+      commentsInfo: {
+        isHasComments: false,
+        comments: [],
+      },
     },
   ],
   currentPage: {
-    id: 7,
-    title: 'Kermit Notions',
-    cover: CoverColors.RED,
-    icon: `${avatarKermitJpg}`,
-    isHasCover: true,
     template: PageTemplates.BOARD,
-    isFullWidth: true,
-    isSmallText: false,
-    isHasComments: false,
-    isHasIcon: true,
-    isFavorite: true,
-    comments: [],
+    id: 1,
+    title: 'Redux',
+    isFavorite: false,
+    pageSettings: {
+      isSmallText: false,
+      isFullWidth: false,
+      selectedFont: '',
+    },
+    coverInfo: {
+      isHasCover: true,
+      cover: `${coverTest}`,
+      coverType: 'imgUrl',
+    },
+    iconInfo: {
+      isHasIcon: true,
+      icon: `${vue3Svg}`,
+    },
+    commentsInfo: {
+      isHasComments: false,
+      comments: [],
+    },
   },
+  lastPage: null,
   recentlyDeleted: [],
 }
 
@@ -144,7 +156,15 @@ export const workSpaceSlice = createSlice({
       if (state.recentlyDeleted.length === 20) state.recentlyDeleted.shift()
       state.recentlyDeleted = [...state.recentlyDeleted, page]
       state.pages = state.pages.filter(page => page.id !== action.payload)
-      // state.currentPage =
+
+      if (page.id === state.currentPage.id) {
+        if (state.lastPage) state.currentPage = state.lastPage
+
+        const randomPage = _.sample(state.pages)
+        if (!randomPage) return
+
+        state.currentPage = randomPage //* Переработать.
+      }
     },
     deletePagePermanently(state, action: PayloadAction<number>) {
       state.recentlyDeleted = state.recentlyDeleted.filter(
@@ -178,10 +198,11 @@ export const workSpaceSlice = createSlice({
       const page = state.pages.find(page => page.id === action.payload)
       if (!page) return
 
+      state.lastPage = state.currentPage
       state.currentPage = page
     },
     setPageTitle(state, action: PayloadAction<{ title: string; id: number }>) {
-      const { title, id } = action.payload
+      const { id, title } = action.payload
       const page = state.pages.find(page => page.id === id)
       if (!page) return
 
@@ -189,42 +210,50 @@ export const workSpaceSlice = createSlice({
       page.title = title
     },
     setPageIcon(state, action: PayloadAction<{ icon: string; id: number }>) {
-      const { icon, id } = action.payload
+      const { id, icon } = action.payload
       const page = state.pages.find(page => page.id === id)
       if (!page) return
 
-      page.isHasIcon = true
-      page.icon = icon
-      state.currentPage.isHasIcon = true
-      state.currentPage.icon = icon
+      page.iconInfo.isHasIcon = true
+      page.iconInfo.icon = icon
+      state.currentPage.iconInfo.isHasIcon = true
+      state.currentPage.iconInfo.icon = icon
     },
     setPageCover(state, action: PayloadAction<{ cover: any; id: number }>) {
-      const { cover, id } = action.payload //!
+      const { id, cover } = action.payload //!
       const page = state.pages.find(page => page.id === id)
       if (!page) return
 
-      page.isHasCover = true
-      page.cover = cover
-      state.currentPage.isHasCover = true
-      state.currentPage.cover = cover
+      page.coverInfo.isHasCover = true
+      page.coverInfo.cover = cover
+      state.currentPage.coverInfo.isHasCover = true
+      state.currentPage.coverInfo.cover = cover
+    },
+    setPageFont(state, action: PayloadAction<SetPageFontPayloadAction>) {
+      const { id, fontFamily } = action.payload
+      const page = state.pages.find(page => page.id === id)
+      if (!page) return
+
+      page.pageSettings.selectedFont = fontFamily
+      state.currentPage.pageSettings.selectedFont = fontFamily
     },
     removeIcon(state, action: PayloadAction<number>) {
       const page = state.pages.find(page => page.id === action.payload)
       if (!page) return
 
-      page.isHasIcon = false
-      page.icon = '' //!
-      state.currentPage.isHasIcon = false
-      state.currentPage.icon = ''
+      page.iconInfo.isHasIcon = false
+      page.iconInfo.icon = '' //!
+      state.currentPage.iconInfo.isHasIcon = false
+      state.currentPage.iconInfo.icon = ''
     },
     removeCover(state, action: PayloadAction<number>) {
       const page = state.pages.find(page => page.id === action.payload)
       if (!page) return
 
-      page.isHasCover = false
-      page.cover = CoverColors.WHITE
-      state.currentPage.cover = CoverColors.WHITE
-      state.currentPage.isHasCover = false
+      page.coverInfo.isHasCover = false
+      page.coverInfo.cover = ''
+      state.currentPage.coverInfo.cover = ''
+      state.currentPage.coverInfo.isHasCover = false
     },
     addToFavorite(state, action: PayloadAction<number>) {
       const page = state.pages.find(page => page.id === action.payload)
@@ -251,15 +280,17 @@ export const workSpaceSlice = createSlice({
       const page = state.pages.find(page => page.id === action.payload)
       if (!page) return
 
-      state.currentPage.isFullWidth = !state.currentPage.isFullWidth
-      page.isFullWidth = !page.isFullWidth
+      state.currentPage.pageSettings.isFullWidth =
+        !state.currentPage.pageSettings.isFullWidth
+      page.pageSettings.isFullWidth = !page.pageSettings.isFullWidth
     },
     toggleSmallText(state, action: PayloadAction<number>) {
       const page = state.pages.find(page => page.id === action.payload)
       if (!page) return
 
-      state.currentPage.isSmallText = !state.currentPage.isSmallText
-      page.isSmallText = !page.isSmallText
+      state.currentPage.pageSettings.isSmallText =
+        !state.currentPage.pageSettings.isSmallText
+      page.pageSettings.isSmallText = !page.pageSettings.isSmallText
     },
   },
 })

@@ -50,10 +50,8 @@ const Wrapper = styled.div<SidebarWrapperProps>`
   );
   z-index: 10;
   transition: width 0.3s ease-in-out, min-width 0.3s ease-in-out,
-    opacity 0.5s ease-in-out;
+    opacity 0.35s ease-in-out;
 `
-// , transform 0.1s ease-in-out
-
 const Container = styled.div`
   position: relative;
   display: flex;

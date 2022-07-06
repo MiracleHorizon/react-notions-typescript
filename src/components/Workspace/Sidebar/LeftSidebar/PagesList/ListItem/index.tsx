@@ -19,7 +19,12 @@ import {
 import PagesListItemIcon from './ItemIcon'
 
 const PagesListItem: React.FC<SidebarListItemProps> = ({ page }) => {
-  const { id, title, icon, isHasIcon, isFavorite } = page //* isChild.
+  const {
+    id,
+    title,
+    isFavorite,
+    iconInfo: { icon, isHasIcon },
+  } = page //* isChild.
   const { isOpen, toggleIsOpen } = useToggle(false)
   const listItemOptionsTitle = isFavorite
     ? ListItemOptions.FAVORITE

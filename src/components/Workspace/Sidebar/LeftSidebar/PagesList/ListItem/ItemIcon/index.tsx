@@ -1,7 +1,7 @@
 import React, { Fragment, useRef } from 'react'
 import { useHover } from 'usehooks-ts'
 
-import EmptyPageIconSVG from 'shared/SVG/EmptyPage'
+import EmptyPageIconSVG from 'shared/SVG/EmptyPageIcon'
 import Tooltip from 'shared/Tooltip'
 import Props from './ItemIcon.types'
 import { IconBlock, PageIcon } from './ItemIcon.styles'

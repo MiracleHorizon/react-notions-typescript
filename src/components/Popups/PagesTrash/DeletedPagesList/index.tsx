@@ -8,7 +8,7 @@ const DeletedPagesList: React.FC<Props> = props => {
 
   return (
     <ListWrapper>
-      {list.map(({ id, icon, title }) => (
+      {list.map(({ id, iconInfo: { icon }, title }) => (
         <DeletedPageItem
           key={id}
           {...{ id, icon, title, activeItem, onSelect }}

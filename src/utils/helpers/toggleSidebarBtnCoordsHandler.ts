@@ -32,7 +32,7 @@ export const toggleSidebarBtnCoordsHandler = (params: Params) => {
       location === Locations.LEFT
         ? leftCloseButtonCoords
         : rightCloseButtonCoords
-    imgRotate = location === Locations.RIGHT ? 0 : 180
+    imgRotate = location === Locations.RIGHT ? 180 : 0
   }
 
   return { coords, imgRotate }

@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 
 const StyledSeparator = styled.div`
@@ -8,6 +7,4 @@ const StyledSeparator = styled.div`
   background-color: #f4f3f3;
 `
 
-const Separator: React.FC = () => <StyledSeparator />
-
-export default Separator
+export default StyledSeparator

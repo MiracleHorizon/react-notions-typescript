@@ -5,7 +5,7 @@ import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
 import { Content } from './BoardContent.styles'
 
 const BoardContent: React.FC = () => {
-  const { content } = useSelector(currentPageSelector)
+  // const { content } = useSelector(currentPageSelector)
 
   return (
     <Content>

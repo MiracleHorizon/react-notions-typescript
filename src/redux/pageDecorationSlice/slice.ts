@@ -6,6 +6,8 @@ import {
 } from './types'
 import { CoverColors } from '../workSpaceSlice/types'
 
+import metJapaneseCover1 from 'assets/img/pageCovers/met-japanese-1.jpg'
+
 const initialState: SwitchCoverState = {
   isCoverModalOpen: false,
   isIconModalOpen: false,

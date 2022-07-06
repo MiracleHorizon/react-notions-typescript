@@ -12,4 +12,4 @@ const StyledBar = styled.div`
   }
 `
 
-export { StyledBar }
+export default StyledBar

@@ -1,6 +1,14 @@
-import { ActiveListItem } from '../../../../@types/generalTypes'
+interface ActiveItem {
+  title: string
+  id: number
+}
 
-interface MovePageToModalItemProps extends ActiveListItem {
+interface ActiveItemParams {
+  activeItem: ActiveItem
+  onSelectActiveItem: (params: ActiveItem) => void
+}
+
+interface MovePageToModalItemProps extends ActiveItemParams {
   id: number
   icon: string
   title: string
@@ -8,4 +16,4 @@ interface MovePageToModalItemProps extends ActiveListItem {
   action: (selectedPageId: number) => void
 }
 
-export type { MovePageToModalItemProps }
+export type { MovePageToModalItemProps, ActiveItem, ActiveItemParams }

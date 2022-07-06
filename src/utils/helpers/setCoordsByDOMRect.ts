@@ -5,8 +5,6 @@ interface Params {
   requiredProperties: ElementPositions[] | ElementPositions
 }
 
-type Result = ElementCoords | null
-
 const setCoordsByDOMRect = (params: Params): ElementCoords => {
   const { element, requiredProperties } = params
   if (!element) return {}
@@ -34,7 +32,7 @@ const setCoordsByDOMRect = (params: Params): ElementCoords => {
   }
 
   return Object.fromEntries(
-    Object.entries(result).filter(([_, value]) => value !== '')
+    Object.entries(result).filter(([, value]) => value !== '')
   )
 }
 

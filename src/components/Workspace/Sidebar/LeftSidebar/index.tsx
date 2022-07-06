@@ -33,8 +33,9 @@ const LeftSidebar: React.FC = () => {
   const [width, setWidth] = useState<number>(300)
   const { id, title } = useSelector(currentPageSelector)
   const { isOpen, isBubbling, location } = useSelector(leftSidebarSelector)
+
   const isHasFavoritePages = useSelector(favoritePagesSelector).length > 0
-  const isPageOptionsModalOpen = useSelector(pageOptionsModalSelector).isOpen
+  const isPageOptionsPopupOpen = useSelector(pageOptionsModalSelector).isOpen
   const isPagesTrashPopupOpen = useSelector(pagesTrashPopupSelector)
   const dispatch = useDispatch()
 
@@ -49,7 +50,7 @@ const LeftSidebar: React.FC = () => {
   return (
     <Wrapper ref={sidebarRef} {...{ isOpen, isBubbling, width, location }}>
       <Container>
-        <UserPanel {...{ isHovering, location }} />
+        <UserPanel isHovering={isHovering} />
         <AppOptionsPanel />
         <ShadowSeparator />
         <Content>
@@ -62,7 +63,7 @@ const LeftSidebar: React.FC = () => {
       <ResizerContainer draggable={true} ref={resizerRef} location={location}>
         <Resizer />
       </ResizerContainer>
-      {isPageOptionsModalOpen && <PagesListOptionsModal />}
+      {isPageOptionsPopupOpen && <PagesListOptionsModal />}
       {isPagesTrashPopupOpen && <PagesTrashPopup sidebarWidth={width} />}
     </Wrapper>
   )

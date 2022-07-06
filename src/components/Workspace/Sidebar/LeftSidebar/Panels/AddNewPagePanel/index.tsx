@@ -1,14 +1,11 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 import { useCreateNewPage } from 'hooks/useCreateNewPage'
 
-import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
 import addPageSvg from 'assets/img/plus-addPage.svg'
 import { StyledPanel, Button, Icon, Title } from './AddNewPagePanel.styles'
 
 const AddNewPagePanel: React.FC = () => {
-  const { id } = useSelector(currentPageSelector)
-  const onCreateNewPage = useCreateNewPage(id)
+  const onCreateNewPage = useCreateNewPage()
 
   return (
     <StyledPanel onClick={onCreateNewPage}>

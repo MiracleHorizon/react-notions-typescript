@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { ACCOUNT_NAME } from 'utils/accountName'
-import { StyledBar } from './PageChangesBar.styles'
+import { ACCOUNT_NAME } from 'utils/accountName' // *
+import StyledBar from './PageChangesBar.styles'
 
 const PageChangesBar: React.FC = () => (
   <StyledBar>

@@ -22,14 +22,13 @@ const Option = styled.div`
   height: 27px;
   border-radius: 3px;
   margin: 0 4px;
+  transition: background 50ms ease-in-out;
 
   :hover {
     background: rgba(55, 53, 47, 0.08);
-    transition: background 0.1s ease-in-out;
   }
   :active {
     background: rgba(55, 53, 47, 0.16);
-    transition: background 0.1s ease-in-out;
   }
 `
 

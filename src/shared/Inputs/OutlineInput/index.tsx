@@ -1,13 +1,8 @@
-import React, { ChangeEvent, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import ClearInputButton from '../Buttons/ClearInputButton'
 
-interface OutlineInputProps {
-  placeholder: string
-  inputValue: string
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void
-  onClear: () => void
-}
+import ClearInputButton from 'shared/Buttons/ClearInputButton'
+import InputProps from '../types'
 
 const InputWrapper = styled.div`
   position: relative;
@@ -36,7 +31,7 @@ const StyledInput = styled.input`
   }
 `
 
-const OutlineInput: React.FC<OutlineInputProps> = props => {
+const OutlineInput: React.FC<InputProps> = props => {
   const { placeholder, inputValue, onChange, onClear } = props
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -51,7 +46,7 @@ const OutlineInput: React.FC<OutlineInputProps> = props => {
         ref={inputRef}
         onChange={onChange}
       />
-      {inputValue !== '' && (
+      {inputValue !== '' && onClear && (
         <ClearInputButton
           action={onClear}
           coords={{ top: '7px', right: '10px' }}

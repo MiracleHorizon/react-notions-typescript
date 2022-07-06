@@ -1,6 +1,6 @@
 import { PageTemplates } from '../popupsSlice/types'
 
-enum CoverColors {
+export enum CoverColors {
   RED = '#eb5757',
   BLUE = '#1c9ace',
   YELLOW = '#f9bf52',
@@ -17,26 +17,54 @@ interface IComment {
   createDate?: Date
 }
 
+interface BoardPageDefaultParams {
+  template: PageTemplates.BOARD
+  id: number | null
+  title: string | null
+  pagesSettings: {
+    isSmallText: boolean
+    isFullWidth: boolean
+    isFavorite: boolean
+    selectedFont: string
+  }
+  coverInfo: {
+    isHasCover: boolean
+    cover: CoverColors | null
+  }
+  iconInfo: {
+    isHasIcon: boolean
+    icon: string | null
+  }
+  commentsInfo: {
+    isHasComments: boolean
+    comments: IComment[] | []
+  }
+}
+
+interface TaskListPageDefaultParams {}
+
 interface IWorkspacePage {
+  template: PageTemplates.BOARD
   id: number
   title: string
-  icon: string
-  cover: CoverColors | null
-  template?: PageTemplates
-  isSmallText: boolean
-  isFullWidth: boolean
-  isHasIcon: boolean
-  isHasCover: boolean
-  isHasComments: boolean
   isFavorite: boolean
-  comments: IComment[] | []
-  content?: {
-    blocks: {
-      block: {
-        title: string
-        content: {}
-      }
-    }
+  pageSettings: {
+    isSmallText: boolean
+    isFullWidth: boolean
+    selectedFont: string
+  }
+  coverInfo: {
+    isHasCover: boolean
+    cover: CoverColors | string
+    coverType: string
+  }
+  iconInfo: {
+    isHasIcon: boolean
+    icon: string
+  }
+  commentsInfo: {
+    isHasComments: boolean
+    comments: IComment[] | []
   }
 }
 
@@ -58,8 +86,20 @@ interface IPageOptions {
 interface WorkspaceSliceState {
   pages: IWorkspacePage[] | []
   currentPage: IWorkspacePage
+  lastPage: IWorkspacePage | null
   recentlyDeleted: IWorkspacePage[] | []
 }
 
-export type { WorkspaceSliceState, IWorkspacePage, IComment }
-export { CoverColors }
+interface SetPageFontPayloadAction {
+  id: number
+  fontFamily: string
+}
+
+export type {
+  WorkspaceSliceState,
+  BoardPageDefaultParams,
+  TaskListPageDefaultParams,
+  IWorkspacePage,
+  IComment,
+  SetPageFontPayloadAction,
+}

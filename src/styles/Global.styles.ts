@@ -9,11 +9,11 @@ export const Global = createGlobalStyle`
   }
 
   * {
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
     padding: 0;
     margin: 0;
     list-style: none;
     outline: none;
-    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
     box-sizing: border-box;
 
   }

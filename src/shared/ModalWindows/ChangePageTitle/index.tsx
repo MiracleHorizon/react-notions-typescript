@@ -1,82 +1,83 @@
-import React, { FormEvent, Fragment, useEffect, useRef } from 'react'
+import React, { FormEvent, lazy, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useOnClickOutside } from 'usehooks-ts'
 
-import SwitchPageIconModal from '../SwitchIcon'
-import EmptyPageIconSVG from 'shared/SVG/EmptyPage'
-import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
-import { isIconModalOpenSelector } from 'redux/pageDecorationSlice/selectors'
-import { closeChangePageTitleModal } from 'redux/modalsSlice/slice'
-import { setIsIconModalOpen } from 'redux/pageDecorationSlice/slice'
-import { setPageIcon, setPageTitle } from 'redux/workSpaceSlice/slice'
-import styles from './ChangePageTitle.module.scss'
+import Modal from '../ModalWrapper'
+import EmptyPageIconSVG from 'shared/SVG/EmptyPageIcon'
+import CommonGrayInput from 'shared/Inputs/CommonGrayInput'
+import { changePageIconPopupSelector } from 'redux/modalsSlice/selectors'
+import {
+  closeChangePageTitlePopup,
+  openChangePageIconPopup,
+} from 'redux/modalsSlice/slice'
+import { setPageTitle } from 'redux/workSpaceSlice/slice'
+import Props from './ChangePageTitlePopup.types'
+import {
+  PopupContainer,
+  IconContainer,
+  Icon,
+  StyledForm,
+} from './ChangePageTitlePopup.styles'
+import { headerEmptyPageIconStyles } from 'shared/SVG/EmptyPageIcon/styles'
 
-interface IPageTitleModalCoords {
-  coords: {
-    top?: string
-    bottom?: string
-    left?: string
-    right?: string
-  }
-} //!
+const ChangePageIconPopup = lazy(() => import('../SwitchIcon'))
+//! Лишний рендер из-за Modal
 
-const ChangePageTitleModal: React.FC<IPageTitleModalCoords> = ({ coords }) => {
-  const { id, title, icon, isHasIcon } = useSelector(currentPageSelector)
-  const inputRef = useRef<HTMLInputElement>(null)
-  const modalRef = useRef<HTMLDivElement>(null)
-  const isChangePageIconModalOpen = useSelector(isIconModalOpenSelector)
+const ChangePageTitlePopup: React.FC<Props> = props => {
+  const { id, title, icon, isHasIcon, coords } = props
+
+  const isChangePageIconPopupOpen = useSelector(changePageIconPopupSelector)
   const dispatch = useDispatch()
+
+  const iconRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
+  const popupRef = useRef<HTMLDivElement>(null)
 
   const onChangePageTitle = (): void => {
     if (!inputRef.current) return
-    const pageTitle = inputRef.current.value
 
+    const pageTitle = inputRef.current?.value
     dispatch(setPageTitle({ title: pageTitle, id }))
   }
-  const onChangePageIcon = (): void => {
-    // dispatch(setPageIcon(''))
-    dispatch(setIsIconModalOpen())
+  const onOpenChangePageIconPopup = (): void => {
+    dispatch(openChangePageIconPopup())
   }
   const onSubmitPageTitle = (e: FormEvent): void => {
     e.preventDefault()
 
-    dispatch(closeChangePageTitleModal())
+    dispatch(closeChangePageTitlePopup())
   }
   const handlerClickOutside = (): void => {
-    dispatch(closeChangePageTitleModal())
+    if (!isChangePageIconPopupOpen) dispatch(closeChangePageTitlePopup())
   }
 
-  useEffect(() => {
-    if (inputRef.current) inputRef.current.focus()
-  }, [])
-
-  useOnClickOutside(modalRef, handlerClickOutside)
-  useEffect(() => {}, [])
+  useEffect(() => inputRef.current?.select(), [])
+  useOnClickOutside(popupRef, handlerClickOutside)
 
   return (
-    <Fragment>
-      <div ref={modalRef} className={styles.root} style={{ ...coords }}>
-        <div onClick={onChangePageIcon}>
-          {isHasIcon ? (
-            <img src={icon} alt='Page icon' />
-          ) : (
-            <EmptyPageIconSVG
-              {...{ sizes: { width: 18, height: 18 }, transparency: 0.85 }}
+    <>
+      <Modal>
+        <PopupContainer ref={popupRef} {...{ coords }}>
+          <IconContainer ref={iconRef} onClick={onOpenChangePageIconPopup}>
+            {isHasIcon ? (
+              <Icon src={icon} alt='Page icon' />
+            ) : (
+              <EmptyPageIconSVG {...headerEmptyPageIconStyles} />
+            )}
+          </IconContainer>
+          <StyledForm onSubmit={onSubmitPageTitle}>
+            <CommonGrayInput
+              inputRef={inputRef}
+              inputValue={title}
+              placeholder='Untitled'
+              onChange={onChangePageTitle}
             />
-          )}
-        </div>
-        <form onSubmit={onSubmitPageTitle}>
-          <input
-            type='text'
-            placeholder='Untitled'
-            value={title}
-            ref={inputRef}
-            onChange={onChangePageTitle}
-          />
-        </form>
-      </div>
-    </Fragment>
+          </StyledForm>
+        </PopupContainer>
+      </Modal>
+      {isChangePageIconPopupOpen && <ChangePageIconPopup />}
+    </>
   )
 }
 
-export default ChangePageTitleModal
+export default ChangePageTitlePopup

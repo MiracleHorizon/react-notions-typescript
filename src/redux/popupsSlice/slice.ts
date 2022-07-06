@@ -12,10 +12,10 @@ export const pageSettingsPopupSlice = createSlice({
   initialState: initialState,
 
   reducers: {
-    openPageSettingsPopup(state): void {
+    openPageSettingsPopup(state) {
       state.isPageSettingsPopupOpen = true
     },
-    closePageSettingsPopup(state): void {
+    closePageSettingsPopup(state) {
       state.isPageSettingsPopupOpen = false
     },
   },

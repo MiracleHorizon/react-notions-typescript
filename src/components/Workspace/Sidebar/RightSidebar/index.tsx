@@ -19,7 +19,9 @@ import {
 const RightSidebar: React.FC = () => {
   const { isOpen, location, width, activeCommentsFilter } =
     useSelector(rightSidebarSelector)
-  const { isHasComments } = useSelector(currentPageSelector)
+  const {
+    commentsInfo: { isHasComments },
+  } = useSelector(currentPageSelector)
 
   const sidebarRef = useRef<HTMLDivElement>(null)
   const isHovering = useHover(sidebarRef)

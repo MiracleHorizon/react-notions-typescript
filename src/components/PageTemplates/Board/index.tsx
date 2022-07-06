@@ -11,11 +11,15 @@ import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
 import { BoardWrapper, Container } from './BoardTemplate.styles'
 
 const BoardTemplate: React.FC = () => {
-  const { id, isFullWidth, isHasIcon, isHasCover, content } =
-    useSelector(currentPageSelector)
+  const {
+    id,
+    coverInfo: { isHasCover },
+    iconInfo: { isHasIcon },
+    pageSettings: { isFullWidth },
+  } = useSelector(currentPageSelector)
 
   const isPageEmpty = (): JSX.Element => {
-    return isHasCover || isHasIcon || content ? <BoardContent /> : <EmptyPage />
+    return isHasCover || isHasIcon ? <BoardContent /> : <EmptyPage />
   }
 
   // const onKeydownToggleFullWidth = useKeyboardBind({
@@ -26,6 +30,7 @@ const BoardTemplate: React.FC = () => {
   // })
   //
   // useEventListener('keydown', onKeydownToggleFullWidth!)
+  // isFullWidth, isHasIcon, isHasCover, content || content
 
   return (
     <BoardWrapper>

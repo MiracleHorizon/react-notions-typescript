@@ -44,8 +44,7 @@ const sidebarSlice = createSlice({
       // state.isBubbling = !state.isBubbling
     },
     toggleRightSidebar(state) {
-      // state.isOpen = !state.isOpen
-      // state.isBubbling = !state.isBubbling
+      state.rightSidebar.isOpen = !state.rightSidebar.isOpen
     },
     setActivePage(state, action: PayloadAction<ActivePage>) {
       state.activePage = action.payload

@@ -1,12 +1,5 @@
 import React from 'react'
-
-interface Props {
-  sizes?: {
-    width: number
-    height: number
-  }
-  transparency?: number
-}
+import Props from './EmptyPageIconSVG.types'
 
 const EmptyPageIconSVG: React.FC<Props> = ({ sizes, transparency }) => (
   <svg

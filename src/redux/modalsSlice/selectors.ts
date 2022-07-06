@@ -1,17 +1,20 @@
 import { RootState } from '../store'
-import { PageOptionsModal } from './types'
+import { MovePageToPopup, PageOptionsPopup } from './types'
 
 const changePageTitleModalSelector = (state: RootState): boolean => {
   return state.modals.isChangePageTitleModalOpen
 }
+const changePageIconPopupSelector = (state: RootState): boolean => {
+  return state.modals.isChangePageIconPopupOpen
+}
 const quickSearchModalSelector = (state: RootState): boolean => {
   return state.modals.isQuickSearchModalOpen
 }
-const movePageToModalSelector = (state: RootState): boolean => {
-  return state.modals.isMovePageToModalOpen
+const movePageToModalSelector = (state: RootState): MovePageToPopup => {
+  return state.modals.movePageToPopup
 }
-const pageOptionsModalSelector = (state: RootState): PageOptionsModal => {
-  return state.modals.pageOptionsModal
+const pageOptionsModalSelector = (state: RootState): PageOptionsPopup => {
+  return state.modals.pageOptionsPopup
 }
 const pagesTrashPopupSelector = (state: RootState): boolean => {
   return state.modals.isPagesTrashModalOpen
@@ -19,6 +22,7 @@ const pagesTrashPopupSelector = (state: RootState): boolean => {
 
 export {
   changePageTitleModalSelector,
+  changePageIconPopupSelector,
   quickSearchModalSelector,
   movePageToModalSelector,
   pageOptionsModalSelector,

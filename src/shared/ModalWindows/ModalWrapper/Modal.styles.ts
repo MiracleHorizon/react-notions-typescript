@@ -7,6 +7,7 @@ const ModalWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   z-index: 1000;
+  user-select: none;
 `
 
 export default ModalWrapper
