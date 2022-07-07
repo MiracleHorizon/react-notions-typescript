@@ -9,6 +9,7 @@ import {
   openPermanentlyDeleteAlert,
   setPermanentlyDeleteAlertPage,
 } from 'redux/alertsSlice/slice'
+import selectedItemHandler from 'helpers/selectedItemHandler'
 import Props from './DeletedPageItem.types'
 import { ElementCoords } from '../../../../@types/generalTypes'
 import {
@@ -22,8 +23,8 @@ import {
 } from './DeletedPageItem.styles'
 
 const DeletedPageItem: React.FC<Props> = props => {
-  const { id, icon, title, parentTitle, activeItem, onSelect } = props
-  const isActive = activeItem === title
+  const { id, icon, title, parentTitle, activeItem, onSelectActiveItem } = props
+  const isActive = selectedItemHandler({ activeItem, item: { id, title } })
   const tooltipCoords: ElementCoords = { top: '30px' } //*
   const dispatch = useDispatch()
 
@@ -42,7 +43,10 @@ const DeletedPageItem: React.FC<Props> = props => {
   }
 
   return (
-    <StyledItem {...{ isActive }} onMouseEnter={() => onSelect(title)}>
+    <StyledItem
+      isActive={isActive}
+      onMouseEnter={() => onSelectActiveItem({ id, title })}
+    >
       {icon ? (
         <Icon src={icon} alt='Icon' />
       ) : (

@@ -1,10 +1,5 @@
 import { FC } from 'react'
-
-interface IOptionItem {
-  title: string
-  IconSVG: FC
-  action: () => void
-}
+import { PageFontFamilies } from '../workSpaceSlice/types'
 
 interface EmptyPageOption {
   title: string
@@ -15,12 +10,7 @@ interface EmptyPageOption {
 interface IPageFont {
   title: string
   tooltipTitle: string
-  fontFamily: string
+  fontFamily: PageFontFamilies
 }
 
-interface IPagesSliceState {
-  favoritePageOptions: IOptionItem[]
-  commonPageOptions: IOptionItem[]
-}
-
-export type { IPagesSliceState, IOptionItem, IPageFont, EmptyPageOption }
+export type { IPageFont, EmptyPageOption }

@@ -4,6 +4,7 @@ import { PageTemplates } from 'redux/popupsSlice/types'
 import {
   CoverColors,
   IWorkspacePage,
+  PageFontFamilies,
   SetPageFontPayloadAction,
   WorkspaceSliceState,
 } from './types'
@@ -22,8 +23,8 @@ const initialState: WorkspaceSliceState = {
       isFavorite: false,
       pageSettings: {
         isSmallText: false,
-        isFullWidth: false,
-        selectedFont: '',
+        isFullWidth: true,
+        selectedFont: PageFontFamilies.DEFAULT,
       },
       coverInfo: {
         isHasCover: true,
@@ -47,7 +48,7 @@ const initialState: WorkspaceSliceState = {
       pageSettings: {
         isSmallText: false,
         isFullWidth: true,
-        selectedFont: '',
+        selectedFont: PageFontFamilies.DEFAULT,
       },
       coverInfo: {
         isHasCover: true,
@@ -71,7 +72,7 @@ const initialState: WorkspaceSliceState = {
       pageSettings: {
         isSmallText: false,
         isFullWidth: false,
-        selectedFont: '',
+        selectedFont: PageFontFamilies.DEFAULT,
       },
       coverInfo: {
         isHasCover: true,
@@ -95,7 +96,7 @@ const initialState: WorkspaceSliceState = {
       pageSettings: {
         isSmallText: false,
         isFullWidth: true,
-        selectedFont: '',
+        selectedFont: PageFontFamilies.DEFAULT,
       },
       coverInfo: {
         isHasCover: true,
@@ -119,8 +120,8 @@ const initialState: WorkspaceSliceState = {
     isFavorite: false,
     pageSettings: {
       isSmallText: false,
-      isFullWidth: false,
-      selectedFont: '',
+      isFullWidth: true,
+      selectedFont: PageFontFamilies.DEFAULT,
     },
     coverInfo: {
       isHasCover: true,
@@ -138,6 +139,7 @@ const initialState: WorkspaceSliceState = {
   },
   lastPage: null,
   recentlyDeleted: [],
+  recentPages: [], //!
 }
 
 export const workSpaceSlice = createSlice({
@@ -206,7 +208,10 @@ export const workSpaceSlice = createSlice({
       const page = state.pages.find(page => page.id === id)
       if (!page) return
 
-      state.currentPage.title = title
+      if (page.id === state.currentPage.id) {
+        state.currentPage.title = title
+      }
+
       page.title = title
     },
     setPageIcon(state, action: PayloadAction<{ icon: string; id: number }>) {
@@ -229,7 +234,7 @@ export const workSpaceSlice = createSlice({
       state.currentPage.coverInfo.isHasCover = true
       state.currentPage.coverInfo.cover = cover
     },
-    setPageFont(state, action: PayloadAction<SetPageFontPayloadAction>) {
+    setPageFontFamily(state, action: PayloadAction<SetPageFontPayloadAction>) {
       const { id, fontFamily } = action.payload
       const page = state.pages.find(page => page.id === id)
       if (!page) return
@@ -305,6 +310,7 @@ export const {
   setPageTitle,
   setPageCover,
   setPageIcon,
+  setPageFontFamily,
   removeCover,
   removeIcon,
   toggleFavorite,

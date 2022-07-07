@@ -1,7 +1,7 @@
 import { IWorkspacePage } from 'redux/workSpaceSlice/types'
-import { ActiveListItem } from '../../../../@types/generalTypes'
+import { ActiveItemParams } from '../../../../@types/generalTypes'
 
-export default interface DeletedPagesListProps extends ActiveListItem {
+export default interface DeletedPagesListProps extends ActiveItemParams {
   list: [] | IWorkspacePage[]
   filterValue?: string
 }

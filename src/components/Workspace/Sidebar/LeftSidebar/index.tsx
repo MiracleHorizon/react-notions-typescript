@@ -9,7 +9,7 @@ import AddNewPagePanel from './Panels/AddNewPagePanel'
 import FavoritePagesList from './PagesList/FavoritePagesList'
 import CommonPagesList from './PagesList/CommonPagesList'
 import PagesTrashPopup from 'components/Popups/PagesTrash'
-import PagesListOptionsModal from 'shared/ModalWindows/PagesListOptions'
+import PageOptionsPopup from 'components/Popups/PageOptions'
 import {
   currentPageSelector,
   favoritePagesSelector,
@@ -17,9 +17,9 @@ import {
 import { leftSidebarSelector } from 'redux/sidebarsSlice/selectors'
 import { setActivePage } from 'redux/sidebarsSlice/slice'
 import {
-  pageOptionsModalSelector,
+  pageOptionsPopupSelector,
   pagesTrashPopupSelector,
-} from 'redux/modalsSlice/selectors'
+} from 'redux/popupsSlice/selectors'
 import {
   Wrapper,
   Container,
@@ -35,7 +35,7 @@ const LeftSidebar: React.FC = () => {
   const { isOpen, isBubbling, location } = useSelector(leftSidebarSelector)
 
   const isHasFavoritePages = useSelector(favoritePagesSelector).length > 0
-  const isPageOptionsPopupOpen = useSelector(pageOptionsModalSelector).isOpen
+  const isPageOptionsPopupOpen = useSelector(pageOptionsPopupSelector).isOpen
   const isPagesTrashPopupOpen = useSelector(pagesTrashPopupSelector)
   const dispatch = useDispatch()
 
@@ -63,7 +63,6 @@ const LeftSidebar: React.FC = () => {
       <ResizerContainer draggable={true} ref={resizerRef} location={location}>
         <Resizer />
       </ResizerContainer>
-      {isPageOptionsPopupOpen && <PagesListOptionsModal />}
       {isPagesTrashPopupOpen && <PagesTrashPopup sidebarWidth={width} />}
     </Wrapper>
   )

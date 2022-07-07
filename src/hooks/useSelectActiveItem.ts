@@ -7,15 +7,15 @@ interface ActiveItem {
 }
 
 interface HookResult {
-  activeItem: ActiveItem | null
+  activeItem: ActiveItem | {}
   setActiveItem: (params: ActiveItem) => void
   onSelectActiveItem: (params: ActiveItem) => void
 }
 
-type InitialValue = ActiveItem | null
+type InitialValue = ActiveItem | {}
 
 export const useSelectActiveItem = (initialValue: InitialValue): HookResult => {
-  const [activeItem, setActiveItem] = useState<ActiveItem | null>(initialValue)
+  const [activeItem, setActiveItem] = useState<ActiveItem | {}>(initialValue)
 
   const onSelectActiveItem = (params: ActiveItem): void => {
     setActiveItem(params)

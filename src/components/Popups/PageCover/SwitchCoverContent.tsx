@@ -7,7 +7,7 @@ import CoverLink from './CoverLink'
 import { SwitchCoverCategories } from 'redux/pageDecorationSlice/types'
 import { coversListsSelector } from 'redux/pageDecorationSlice/selectors'
 import { selectedCoverCategorySelector } from 'redux/pageDecorationSlice/selectors'
-import styles from 'shared/ModalWindows/SwitchCover/SwitchCover.module.scss'
+import styles from 'components/Popups/SwitchCover/SwitchCover.module.scss'
 
 const SwitchCoverContent: React.FC = () => {
   const coversLists = useSelector(coversListsSelector)

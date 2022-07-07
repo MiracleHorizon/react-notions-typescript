@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 
 import ToggleOptionButton from 'shared/Buttons/ToggleOptionButton'
-import { IToggleOption } from 'utils/helpers/toggleOptionsHandler'
+import { IToggleOption } from 'helpers/toggleOptionsHandler'
 import { ActiveListItem } from '../../../../@types/generalTypes'
 import { StyledItem, Title } from './ToggleOptionItem.styles'
 

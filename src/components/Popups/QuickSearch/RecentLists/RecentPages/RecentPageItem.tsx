@@ -5,7 +5,7 @@ import { Item, Icon, Title } from '../RecentListItem.styles'
 
 const RecentPageItem: React.FC<IRecentPageItem> = ({ title, img }) => {
   // const isActive
-  // onMouseEnter={() => onSelect(title)}
+  // onMouseEnter={() => onSelect(optionsTitle)}
 
   return (
     <Item isActive={false}>

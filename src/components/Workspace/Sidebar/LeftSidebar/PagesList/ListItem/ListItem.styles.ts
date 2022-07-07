@@ -25,7 +25,7 @@ const StyledItem = styled.li<{ isActive: boolean; isHovering: boolean }>`
   }
 `
 
-const ToggleIconBlock = styled.div<{ isChild: boolean }>`
+const ToggleIconContainer = styled.div<{ isChild: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,4 +65,4 @@ const Title = styled.p<{ isActive: boolean }>`
     props.isActive ? 'rgb(55, 53, 47)' : 'rgba(55, 53, 47, 0.65)'};
 `
 
-export { StyledItem, ToggleIconBlock, Information, Title }
+export { StyledItem, ToggleIconContainer, Information, Title }

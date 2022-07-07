@@ -1,13 +1,10 @@
 import { IWorkspacePage } from 'redux/workSpaceSlice/types'
 
-enum ListItemOptions {
+export enum ListItemOptions {
   FAVORITE = 'Remove, rename',
   COMMON = 'Delete, duplicate',
 }
 
-interface SidebarListItemProps {
+export default interface SidebarListItemProps {
   page: IWorkspacePage
 }
-
-export type { SidebarListItemProps }
-export { ListItemOptions }

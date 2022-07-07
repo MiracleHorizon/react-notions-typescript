@@ -1,14 +1,13 @@
 import { EmptyPageOption, IPageFont } from './types'
 import { PageTemplates } from 'redux/popupsSlice/types'
 import {
-  TemplatesSvg,
-  CalendarTemplateSvg,
   BoardTemplateSvg,
-  TableTemplateSvg,
   EmptyPageIconSvg,
   EmptyWithIconSvg,
   TaskListTemplateSvg,
+  TemplatesSvg,
 } from 'shared/SVG'
+import { PageFontFamilies } from '../workSpaceSlice/types'
 
 const EMPTY_PAGE_DECORATION_OPTIONS: EmptyPageOption[] = [
   {
@@ -48,20 +47,20 @@ const EMPTY_PAGE_TEMPLATES_OPTIONS: EmptyPageOption[] = [
       console.log('Task List')
     },
   },
-  {
-    title: PageTemplates.CALENDAR,
-    IconSVG: CalendarTemplateSvg,
-    action: () => {
-      console.log('Calendar')
-    },
-  },
-  {
-    title: PageTemplates.TABLE,
-    IconSVG: TableTemplateSvg,
-    action: () => {
-      console.log('Table')
-    },
-  },
+  // {
+  //   title: PageTemplates.CALENDAR,
+  //   IconSVG: CalendarTemplateSvg,
+  //   action: () => {
+  //     console.log('Calendar')
+  //   },
+  // },
+  // {
+  //   title: PageTemplates.TABLE,
+  //   IconSVG: TableTemplateSvg,
+  //   action: () => {
+  //     console.log('Table')
+  //   },
+  // },
 ]
 
 const EMPTY_PAGE_OPTION_TITLES: string[] = [
@@ -77,19 +76,17 @@ const PAGE_FONTS: IPageFont[] = [
   {
     title: 'Default',
     tooltipTitle: 'The default sans-serif workhorse',
-    fontFamily: `ui-sans-serif, -apple-system, BlinkMacSystemFont, 
-      Segoe UI,Helvetica, Apple Color Emoji, Arial, sans-serif, Segoe 
-      UI Emoji,Segoe UI Symbol`,
+    fontFamily: PageFontFamilies.DEFAULT,
   },
   {
     title: 'Serif',
     tooltipTitle: 'Good for publishing',
-    fontFamily: 'Lyon-Text, Georgia, ui-serif, serif',
+    fontFamily: PageFontFamilies.SERIF,
   },
   {
     title: 'Mono',
     tooltipTitle: 'Good for drafting and notes',
-    fontFamily: 'iawriter-mono, Nitti, Menlo, Courier, monospace',
+    fontFamily: PageFontFamilies.MONO,
   },
 ]
 

@@ -1,8 +1,0 @@
-import { RootState } from '../store'
-
-// const favPageOptionsSelector = (state: RootState) =>
-//   state.options.favoritePageOptions
-// const commonPageOptionsSelector = (state: RootState) =>
-//   state.options.commonPageOptions
-//
-// export { favPageOptionsSelector, commonPageOptionsSelector }

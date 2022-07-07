@@ -24,7 +24,7 @@ export const alertsSlice = createSlice({
       state.permanentlyDeleteAlert.pageId = action.payload
     },
   },
-})
+}) //! НЕ OPEN, А SHOW, НЕ CLOSE, А HIDE
 
 export const {
   openPermanentlyDeleteAlert,

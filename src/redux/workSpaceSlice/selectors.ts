@@ -1,5 +1,5 @@
 import { RootState } from '../store'
-import { IWorkspacePage } from './types'
+import { IWorkspacePage, PageFontFamilies } from './types'
 
 const currentPageSelector = (state: RootState): IWorkspacePage => {
   return state.workspace.currentPage
@@ -18,6 +18,12 @@ const recentlyDeletedPagesSelector = (
 ): IWorkspacePage[] | [] => {
   return state.workspace.recentlyDeleted
 }
+const currentPageFontFamilySelector = (state: RootState): PageFontFamilies => {
+  return state.workspace.currentPage.pageSettings.selectedFont
+}
+const currentPageFontSizeSelector = (state: RootState): boolean => {
+  return state.workspace.currentPage.pageSettings.isSmallText
+}
 
 export {
   currentPageSelector,
@@ -25,4 +31,6 @@ export {
   favoritePagesSelector,
   commonPagesSelector,
   recentlyDeletedPagesSelector,
+  currentPageFontFamilySelector,
+  currentPageFontSizeSelector,
 }

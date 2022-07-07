@@ -1,6 +1,16 @@
 interface ActiveListItem {
   activeItem: string
   onSelect: (title: string) => void
+} //!
+
+interface ActiveItem {
+  title: string
+  id: number
+}
+
+interface ActiveItemParams {
+  activeItem: ActiveItem
+  onSelectActiveItem: (params: ActiveItem) => void
 }
 
 enum Themes {
@@ -23,5 +33,5 @@ interface ElementCoords {
   right?: string
 }
 
-export type { ActiveListItem, ElementCoords }
+export type { ActiveItem, ActiveListItem, ActiveItemParams, ElementCoords }
 export { Themes, ElementPositions }

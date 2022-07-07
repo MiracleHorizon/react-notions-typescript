@@ -1,13 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
 
-import sidebar from './sidebarsSlice/slice'
 import workspace from './workSpaceSlice/slice'
+import sidebar from './sidebarsSlice/slice'
 import pageDecoration from './pageDecorationSlice/slice'
 import recentSearch from './recentSearchSlice/slice'
-// import options from './optionsSlice/slice'
 import popups from './popupsSlice/slice'
-import modals from './modalsSlice/slice'
 import alerts from './alertsSlice/slice'
 
 export const store = configureStore({
@@ -16,8 +14,6 @@ export const store = configureStore({
     workspace,
     recentSearch,
     pageDecoration,
-    // options,
-    modals,
     popups,
     alerts,
   },

@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import QuickSearchModal from 'shared/ModalWindows/QuickSearch'
-import { openQuickSearchModal } from 'redux/modalsSlice/slice'
-import { quickSearchModalSelector } from 'redux/modalsSlice/selectors'
+import QuickSearchModal from 'components/Popups/QuickSearch'
+import { openQuickSearchModal } from 'redux/popupsSlice/slice'
+import { quickSearchPopupSelector } from 'redux/popupsSlice/selectors'
 import searchSvg from 'assets/img/inputs/search.svg'
 import updatesSvg from 'assets/img/optionsImgs/updates.svg'
 import settingsSvg from 'assets/img/optionsImgs/settings.svg'
@@ -16,7 +16,7 @@ import {
 } from './AppOptionsPanel.styles'
 
 const AppOptionsPanel: React.FC = () => {
-  const isQuickSearchModalOpen = useSelector(quickSearchModalSelector)
+  const isQuickSearchModalOpen = useSelector(quickSearchPopupSelector)
 
   const dispatch = useDispatch()
   const onOpenQuickSearch = (): void => {

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import * as _ from 'lodash'
 
 import PageDecorOption from './PageDecorOption'
-import SwitchPageIconModal from 'shared/ModalWindows/SwitchIcon'
+import ChangePageIconPopup from 'components/Popups/SwitchIcon'
 import AddIconSVG from 'shared/SVG/AddIcon'
 import AddCoverSVG from 'shared/SVG/AddCover'
 import AddCommentSVG from 'shared/SVG/AddComment'
@@ -14,7 +14,7 @@ import {
 } from 'redux/pageDecorationSlice/selectors'
 import { setIsIconModalOpen } from 'redux/pageDecorationSlice/slice'
 import { setPageCover } from 'redux/workSpaceSlice/slice'
-import { getAllCovers } from 'utils/helpers/getAllCovers'
+import { getAllCovers } from 'helpers/getAllCovers'
 import {
   OptionsPanel,
   OptionsContainer,
@@ -55,7 +55,7 @@ const PageContentOptions: React.FC = () => {
           <PageIconBlock onClick={onOpenSwitchPageIconModal}>
             <PageIcon src={icon ? icon : ''} alt='Page icon' />
           </PageIconBlock>
-          {isSwitchPageIconModalOpen && <SwitchPageIconModal />}
+          {isSwitchPageIconModalOpen && <ChangePageIconPopup />}
         </Fragment>
       )}
       <OptionsContainer>

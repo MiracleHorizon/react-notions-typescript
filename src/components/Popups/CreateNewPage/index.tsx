@@ -1,7 +1,7 @@
 import React, { Fragment, useRef, useState } from 'react'
 import { useOnClickOutside } from 'usehooks-ts'
 
-import Modal from 'shared/ModalWindows/ModalWrapper'
+import Modal from 'components/Popups/ModalWrapper'
 import styles from './CreateNewPageModal.module.scss'
 import CreateNewPageNavbar from './Navbar'
 

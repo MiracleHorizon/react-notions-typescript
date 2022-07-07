@@ -2,9 +2,9 @@ import React, { lazy, Suspense } from 'react'
 import { useSelector } from 'react-redux'
 
 // import PageCover from '../Popups/PageCover'
+import PageCover from './PageCover'
 import { rightSidebarSelector } from 'redux/sidebarsSlice/selectors'
 import { Wrapper, Container, Content } from './Workspace.styles'
-import PageCover from './PageCover'
 
 const Header = lazy(() => import('./Header'))
 const Board = lazy(() => import('../PageTemplates/Board'))

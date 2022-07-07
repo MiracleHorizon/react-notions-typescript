@@ -9,16 +9,24 @@ import {
   setPageOptions,
   setPageOptionsId,
   setPageOptionsModalCoords,
-} from 'redux/modalsSlice/slice'
+  setRenamePopupCoords,
+  setRenamePopupEssence,
+} from 'redux/popupsSlice/slice'
 import { PagesListItemOptionsButtonProps as Props } from './PagesListItemOptionsButton.types'
-import pageOptionsHandler from 'utils/helpers/pageOptionsHandler'
-import { setCoordsByPointer } from 'utils/helpers/setCoordsByPointer'
+import { setCoordsByPointer } from 'helpers/setCoordsByPointer'
+import pageOptionsHandler from 'helpers/pageOptionsHandler'
+import { renamePopupCoordsHandler } from 'utils/coordsHandlers'
 import StyledButton from './PagesListItemOptionsButton.styles'
 
-const PagesListItemOptionsButton: React.FC<Props> = ({ id, title }) => {
+const PagesListItemOptionsButton: React.FC<Props> = props => {
+  const { optionsTitle, ...page } = props
   const optionsButtonRef = useRef<HTMLImageElement>(null)
   const isHovering = useHover(optionsButtonRef)
-  const options = pageOptionsHandler(title)
+  const options = pageOptionsHandler(optionsTitle)
+
+  const optionsButtonRect = optionsButtonRef.current?.getBoundingClientRect()
+  const renamePagePopupCoords =
+    renamePopupCoordsHandler.setCoordsBySidebar(optionsButtonRect)
 
   const dispatch = useDispatch()
   const onOpenPageOptionsModal = (e: React.MouseEvent): void => {
@@ -29,7 +37,10 @@ const PagesListItemOptionsButton: React.FC<Props> = ({ id, title }) => {
     dispatch(openPageOptionsModal())
     dispatch(setPageOptionsModalCoords(popupCoords))
     dispatch(setPageOptions(options))
-    dispatch(setPageOptionsId(id))
+    dispatch(setPageOptionsId(page.id))
+
+    dispatch(setRenamePopupCoords(renamePagePopupCoords))
+    dispatch(setRenamePopupEssence(page))
   }
 
   return (
@@ -37,7 +48,7 @@ const PagesListItemOptionsButton: React.FC<Props> = ({ id, title }) => {
       <OptionsDotsSVG sizes={{ width: 14, height: 14 }} />
       {isHovering && (
         <Tooltip
-          title={`${title}, and more...`}
+          title={`${optionsTitle}, and more...`}
           coords={{ left: '-70px', bottom: '-32px' }}
         />
       )}

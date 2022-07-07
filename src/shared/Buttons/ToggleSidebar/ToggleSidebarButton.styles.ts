@@ -33,4 +33,5 @@ const StyledButton = styled.div<StyledButtonProps>`
     transform: rotate(${props => props.properties.imgRotate + 'deg'});
   }
 `
-export { StyledButton }
+
+export default StyledButton

@@ -12,6 +12,14 @@ export enum CoverColors {
   ORANGE = '#FDDFCC',
 }
 
+export enum PageFontFamilies {
+  DEFAULT = `ui-sans-serif, -apple-system, BlinkMacSystemFont, Segoe UI,
+  Helvetica, Apple Color Emoji, Arial, sans-serif, 
+  Segoe UI Emoji,Segoe UI Symbol`,
+  SERIF = 'Lyon-Text, Georgia, ui-serif, serif',
+  MONO = 'iawriter-mono, Nitti, Menlo, Courier, monospace',
+}
+
 interface IComment {
   title: string
   createDate?: Date
@@ -51,7 +59,7 @@ interface IWorkspacePage {
   pageSettings: {
     isSmallText: boolean
     isFullWidth: boolean
-    selectedFont: string
+    selectedFont: PageFontFamilies
   }
   coverInfo: {
     isHasCover: boolean
@@ -88,11 +96,12 @@ interface WorkspaceSliceState {
   currentPage: IWorkspacePage
   lastPage: IWorkspacePage | null
   recentlyDeleted: IWorkspacePage[] | []
+  recentPages: IWorkspacePage | []
 }
 
 interface SetPageFontPayloadAction {
   id: number
-  fontFamily: string
+  fontFamily: PageFontFamilies
 }
 
 export type {

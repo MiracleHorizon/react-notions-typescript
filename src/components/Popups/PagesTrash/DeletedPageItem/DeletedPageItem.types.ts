@@ -1,6 +1,6 @@
-import { ActiveListItem } from '../../../../@types/generalTypes'
+import { ActiveItemParams } from '../../../../@types/generalTypes'
 
-export default interface PagesTrashItemProps extends ActiveListItem {
+export default interface PagesTrashItemProps extends ActiveItemParams {
   id: number
   icon: string
   title: string

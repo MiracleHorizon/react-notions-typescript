@@ -2,7 +2,7 @@ import React, { ChangeEvent, FormEvent } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { setSearchesValue } from 'redux/recentSearchSlice/slice'
-import { closeQuickSearchModal } from 'redux/modalsSlice/slice'
+import { closeQuickSearchModal } from 'redux/popupsSlice/slice'
 import { ACCOUNT_NAME } from 'utils/accountName'
 import searchSvg from 'assets/img/inputs/search.svg'
 import {

@@ -5,9 +5,9 @@ import { useSidebarActionHandler } from 'hooks/useSidebarActionHandler'
 import Tooltip from 'shared/Tooltip'
 import DoubleChevronSvg from 'shared/SVG/DoubleChevron'
 import { ToggleSidebarBtnProps } from './ToggleSidebarButton.types'
-import { toggleSidebarBtnCoordsHandler } from 'utils/helpers/toggleSidebarBtnCoordsHandler'
-import { toggleSidebarTooltipHandler } from 'utils/helpers/toggleSidebarTooltipHandler'
-import { StyledButton } from './ToggleSidebarButton.styles'
+import { toggleSidebarBtnCoordsHandler } from 'helpers/toggleSidebarBtnCoordsHandler'
+import { toggleSidebarTooltipHandler } from 'helpers/toggleSidebarTooltipHandler'
+import StyledButton from './ToggleSidebarButton.styles'
 
 const ToggleSidebarButton: React.FC<ToggleSidebarBtnProps> = props => {
   const { purpose, location, isParentHovering } = props

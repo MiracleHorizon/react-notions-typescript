@@ -2,6 +2,7 @@ import {
   CoverColors,
   IComment,
   IWorkspacePage,
+  PageFontFamilies,
 } from 'redux/workSpaceSlice/types'
 import { PageTemplates } from 'redux/popupsSlice/types'
 
@@ -13,7 +14,7 @@ class NewPage implements IWorkspacePage {
   pageSettings: {
     isSmallText: boolean
     isFullWidth: boolean
-    selectedFont: string
+    selectedFont: PageFontFamilies
   }
   coverInfo: {
     isHasCover: boolean
@@ -49,7 +50,7 @@ const DEFAULT_PAGE_SETTINGS: IWorkspacePage = {
   pageSettings: {
     isSmallText: false,
     isFullWidth: false,
-    selectedFont: '',
+    selectedFont: PageFontFamilies.DEFAULT,
   },
   coverInfo: {
     isHasCover: false,

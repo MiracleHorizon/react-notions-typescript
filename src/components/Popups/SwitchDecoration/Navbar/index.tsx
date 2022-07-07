@@ -17,7 +17,7 @@ import {
   setIsCoverModalClose,
   setIsIconModalClose,
 } from 'redux/pageDecorationSlice/slice'
-import { getAllCovers } from 'utils/helpers/getAllCovers'
+import { getAllCovers } from 'helpers/getAllCovers'
 import coverSvg from 'assets/img/cover.svg'
 import smileSvg from 'assets/img/smile.svg'
 import styles from './Navbar.module.scss'

@@ -18,7 +18,7 @@ const Wrapper = styled.div<SidebarWrapperProps>`
   max-width: 480px;
   min-width: ${props => {
     if (props.location === SidebarLocations.LEFT) {
-      return !props.isOpen ? '0px' : '180px'
+      return !props.isOpen ? '0px' : '200px'
     } else {
       return !props.isOpen ? '0px' : '375px'
     }

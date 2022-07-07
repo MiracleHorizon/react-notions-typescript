@@ -5,7 +5,7 @@ import { useInput } from 'hooks/useInput'
 
 import QuickSearchForm from './SearchForm/QuickSearchForm'
 import RecentLists from './RecentLists/RecentLists'
-import { closeQuickSearchModal } from 'redux/modalsSlice/slice'
+import { closeQuickSearchModal } from 'redux/popupsSlice/slice'
 
 import {
   Wrapper,

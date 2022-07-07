@@ -3,37 +3,31 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 import { useToggle } from 'hooks/useToggle'
 
+import PagesListItemIcon from './ItemIcon'
 import PagesListItemOptionsButton from 'shared/Buttons/PagesListItemOptions'
 import AddNewPageButton from 'shared/Buttons/AddNewPage'
 import TriangleSVG from 'shared/SVG/Triangle'
 import { activePageSelector } from 'redux/sidebarsSlice/selectors'
 import { setCurrentPage } from 'redux/workSpaceSlice/slice'
 import { closeRightSidebar, setActivePage } from 'redux/sidebarsSlice/slice'
-import { ListItemOptions, SidebarListItemProps } from './ListItem.types'
+import Props from './ListItem.types'
+import titleHandler from 'helpers/listItemOptionsTitleHandler'
+import selectedItemHandler from 'helpers/selectedItemHandler'
 import {
   Information,
   StyledItem,
   Title,
-  ToggleIconBlock,
+  ToggleIconContainer,
 } from './ListItem.styles'
-import PagesListItemIcon from './ItemIcon'
 
-const PagesListItem: React.FC<SidebarListItemProps> = ({ page }) => {
-  const {
-    id,
-    title,
-    isFavorite,
-    iconInfo: { icon, isHasIcon },
-  } = page //* isChild.
+const PagesListItem: React.FC<Props> = ({ page }) => {
+  const { id, title, isFavorite, iconInfo } = page //* isChild.
   const { isOpen, toggleIsOpen } = useToggle(false)
-  const listItemOptionsTitle = isFavorite
-    ? ListItemOptions.FAVORITE
-    : ListItemOptions.COMMON //* Переработать.
+  const listItemOptionsTitle = titleHandler(isFavorite)
   const dispatch = useDispatch()
 
-  const activePage = useSelector(activePageSelector)
-  const isActive: boolean = activePage.title === title && activePage.id === id
-
+  const activeItem = useSelector(activePageSelector)
+  const isActive = selectedItemHandler({ activeItem, item: { id, title } })
   const itemRef = useRef<HTMLLIElement>(null)
   const isHovering: boolean = useHover(itemRef)
 
@@ -58,22 +52,25 @@ const PagesListItem: React.FC<SidebarListItemProps> = ({ page }) => {
       {...{ isActive, isHovering }}
       onClick={onSelectCurrentPage}
     >
-      <ToggleIconBlock isChild={false} onClick={onTogglePageContent}>
+      <ToggleIconContainer isChild={false} onClick={onTogglePageContent}>
         <TriangleSVG isOpen={isOpen} />
-      </ToggleIconBlock>
+      </ToggleIconContainer>
       <Information>
-        <PagesListItemIcon {...{ icon, isHasIcon }} />
+        <PagesListItemIcon {...iconInfo} />
         <Title isActive={isActive}>{title}</Title>
       </Information>
       {isHovering && (
-        <Fragment>
-          <PagesListItemOptionsButton id={id} title={listItemOptionsTitle} />
+        <>
+          <PagesListItemOptionsButton
+            optionsTitle={listItemOptionsTitle}
+            {...{ id, title, iconInfo }}
+          />
           <AddNewPageButton
             coords={{ top: '4px', right: '8px' }}
             tooltipTitle='Quickly add a page inside'
             onClickAction={onAddNewPageInside}
           />
-        </Fragment>
+        </>
       )}
     </StyledItem>
   )
