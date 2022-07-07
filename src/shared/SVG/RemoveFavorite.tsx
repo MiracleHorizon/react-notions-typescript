@@ -1,6 +1,6 @@
 import React from 'react'
 
-const RemoveFavoriteSVG: React.FC = () => (
+const RemoveFavoriteSvg: React.FC = (props: any) => (
   <svg
     viewBox='0 0 16 16'
     style={{
@@ -16,4 +16,4 @@ const RemoveFavoriteSVG: React.FC = () => (
   </svg>
 )
 
-export default RemoveFavoriteSVG
+export default RemoveFavoriteSvg

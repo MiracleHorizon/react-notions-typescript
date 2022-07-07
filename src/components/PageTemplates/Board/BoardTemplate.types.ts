@@ -1,6 +1,11 @@
+import { PageFontFamilies } from 'redux/workSpaceSlice/types'
+
+interface BoardWrapperProps {}
+
 interface ContentContainerProps {
   isFullWidth: boolean
-  font?: string
+  // isSmallText: boolean
+  // fontFamily: PageFontFamilies
 }
 
-export type { ContentContainerProps }
+export type { BoardWrapperProps, ContentContainerProps }

@@ -24,8 +24,8 @@ export { default as OptionsDotsSvg } from './OptionsDots'
 
 // Decoration
 export { default as AddCommentSvg } from './AddComment'
-export { default as AddCoverSvg } from './AddCover'
-export { default as AddIconSvg } from './AddIcon'
+export { default as CoverSvg } from './Cover'
+export { default as SmileySvg } from './Smiley'
 export { default as CheckSvg } from './Check'
 export { default as ChevronDownSvg } from './ChevronDown'
 export { default as DoubleChevronSvg } from './DoubleChevron'

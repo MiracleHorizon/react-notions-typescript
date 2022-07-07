@@ -4,13 +4,14 @@ import {
   MovePageToPopupState,
   PageOptionsPopupState,
   PageSettingsPopupState,
+  PageIconPopup,
 } from './types'
 
 const renamePopupSelector = (state: RootState): RenamePopupState => {
   return state.popups.renamePopup
 }
-const changePageIconPopupSelector = (state: RootState): boolean => {
-  return state.popups.isChangePageIconPopupOpen
+const changeIconPopupSelector = (state: RootState): PageIconPopup => {
+  return state.popups.pageIconPopup
 }
 const quickSearchPopupSelector = (state: RootState): boolean => {
   return state.popups.isQuickSearchModalOpen
@@ -32,7 +33,7 @@ const pageSettingsPopupSelector = (
 
 export {
   renamePopupSelector,
-  changePageIconPopupSelector,
+  changeIconPopupSelector,
   quickSearchPopupSelector,
   movePagePopupSelector,
   pageOptionsPopupSelector,

@@ -1,5 +1,5 @@
-import NewPage from '../NewPage'
-import { DefaultBoardPageParams } from '../types'
+import NewPage from './NewPage'
+import { DefaultBoardPageParams } from './types'
 import { PageTemplates } from 'redux/popupsSlice/types'
 import { PageFontFamilies } from 'redux/workSpaceSlice/types'
 

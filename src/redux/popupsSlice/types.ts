@@ -42,10 +42,14 @@ interface PageSettingsPopupState extends PopupInitialState {
   pageTemplate: PageTemplates // | null
 }
 
+interface PageIconPopup extends PopupInitialState {
+  coords: ElementCoords
+}
+
 interface PopupsState {
   isQuickSearchModalOpen: boolean
   isPagesTrashModalOpen: boolean
-  isChangePageIconPopupOpen: boolean
+  pageIconPopup: PageIconPopup
   renamePopup: RenamePopupState
   movePageToPopup: MovePageToPopupState
   pageOptionsPopup: PageOptionsPopupState
@@ -56,6 +60,7 @@ export type {
   PopupsState,
   PageOptionsPopupState,
   PageSettingsPopupState,
+  PageIconPopup,
   MovePageToPopupState,
   RenamableEssence,
   RenamePopupState,

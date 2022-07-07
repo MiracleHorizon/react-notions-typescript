@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AddCoverSVG: React.FC = () => (
+const CoverSvg: React.FC = () => (
   <svg
     viewBox='0 0 14 14'
     style={{
@@ -20,4 +20,4 @@ const AddCoverSVG: React.FC = () => (
   </svg>
 )
 
-export default AddCoverSVG
+export default CoverSvg

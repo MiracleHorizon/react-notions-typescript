@@ -6,12 +6,12 @@ import { useSelectItem } from 'hooks/useSelectItem'
 import SwitchFontPanel from './SwitchFontPanel'
 import ToggleOptionsList from 'components/Options/ToggleOptionsList/ToggleOptionsList'
 import PopupOptionItem from 'components/Options/PopupOptionItem'
-import MoveToOptionItem from 'components/Options/OptionsList/PageOptionItems/MoveToOptionItem'
+import MoveToOptionItem from 'components/Options/OptionsList/PageOptionItems/components/MoveToOptionItem'
 import PageChangesBar from 'shared/PageChangesBar'
 import CustomizePageSVG from 'shared/SVG/CustomizePage'
 import LockPageSVG from 'shared/SVG/LockPage'
 import UnlockPageSVG from 'shared/SVG/UnlockPage'
-import RemoveFavoriteSVG from 'shared/SVG/RemoveFavorite'
+import RemoveFavoriteSvg from 'shared/SVG/RemoveFavorite'
 import UnfavoriteStarSVG from 'shared/SVG/UnfavoriteStar'
 import LinkSVG from 'shared/SVG/Link'
 import DeleteTrashSVG from 'shared/SVG/DeleteTrash'
@@ -98,7 +98,7 @@ const BoardPageSettingsPopup: React.FC = () => {
           title={isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
           icon={
             isFavorite ? (
-              <RemoveFavoriteSVG />
+              <RemoveFavoriteSvg />
             ) : (
               <UnfavoriteStarSVG sizes={{ width: 17, height: 17 }} />
             )

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import PageOptionItem from '../PageOptionItem'
+import PageOptionItem from '../../PageOptionItem'
 import Props from './RenameItem.types'
 import { RenameSvg } from 'shared/SVG'
 

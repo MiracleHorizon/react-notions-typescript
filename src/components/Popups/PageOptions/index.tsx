@@ -6,7 +6,7 @@ import { useSelectItem } from 'hooks/useSelectItem'
 import Modal from '../ModalWrapper'
 import FavoritePageOptions from 'components/Options/OptionsList/FavoritePageOptions'
 import CommonPageOptions from 'components/Options/OptionsList/CommonPageOptions'
-import MoveToOptionItem from 'components/Options/OptionsList/PageOptionItems/MoveToOptionItem'
+import MoveToOptionItem from 'components/Options/OptionsList/PageOptionItems/components/MoveToOptionItem'
 import PageChangesBar from 'shared/PageChangesBar'
 import Separator from 'shared/Separator'
 import {

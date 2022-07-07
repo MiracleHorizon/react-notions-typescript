@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AddIconSVG: React.FC = () => (
+const SmileySvg: React.FC = () => (
   <svg
     viewBox='0 0 14 14'
     style={{
@@ -20,4 +20,4 @@ const AddIconSVG: React.FC = () => (
   </svg>
 )
 
-export default AddIconSVG
+export default SmileySvg

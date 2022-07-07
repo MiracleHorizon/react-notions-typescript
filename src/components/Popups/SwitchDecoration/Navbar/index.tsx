@@ -1,10 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import * as _ from 'lodash'
 
 import SwitchDecorationNavbarItem from './NavbarItem'
+import { CoverSvg, SmileySvg } from 'shared/SVG'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
 import { coversListsSelector } from 'redux/pageDecorationSlice/selectors'
+import { closeChangeIconPopup } from 'redux/popupsSlice/slice'
 import {
   removeCover,
   removeIcon,
@@ -15,11 +16,8 @@ import {
   refreshCoverCategory,
   refreshIconCategory,
   setIsCoverModalClose,
-  setIsIconModalClose,
 } from 'redux/pageDecorationSlice/slice'
-import { getAllCovers } from 'helpers/getAllCovers'
-import coverSvg from 'assets/img/cover.svg'
-import smileSvg from 'assets/img/smile.svg'
+import getRandomCover from 'helpers/getRandomCover'
 import styles from './Navbar.module.scss'
 
 enum DecorPurposes {
@@ -36,19 +34,18 @@ const SwitchDecorationNavbar: React.FC<SwitchDecorationNavbarProps> = props => {
   const { categories, purpose } = props
   const { id } = useSelector(currentPageSelector)
   const covers = useSelector(coversListsSelector)
-  const randomButtonImg = purpose === DecorPurposes.COVER ? coverSvg : smileSvg
 
   const dispatch = useDispatch()
   const onAddRandomDecoration = (): void => {
     switch (purpose) {
       case DecorPurposes.COVER:
-        dispatch(setPageCover({ cover: _.sample(getAllCovers(covers)), id }))
+        dispatch(setPageCover({ cover: getRandomCover(covers), id }))
         dispatch(setIsCoverModalClose())
         dispatch(refreshCoverCategory())
         break
       case DecorPurposes.ICON:
         dispatch(setPageIcon({ icon: '', id }))
-        dispatch(setIsIconModalClose())
+        dispatch(closeChangeIconPopup())
         dispatch(refreshIconCategory())
         break
     }
@@ -62,7 +59,7 @@ const SwitchDecorationNavbar: React.FC<SwitchDecorationNavbarProps> = props => {
         break
       case DecorPurposes.ICON:
         dispatch(removeIcon(id))
-        dispatch(setIsIconModalClose())
+        dispatch(closeChangeIconPopup())
         dispatch(refreshIconCategory())
         break
     }
@@ -80,7 +77,7 @@ const SwitchDecorationNavbar: React.FC<SwitchDecorationNavbarProps> = props => {
       <div className={styles.actions}>
         <div className={styles.btn} onClick={onAddRandomDecoration}>
           <div role='button'>
-            <img src={randomButtonImg} alt='Random' />
+            {purpose === DecorPurposes.COVER ? <CoverSvg /> : <SmileySvg />}
             <span>Random</span>
           </div>
         </div>

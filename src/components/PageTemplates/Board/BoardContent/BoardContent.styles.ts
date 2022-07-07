@@ -1,7 +1,12 @@
 import styled from 'styled-components'
 import { PageFontFamilies } from 'redux/workSpaceSlice/types'
 
-const Content = styled.div<{ fontFamily: PageFontFamilies }>`
+interface ContentProps {
+  isSmallText: boolean
+  fontFamily: PageFontFamilies
+}
+
+const Content = styled.div<ContentProps>`
   min-height: 200px;
   width: 100%;
   overflow-y: auto;
@@ -13,8 +18,10 @@ const Content = styled.div<{ fontFamily: PageFontFamilies }>`
   h5,
   h6,
   span,
-  p {
+  p,
+  div {
     font-family: ${props => props.fontFamily} !important;
+    font-size: ${props => (props.isSmallText ? '1.8em' : '2em')};
   }
 `
 

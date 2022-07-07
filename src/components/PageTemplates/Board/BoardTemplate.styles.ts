@@ -10,8 +10,8 @@ const BoardWrapper = styled.div`
 `
 
 const Container = styled.div<ContentContainerProps>`
-  width: ${props => (props.isFullWidth ? '85%' : '50%')};
-  max-width: 85%;
+  width: ${props => (props.isFullWidth ? '90%' : '50%')};
+  max-width: 90%;
   min-width: 50%;
   padding: 0 2px;
   //background: greenyellow;

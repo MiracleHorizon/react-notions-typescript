@@ -1,20 +1,15 @@
-import React, { Fragment, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import * as _ from 'lodash'
 
-import PageDecorOption from './PageDecorOption'
-import ChangePageIconPopup from 'components/Popups/SwitchIcon'
-import AddIconSVG from 'shared/SVG/AddIcon'
-import AddCoverSVG from 'shared/SVG/AddCover'
-import AddCommentSVG from 'shared/SVG/AddComment'
+import AddRandomIconButton from 'shared/Buttons/PageDecorButton/components/AddRandomIcon'
+import AddRandomCoverButton from 'shared/Buttons/PageDecorButton/components/AddRandomCover'
+import AddFirstCommentButton from 'shared/Buttons/PageDecorButton/components/AddFirstComment'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
 import {
-  coversListsSelector,
-  isIconModalOpenSelector,
-} from 'redux/pageDecorationSlice/selectors'
-import { setIsIconModalOpen } from 'redux/pageDecorationSlice/slice'
-import { setPageCover } from 'redux/workSpaceSlice/slice'
-import { getAllCovers } from 'helpers/getAllCovers'
+  openChangeIconPopup,
+  setChangeIconPopupCoords,
+} from 'redux/popupsSlice/slice'
+import { changeIconPopupCoordsHandler } from 'utils/coordsHandlers'
 import {
   OptionsPanel,
   OptionsContainer,
@@ -25,24 +20,22 @@ import {
 
 const PageContentOptions: React.FC = () => {
   const {
-    id,
     title,
     iconInfo: { icon, isHasIcon },
     coverInfo: { isHasCover },
     commentsInfo: { isHasComments },
   } = useSelector(currentPageSelector)
-  const covers = useSelector(coversListsSelector)
-  const isSwitchPageIconModalOpen = useSelector(isIconModalOpenSelector)
-  const pageTitleRef = useRef<HTMLDivElement>(null)
   const dispatch = useDispatch()
-  const onOpenSwitchPageIconModal = (): void => {
-    dispatch(setIsIconModalOpen())
+  const iconRef = useRef<HTMLDivElement>(null)
+
+  const onOpenChangeIconPopup = (): void => {
+    const iconRect = iconRef.current?.getBoundingClientRect()
+    const changeIconPopupCoords =
+      changeIconPopupCoordsHandler.setCoordsByWorkspace(iconRect)
+
+    dispatch(openChangeIconPopup())
+    dispatch(setChangeIconPopupCoords(changeIconPopupCoords))
   }
-  const onAddRandomCover = (): void => {
-    dispatch(setPageCover({ cover: _.sample(getAllCovers(covers)), id }))
-  }
-  const onAddRandomIcon = (): void => {}
-  const onAddComment = (): void => {}
 
   useEffect(() => {
     document.title = title
@@ -51,37 +44,16 @@ const PageContentOptions: React.FC = () => {
   return (
     <OptionsPanel>
       {isHasIcon && (
-        <Fragment>
-          <PageIconBlock onClick={onOpenSwitchPageIconModal}>
-            <PageIcon src={icon ? icon : ''} alt='Page icon' />
-          </PageIconBlock>
-          {isSwitchPageIconModalOpen && <ChangePageIconPopup />}
-        </Fragment>
+        <PageIconBlock ref={iconRef} onClick={onOpenChangeIconPopup}>
+          <PageIcon src={icon} alt='Page icon' />
+        </PageIconBlock>
       )}
       <OptionsContainer>
-        {!isHasIcon && (
-          <PageDecorOption
-            IconSVG={AddIconSVG}
-            optionTitle='icon'
-            onClickAction={onAddRandomIcon}
-          />
-        )}
-        {!isHasCover && (
-          <PageDecorOption
-            IconSVG={AddCoverSVG}
-            optionTitle='cover'
-            onClickAction={onAddRandomCover}
-          />
-        )}
-        {!isHasComments && (
-          <PageDecorOption
-            IconSVG={AddCommentSVG}
-            optionTitle='comment'
-            onClickAction={onAddRandomIcon}
-          />
-        )}
+        {!isHasIcon && <AddRandomIconButton />}
+        {!isHasCover && <AddRandomCoverButton />}
+        {!isHasComments && <AddFirstCommentButton />}
       </OptionsContainer>
-      <PageTitle ref={pageTitleRef}>{title}</PageTitle>
+      <PageTitle>{title}</PageTitle>
     </OptionsPanel>
   )
 }

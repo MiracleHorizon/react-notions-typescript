@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react'
 import { useSelector } from 'react-redux'
 
 import {
-  changePageIconPopupSelector,
+  changeIconPopupSelector,
   movePagePopupSelector,
   pageOptionsPopupSelector,
   pageSettingsPopupSelector,
@@ -13,10 +13,10 @@ const RenamePopup = lazy(() => import('components/Popups/Rename'))
 const MovePagePopup = lazy(() => import('components/Popups/MovePage'))
 const PageOptionsPopup = lazy(() => import('components/Popups/PageOptions'))
 const PageSettingsPopup = lazy(() => import('components/Popups/PageSettings'))
-const ChangePageIconPopup = lazy(() => import('components/Popups/SwitchIcon'))
+const ChangeIconPopup = lazy(() => import('components/Popups/ChangeIcon'))
 
 const PopupsContainer: React.FC = () => {
-  const isChangePageIconPopupOpen = useSelector(changePageIconPopupSelector)
+  const isChangeIconPopupOpen = useSelector(changeIconPopupSelector).isOpen
   const isRenamePopupOpen = useSelector(renamePopupSelector).isOpen
   const isPageOptionsPopupOpen = useSelector(pageOptionsPopupSelector).isOpen
   const isMovePagePopupOpen = useSelector(movePagePopupSelector).isOpen
@@ -24,7 +24,7 @@ const PopupsContainer: React.FC = () => {
 
   return (
     <Suspense fallback={<p>Загрузка вслывающего окна</p>}>
-      {isChangePageIconPopupOpen && <ChangePageIconPopup />}
+      {isChangeIconPopupOpen && <ChangeIconPopup />}
       {isRenamePopupOpen && <RenamePopup />}
       {isPageOptionsPopupOpen && <PageOptionsPopup />}
       {isMovePagePopupOpen && <MovePagePopup />}

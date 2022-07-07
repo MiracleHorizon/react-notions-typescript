@@ -10,7 +10,10 @@ import { ElementCoords } from '../../@types/generalTypes'
 const initialState: PopupsState = {
   isQuickSearchModalOpen: false,
   isPagesTrashModalOpen: false,
-  isChangePageIconPopupOpen: false,
+  pageIconPopup: {
+    isOpen: false,
+    coords: {},
+  },
   renamePopup: {
     isOpen: false,
     coords: {},
@@ -80,11 +83,14 @@ export const modalsSlice = createSlice({
       state.renamePopup.isOpen = false
       state.renamePopup.coords = {}
     },
-    openChangePageIconPopup(state) {
-      state.isChangePageIconPopupOpen = true
+    setChangeIconPopupCoords(state, action: PayloadAction<ElementCoords>) {
+      state.pageIconPopup.coords = action.payload
     },
-    closeChangePageIconPopup(state) {
-      state.isChangePageIconPopupOpen = false
+    openChangeIconPopup(state) {
+      state.pageIconPopup.isOpen = true
+    },
+    closeChangeIconPopup(state) {
+      state.pageIconPopup.isOpen = false
     },
     openQuickSearchModal(state) {
       state.isQuickSearchModalOpen = true
@@ -112,26 +118,27 @@ export const modalsSlice = createSlice({
 })
 
 export const {
-  setPageOptionsModalCoords,
   setPageOptions,
   setPageOptionsId,
-  openPageOptionsModal,
-  closePageOptionsModal,
-  openPagesTrashModal,
-  closePagesTrashModal,
   setRenamePopupEssence,
   setRenamePopupCoords,
-  openRenamePopup,
-  closeRenamePopup,
-  openChangePageIconPopup,
-  closeChangePageIconPopup,
-  openQuickSearchModal,
-  closeQuickSearchModal,
+  setPageOptionsModalCoords,
   setMovePageToPopupCoords,
-  openMovePageToModal,
-  closeMovePageToModal,
+  setChangeIconPopupCoords,
+  openPageOptionsModal,
   openPageSettingsPopup,
+  openPagesTrashModal,
+  openRenamePopup,
+  openChangeIconPopup,
+  openQuickSearchModal,
+  openMovePageToModal,
+  closePageOptionsModal,
   closePageSettingsPopup,
+  closePagesTrashModal,
+  closeRenamePopup,
+  closeChangeIconPopup,
+  closeQuickSearchModal,
+  closeMovePageToModal,
 } = modalsSlice.actions
 
 export default modalsSlice.reducer

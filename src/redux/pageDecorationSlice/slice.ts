@@ -51,14 +51,8 @@ export const pageDecorationSlice = createSlice({
     setIsCoverModalOpen(state) {
       state.isCoverModalOpen = true
     },
-    setIsIconModalOpen(state) {
-      state.isIconModalOpen = true
-    },
     setIsCoverModalClose(state) {
       state.isCoverModalOpen = false
-    },
-    setIsIconModalClose(state) {
-      state.isIconModalOpen = false
     },
     refreshCoverCategory(state) {
       state.selectedCoverCategory = SwitchCoverCategories.GALLERY
@@ -73,9 +67,7 @@ export const {
   setCoverCategory,
   setIconCategory,
   setIsCoverModalOpen,
-  setIsIconModalOpen,
   setIsCoverModalClose,
-  setIsIconModalClose,
   refreshCoverCategory,
   refreshIconCategory,
 } = pageDecorationSlice.actions
