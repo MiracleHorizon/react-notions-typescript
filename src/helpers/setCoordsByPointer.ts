@@ -1,5 +1,5 @@
 import React from 'react'
-import { ElementCoords } from '../@types/generalTypes'
+import { ElementCoords } from 'types'
 
 export const setCoordsByPointer = (e: React.MouseEvent): ElementCoords => {
   return {
@@ -7,3 +7,5 @@ export const setCoordsByPointer = (e: React.MouseEvent): ElementCoords => {
     top: e.clientY - 2 + 'px',
   }
 }
+
+// export default setCoordsByPointer()

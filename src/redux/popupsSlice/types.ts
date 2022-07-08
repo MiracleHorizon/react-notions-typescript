@@ -1,4 +1,5 @@
-import { ElementCoords } from '../../@types/generalTypes'
+import { ElementCoords } from 'types'
+import { IconInfo } from 'components/PageTemplates/NewPage/types'
 
 enum PageTemplates {
   BOARD = 'Board',
@@ -13,10 +14,7 @@ enum PageOptionsEnum {
 interface RenamableEssence {
   id: number
   title: string
-  iconInfo: {
-    icon: string
-    isHasIcon: boolean
-  }
+  iconInfo: IconInfo
 }
 
 interface PopupInitialState {
@@ -29,7 +27,7 @@ interface PageOptionsPopupState extends PopupInitialState {
   pageId: number
 }
 
-interface MovePageToPopupState extends PopupInitialState {
+interface MovePagePopupState extends PopupInitialState {
   coords: ElementCoords
 }
 
@@ -47,21 +45,23 @@ interface PageIconPopup extends PopupInitialState {
 }
 
 interface PopupsState {
-  isQuickSearchModalOpen: boolean
-  isPagesTrashModalOpen: boolean
+  isQuickSearchPopupOpen: boolean
+  isPagesTrashPopupOpen: boolean
   pageIconPopup: PageIconPopup
+  pageCoverPopup: PopupInitialState
   renamePopup: RenamePopupState
-  movePageToPopup: MovePageToPopupState
+  movePagePopup: MovePagePopupState
   pageOptionsPopup: PageOptionsPopupState
   pageSettingsPopup: PageSettingsPopupState
 }
 
 export type {
+  PopupInitialState,
   PopupsState,
   PageOptionsPopupState,
   PageSettingsPopupState,
   PageIconPopup,
-  MovePageToPopupState,
+  MovePagePopupState,
   RenamableEssence,
   RenamePopupState,
 }

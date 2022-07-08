@@ -1,10 +1,11 @@
 import { RootState } from '../store'
 import {
   RenamePopupState,
-  MovePageToPopupState,
+  MovePagePopupState,
   PageOptionsPopupState,
   PageSettingsPopupState,
   PageIconPopup,
+  PopupInitialState,
 } from './types'
 
 const renamePopupSelector = (state: RootState): RenamePopupState => {
@@ -13,30 +14,34 @@ const renamePopupSelector = (state: RootState): RenamePopupState => {
 const changeIconPopupSelector = (state: RootState): PageIconPopup => {
   return state.popups.pageIconPopup
 }
-const quickSearchPopupSelector = (state: RootState): boolean => {
-  return state.popups.isQuickSearchModalOpen
+const changeCoverPopupSelector = (state: RootState): PopupInitialState => {
+  return state.popups.pageCoverPopup
 }
-const movePagePopupSelector = (state: RootState): MovePageToPopupState => {
-  return state.popups.movePageToPopup
+const movePagePopupSelector = (state: RootState): MovePagePopupState => {
+  return state.popups.movePagePopup
 }
 const pageOptionsPopupSelector = (state: RootState): PageOptionsPopupState => {
   return state.popups.pageOptionsPopup
-}
-const pagesTrashPopupSelector = (state: RootState): boolean => {
-  return state.popups.isPagesTrashModalOpen
 }
 const pageSettingsPopupSelector = (
   state: RootState
 ): PageSettingsPopupState => {
   return state.popups.pageSettingsPopup
 }
+const quickSearchPopupSelector = (state: RootState): boolean => {
+  return state.popups.isQuickSearchPopupOpen
+}
+const pagesTrashPopupSelector = (state: RootState): boolean => {
+  return state.popups.isPagesTrashPopupOpen
+}
 
 export {
   renamePopupSelector,
   changeIconPopupSelector,
-  quickSearchPopupSelector,
+  changeCoverPopupSelector,
   movePagePopupSelector,
   pageOptionsPopupSelector,
   pageSettingsPopupSelector,
+  quickSearchPopupSelector,
   pagesTrashPopupSelector,
 }

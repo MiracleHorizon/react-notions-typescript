@@ -1,11 +1,11 @@
 import { CoverColors } from '../workSpaceSlice/types'
 
-enum SwitchCoverCategories {
+enum ChangeCoverCategories {
   GALLERY = 'Gallery',
   UPLOAD = 'Upload',
   LINK = 'Link',
 }
-enum SwitchIconCategories {
+enum ChangeIconCategories {
   EMOJI = 'Emoji',
   UPLOAD = 'Upload an image',
   LINK = 'Link',
@@ -21,11 +21,11 @@ interface IconsList {
   icons: []
 }
 
-interface SwitchCoverState {
+interface ChangeDecorState {
   isCoverModalOpen: boolean
   isIconModalOpen: boolean
-  coverCategories: SwitchCoverCategories[]
-  iconCategories: SwitchIconCategories[]
+  coverCategories: ChangeCoverCategories[]
+  iconCategories: ChangeIconCategories[]
   coversLists: CoversList[]
   iconsLists: IconsList[]
   selectedCoverCategory: string
@@ -34,5 +34,5 @@ interface SwitchCoverState {
   selectedIcon: string
 }
 
-export type { SwitchCoverState }
-export { SwitchCoverCategories, SwitchIconCategories }
+export type { ChangeDecorState }
+export { ChangeCoverCategories, ChangeIconCategories }

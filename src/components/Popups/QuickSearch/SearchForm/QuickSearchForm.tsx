@@ -1,8 +1,9 @@
 import React, { ChangeEvent, FormEvent } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { setSearchesValue } from 'redux/recentSearchSlice/slice'
-import { closeQuickSearchModal } from 'redux/popupsSlice/slice'
+import ClearInputButton from 'shared/Buttons/ClearInput/ClearInputButton'
+import { addSearchesValue } from 'redux/quickSearchSlice/slice'
+import { closeQuickSearchPopup } from 'redux/popupsSlice/slice'
 import { ACCOUNT_NAME } from 'utils/accountName'
 import searchSvg from 'assets/img/inputs/search.svg'
 import {
@@ -11,7 +12,6 @@ import {
   SearchIconBlock,
   SearchIcon,
 } from './QuickSearchForm.styles'
-import ClearInputButton from '../../../../shared/Buttons/ClearInputButton'
 
 interface SearchFormProps {
   inputValue: string
@@ -26,8 +26,8 @@ const QuickSearchForm: React.FC<SearchFormProps> = props => {
   const onSubmitForm = (e: FormEvent): void => {
     e.preventDefault()
 
-    dispatch(setSearchesValue(inputValue))
-    dispatch(closeQuickSearchModal())
+    dispatch(addSearchesValue(inputValue))
+    dispatch(closeQuickSearchPopup())
     onClearInput()
   }
 

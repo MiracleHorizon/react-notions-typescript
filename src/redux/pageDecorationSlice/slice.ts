@@ -1,25 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit'
 import {
-  SwitchCoverCategories,
-  SwitchCoverState,
-  SwitchIconCategories,
+  ChangeCoverCategories,
+  ChangeDecorState,
+  ChangeIconCategories,
 } from './types'
 import { CoverColors } from '../workSpaceSlice/types'
 
 import metJapaneseCover1 from 'assets/img/pageCovers/met-japanese-1.jpg'
 
-const initialState: SwitchCoverState = {
+const initialState: ChangeDecorState = {
   isCoverModalOpen: false,
   isIconModalOpen: false,
   coverCategories: [
-    SwitchCoverCategories.GALLERY,
-    SwitchCoverCategories.UPLOAD,
-    SwitchCoverCategories.LINK,
+    ChangeCoverCategories.GALLERY,
+    ChangeCoverCategories.UPLOAD,
+    ChangeCoverCategories.LINK,
   ],
   iconCategories: [
-    SwitchIconCategories.EMOJI,
-    SwitchIconCategories.UPLOAD,
-    SwitchIconCategories.LINK,
+    ChangeIconCategories.EMOJI,
+    ChangeIconCategories.UPLOAD,
+    ChangeIconCategories.LINK,
   ],
   coversLists: [
     { title: 'Color & Gradient', covers: Object.values(CoverColors) },
@@ -30,8 +30,8 @@ const initialState: SwitchCoverState = {
     },
   ],
   iconsLists: [],
-  selectedCoverCategory: SwitchCoverCategories.GALLERY,
-  selectedIconCategory: SwitchIconCategories.EMOJI,
+  selectedCoverCategory: ChangeCoverCategories.GALLERY,
+  selectedIconCategory: ChangeIconCategories.EMOJI,
   selectedCover: CoverColors.PURPLE,
   selectedIcon: '',
 }
@@ -55,10 +55,10 @@ export const pageDecorationSlice = createSlice({
       state.isCoverModalOpen = false
     },
     refreshCoverCategory(state) {
-      state.selectedCoverCategory = SwitchCoverCategories.GALLERY
+      state.selectedCoverCategory = ChangeCoverCategories.GALLERY
     },
     refreshIconCategory(state) {
-      state.selectedIconCategory = SwitchIconCategories.EMOJI
+      state.selectedIconCategory = ChangeIconCategories.EMOJI
     },
   },
 })

@@ -6,7 +6,7 @@ import {
   DuplicateItem,
   CopyPageLinkItem,
 } from '../PageOptionItems'
-import { ActiveListItem } from '../../../../@types/generalTypes'
+import { ActiveListItem } from '../../../../types'
 import StyledList from '../OptionsList.styles'
 
 const CommonPageOptions: React.FC<ActiveListItem> = props => {

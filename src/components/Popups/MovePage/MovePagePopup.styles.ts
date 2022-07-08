@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { ElementCoords } from '../../../@types/generalTypes'
+import { ElementCoords } from 'types'
 
 const Wrapper = styled.div<{ coords: ElementCoords }>`
   position: absolute;

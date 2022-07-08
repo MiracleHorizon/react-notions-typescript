@@ -1,15 +1,15 @@
 import React from 'react'
-import InputProps from '../types'
+import Props from '../types'
 import StyledInput from './CommonGrayInput.styles'
 
-const CommonGrayInput: React.FC<InputProps> = props => {
-  const { placeholder, inputValue, onChange, inputRef } = props
+const CommonGrayInput: React.FC<Props> = props => {
+  const { placeholder, inputRef, inputValue, onChange } = props
 
   return (
     <StyledInput
       type='text'
-      ref={inputRef}
       placeholder={placeholder}
+      ref={inputRef}
       value={inputValue}
       onChange={onChange}
     />

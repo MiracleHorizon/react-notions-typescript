@@ -1,10 +1,18 @@
 import styled from 'styled-components'
 
-const StyledContainer = styled.div<{ isActive: boolean }>`
-  position: absolute;
-  bottom: 100px;
-  left: 50%;
-  right: 50%;
+const Wrapper = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+`
+
+const Container = styled.div<{ isActive: boolean }>`
+  align-self: end;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,15 +22,17 @@ const StyledContainer = styled.div<{ isActive: boolean }>`
   background: rgb(15, 15, 15);
   box-shadow: rgb(15 15 15 / 5%) 0 0 0 1px, rgb(15 15 15 / 10%) 0 5px 10px,
     rgb(15 15 15 / 20%) 0 15px 40px;
-  z-index: 100;
-  ${props => props.isActive && 'transform: translateY(-200px)'};
+  user-select: none;
+  transform: translateY(${props => (props.isActive ? '-20px' : '35px')});
+  z-index: 1000;
+  transition: all 0.5s ease-in-out;
 
   span {
     color: rgba(255, 255, 255, 0.9);
   }
 `
 
-const TitleBlock = styled.div`
+const TitleContainer = styled.div`
   min-width: 100px;
   display: flex;
   flex-direction: row;
@@ -48,4 +58,11 @@ const UndoTitle = styled.span`
   font-weight: 600;
 `
 
-export { StyledContainer, TitleBlock, Title, UndoButtonContainer, UndoTitle }
+export {
+  Wrapper,
+  Container,
+  TitleContainer,
+  Title,
+  UndoButtonContainer,
+  UndoTitle,
+}

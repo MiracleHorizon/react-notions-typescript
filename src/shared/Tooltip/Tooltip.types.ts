@@ -1,4 +1,4 @@
-import { ElementCoords } from '../../@types/generalTypes'
+import { ElementCoords } from 'types'
 
 export default interface TooltipProps {
   title?: string

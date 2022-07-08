@@ -1,6 +1,8 @@
 import { ToggleSidebarBtnPurposes as Purposes } from 'shared/Buttons/ToggleSidebar/ToggleSidebarButton.types'
 import { SidebarLocations as Locations } from 'components/Workspace/Sidebar/Sidebar.types'
-import { ElementCoords } from '../@types/generalTypes'
+import { ElementCoords } from 'types'
+
+//! Переписать
 
 interface Params {
   purpose: Purposes

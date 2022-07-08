@@ -2,17 +2,17 @@ import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 
+import Props from './PagesListItemOptionsButton.types'
 import Tooltip from 'shared/Tooltip'
 import OptionsDotsSVG from 'shared/SVG/OptionsDots'
 import {
-  openPageOptionsModal,
+  openPageOptionsPopup,
   setPageOptions,
   setPageOptionsId,
-  setPageOptionsModalCoords,
+  setPageOptionsPopupCoords,
   setRenamePopupCoords,
   setRenamePopupEssence,
 } from 'redux/popupsSlice/slice'
-import { PagesListItemOptionsButtonProps as Props } from './PagesListItemOptionsButton.types'
 import { setCoordsByPointer } from 'helpers/setCoordsByPointer'
 import pageOptionsHandler from 'helpers/pageOptionsHandler'
 import { renamePopupCoordsHandler } from 'utils/coordsHandlers'
@@ -34,13 +34,13 @@ const PagesListItemOptionsButton: React.FC<Props> = props => {
 
     const popupCoords = setCoordsByPointer(e)
 
-    dispatch(openPageOptionsModal())
-    dispatch(setPageOptionsModalCoords(popupCoords))
+    dispatch(openPageOptionsPopup())
     dispatch(setPageOptions(options))
     dispatch(setPageOptionsId(page.id))
+    dispatch(setPageOptionsPopupCoords(popupCoords))
 
-    dispatch(setRenamePopupCoords(renamePagePopupCoords))
     dispatch(setRenamePopupEssence(page))
+    dispatch(setRenamePopupCoords(renamePagePopupCoords))
   }
 
   return (

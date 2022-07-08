@@ -34,7 +34,7 @@ const CommonPagesList: React.FC = () => {
       {isHovering && (
         <AddNewPageButton
           tooltipTitle='Add a page'
-          tooltipDescription='Your regular pages.'
+          tooltipDescription='Your regular recentPages.'
           coords={{ right: '8px', top: '-4px' }}
           onClickAction={onCreateNewPage}
         />
@@ -42,7 +42,7 @@ const CommonPagesList: React.FC = () => {
       {isListTitleHovering && (
         <Tooltip
           title={`Click to ${tooltipTitle} section`}
-          description='Your regular pages.'
+          description='Your regular recentPages.'
           coords={{ left: '5px', top: '-50px' }}
         />
       )}

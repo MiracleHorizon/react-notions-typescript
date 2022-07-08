@@ -1,20 +1,13 @@
 import React, { useRef } from 'react'
 import { useHover } from 'usehooks-ts'
 
-import Tooltip from '../../Tooltip'
-import { ElementCoords } from '../../../@types/generalTypes'
-import addPageSvg from 'assets/img/plus-addPage.svg'
-import { StyledButton, Icon } from './AddNewPageButton.styles'
+import Tooltip from 'shared/Tooltip'
+import { PlusSvg } from 'shared/SVG'
+import Props from './AddNewPageButton.types'
+import StyledButton from './AddNewPageButton.styles'
 
-interface AddNewPageButtonProps {
-  tooltipTitle?: string
-  tooltipDescription?: string
-  coords: ElementCoords
-  onClickAction: (e: React.MouseEvent) => void
-}
-
-const AddNewPageButton: React.FC<AddNewPageButtonProps> = props => {
-  const { tooltipTitle, tooltipDescription, coords, onClickAction } = props
+const AddNewPageButton: React.FC<Props> = props => {
+  const { tooltipTitle, tooltipDescription, onClickAction, coords } = props
 
   const buttonRef = useRef<HTMLDivElement>(null)
   const isHovering = useHover(buttonRef)
@@ -26,7 +19,7 @@ const AddNewPageButton: React.FC<AddNewPageButtonProps> = props => {
       coords={coords}
       onClick={onClickAction}
     >
-      <Icon src={addPageSvg} alt='Add page' />
+      <PlusSvg />
       {isHovering && (
         <Tooltip
           title={tooltipTitle}

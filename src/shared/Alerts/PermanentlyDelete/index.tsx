@@ -1,16 +1,15 @@
-import React, { Fragment, useRef } from 'react'
+import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useOnClickOutside } from 'usehooks-ts'
 import { useSelectItem } from 'hooks/useSelectItem'
 
-import Modal from 'components/Popups/ModalWrapper'
+import Popup from 'components/Popups'
 import RedOutlineButton from 'shared/Buttons/Outline/components/RedOutlineButton'
 import GrayOutlineButton from 'shared/Buttons/Outline/components/GrayOutlineButton'
 import { deletePagePermanently } from 'redux/workSpaceSlice/slice'
-import { closePermanentlyDeleteAlert } from 'redux/alertsSlice/slice'
+import { hidePermanentlyDeleteAlert } from 'redux/alertsSlice/slice'
 import { permanentlyDeleteAlertSelector } from 'redux/alertsSlice/selectors'
 import {
-  AlertInset,
   AlertWrapper,
   ButtonsList,
   TitleContainer,
@@ -24,45 +23,42 @@ const PermanentlyDeleteAlert: React.FC = () => {
   const dispatch = useDispatch()
 
   const onPermanentlyDeletePage = (): void => {
-    dispatch(deletePagePermanently(pageId))
-    dispatch(closePermanentlyDeleteAlert())
+    dispatch(deletePagePermanently(pageId!))
+    dispatch(hidePermanentlyDeleteAlert())
   }
   const onCancelPermanentlyDelete = (): void => {
-    dispatch(closePermanentlyDeleteAlert())
+    dispatch(hidePermanentlyDeleteAlert())
   }
   const handleClickOutside = (): void => {
-    dispatch(closePermanentlyDeleteAlert())
+    dispatch(hidePermanentlyDeleteAlert())
   }
 
   useOnClickOutside(alertRef, handleClickOutside)
 
   return (
-    <Modal>
-      <Fragment>
-        <AlertWrapper ref={alertRef}>
-          <TitleContainer>
-            <StyledTitle>
-              Are you sure you want to delete this page permanently?
-            </StyledTitle>
-          </TitleContainer>
-          <ButtonsList>
-            <RedOutlineButton
-              title='Yes. Delete this page'
-              action={onPermanentlyDeletePage}
-              activeItem={activeItem}
-              onSelect={onSelectItem}
-            />
-            <GrayOutlineButton
-              title='Cancel'
-              action={onCancelPermanentlyDelete}
-              activeItem={activeItem}
-              onSelect={onSelectItem}
-            />
-          </ButtonsList>
-        </AlertWrapper>
-        <AlertInset />
-      </Fragment>
-    </Modal>
+    <Popup isHasInset={true}>
+      <AlertWrapper ref={alertRef}>
+        <TitleContainer>
+          <StyledTitle>
+            Are you sure you want to delete this page permanently?
+          </StyledTitle>
+        </TitleContainer>
+        <ButtonsList>
+          <RedOutlineButton
+            title='Yes. Delete this page'
+            action={onPermanentlyDeletePage}
+            activeItem={activeItem}
+            onSelect={onSelectItem}
+          />
+          <GrayOutlineButton
+            title='Cancel'
+            action={onCancelPermanentlyDelete}
+            activeItem={activeItem}
+            onSelect={onSelectItem}
+          />
+        </ButtonsList>
+      </AlertWrapper>
+    </Popup>
   )
 }
 

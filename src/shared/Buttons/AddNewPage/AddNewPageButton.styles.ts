@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { ElementCoords } from '../../../@types/generalTypes'
+import { ElementCoords } from 'types'
 
 const StyledButton = styled.div<{ coords: ElementCoords }>`
   cursor: pointer;
@@ -16,22 +16,14 @@ const StyledButton = styled.div<{ coords: ElementCoords }>`
   border-radius: 3px;
   padding: 2px;
   border: none;
+  transition: background 50ms ease-in-out;
 
   :hover {
     background: rgba(55, 53, 47, 0.08);
-    transition: background 0.1s ease-in-out;
   }
   :active {
     background: rgba(55, 53, 47, 0.16);
-    transition: background 0.1s ease-in-out;
   }
 `
 
-const Icon = styled.img`
-  width: 20px;
-  height: 20px;
-  padding: 2px;
-  opacity: 0.7;
-`
-
-export { StyledButton, Icon }
+export default StyledButton

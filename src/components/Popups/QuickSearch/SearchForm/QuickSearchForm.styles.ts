@@ -12,8 +12,8 @@ const StyledForm = styled.form`
   box-shadow: rgb(55 53 47 / 9%) 0 1px 0;
   background: transparent;
 
-  img {
-    user-select: none;
+  svg {
+    pointer-events: none;
   }
 
   ::placeholder {
@@ -47,6 +47,7 @@ const SearchIcon = styled.img`
   width: 22px;
   height: 22px;
   opacity: 0.6;
+  pointer-events: none;
 `
 
 export { StyledForm, StyledInput, SearchIconBlock, SearchIcon }

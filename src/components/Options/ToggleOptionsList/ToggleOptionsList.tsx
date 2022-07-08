@@ -3,7 +3,7 @@ import React from 'react'
 import ToggleOptionItem from './ToggleOptionItem/ToggleOptionItem'
 import Separator from 'shared/Separator'
 import { IToggleOption } from 'helpers/toggleOptionsHandler'
-import { ActiveListItem } from '../../../@types/generalTypes'
+import { ActiveListItem } from '../../../types'
 
 interface ToggleOptionsProps extends ActiveListItem {
   options: IToggleOption[]

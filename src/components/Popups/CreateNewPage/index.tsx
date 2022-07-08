@@ -1,7 +1,7 @@
 import React, { Fragment, useRef, useState } from 'react'
 import { useOnClickOutside } from 'usehooks-ts'
 
-import Modal from 'components/Popups/ModalWrapper'
+import Popup from 'components/Popups/index'
 import styles from './CreateNewPageModal.module.scss'
 import CreateNewPageNavbar from './Navbar'
 
@@ -18,12 +18,12 @@ const CreateNewPageModal: React.FC = () => {
   return (
     <Fragment>
       {isOpen && (
-        <Modal>
+        <Popup>
           <div className={styles.root} ref={modalRef}>
             <CreateNewPageNavbar />
             <div className={styles.content}></div>
           </div>
-        </Modal>
+        </Popup>
       )}
     </Fragment>
   )

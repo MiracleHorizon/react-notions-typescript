@@ -1,4 +1,4 @@
-import { ActiveItem } from '../@types/generalTypes'
+import { ActiveItem } from 'types'
 
 interface Params {
   activeItem: ActiveItem

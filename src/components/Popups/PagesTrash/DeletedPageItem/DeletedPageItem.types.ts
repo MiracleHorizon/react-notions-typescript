@@ -1,4 +1,4 @@
-import { ActiveItemParams } from '../../../../@types/generalTypes'
+import { ActiveItemParams } from '../../../../types'
 
 export default interface PagesTrashItemProps extends ActiveItemParams {
   id: number

@@ -4,7 +4,7 @@ import { useOnClickOutside } from 'usehooks-ts'
 import { useSelectItem } from 'hooks/useSelectItem'
 
 import DropdownItem from 'shared/Dropdowns/DropdownItem/DropdownItem'
-import Modal from 'components/Popups/ModalWrapper'
+import Popup from 'components/Popups'
 import ChevronDownSvg from 'shared/SVG/ChevronDown'
 import { CommentsFilters } from 'redux/sidebarsSlice/types'
 import { activeCommentsFilterSelector } from 'redux/sidebarsSlice/selectors'
@@ -44,7 +44,7 @@ const CommentsFilter: React.FC = () => {
         </TitleContainer>
       </StyledContainer>
       {isDropdownOpen && (
-        <Modal>
+        <Popup>
           <FilterDropdown ref={dropdownRef}>
             {options.map(({ title, description }) => (
               <DropdownItem
@@ -55,7 +55,7 @@ const CommentsFilter: React.FC = () => {
               />
             ))}
           </FilterDropdown>
-        </Modal>
+        </Popup>
       )}
     </Fragment>
   )

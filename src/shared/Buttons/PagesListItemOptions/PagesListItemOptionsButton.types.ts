@@ -1,11 +1,8 @@
-interface PagesListItemOptionsButtonProps {
+import { IconInfo } from 'components/PageTemplates/NewPage/types'
+
+export default interface PagesListItemOptionsButtonProps {
   optionsTitle: string
   id: number
   title: string
-  iconInfo: {
-    icon: string
-    isHasIcon: boolean
-  }
+  iconInfo: IconInfo
 }
-
-export type { PagesListItemOptionsButtonProps }

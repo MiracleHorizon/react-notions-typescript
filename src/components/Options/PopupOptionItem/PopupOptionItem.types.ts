@@ -1,4 +1,4 @@
-import { ActiveListItem } from '../../../@types/generalTypes'
+import { ActiveListItem } from '../../../types'
 
 interface PopupOptionItemProps extends ActiveListItem {
   title: string

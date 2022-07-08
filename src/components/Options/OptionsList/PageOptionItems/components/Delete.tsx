@@ -1,22 +1,27 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { ActiveListItem } from 'types'
 import PageOptionItem from '../PageOptionItem'
 import { DeleteTrashSvg } from 'shared/SVG'
-import { closePageOptionsModal } from 'redux/popupsSlice/slice'
+import { closePageOptionsPopup } from 'redux/popupsSlice/slice'
 import { pageOptionsPopupSelector } from 'redux/popupsSlice/selectors'
 import { deletePage } from 'redux/workSpaceSlice/slice'
-import { ActiveListItem } from '../../../../../@types/generalTypes'
+import { showMoveToTrashAlert } from 'redux/alertsSlice/slice'
 
 const DeleteItem: React.FC<ActiveListItem> = props => {
-  const pageId = useSelector(pageOptionsPopupSelector).pageId
+  const { pageId } = useSelector(pageOptionsPopupSelector)
   const dispatch = useDispatch()
 
   const onDeletePage = (): void => {
-    dispatch(closePageOptionsModal())
+    dispatch(closePageOptionsPopup())
     dispatch(deletePage(pageId))
+    dispatch(showMoveToTrashAlert())
   }
-  const onDeleteNotion = (): void => {}
+  const onDeleteNotion = (): void => {
+    dispatch(closePageOptionsPopup())
+    dispatch(showMoveToTrashAlert())
+  }
 
   return (
     <PageOptionItem

@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from 'react'
 
 import Authentication from './Authentication'
-import ClearInputButton from 'shared/Buttons/ClearInputButton'
+import ClearInputButton from 'shared/Buttons/ClearInput/ClearInputButton'
 
 import styles from './LoginForm.module.scss'
 import Separator from 'shared/Separator'

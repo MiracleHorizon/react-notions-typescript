@@ -4,17 +4,17 @@ import { useOnClickOutside } from 'usehooks-ts'
 
 import { useInput } from 'hooks/useInput'
 import { useSelectActiveItem } from 'hooks/useSelectActiveItem'
+import { ActiveItem } from 'types'
+import Popup from '../index'
 import MoveToCommonPagesItem from './MoveToCommonPagesItem'
 import MovePagePopupItem from './MovePagePopupItem'
-import Modal from '../ModalWrapper'
 import OutlineInput from 'shared/Inputs/OutlineInput'
 import {
   currentPageSelector,
   workspacePagesSelector,
 } from 'redux/workSpaceSlice/selectors'
 import { movePagePopupSelector } from 'redux/popupsSlice/selectors'
-import { closeMovePageToModal } from 'redux/popupsSlice/slice'
-import { ActiveItem } from '../../../@types/generalTypes'
+import { closeMovePagePopup } from 'redux/popupsSlice/slice'
 import {
   Wrapper,
   Container,
@@ -33,17 +33,17 @@ const MovePagePopup: React.FC = () => {
   const dispatch = useDispatch()
   const onMovePageToAnotherList = (selectedPageId: number): void => {
     console.log('Добавлено в страницу с айди:', selectedPageId)
-    dispatch(closeMovePageToModal())
+    dispatch(closeMovePagePopup())
   }
 
   const handleClickOutside = (): void => {
-    dispatch(closeMovePageToModal())
+    dispatch(closeMovePagePopup())
   }
 
   useOnClickOutside(popupRef, handleClickOutside)
 
   return (
-    <Modal>
+    <Popup>
       <Wrapper ref={popupRef} coords={coords}>
         <Container>
           <InputContainer>
@@ -71,7 +71,7 @@ const MovePagePopup: React.FC = () => {
           </Content>
         </Container>
       </Wrapper>
-    </Modal>
+    </Popup>
   )
 }
 

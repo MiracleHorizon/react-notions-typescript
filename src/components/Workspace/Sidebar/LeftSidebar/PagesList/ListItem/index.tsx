@@ -10,6 +10,7 @@ import TriangleSVG from 'shared/SVG/Triangle'
 import { activePageSelector } from 'redux/sidebarsSlice/selectors'
 import { setCurrentPage } from 'redux/workSpaceSlice/slice'
 import { closeRightSidebar, setActivePage } from 'redux/sidebarsSlice/slice'
+import { addRecentPage } from 'redux/quickSearchSlice/slice'
 import Props from './ListItem.types'
 import titleHandler from 'helpers/listItemOptionsTitleHandler'
 import selectedItemHandler from 'helpers/selectedItemHandler'
@@ -35,6 +36,7 @@ const PagesListItem: React.FC<Props> = ({ page }) => {
     dispatch(setActivePage({ title, id }))
     dispatch(setCurrentPage(id))
     dispatch(closeRightSidebar())
+    // Тут будет пост запрос.
   }
   const onAddNewPageInside = (e: React.MouseEvent): void => {
     e.stopPropagation()

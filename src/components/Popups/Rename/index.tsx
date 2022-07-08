@@ -2,7 +2,7 @@ import React, { FormEvent, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useOnClickOutside } from 'usehooks-ts'
 
-import Modal from '../ModalWrapper'
+import Popup from '../index'
 import EmptyPageIconSVG from 'shared/SVG/EmptyPageIcon'
 import CommonGrayInput from 'shared/Inputs/CommonGrayInput'
 import {
@@ -19,7 +19,7 @@ import { changeIconPopupCoordsHandler } from 'utils/coordsHandlers'
 import { headerEmptyPageIconStyles } from 'shared/SVG/EmptyPageIcon/styles'
 import { Wrapper, IconContainer, Icon, StyledForm } from './RenamePopup.styles'
 
-//! Лишний рендер из-за Modal
+//! Лишний рендер из-за Popup
 const RenamePopup: React.FC = () => {
   const { coords, essence } = useSelector(renamePopupSelector)
   const { id, title, iconInfo } = essence
@@ -63,11 +63,11 @@ const RenamePopup: React.FC = () => {
   useOnClickOutside(popupRef, handlerClickOutside)
 
   return (
-    <Modal>
+    <Popup>
       <Wrapper ref={popupRef} {...{ coords }}>
         <IconContainer ref={iconRef} onClick={onOpenChangeIconPopup}>
           {iconInfo.isHasIcon ? (
-            <Icon src={iconInfo.icon} alt='Page icon' />
+            <Icon src={iconInfo.icon!} alt='Page icon' />
           ) : (
             <EmptyPageIconSVG {...headerEmptyPageIconStyles} />
           )}
@@ -81,7 +81,7 @@ const RenamePopup: React.FC = () => {
           />
         </StyledForm>
       </Wrapper>
-    </Modal>
+    </Popup>
   )
 }
 

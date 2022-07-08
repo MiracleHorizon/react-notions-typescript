@@ -1,10 +1,14 @@
-import React, { lazy, Suspense } from 'react'
-import { useSelector } from 'react-redux'
+import React, { lazy, Suspense, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 // import PageCover from '../Popups/PageCover'
 import PageCover from './PageCover'
 import { rightSidebarSelector } from 'redux/sidebarsSlice/selectors'
+import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
+import { addRecentPage } from 'redux/quickSearchSlice/slice'
 import { Wrapper, Container, Content } from './Workspace.styles'
+
+// 2 рендера.
 
 const Header = lazy(() => import('./Header'))
 const Board = lazy(() => import('../PageTemplates/Board'))
@@ -13,6 +17,12 @@ const RightSidebar = lazy(() => import('./Sidebar/RightSidebar'))
 
 const Workspace: React.FC = () => {
   const { isOpen, width } = useSelector(rightSidebarSelector)
+  const { id, title, iconInfo } = useSelector(currentPageSelector)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(addRecentPage({ id, title, iconInfo }))
+  }, [dispatch, iconInfo, id, title])
 
   return (
     <Wrapper>

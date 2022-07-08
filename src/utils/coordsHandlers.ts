@@ -1,4 +1,4 @@
-import { ElementCoords } from '../@types/generalTypes'
+import { ElementCoords } from '../types'
 
 const RENAME_POPUP_WIDTH = 360
 const CHANGE_ICON_POPUP_WIDTH = 420
@@ -7,8 +7,11 @@ class RenamePopupCoordsHandler {
   public setCoordsByHeader(rect: DOMRect | undefined): ElementCoords {
     if (!rect) return {}
 
+    let leftPosition: number = rect.left - (RENAME_POPUP_WIDTH - rect.width) / 2
+    if (leftPosition < 0) leftPosition = 15
+
     return {
-      left: rect.left - (RENAME_POPUP_WIDTH - rect.width) / 2 + 'px',
+      left: leftPosition + 'px',
       top: rect.bottom + 5 + 'px',
     }
   }
@@ -17,7 +20,7 @@ class RenamePopupCoordsHandler {
     if (!rect) return {}
 
     let leftPosition: number = rect.left - (RENAME_POPUP_WIDTH - rect.width) / 2
-    if (leftPosition < 0) leftPosition = 10
+    if (leftPosition < 0) leftPosition = 15
 
     return {
       left: leftPosition + 'px',

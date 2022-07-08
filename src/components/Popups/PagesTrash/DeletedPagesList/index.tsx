@@ -1,17 +1,22 @@
 import React from 'react'
-import DeletedPageItem from '../DeletedPageItem'
+
 import Props from './DeletedPagesList.types'
+import DeletedPageItem from '../DeletedPageItem'
+import { useSelectActiveItem } from 'hooks/useSelectActiveItem'
+import { ActiveItem } from 'types'
 import ListWrapper from './DeletedPagesList.styles'
 
-const DeletedPagesList: React.FC<Props> = props => {
-  const { list, activeItem, onSelectActiveItem } = props
+const DeletedPagesList: React.FC<Props> = ({ list }) => {
+  const { activeItem, onSelectActiveItem } = useSelectActiveItem({})
 
   return (
     <ListWrapper>
       {list.map(({ id, iconInfo: { icon }, title }) => (
         <DeletedPageItem
           key={id}
-          {...{ id, icon, title, activeItem, onSelectActiveItem }}
+          {...{ id, icon, title }}
+          activeItem={activeItem as ActiveItem}
+          onSelectActiveItem={onSelectActiveItem}
         />
       ))}
     </ListWrapper>

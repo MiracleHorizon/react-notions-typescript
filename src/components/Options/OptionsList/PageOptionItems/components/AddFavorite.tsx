@@ -3,17 +3,17 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import PageOptionItem from '../PageOptionItem'
 import { UnfavoriteStarSvg } from 'shared/SVG'
-import { closePageOptionsModal } from 'redux/popupsSlice/slice'
+import { closePageOptionsPopup } from 'redux/popupsSlice/slice'
 import { pageOptionsPopupSelector } from 'redux/popupsSlice/selectors'
 import { addToFavorite } from 'redux/workSpaceSlice/slice'
-import { ActiveListItem } from '../../../../../@types/generalTypes'
+import { ActiveListItem } from '../../../../../types'
 
 const AddFavoriteItem: React.FC<ActiveListItem> = props => {
   const pageId = useSelector(pageOptionsPopupSelector).pageId
   const dispatch = useDispatch()
 
   const onAddToFavorite = (): void => {
-    dispatch(closePageOptionsModal()) //*
+    dispatch(closePageOptionsPopup()) //*
     dispatch(addToFavorite(pageId))
   }
 

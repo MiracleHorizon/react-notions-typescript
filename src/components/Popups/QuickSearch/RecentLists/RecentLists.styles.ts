@@ -33,14 +33,13 @@ const ClearButton = styled.div`
   height: 20px;
   border-radius: 3px;
   padding: 0 4px;
+  transition: background 50ms ease-in-out;
 
-  &:hover {
+  :hover {
     background: rgba(55, 53, 47, 0.08);
-    transition: background 0.1s ease-out;
   }
-  &:active {
+  :active {
     background: rgba(55, 53, 47, 0.16);
-    transition: background 0.1s ease-out;
   }
 `
 
@@ -48,6 +47,7 @@ const ClearTitle = styled.span`
   font-size: 12px;
   line-height: 21px;
   white-space: nowrap;
+  text-overflow: ellipsis;
   color: rgba(55, 53, 47, 0.5);
 `
 export {

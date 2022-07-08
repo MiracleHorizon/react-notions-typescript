@@ -2,8 +2,6 @@ import { RootState } from '../store'
 
 const isCoverModalOpenSelector = (state: RootState) =>
   state.pageDecoration.isCoverModalOpen
-const isIconModalOpenSelector = (state: RootState) =>
-  state.pageDecoration.isIconModalOpen
 const coverCategoriesSelector = (state: RootState) =>
   state.pageDecoration.coverCategories
 const iconCategoriesSelector = (state: RootState) =>
@@ -18,7 +16,6 @@ const selectedIconCategorySelector = (state: RootState) =>
 
 export {
   isCoverModalOpenSelector,
-  isIconModalOpenSelector,
   coverCategoriesSelector,
   iconCategoriesSelector,
   coversListsSelector,

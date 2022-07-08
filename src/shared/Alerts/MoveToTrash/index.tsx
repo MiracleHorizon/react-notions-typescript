@@ -1,24 +1,37 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { createPortal } from 'react-dom'
 
+import { isMoveToTrashAlertOpenSelector } from 'redux/alertsSlice/selectors'
+import { hideMoveToTrashAlert } from 'redux/alertsSlice/slice'
 import {
-  StyledContainer,
-  TitleBlock,
+  Wrapper,
+  Container,
+  TitleContainer,
   Title,
   UndoButtonContainer,
   UndoTitle,
 } from './MoveToTrashAlert.styles'
 
-const MoveToTrashAlert: React.FC<{ isActive: boolean }> = ({ isActive }) => {
+const MoveToTrashAlert: React.FC = () => {
+  const isOpen = useSelector(isMoveToTrashAlertOpenSelector)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    isOpen && setTimeout(() => dispatch(hideMoveToTrashAlert()), 5000)
+  }, [dispatch, isOpen])
+
   return createPortal(
-    <StyledContainer {...{ isActive }}>
-      <TitleBlock>
-        <Title>Moved to trash</Title>
-      </TitleBlock>
-      <UndoButtonContainer role='button'>
-        <UndoTitle>Undo</UndoTitle>
-      </UndoButtonContainer>
-    </StyledContainer>,
+    <Wrapper>
+      <Container isActive={isOpen}>
+        <TitleContainer>
+          <Title>Moved to trash</Title>
+        </TitleContainer>
+        <UndoButtonContainer role='button'>
+          <UndoTitle>Undo</UndoTitle>
+        </UndoButtonContainer>
+      </Container>
+    </Wrapper>,
     document.getElementById('root') as HTMLElement
   )
 }

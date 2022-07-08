@@ -2,16 +2,16 @@ import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 
+import Props from './DeletedPageItem.types'
+import { ElementCoords } from 'types'
 import Tooltip from 'shared/Tooltip'
 import { DeleteTrashSvg, EmptyPageIconSvg, UndoSvg } from 'shared/SVG'
 import { restorePage } from 'redux/workSpaceSlice/slice'
 import {
-  openPermanentlyDeleteAlert,
+  showPermanentlyDeleteAlert,
   setPermanentlyDeleteAlertPage,
 } from 'redux/alertsSlice/slice'
 import selectedItemHandler from 'helpers/selectedItemHandler'
-import Props from './DeletedPageItem.types'
-import { ElementCoords } from '../../../../@types/generalTypes'
 import {
   StyledItem,
   TitlesBlock,
@@ -38,7 +38,7 @@ const DeletedPageItem: React.FC<Props> = props => {
     dispatch(restorePage(id))
   }
   const onOpenPermanentlyDeleteAlert = (): void => {
-    dispatch(openPermanentlyDeleteAlert())
+    dispatch(showPermanentlyDeleteAlert())
     dispatch(setPermanentlyDeleteAlertPage(id))
   }
 

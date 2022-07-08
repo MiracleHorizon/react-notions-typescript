@@ -7,8 +7,8 @@ import {
   RenameItem,
 } from '../PageOptionItems'
 import { pageOptionsPopupSelector } from 'redux/popupsSlice/selectors'
-import { closePageOptionsModal, openRenamePopup } from 'redux/popupsSlice/slice'
-import { ActiveListItem } from '../../../../@types/generalTypes'
+import { closePageOptionsPopup, openRenamePopup } from 'redux/popupsSlice/slice'
+import { ActiveListItem } from '../../../../types'
 import StyledList from '../OptionsList.styles'
 
 const FavoritePageOptions: React.FC<ActiveListItem> = props => {
@@ -17,7 +17,7 @@ const FavoritePageOptions: React.FC<ActiveListItem> = props => {
   const dispatch = useDispatch()
   const onOpenChangePageTitlePopup = (): void => {
     dispatch(openRenamePopup())
-    dispatch(closePageOptionsModal())
+    dispatch(closePageOptionsPopup())
   }
 
   return (

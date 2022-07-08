@@ -1,5 +1,5 @@
 import React from 'react'
-import { Footer, HotkeysList, Hotkey, Icon, Title } from './Hotkeys.styles'
+import { Footer, HotkeysList, Hotkey, Icon, Title } from './HotkeysBar.styles'
 
 const HotkeysBar: React.FC = () => (
   <Footer>

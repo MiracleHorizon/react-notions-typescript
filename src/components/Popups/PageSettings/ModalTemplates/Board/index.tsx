@@ -20,8 +20,8 @@ import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
 import { closeRightSidebar } from 'redux/sidebarsSlice/slice'
 import {
   closePageSettingsPopup,
-  openMovePageToModal,
-  setMovePageToPopupCoords,
+  openMovePagePopup,
+  setMovePagePopupCoords,
 } from 'redux/popupsSlice/slice'
 import {
   addToFavorite,
@@ -30,6 +30,7 @@ import {
 } from 'redux/workSpaceSlice/slice'
 import toggleOptionsHandler from 'helpers/toggleOptionsHandler'
 import { Wrapper, StyledList } from '../../PageSettingsPopup.styles'
+import { showMoveToTrashAlert } from '../../../../../redux/alertsSlice/slice'
 
 const BoardPageSettingsPopup: React.FC = () => {
   const [isLocked, setIsLocked] = useState<boolean>(false) //!
@@ -37,31 +38,40 @@ const BoardPageSettingsPopup: React.FC = () => {
   const { id, isFavorite, pageSettings } = useSelector(currentPageSelector)
   const toggleOptions = toggleOptionsHandler({ id, ...pageSettings })
   const popupRef = useRef<HTMLDivElement>(null)
-
   const dispatch = useDispatch()
+
   const onOpenPageCustomizer = (): void => {}
+
   const onLockPage = (): void => {
     setIsLocked(true)
   }
+
   const onUnlockPage = (): void => {
     setIsLocked(false)
   }
+
   const onAddToFavorite = (): void => {
     dispatch(addToFavorite(id))
   }
+
   const onRemoveFavorite = (): void => {
     dispatch(removeFavorite(id))
   }
+
   const onCopyPageLink = (): void => {}
+
   const onDeletePage = (): void => {
     dispatch(deletePage(id))
     dispatch(closeRightSidebar())
+    dispatch(showMoveToTrashAlert())
   }
+
   const onOpenMovePagesToPopup = (): void => {
-    dispatch(setMovePageToPopupCoords({ top: '50px', right: '5px' }))
-    dispatch(openMovePageToModal())
+    dispatch(setMovePagePopupCoords({ top: '50px', right: '5px' }))
+    dispatch(openMovePagePopup())
     dispatch(closePageSettingsPopup)
   }
+
   const handleClickOutside = (): void => {
     dispatch(closePageSettingsPopup())
   }

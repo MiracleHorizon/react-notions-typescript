@@ -1,4 +1,4 @@
-import { ElementCoords } from '../../../@types/generalTypes'
+import { ElementCoords } from '../../../types'
 
 interface PagesListOptionsProps {
   coords: ElementCoords

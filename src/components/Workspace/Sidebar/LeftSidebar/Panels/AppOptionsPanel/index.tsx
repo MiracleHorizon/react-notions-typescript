@@ -1,9 +1,7 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-import QuickSearchModal from 'components/Popups/QuickSearch'
-import { openQuickSearchModal } from 'redux/popupsSlice/slice'
-import { quickSearchPopupSelector } from 'redux/popupsSlice/selectors'
+import { openQuickSearchPopup } from 'redux/popupsSlice/slice'
 import searchSvg from 'assets/img/inputs/search.svg'
 import updatesSvg from 'assets/img/optionsImgs/updates.svg'
 import settingsSvg from 'assets/img/optionsImgs/settings.svg'
@@ -16,11 +14,9 @@ import {
 } from './AppOptionsPanel.styles'
 
 const AppOptionsPanel: React.FC = () => {
-  const isQuickSearchModalOpen = useSelector(quickSearchPopupSelector)
-
   const dispatch = useDispatch()
   const onOpenQuickSearch = (): void => {
-    dispatch(openQuickSearchModal())
+    dispatch(openQuickSearchPopup())
   }
 
   return (
@@ -36,10 +32,9 @@ const AppOptionsPanel: React.FC = () => {
         </Option>
         <Option>
           <Icon src={settingsSvg} alt='Option' />
-          <Title>Settings & Members</Title>
+          <Title>Settings & Themes</Title>
         </Option>
       </OptionsList>
-      {isQuickSearchModalOpen && <QuickSearchModal />}
     </StyledPanel>
   )
 }

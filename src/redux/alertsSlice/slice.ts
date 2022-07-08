@@ -4,7 +4,10 @@ import AlertsState from './types'
 const initialState: AlertsState = {
   permanentlyDeleteAlert: {
     isOpen: false,
-    pageId: -1,
+    pageId: null,
+  },
+  moveToTrashAlert: {
+    isOpen: false,
   },
 }
 
@@ -14,22 +17,30 @@ export const alertsSlice = createSlice({
   initialState: initialState,
 
   reducers: {
-    openPermanentlyDeleteAlert(state) {
-      state.permanentlyDeleteAlert.isOpen = true
-    },
-    closePermanentlyDeleteAlert(state) {
-      state.permanentlyDeleteAlert.isOpen = false
-    },
     setPermanentlyDeleteAlertPage(state, action: PayloadAction<number>) {
       state.permanentlyDeleteAlert.pageId = action.payload
     },
+    showPermanentlyDeleteAlert(state) {
+      state.permanentlyDeleteAlert.isOpen = true
+    },
+    showMoveToTrashAlert(state) {
+      state.moveToTrashAlert.isOpen = true
+    },
+    hidePermanentlyDeleteAlert(state) {
+      state.permanentlyDeleteAlert.isOpen = false
+    },
+    hideMoveToTrashAlert(state) {
+      state.moveToTrashAlert.isOpen = false
+    },
   },
-}) //! НЕ OPEN, А SHOW, НЕ CLOSE, А HIDE
+})
 
 export const {
-  openPermanentlyDeleteAlert,
-  closePermanentlyDeleteAlert,
   setPermanentlyDeleteAlertPage,
+  showPermanentlyDeleteAlert,
+  showMoveToTrashAlert,
+  hidePermanentlyDeleteAlert,
+  hideMoveToTrashAlert,
 } = alertsSlice.actions
 
 export default alertsSlice.reducer

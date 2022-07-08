@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const StyledPopup = styled.div<{ sidebarWidth: number }>`
+const Wrapper = styled.div<{ sidebarWidth: number }>`
   position: absolute;
   left: ${props => props.sidebarWidth + 5}px;
   bottom: 10px;
@@ -20,4 +20,4 @@ const FilterInputContainer = styled.div`
   padding: 10px 12px;
 `
 
-export { StyledPopup, FilterInputContainer }
+export { Wrapper, FilterInputContainer }

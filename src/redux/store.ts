@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import workspace from './workSpaceSlice/slice'
 import sidebar from './sidebarsSlice/slice'
 import pageDecoration from './pageDecorationSlice/slice'
-import recentSearch from './recentSearchSlice/slice'
+import quickSearch from './quickSearchSlice/slice'
 import popups from './popupsSlice/slice'
 import alerts from './alertsSlice/slice'
 
@@ -12,8 +12,8 @@ export const store = configureStore({
   reducer: {
     sidebar,
     workspace,
-    recentSearch,
     pageDecoration,
+    quickSearch,
     popups,
     alerts,
   },

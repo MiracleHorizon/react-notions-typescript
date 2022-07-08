@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import Modal from '../ModalWrapper'
+import Popup from '../index'
 import BoardPageSettingsPopup from './ModalTemplates/Board'
 import { PageTemplates } from 'redux/popupsSlice/types'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
@@ -22,7 +22,7 @@ const PageSettingsPopup: React.FC = () => {
     }
   }
 
-  return <Modal>{pageTemplateHandler()}</Modal>
+  return <Popup>{pageTemplateHandler()}</Popup>
 }
 
 export default PageSettingsPopup

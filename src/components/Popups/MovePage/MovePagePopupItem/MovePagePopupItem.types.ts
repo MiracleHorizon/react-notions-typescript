@@ -1,4 +1,4 @@
-import { ActiveItemParams } from '../../../../@types/generalTypes'
+import { ActiveItemParams } from '../../../../types'
 
 interface MovePageToModalItemProps extends ActiveItemParams {
   id: number

@@ -1,4 +1,4 @@
-import { ActiveListItem } from '../../../../../../@types/generalTypes'
+import { ActiveListItem } from '../../../../../../types'
 
 export default interface RenameItemProps extends ActiveListItem {
   renameEssenceId: number

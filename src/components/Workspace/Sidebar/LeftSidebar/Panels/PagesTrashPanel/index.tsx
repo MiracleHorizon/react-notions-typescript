@@ -3,14 +3,14 @@ import { useDispatch } from 'react-redux'
 
 import SidebarOptionsPanel from 'components/Options/OptionsList/SidebarOptionsPanel'
 import { TrashSvg } from 'shared/SVG'
-import { openPagesTrashModal } from 'redux/popupsSlice/slice'
+import { openPagesTrashPopup } from 'redux/popupsSlice/slice'
 import { PanelWrapper } from './PagesTrashPanel.styles'
 
 const PagesTrashPanel: React.FC = () => {
   const dispatch = useDispatch()
 
   const onOpenPagesTrashPopup = (): void => {
-    dispatch(openPagesTrashModal())
+    dispatch(openPagesTrashPopup())
   }
 
   const pagesTrashOption = {

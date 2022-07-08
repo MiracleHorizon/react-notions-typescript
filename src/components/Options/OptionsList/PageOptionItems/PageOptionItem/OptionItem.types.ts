@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { ActiveListItem } from '../../../../../@types/generalTypes'
+import { ActiveListItem } from '../../../../../types'
 
 interface OptionItemProps extends ActiveListItem {
   title: string

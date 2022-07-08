@@ -1,11 +1,5 @@
 import styled from 'styled-components'
 
-const AlertInset = styled.div`
-  position: absolute;
-  inset: 0;
-  background: rgba(15, 15, 15, 0.6);
-`
-
 const AlertWrapper = styled.div`
   position: relative;
   top: 40%;
@@ -35,4 +29,4 @@ const StyledTitle = styled.p`
   user-select: none;
 `
 
-export { AlertInset, AlertWrapper, ButtonsList, TitleContainer, StyledTitle }
+export { AlertWrapper, ButtonsList, TitleContainer, StyledTitle }
