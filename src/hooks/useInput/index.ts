@@ -15,3 +15,5 @@ export const useInput = (initialValue: string): HookResult => {
     onClearInput,
   }
 }
+
+// export default.

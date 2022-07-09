@@ -12,7 +12,7 @@ const OutlineButton: React.FC<StyledButtonProps> = props => {
       {...styles}
       isActive={isActive}
       onClick={action}
-      onMouseEnter={() => onSelect(title)}
+      onMouseEnter={onSelect ? () => onSelect(title) : () => {}}
     >
       <p>{title}</p>
     </StyledButton>

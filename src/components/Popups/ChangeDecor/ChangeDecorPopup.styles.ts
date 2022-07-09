@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { ElementCoords } from 'types'
 
-export const PopupWrapper = styled.div<{ coords: ElementCoords }>`
+const Wrapper = styled.div<{ coords: ElementCoords }>`
   position: absolute;
   top: ${props => props.coords.top};
   bottom: ${props => props.coords.bottom};
@@ -19,4 +19,4 @@ export const PopupWrapper = styled.div<{ coords: ElementCoords }>`
   background: white;
 `
 
-export const ContentContainer = styled.div``
+export default Wrapper

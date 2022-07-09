@@ -1,13 +1,11 @@
 import React from 'react'
 
-import { Wrapper } from './ChangeDecorLists.styles'
+import Props from './ChangeDecorLists.types'
 import ChangeEmojiLists from './ChangeEmojiList'
+import ChangeCoverGallery from './ChangeCoverGallery'
+import { Wrapper } from './ChangeDecorLists.styles'
 
-interface Props {
-  listTitle: 'Emoji' | 'Covers'
-}
-
-const decorations = [
+const emoji = [
   {
     title: 'People',
     content: [
@@ -99,21 +97,14 @@ const decorations = [
     ],
   },
 ]
-const list2 = [
-  ['🤔', '🤔', '🤔', '🤔'],
-  ['🤔', '🤔', '🤔', '🤔'],
-  ['🤔', '🤔', '🤔', '🤔'],
-  ['🤔', '🤔', '🤔', '🤔'],
-  ['🤔', '🤔', '🤔', '🤔'],
-]
 
 const ChangeDecorLists: React.FC<Props> = ({ listTitle }) => {
   return (
     <Wrapper>
       {listTitle === 'Emoji' ? (
-        <ChangeEmojiLists decorations={decorations} />
+        <ChangeEmojiLists decorations={emoji} />
       ) : (
-        list2.map(item => <h3>{item}</h3>)
+        <ChangeCoverGallery decorations={emoji} />
       )}
     </Wrapper>
   )

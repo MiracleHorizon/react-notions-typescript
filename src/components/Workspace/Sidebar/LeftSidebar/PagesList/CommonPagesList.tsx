@@ -8,7 +8,7 @@ import { useCreateNewPage } from 'hooks/useCreateNewPage'
 import PagesList from './index'
 import PagesListTitle from './ListTitle'
 import AddNewPageButton from 'shared/Buttons/AddNewPage'
-import Tooltip from 'shared/Tooltip'
+import Tooltip from 'shared/Tooltips/Tooltip'
 import { commonPagesSelector } from 'redux/workSpaceSlice/selectors'
 import { Wrapper } from './PagesList.styles'
 

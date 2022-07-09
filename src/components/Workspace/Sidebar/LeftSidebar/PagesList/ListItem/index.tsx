@@ -1,4 +1,4 @@
-import React, { Fragment, useRef } from 'react'
+import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 import { useToggle } from 'hooks/useToggle'
@@ -20,6 +20,12 @@ import {
   Title,
   ToggleIconContainer,
 } from './ListItem.styles'
+import {
+  openPageOptionsPopup,
+  setPageOptionsPopupCoords,
+} from '../../../../../../redux/popupsSlice/slice'
+import { pageOptionsPopupCoordsHandler } from '../../../../../../utils/coordsHandlers'
+import { ElementCoords } from '../../../../../../types'
 
 const PagesListItem: React.FC<Props> = ({ page }) => {
   const { id, title, isFavorite, iconInfo } = page //* isChild.
@@ -38,21 +44,36 @@ const PagesListItem: React.FC<Props> = ({ page }) => {
     dispatch(closeRightSidebar())
     // Тут будет пост запрос.
   }
+
   const onAddNewPageInside = (e: React.MouseEvent): void => {
     e.stopPropagation()
     //...
   }
+
   const onTogglePageContent = (e: React.MouseEvent): void => {
     e.stopPropagation()
     toggleIsOpen()
   }
 
+  const onOpenPageOptionsPopup = (e: React.MouseEvent): void => {
+    e.preventDefault()
+
+    const pageOptionsPopupCoords: ElementCoords = {
+      top: e.clientY - 2 + 'px',
+      left: e.clientX - 2 + 'px',
+    }
+
+    dispatch(openPageOptionsPopup())
+    dispatch(setPageOptionsPopupCoords(pageOptionsPopupCoords))
+  }
+
   return (
     <StyledItem
-      draggable={true}
+      draggable
       ref={itemRef}
       {...{ isActive, isHovering }}
       onClick={onSelectCurrentPage}
+      onContextMenu={onOpenPageOptionsPopup}
     >
       <ToggleIconContainer isChild={false} onClick={onTogglePageContent}>
         <TriangleSVG isOpen={isOpen} />

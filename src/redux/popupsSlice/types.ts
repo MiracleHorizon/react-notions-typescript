@@ -45,6 +45,7 @@ interface PageIconPopup extends PopupInitialState {
 }
 
 interface PopupsState {
+  appSettingsPopup: PopupInitialState
   isQuickSearchPopupOpen: boolean
   isPagesTrashPopupOpen: boolean
   pageIconPopup: PageIconPopup

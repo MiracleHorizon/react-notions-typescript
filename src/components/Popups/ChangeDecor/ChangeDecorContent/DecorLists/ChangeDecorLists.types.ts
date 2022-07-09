@@ -12,6 +12,15 @@ interface ICoverDecorations extends ITitle {
   content: string[] | CoverColors[]
 }
 
-export default interface Props {
-  decorations: IEmojiDecorations[] | ICoverDecorations[]
+interface ChangeEmojiListsProps {
+  decorations: IEmojiDecorations[]
 }
+
+interface ChangeCoverGalleryProps {
+  decorations: ICoverDecorations[]
+}
+
+export default interface ChangeDecorListsProps {
+  listTitle: 'Emoji' | 'Covers'
+}
+export type { ChangeEmojiListsProps, ChangeCoverGalleryProps }

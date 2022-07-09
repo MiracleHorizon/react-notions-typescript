@@ -15,18 +15,20 @@ import {
   OptionsContainer,
   PageIconBlock,
   PageIcon,
-  PageTitle,
-} from './PageContentOptions.styles'
+} from './PageDecorOptions.styles'
+import { useHover } from 'usehooks-ts'
 
-const PageContentOptions: React.FC = () => {
+const PageDecorOptions: React.FC = () => {
   const {
-    title,
     iconInfo: { icon, isHasIcon },
     coverInfo: { isHasCover },
     commentsInfo: { isHasComments },
   } = useSelector(currentPageSelector)
   const dispatch = useDispatch()
   const iconRef = useRef<HTMLDivElement>(null)
+
+  const panelRef = useRef<HTMLDivElement>(null)
+  const isHovering = useHover(panelRef)
 
   const onOpenChangeIconPopup = (): void => {
     const iconRect = iconRef.current?.getBoundingClientRect()
@@ -37,25 +39,20 @@ const PageContentOptions: React.FC = () => {
     dispatch(setChangeIconPopupCoords(changeIconPopupCoords))
   }
 
-  useEffect(() => {
-    document.title = title
-  }, [title])
-
   return (
-    <OptionsPanel>
+    <OptionsPanel ref={panelRef}>
       {isHasIcon && (
         <PageIconBlock ref={iconRef} onClick={onOpenChangeIconPopup}>
           <PageIcon src={icon} alt='Page icon' />
         </PageIconBlock>
       )}
-      <OptionsContainer>
+      <OptionsContainer isHovering={isHovering}>
         {!isHasIcon && <AddRandomIconButton />}
         {!isHasCover && <AddRandomCoverButton />}
         {!isHasComments && <AddFirstCommentButton />}
       </OptionsContainer>
-      <PageTitle>{title}</PageTitle>
     </OptionsPanel>
   )
 }
 
-export default PageContentOptions
+export default PageDecorOptions

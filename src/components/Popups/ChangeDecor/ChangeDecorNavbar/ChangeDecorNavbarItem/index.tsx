@@ -1,6 +1,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import Props from './ChangeDecorNavbarItem.types'
+import { DecorPurposes } from '../ChangeDecorNavbar.types'
 import {
   selectedCoverCategorySelector,
   selectedIconCategorySelector,
@@ -9,8 +11,6 @@ import {
   setCoverCategory,
   setIconCategory,
 } from 'redux/pageDecorationSlice/slice'
-import Props from './ChangeDecorNavbarItem.types'
-import { DecorPurposes } from '../ChangeDecorNavbar.types'
 import {
   Item,
   ItemWrapper,

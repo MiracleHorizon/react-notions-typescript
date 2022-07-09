@@ -1,20 +1,20 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import {
-  currentPageFontFamilySelector,
-  currentPageSelector,
-} from 'redux/workSpaceSlice/selectors'
-import { Content } from './BoardContent.styles'
+import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
+import { Content, PageTitle } from './BoardContent.styles'
 
 const BoardContent: React.FC = () => {
   const {
-    pageSettings: { isSmallText },
+    title,
+    pageSettings: { isSmallText, selectedFont },
   } = useSelector(currentPageSelector)
-  const fontFamily = useSelector(currentPageFontFamilySelector)
 
   return (
-    <Content isSmallText={isSmallText} fontFamily={fontFamily}>
+    <Content isSmallText={isSmallText} fontFamily={selectedFont}>
+      <PageTitle style={{ marginBottom: '10px', fontSize: '40px' }}>
+        {title}
+      </PageTitle>
       <h1>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad
         aliquam aliquid, amet at cupiditate, eius enim esse in iure mollitia

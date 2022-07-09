@@ -1,10 +1,13 @@
-import { CoverColors } from 'redux/workSpaceSlice/types'
-
-export default interface PageCoverProps {
-  // cover: string | CoverColors
+interface CoverWrapperProps {
+  isHasCover: boolean
+  isRepositioning: boolean
 }
 
-export interface StyledCoverProps {
-  // isHasCover: boolean
-  // cover: string | CoverColors
+interface StyledCoverProps {
+  cover: string
+  coverType: string
+  coverPosition: number
 }
+
+export default interface PageCoverProps {}
+export type { CoverWrapperProps, StyledCoverProps }

@@ -1,18 +1,18 @@
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
-  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: 10px;
 
   p {
     margin-bottom: 15px;
-    text-align: center;
     font-size: 12px;
-    user-select: none;
+    text-align: center;
     color: rgba(55, 53, 47, 0.65);
+    user-select: none;
   }
 `
 

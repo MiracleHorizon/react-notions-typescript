@@ -8,8 +8,9 @@ import {
 import { ElementCoords } from 'types'
 
 const initialState: PopupsState = {
-  isQuickSearchPopupOpen: false,
-  isPagesTrashPopupOpen: false,
+  appSettingsPopup: {
+    isOpen: false,
+  },
   pageIconPopup: {
     isOpen: false,
     coords: {},
@@ -43,6 +44,8 @@ const initialState: PopupsState = {
     isOpen: false,
     pageTemplate: PageTemplates.BOARD,
   },
+  isQuickSearchPopupOpen: false,
+  isPagesTrashPopupOpen: false,
 }
 
 export const popupsSlice = createSlice({
@@ -73,6 +76,9 @@ export const popupsSlice = createSlice({
       state.movePagePopup.coords = action.payload
     },
 
+    openAppSettingsPopup(state) {
+      state.appSettingsPopup.isOpen = true
+    },
     openPageOptionsPopup(state) {
       state.pageOptionsPopup.isOpen = true
     },
@@ -98,6 +104,9 @@ export const popupsSlice = createSlice({
       state.pageCoverPopup.isOpen = true
     },
 
+    closeAppSettingsPopup(state) {
+      state.appSettingsPopup.isOpen = false
+    },
     closePageOptionsPopup(state) {
       state.pageOptionsPopup.isOpen = false
       state.pageOptionsPopup.coords = {}
@@ -136,6 +145,7 @@ export const {
   setPageOptionsPopupCoords,
   setMovePagePopupCoords,
   setChangeIconPopupCoords,
+  openAppSettingsPopup,
   openPageOptionsPopup,
   openPageSettingsPopup,
   openPagesTrashPopup,
@@ -144,6 +154,7 @@ export const {
   openChangeCoverPopup,
   openQuickSearchPopup,
   openMovePagePopup,
+  closeAppSettingsPopup,
   closePageOptionsPopup,
   closePageSettingsPopup,
   closePagesTrashPopup,

@@ -1,7 +1,13 @@
-import { ElementCoords } from '../types'
+import { ElementCoords } from 'types'
 
 const RENAME_POPUP_WIDTH = 360
 const CHANGE_ICON_POPUP_WIDTH = 420
+const PAGE_OPTIONS_POPUP_WIDTH = 245
+
+interface PageOptionsPopupParams {
+  clientX: number
+  clientY: number
+}
 
 class RenamePopupCoordsHandler {
   public setCoordsByHeader(rect: DOMRect | undefined): ElementCoords {
@@ -62,7 +68,23 @@ class ChangeIconPopupCoordsHandler {
   }
 }
 
+class PageOptionsPopupCoordsHandler {
+  setCoordsByContextMenu(params: PageOptionsPopupParams): ElementCoords {
+    const { clientX, clientY } = params
+
+    return {
+      left: clientX + 2 + 'px',
+      bottom: clientY - 2 + 'px',
+    }
+  }
+}
+
 const renamePopupCoordsHandler = new RenamePopupCoordsHandler()
 const changeIconPopupCoordsHandler = new ChangeIconPopupCoordsHandler()
+const pageOptionsPopupCoordsHandler = new PageOptionsPopupCoordsHandler()
 
-export { renamePopupCoordsHandler, changeIconPopupCoordsHandler }
+export {
+  renamePopupCoordsHandler,
+  changeIconPopupCoordsHandler,
+  pageOptionsPopupCoordsHandler,
+}

@@ -1,9 +1,5 @@
 import styled from 'styled-components'
-import {
-  SidebarLocations,
-  SidebarWrapperProps,
-  SidebarResizerProps,
-} from './Sidebar.types'
+import { SidebarLocations, SidebarWrapperProps } from './Sidebar.types'
 
 const Wrapper = styled.div<SidebarWrapperProps>`
   position: ${props =>
@@ -20,7 +16,7 @@ const Wrapper = styled.div<SidebarWrapperProps>`
     if (props.location === SidebarLocations.LEFT) {
       return !props.isOpen ? '0px' : '200px'
     } else {
-      return !props.isOpen ? '0px' : '375px'
+      return !props.isOpen ? '0px' : '340px'
     }
   }};
   height: 100%;
@@ -49,9 +45,16 @@ const Wrapper = styled.div<SidebarWrapperProps>`
     }}
   );
   z-index: 10;
-  transition: width 0.3s ease-in-out, min-width 0.3s ease-in-out,
-    opacity 0.35s ease-in-out;
+  box-shadow: ${props =>
+    (props.isResizerHovering || props.isResizingEnabled) &&
+    'rgb(0 0 0 / 10%) -2px 0px 0px inset'};
+  //transition: width 0.3s ease-in-out, min-width 0.3s ease-in-out,
+  //  opacity 0.35s ease-in-out;
+  transition: box-shadow 0.3s ease-in 0s;
+  // {props =>
+  // props.location === SidebarLocations.RIGHT && 'width 50ms ease-out'};
 `
+
 const Container = styled.div`
   position: relative;
   display: flex;
@@ -76,36 +79,4 @@ const Content = styled.div`
   padding: 4px;
 `
 
-const ResizerContainer = styled.div<SidebarResizerProps>`
-  position: absolute;
-  top: 0;
-  ${props =>
-    props.location === SidebarLocations.LEFT ? 'right: 0' : 'left: -1px'};
-  bottom: 0;
-  flex-grow: 0;
-  width: 1px;
-  background: #89857c;
-  opacity: 0;
-  z-index: -1;
-
-  :hover {
-    opacity: 1;
-    transition: opacity 300ms ease-in-out 0s;
-  }
-`
-
-const Resizer = styled.div`
-  cursor: col-resize;
-  width: 12px;
-  height: 100%;
-  margin-left: -6px;
-`
-
-export {
-  Wrapper,
-  Container,
-  ShadowSeparator,
-  Content,
-  ResizerContainer,
-  Resizer,
-}
+export { Wrapper, Container, ShadowSeparator, Content }

@@ -17,11 +17,15 @@ export const StyledButton = styled.div<OutlineButtonPropsStyles>`
     props.isActive ? props.hoverColor : props.background};
   transition: background 50ms ease-in-out;
 
+  :hover {
+    background: ${props => props.hoverColor};
+  }
   :active {
     background: ${props => props.activeColor};
   }
 
   p {
+    margin-bottom: 1px;
     font-size: 14px;
     line-height: 21px;
     color: ${props => props.color};

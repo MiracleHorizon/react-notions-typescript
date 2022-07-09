@@ -4,11 +4,11 @@ import { createPortal } from 'react-dom'
 import Props from './Popup.types'
 import { PopupWrapper, PopupInset } from './Popup.styles'
 
-const Popup: React.FC<Props> = ({ children, isHasInset }) =>
+const Popup: React.FC<Props> = ({ children, inset }) =>
   createPortal(
     <PopupWrapper>
       {children}
-      {isHasInset && <PopupInset />}
+      {inset && <PopupInset />}
     </PopupWrapper>,
     document.getElementById('root') as HTMLElement
   )

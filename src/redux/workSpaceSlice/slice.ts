@@ -13,6 +13,7 @@ import vue3Svg from 'assets/img/technologies/vue3.svg'
 import reactPng from 'assets/img/react.png'
 import avatarKermitJpg from 'assets/img/Avatar1.jpg'
 import coverTest from 'assets/img/banner-test.jpg'
+import woodcutsCover from 'assets/img/pageCovers/woodcuts_11.jpg'
 
 const initialState: WorkspaceSliceState = {
   pages: [
@@ -28,7 +29,7 @@ const initialState: WorkspaceSliceState = {
       },
       coverInfo: {
         isHasCover: true,
-        cover: `${coverTest}`,
+        cover: `${woodcutsCover}`,
         coverType: 'imgUrl',
       },
       iconInfo: {
@@ -125,7 +126,7 @@ const initialState: WorkspaceSliceState = {
     },
     coverInfo: {
       isHasCover: true,
-      cover: `${coverTest}`,
+      cover: `${woodcutsCover}`,
       coverType: 'imgUrl',
     },
     iconInfo: {

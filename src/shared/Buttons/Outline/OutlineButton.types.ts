@@ -10,15 +10,15 @@ interface OutlineButtonPropsStyles {
 interface StyledButtonProps extends OutlineButtonPropsStyles {
   title: string
   action: () => void
-  activeItem: string
-  onSelect: (title: string) => void
+  activeItem?: string
+  onSelect?: (title: string) => void
 }
 
 interface OutlineButtonProps {
   title: string
   action: () => void
-  activeItem: string
-  onSelect: (title: string) => void
+  activeItem?: string
+  onSelect?: (title: string) => void
 }
 
 export type { OutlineButtonProps, OutlineButtonPropsStyles, StyledButtonProps }

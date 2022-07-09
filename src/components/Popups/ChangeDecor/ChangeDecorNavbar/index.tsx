@@ -1,9 +1,9 @@
 import React from 'react'
 
+import Props from './ChangeDecorNavbar.types'
 import ChangeDecorNavbarItem from './ChangeDecorNavbarItem'
 import AddRandomDecorButton from 'shared/Buttons/ChangeDecorAction/components/AddRandomDecor'
 import RemoveDecorButton from 'shared/Buttons/ChangeDecorAction/components/RemoveDecor'
-import Props from './ChangeDecorNavbar.types'
 import { NavbarWrapper, ActionsContainer } from './ChangeDecorNavbar.styles'
 
 const ChangeDecorPopupNavbar: React.FC<Props> = props => {

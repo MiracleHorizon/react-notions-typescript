@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useInput } from 'hooks/useInput'
-import Props from '../ChangeDecorLists.types'
+import { ChangeEmojiListsProps as Props } from '../ChangeDecorLists.types'
 import OutlineInput from 'shared/Inputs/OutlineInput'
 import { ListContainer, ListsWrapper } from '../ChangeDecorLists.styles'
 import {
@@ -26,11 +26,11 @@ const ChangeEmojiLists: React.FC<Props> = ({ decorations }) => {
       </InputContainer>
       <ListsWrapper>
         {decorations.map(({ title, content }) => (
-          <ListContainer>
+          <ListContainer key={title}>
             <ListTitle>{title}</ListTitle>
             <EmojiList>
-              {content.map(item => (
-                <EmojiItem>{item}</EmojiItem>
+              {content.map((item, i) => (
+                <EmojiItem key={i}>{item}</EmojiItem>
               ))}
             </EmojiList>
           </ListContainer>

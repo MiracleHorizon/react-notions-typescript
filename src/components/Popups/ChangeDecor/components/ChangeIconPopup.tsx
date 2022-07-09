@@ -10,7 +10,7 @@ import { iconCategoriesSelector } from 'redux/pageDecorationSlice/selectors'
 import { closeChangeIconPopup } from 'redux/popupsSlice/slice'
 import { refreshIconCategory } from 'redux/pageDecorationSlice/slice'
 import { DecorPurposes } from '../ChangeDecorNavbar/ChangeDecorNavbar.types'
-import { ContentContainer, PopupWrapper } from '../ChangeDecorPopup.styles'
+import Wrapper from '../ChangeDecorPopup.styles'
 
 const ChangePageIconPopup: React.FC = () => {
   const { coords } = useSelector(changeIconPopupSelector)
@@ -27,15 +27,13 @@ const ChangePageIconPopup: React.FC = () => {
 
   return (
     <Popup>
-      <PopupWrapper coords={coords} ref={popupRef}>
+      <Wrapper coords={coords} ref={popupRef}>
         <ChangeDecorPopupNavbar
           categories={categories}
           purpose={DecorPurposes.ICON}
         />
-        <ContentContainer>
-          <ChangeIconContent />
-        </ContentContainer>
-      </PopupWrapper>
+        <ChangeIconContent />
+      </Wrapper>
     </Popup>
   )
 }

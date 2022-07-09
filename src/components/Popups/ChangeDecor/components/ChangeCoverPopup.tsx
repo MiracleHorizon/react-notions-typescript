@@ -11,7 +11,7 @@ import {
 } from 'redux/pageDecorationSlice/slice'
 import { coverCategoriesSelector } from 'redux/pageDecorationSlice/selectors'
 import { DecorPurposes } from '../ChangeDecorNavbar/ChangeDecorNavbar.types'
-import { PopupWrapper, ContentContainer } from '../ChangeDecorPopup.styles'
+import Wrapper from '../ChangeDecorPopup.styles'
 
 const ChangePageCoverPopup: React.FC = () => {
   const coords = {}
@@ -28,15 +28,13 @@ const ChangePageCoverPopup: React.FC = () => {
 
   return (
     <Popup>
-      <PopupWrapper coords={coords} ref={popupRef}>
+      <Wrapper coords={coords} ref={popupRef}>
         <ChangeDecorPopupNavbar
           categories={categories}
           purpose={DecorPurposes.ICON}
         />
-        <ContentContainer>
-          <ChangeCoverContent />
-        </ContentContainer>
-      </PopupWrapper>
+        <ChangeCoverContent />
+      </Wrapper>
     </Popup>
   )
 }

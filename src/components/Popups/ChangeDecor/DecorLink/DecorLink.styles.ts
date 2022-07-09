@@ -16,9 +16,9 @@ export const Wrapper = styled.div`
 
 export const StyledForm = styled.form`
   flex: 1;
-  padding: 5px;
+  padding: 8px 12px;
 
   input {
-    margin-bottom: 5px;
+    margin-bottom: 2px;
   }
 `

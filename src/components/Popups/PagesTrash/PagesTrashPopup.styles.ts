@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-const Wrapper = styled.div<{ sidebarWidth: number }>`
+const Wrapper = styled.div<{ leftSidebarWidth: number }>`
   position: absolute;
-  left: ${props => props.sidebarWidth + 5}px;
+  left: ${props => props.leftSidebarWidth + 5}px;
   bottom: 10px;
   width: 420px;
   min-width: 180px;

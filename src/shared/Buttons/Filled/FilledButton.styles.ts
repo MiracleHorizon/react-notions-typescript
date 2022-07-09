@@ -9,7 +9,7 @@ export const StyledButton = styled.div<ColorInfo>`
   max-width: 300px;
   width: 100%;
   height: 100%;
-  min-width: 180px;
+  min-width: 60px;
   min-height: 30px;
   margin: 15px auto;
   border-radius: 3px;
@@ -37,7 +37,7 @@ export const StyledButton = styled.div<ColorInfo>`
 `
 
 export const Title = styled.span`
-  margin-bottom: 2px;
+  margin-bottom: 3px;
   padding-top: 2px;
   font-size: 14px;
   font-weight: 500;

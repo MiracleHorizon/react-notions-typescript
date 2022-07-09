@@ -15,10 +15,12 @@ const Container = styled.div`
 `
 
 const Content = styled.div<WorkspaceContentProps>`
+  min-height: calc(100vh - 45px);
   width: ${props =>
     props.isRightSidebarOpen
       ? `calc(100% - ${props.rightSidebarWidth}px)`
       : '100%'};
+  overflow: auto;
   transition: width 0.35s ease-in-out;
 `
 

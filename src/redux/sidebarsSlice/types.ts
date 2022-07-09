@@ -15,6 +15,7 @@ interface SidebarSliceState {
     isOpen: boolean
     isBubbling: boolean
     location: SidebarLocations.LEFT
+    width: number
   }
   rightSidebar: {
     isOpen: boolean

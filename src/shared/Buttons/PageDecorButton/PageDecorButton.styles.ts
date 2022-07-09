@@ -6,17 +6,16 @@ const StyledOption = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 24px;
+  margin-right: 3px;
   padding: 2px 6px;
   border-radius: 3px;
-  margin-right: 3px;
+  transition: background 50ms ease-in-out;
 
-  &:hover {
+  :hover {
     background: rgba(55, 53, 47, 0.08);
-    transition: background 0.15s ease-in-out;
   }
-  &:active {
+  :active {
     background: rgba(55, 53, 47, 0.16);
-    transition: background 0.15s ease-in-out;
   }
 `
 

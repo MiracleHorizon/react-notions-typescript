@@ -22,6 +22,8 @@ const StyledPanel = styled.div`
 const Avatar = styled.img`
   width: 18px;
   height: 18px;
+  min-width: 18px;
+  min-height: 18px;
   border-radius: 3px;
 `
 
@@ -32,6 +34,7 @@ const Title = styled.h2`
   line-height: 21px;
   white-space: nowrap;
   text-overflow: ellipsis;
+  overflow: hidden;
   color: rgb(55, 53, 47);
 `
 

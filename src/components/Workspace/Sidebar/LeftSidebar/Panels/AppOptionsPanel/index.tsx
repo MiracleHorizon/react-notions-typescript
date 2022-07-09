@@ -1,7 +1,10 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
-import { openQuickSearchPopup } from 'redux/popupsSlice/slice'
+import {
+  openAppSettingsPopup,
+  openQuickSearchPopup,
+} from 'redux/popupsSlice/slice'
 import searchSvg from 'assets/img/inputs/search.svg'
 import updatesSvg from 'assets/img/optionsImgs/updates.svg'
 import settingsSvg from 'assets/img/optionsImgs/settings.svg'
@@ -15,8 +18,13 @@ import {
 
 const AppOptionsPanel: React.FC = () => {
   const dispatch = useDispatch()
+
   const onOpenQuickSearch = (): void => {
     dispatch(openQuickSearchPopup())
+  }
+
+  const onOpenAppSettingsPopup = (): void => {
+    dispatch(openAppSettingsPopup())
   }
 
   return (
@@ -30,7 +38,7 @@ const AppOptionsPanel: React.FC = () => {
           <Icon src={updatesSvg} alt='Option' />
           <Title>All Updates</Title>
         </Option>
-        <Option>
+        <Option onClick={onOpenAppSettingsPopup}>
           <Icon src={settingsSvg} alt='Option' />
           <Title>Settings & Themes</Title>
         </Option>

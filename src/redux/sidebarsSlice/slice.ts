@@ -7,12 +7,13 @@ const initialState: SidebarSliceState = {
     isOpen: true,
     isBubbling: false,
     location: SidebarLocations.LEFT,
+    width: 300,
   },
   rightSidebar: {
-    isOpen: false,
+    isOpen: true,
     location: SidebarLocations.RIGHT,
-    width: 400,
     activeCommentsFilter: CommentsFilters.OPEN,
+    width: 400,
   },
   activePage: {
     title: '',
@@ -26,6 +27,12 @@ const sidebarSlice = createSlice({
   initialState: initialState,
 
   reducers: {
+    setLeftSidebarWidth(state, action: PayloadAction<number>) {
+      state.leftSidebar.width = action.payload
+    },
+    setRightSidebarWidth(state, action: PayloadAction<number>) {
+      state.rightSidebar.width = action.payload
+    },
     closeLeftSidebar(state) {
       state.leftSidebar.isOpen = false
     },
@@ -49,9 +56,6 @@ const sidebarSlice = createSlice({
     setActivePage(state, action: PayloadAction<ActivePage>) {
       state.activePage = action.payload
     },
-    setRightSidebarWidth(state, action: PayloadAction<number>) {
-      state.rightSidebar.width = action.payload
-    },
     setCommentsFilter(state, action: PayloadAction<CommentsFilters>) {
       state.rightSidebar.activeCommentsFilter = action.payload
     },
@@ -59,13 +63,14 @@ const sidebarSlice = createSlice({
 })
 
 export const {
+  setLeftSidebarWidth,
+  setRightSidebarWidth,
+  setCommentsFilter,
   closeLeftSidebar,
   openLeftSidebar,
   closeRightSidebar,
   openRightSidebar,
   setActivePage,
-  setRightSidebarWidth,
-  setCommentsFilter,
   toggleLeftSidebar,
   toggleRightSidebar,
 } = sidebarSlice.actions

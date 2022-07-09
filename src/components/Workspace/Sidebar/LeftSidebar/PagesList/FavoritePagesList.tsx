@@ -6,7 +6,7 @@ import { useSetTooltipTitle } from 'hooks/useSetTooltipTitle'
 
 import PagesList from './index'
 import PagesListTitle from './ListTitle'
-import Tooltip from 'shared/Tooltip'
+import Tooltip from 'shared/Tooltips/Tooltip'
 import { favoritePagesSelector } from 'redux/workSpaceSlice/selectors'
 import { Wrapper } from './PagesList.styles'
 

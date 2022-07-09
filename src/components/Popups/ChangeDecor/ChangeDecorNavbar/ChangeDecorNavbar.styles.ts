@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const NavbarWrapper = styled.div`
+export const NavbarWrapper = styled.div`
   display: flex;
   flex: 1;
   padding: 0 8px;
@@ -11,10 +11,8 @@ const NavbarWrapper = styled.div`
   user-select: none;
 `
 
-const ActionsContainer = styled.div`
+export const ActionsContainer = styled.div`
   display: flex;
   flex: 1;
   justify-content: flex-end;
 `
-
-export { NavbarWrapper, ActionsContainer }

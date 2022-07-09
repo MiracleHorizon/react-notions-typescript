@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 
 import Props from './PagesListItemOptionsButton.types'
-import Tooltip from 'shared/Tooltip'
+import Tooltip from 'shared/Tooltips/Tooltip'
 import OptionsDotsSVG from 'shared/SVG/OptionsDots'
 import {
   openPageOptionsPopup,

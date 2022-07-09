@@ -8,6 +8,9 @@ import {
   PopupInitialState,
 } from './types'
 
+const appSettingsPopupSelector = (state: RootState): boolean => {
+  return state.popups.appSettingsPopup.isOpen
+}
 const renamePopupSelector = (state: RootState): RenamePopupState => {
   return state.popups.renamePopup
 }
@@ -36,6 +39,7 @@ const pagesTrashPopupSelector = (state: RootState): boolean => {
 }
 
 export {
+  appSettingsPopupSelector,
   renamePopupSelector,
   changeIconPopupSelector,
   changeCoverPopupSelector,

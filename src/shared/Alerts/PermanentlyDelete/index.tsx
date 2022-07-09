@@ -36,7 +36,7 @@ const PermanentlyDeleteAlert: React.FC = () => {
   useOnClickOutside(alertRef, handleClickOutside)
 
   return (
-    <Popup isHasInset={true}>
+    <Popup inset={true}>
       <AlertWrapper ref={alertRef}>
         <TitleContainer>
           <StyledTitle>

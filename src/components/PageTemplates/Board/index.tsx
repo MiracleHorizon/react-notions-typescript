@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import PageContentOptions from 'components/Workspace/PageContentOptions'
+import PageDecorOptions from 'components/Workspace/PageDecorOptions'
 import BoardContent from './BoardContent'
 import EmptyPage from '../EmptyPage'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
@@ -21,7 +21,7 @@ const BoardTemplate: React.FC = () => {
   return (
     <BoardWrapper>
       <Container isFullWidth={isFullWidth}>
-        <PageContentOptions />
+        <PageDecorOptions />
         {isPageEmpty()}
       </Container>
     </BoardWrapper>

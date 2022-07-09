@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import { useHover } from 'usehooks-ts'
 
-import Tooltip from 'shared/Tooltip'
+import Tooltip from 'shared/Tooltips/Tooltip'
 import { PlusSvg } from 'shared/SVG'
 import Props from './AddNewPageButton.types'
 import StyledButton from './AddNewPageButton.styles'

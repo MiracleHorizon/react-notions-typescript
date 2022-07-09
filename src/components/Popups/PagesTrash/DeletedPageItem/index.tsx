@@ -4,7 +4,7 @@ import { useHover } from 'usehooks-ts'
 
 import Props from './DeletedPageItem.types'
 import { ElementCoords } from 'types'
-import Tooltip from 'shared/Tooltip'
+import Tooltip from 'shared/Tooltips/Tooltip'
 import { DeleteTrashSvg, EmptyPageIconSvg, UndoSvg } from 'shared/SVG'
 import { restorePage } from 'redux/workSpaceSlice/slice'
 import {

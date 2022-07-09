@@ -1,54 +1,59 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 
+import useResize from 'hooks/useResize/useResize'
 import UserPanel from './Panels/UserPanel'
 import AppOptionsPanel from './Panels/AppOptionsPanel'
 import PagesTrashPanel from './Panels/PagesTrashPanel'
 import AddNewPagePanel from './Panels/AddNewPagePanel'
 import FavoritePagesList from './PagesList/FavoritePagesList'
 import CommonPagesList from './PagesList/CommonPagesList'
-import PagesTrashPopup from 'components/Popups/PagesTrash'
-import PageOptionsPopup from 'components/Popups/PageOptions'
-import {
-  currentPageSelector,
-  favoritePagesSelector,
-} from 'redux/workSpaceSlice/selectors'
+import SidebarResizer from '../Resizer'
+import { currentPageSelector, favoritePagesSelector } from 'redux/selectors'
 import { leftSidebarSelector } from 'redux/sidebarsSlice/selectors'
-import { setActivePage } from 'redux/sidebarsSlice/slice'
-import {
-  pageOptionsPopupSelector,
-  pagesTrashPopupSelector,
-} from 'redux/popupsSlice/selectors'
-import {
-  Wrapper,
-  Container,
-  ShadowSeparator,
-  Content,
-  ResizerContainer,
-  Resizer,
-} from '../Sidebar.styles'
+import { setActivePage, setLeftSidebarWidth } from 'redux/sidebarsSlice/slice'
+import { Wrapper, Container, ShadowSeparator, Content } from '../Sidebar.styles'
 
 const LeftSidebar: React.FC = () => {
-  const [width, setWidth] = useState<number>(300)
   const { id, title } = useSelector(currentPageSelector)
-  const { isOpen, isBubbling, location } = useSelector(leftSidebarSelector)
-
+  const leftSidebarInfo = useSelector(leftSidebarSelector)
   const isHasFavoritePages = useSelector(favoritePagesSelector).length > 0
-  const isPageOptionsPopupOpen = useSelector(pageOptionsPopupSelector).isOpen
-  const isPagesTrashPopupOpen = useSelector(pagesTrashPopupSelector)
   const dispatch = useDispatch()
 
   const resizerRef = useRef<HTMLDivElement>(null)
+  const isResizerHovering = useHover(resizerRef)
+
   const sidebarRef = useRef<HTMLDivElement>(null)
   const isHovering = useHover(sidebarRef)
+
+  const { isResizingEnabled } = useResize({
+    resizeDirection: 'Right',
+    references: {
+      node: sidebarRef,
+      resizer: resizerRef,
+    },
+    setWidth: setLeftSidebarWidth,
+    restrictions: { maxWidth: 480, minWidth: 180 },
+  })
+
+  const onCloseSidebar = (): void => {
+    // if (!isResizingEnabled) dispatch(closeLeftSidebar())
+  }
 
   useEffect(() => {
     dispatch(setActivePage({ title, id }))
   }, [id, title, dispatch])
 
   return (
-    <Wrapper ref={sidebarRef} {...{ isOpen, isBubbling, width, location }}>
+    <Wrapper
+      ref={sidebarRef}
+      {...{
+        ...leftSidebarInfo,
+        isResizerHovering,
+        isResizingEnabled,
+      }}
+    >
       <Container>
         <UserPanel isHovering={isHovering} />
         <AppOptionsPanel />
@@ -60,10 +65,11 @@ const LeftSidebar: React.FC = () => {
         <PagesTrashPanel />
         <AddNewPagePanel />
       </Container>
-      <ResizerContainer draggable={true} ref={resizerRef} location={location}>
-        <Resizer />
-      </ResizerContainer>
-      {isPagesTrashPopupOpen && <PagesTrashPopup sidebarWidth={width} />}
+      <SidebarResizer
+        location={leftSidebarInfo.location}
+        resizerRef={resizerRef}
+        onClickAction={onCloseSidebar}
+      />
     </Wrapper>
   )
 }

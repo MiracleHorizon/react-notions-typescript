@@ -2,7 +2,7 @@ import React, { Fragment, useRef } from 'react'
 import { useHover } from 'usehooks-ts'
 
 import { useSidebarActionHandler } from 'hooks/useSidebarActionHandler'
-import Tooltip from 'shared/Tooltip'
+import Tooltip from 'shared/Tooltips/Tooltip'
 import DoubleChevronSvg from 'shared/SVG/DoubleChevron'
 import { ToggleSidebarBtnProps } from './ToggleSidebarButton.types'
 import { toggleSidebarBtnCoordsHandler } from 'helpers/toggleSidebarBtnCoordsHandler'

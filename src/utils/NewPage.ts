@@ -19,7 +19,7 @@ class NewPage implements IWorkspacePage {
   coverInfo: {
     isHasCover: boolean
     cover: CoverColors | string
-    coverType: string
+    coverType: 'imgUrl' | 'CoverColors' | ''
   }
   iconInfo: {
     isHasIcon: boolean

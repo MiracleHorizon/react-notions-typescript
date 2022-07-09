@@ -8,8 +8,8 @@ interface ContentProps {
 
 const Content = styled.div<ContentProps>`
   min-height: 200px;
+  //height: 100vh;
   width: 100%;
-  overflow-y: auto;
 
   h1,
   h2,
@@ -25,4 +25,16 @@ const Content = styled.div<ContentProps>`
   }
 `
 
-export { Content }
+const PageTitle = styled.h1`
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  font-size: 40px;
+  font-weight: 700;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow: hidden;
+  color: rgb(55, 53, 47);
+`
+
+export { Content, PageTitle }
