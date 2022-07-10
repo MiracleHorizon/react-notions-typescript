@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { CoverWrapperProps, StyledCoverProps } from './PageCover.types'
 
 const CoverWrapper = styled.div<CoverWrapperProps>`
-  cursor: ${props => (props.isRepositioning ? 'all-scroll' : 'default')};
+  cursor: ${props => (props.isRepositionEnabled ? 'all-scroll' : 'default')};
   position: relative;
   top: 0;
   display: flex;

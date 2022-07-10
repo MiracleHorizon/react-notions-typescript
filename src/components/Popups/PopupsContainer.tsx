@@ -40,7 +40,7 @@ const PopupsContainer: React.FC = () => {
     <Suspense fallback={<p>Загрузка вслывающего окна</p>}>
       {isAppSettingsPopupOpen && <AppSettingsPopup />}
       {isChangeIconPopupOpen && <ChangeIconPopup />}
-      {/*{isChangeCoverPopupOpen && <ChangeCoverPopup />}*/}
+      {isChangeCoverPopupOpen && <ChangeCoverPopup />}
       {isRenamePopupOpen && <RenamePopup />}
       {isPageOptionsPopupOpen && <PageOptionsPopup />}
       {isMovePagePopupOpen && <MovePagePopup />}

@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ isOpen: boolean }>`
   position: relative;
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: ${props => (props.isOpen ? '20px' : '0px')};
 `
 
 const Container = styled.div`

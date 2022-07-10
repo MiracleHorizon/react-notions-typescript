@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
-
 import { useHover, useOnClickOutside } from 'usehooks-ts'
+
 import DragCoverTooltip from 'shared/Tooltips/DragCover'
 import CoverOptionsPanel from './CoverOptionsPanel'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
@@ -11,7 +11,7 @@ const PageCover: React.FC = () => {
   const {
     coverInfo: { isHasCover, cover, coverType },
   } = useSelector(currentPageSelector)
-  const [isRepositioning, setIsRepositioning] = useState<boolean>(false)
+  const [isRepositionEnabled, setRepositionEnabled] = useState<boolean>(false)
   const [coverPosition, setCoverPosition] = useState<number>(0)
 
   const coverWrapperRef = useRef<HTMLDivElement>(null)
@@ -25,21 +25,25 @@ const PageCover: React.FC = () => {
 
   const onMouseDown = (e: React.MouseEvent) => {
     e.preventDefault()
-    if (!isRepositioning) return
+    if (!isRepositionEnabled) return
   }
   const onMouseMove = (e: React.MouseEvent) => {
-    if (!isRepositioning) return
+    if (!isRepositionEnabled) return
   }
   const onMouseUp = (e: React.MouseEvent) => {
-    if (!isRepositioning) return
+    if (!isRepositionEnabled) return
   }
 
-  const handleClickOutside = (): void => setIsRepositioning(false)
+  const handleClickOutside = (): void => setRepositionEnabled(false)
 
   useOnClickOutside(coverWrapperRef, handleClickOutside)
 
   return (
-    <CoverWrapper ref={coverWrapperRef} {...{ isHasCover, isRepositioning }}>
+    <CoverWrapper
+      ref={coverWrapperRef}
+      isHasCover={isHasCover}
+      isRepositionEnabled={isRepositionEnabled}
+    >
       <StyledCover
         src={cover}
         ref={coverRef}
@@ -48,13 +52,13 @@ const PageCover: React.FC = () => {
         onMouseMove={onMouseMove}
         onMouseUp={onMouseUp}
       />
-      {isRepositioning && <DragCoverTooltip />}
+      {isRepositionEnabled && <DragCoverTooltip />}
       {isHasCover && (
         <CoverOptionsPanel
           {...{
             isHovering,
-            isRepositioning,
-            setIsRepositioning,
+            isRepositionEnabled,
+            setRepositionEnabled,
             setCoverPosition,
           }}
         />

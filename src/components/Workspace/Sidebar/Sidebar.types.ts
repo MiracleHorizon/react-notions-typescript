@@ -1,7 +1,4 @@
-enum SidebarLocations {
-  LEFT = 'left',
-  RIGHT = 'right',
-} // Переработать
+type SidebarLocations = 'Left' | 'Right'
 
 interface SidebarWrapperProps {
   location: SidebarLocations
@@ -12,5 +9,4 @@ interface SidebarWrapperProps {
   isResizingEnabled: boolean
 }
 
-export { SidebarLocations }
-export type { SidebarWrapperProps }
+export type { SidebarLocations, SidebarWrapperProps }

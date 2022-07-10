@@ -14,12 +14,12 @@ interface SidebarSliceState {
   leftSidebar: {
     isOpen: boolean
     isBubbling: boolean
-    location: SidebarLocations.LEFT
+    location: SidebarLocations
     width: number
   }
   rightSidebar: {
     isOpen: boolean
-    location: SidebarLocations.RIGHT
+    location: SidebarLocations
     width: number
     activeCommentsFilter: CommentsFilters
   }

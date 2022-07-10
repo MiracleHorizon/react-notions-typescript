@@ -14,13 +14,13 @@ const ChangeIconContent: React.FC = () => {
   const selectedCategoryHandler = (): JSX.Element | JSX.Element[] => {
     switch (selectedCategory) {
       case ChangeIconCategories.EMOJI:
-        return <ChangeDecorLists listTitle={'Emoji'} />
+        return <ChangeDecorLists listTitle='Emoji' />
       case ChangeIconCategories.UPLOAD:
         return (
           <UploadDecor recommendation='Recommended sizes is 280 x 280 pixels' />
         )
       case ChangeIconCategories.LINK:
-        return <DecorLink />
+        return <DecorLink purpose='Icon' />
       default:
         return <ChangeDecorLists listTitle={'Emoji'} />
     }

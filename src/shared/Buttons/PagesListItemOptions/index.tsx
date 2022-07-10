@@ -13,8 +13,8 @@ import {
   setRenamePopupCoords,
   setRenamePopupEssence,
 } from 'redux/popupsSlice/slice'
-import { setCoordsByPointer } from 'helpers/setCoordsByPointer'
 import pageOptionsHandler from 'helpers/pageOptionsHandler'
+import { setCoordsByPointer } from 'helpers/setCoordsByPointer'
 import { renamePopupCoordsHandler } from 'utils/coordsHandlers'
 import StyledButton from './PagesListItemOptionsButton.styles'
 
@@ -23,21 +23,19 @@ const PagesListItemOptionsButton: React.FC<Props> = props => {
   const optionsButtonRef = useRef<HTMLImageElement>(null)
   const isHovering = useHover(optionsButtonRef)
   const options = pageOptionsHandler(optionsTitle)
+  const dispatch = useDispatch()
 
   const optionsButtonRect = optionsButtonRef.current?.getBoundingClientRect()
   const renamePagePopupCoords =
     renamePopupCoordsHandler.setCoordsBySidebar(optionsButtonRect)
 
-  const dispatch = useDispatch()
   const onOpenPageOptionsModal = (e: React.MouseEvent): void => {
     e.stopPropagation()
-
-    const popupCoords = setCoordsByPointer(e)
 
     dispatch(openPageOptionsPopup())
     dispatch(setPageOptions(options))
     dispatch(setPageOptionsId(page.id))
-    dispatch(setPageOptionsPopupCoords(popupCoords))
+    dispatch(setPageOptionsPopupCoords(setCoordsByPointer(e)))
 
     dispatch(setRenamePopupEssence(page))
     dispatch(setRenamePopupCoords(renamePagePopupCoords))

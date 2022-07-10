@@ -20,13 +20,13 @@ export const useSidebarActionHandler = (params: Params) => {
   const dispatch = useDispatch()
 
   if (purpose === Purposes.OPEN) {
-    return location === SidebarLocations.LEFT
+    return location === 'Left'
       ? () => dispatch(openLeftSidebar())
       : () => dispatch(openRightSidebar())
   }
 
   if (purpose === Purposes.CLOSE) {
-    return location === SidebarLocations.LEFT
+    return location === 'Left'
       ? () => dispatch(closeLeftSidebar())
       : () => dispatch(closeRightSidebar())
   }

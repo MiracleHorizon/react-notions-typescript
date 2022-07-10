@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createPortal } from 'react-dom'
 
@@ -17,9 +17,13 @@ const MoveToTrashAlert: React.FC = () => {
   const isOpen = useSelector(isMoveToTrashAlertOpenSelector)
   const dispatch = useDispatch()
 
+  const onHideAlert = useCallback((): void => {
+    setTimeout(() => dispatch(hideMoveToTrashAlert()), 5000)
+  }, [dispatch])
+
   useEffect(() => {
-    isOpen && setTimeout(() => dispatch(hideMoveToTrashAlert()), 5000)
-  }, [dispatch, isOpen])
+    isOpen && onHideAlert()
+  }, [dispatch, isOpen, onHideAlert])
 
   return createPortal(
     <Wrapper>

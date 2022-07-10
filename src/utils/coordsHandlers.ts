@@ -2,19 +2,18 @@ import { ElementCoords } from 'types'
 
 const RENAME_POPUP_WIDTH = 360
 const CHANGE_ICON_POPUP_WIDTH = 420
-const PAGE_OPTIONS_POPUP_WIDTH = 245
+const CHANGE_COVER_POPUP_WIDTH = 540
 
-interface PageOptionsPopupParams {
-  clientX: number
-  clientY: number
-}
+type NodeRect = DOMRect | undefined
+
+// Попробовать сделать декоратор - if (!rect) return {}
 
 class RenamePopupCoordsHandler {
-  public setCoordsByHeader(rect: DOMRect | undefined): ElementCoords {
+  public setCoordsByHeader(rect: NodeRect): ElementCoords {
     if (!rect) return {}
 
     let leftPosition: number = rect.left - (RENAME_POPUP_WIDTH - rect.width) / 2
-    if (leftPosition < 0) leftPosition = 15
+    if (leftPosition <= 0) leftPosition = 15
 
     return {
       left: leftPosition + 'px',
@@ -22,11 +21,11 @@ class RenamePopupCoordsHandler {
     }
   }
 
-  public setCoordsBySidebar(rect: DOMRect | undefined): ElementCoords {
+  public setCoordsBySidebar(rect: NodeRect): ElementCoords {
     if (!rect) return {}
 
     let leftPosition: number = rect.left - (RENAME_POPUP_WIDTH - rect.width) / 2
-    if (leftPosition < 0) leftPosition = 15
+    if (leftPosition <= 0) leftPosition = 15
 
     return {
       left: leftPosition + 'px',
@@ -36,16 +35,20 @@ class RenamePopupCoordsHandler {
 }
 
 class ChangeIconPopupCoordsHandler {
-  public setCoordsByWorkspace(rect: DOMRect | undefined) {
+  public setCoordsByWorkspace(rect: NodeRect): ElementCoords {
     if (!rect) return {}
 
+    let leftPosition: number =
+      rect.left - (CHANGE_ICON_POPUP_WIDTH - rect.width) / 2
+    if (leftPosition <= 0) leftPosition = 15
+
     return {
-      left: rect.left - (CHANGE_ICON_POPUP_WIDTH - rect.width) / 2 + 'px',
+      left: leftPosition + 'px',
       top: rect.bottom + 8 + 'px',
     }
   }
 
-  public setCoordsBySidebar(rect: DOMRect | undefined) {
+  public setCoordsBySidebar(rect: NodeRect): ElementCoords {
     if (!rect) return {}
 
     return {
@@ -54,12 +57,12 @@ class ChangeIconPopupCoordsHandler {
     }
   }
 
-  public setCoordsByRenamePopup(rect: DOMRect | undefined) {
+  public setCoordsByRenamePopup(rect: NodeRect): ElementCoords {
     if (!rect) return {}
 
     let leftPosition: number =
       rect.left - (CHANGE_ICON_POPUP_WIDTH - rect.width) / 2
-    if (leftPosition < 0) leftPosition = 15
+    if (leftPosition <= 0) leftPosition = 15
 
     return {
       left: leftPosition + 'px',
@@ -68,23 +71,29 @@ class ChangeIconPopupCoordsHandler {
   }
 }
 
-class PageOptionsPopupCoordsHandler {
-  setCoordsByContextMenu(params: PageOptionsPopupParams): ElementCoords {
-    const { clientX, clientY } = params
+class ChangeCoverPopupCoordsHandler {
+  public setCoordsByCoverButton(rect: NodeRect): ElementCoords {
+    if (!rect) return {}
+
+    let leftPosition: number =
+      rect.left - (CHANGE_COVER_POPUP_WIDTH - rect.width) / 2
+    if (leftPosition + CHANGE_COVER_POPUP_WIDTH >= document.body.offsetWidth) {
+      leftPosition = leftPosition - 70
+    }
 
     return {
-      left: clientX + 2 + 'px',
-      bottom: clientY - 2 + 'px',
+      left: leftPosition + 'px',
+      top: rect.bottom + 15 + 'px',
     }
   }
 }
 
 const renamePopupCoordsHandler = new RenamePopupCoordsHandler()
 const changeIconPopupCoordsHandler = new ChangeIconPopupCoordsHandler()
-const pageOptionsPopupCoordsHandler = new PageOptionsPopupCoordsHandler()
+const changeCoverPopupCoordsHandler = new ChangeCoverPopupCoordsHandler()
 
 export {
   renamePopupCoordsHandler,
   changeIconPopupCoordsHandler,
-  pageOptionsPopupCoordsHandler,
+  changeCoverPopupCoordsHandler,
 }

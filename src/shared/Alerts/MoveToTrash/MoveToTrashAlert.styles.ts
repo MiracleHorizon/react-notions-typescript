@@ -12,6 +12,7 @@ const Wrapper = styled.div`
 `
 
 const Container = styled.div<{ isActive: boolean }>`
+  position: absolute;
   align-self: end;
   display: flex;
   align-items: center;
@@ -24,8 +25,8 @@ const Container = styled.div<{ isActive: boolean }>`
     rgb(15 15 15 / 20%) 0 15px 40px;
   user-select: none;
   transform: translateY(${props => (props.isActive ? '-20px' : '35px')});
-  z-index: 1000;
   transition: all 0.5s ease-in-out;
+  z-index: 2000;
 
   span {
     color: rgba(255, 255, 255, 0.9);

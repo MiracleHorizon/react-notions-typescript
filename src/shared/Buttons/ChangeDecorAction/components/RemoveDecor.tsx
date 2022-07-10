@@ -1,16 +1,18 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import Props from '../ChangeDecorActionButton.types'
+import { DecorPurposes } from 'components/Popups/ChangeDecor/ChangeDecorNavbar/ChangeDecorNavbar.types'
 import { removeCover, removeIcon } from 'redux/workSpaceSlice/slice'
 import {
   refreshCoverCategory,
   refreshIconCategory,
-  setIsCoverModalClose,
 } from 'redux/pageDecorationSlice/slice'
-import { closeChangeIconPopup } from 'redux/popupsSlice/slice'
+import {
+  closeChangeCoverPopup,
+  closeChangeIconPopup,
+} from 'redux/popupsSlice/slice'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
-import { DecorPurposes } from '../../../../components/Popups/ChangeDecor/ChangeDecorNavbar/ChangeDecorNavbar.types'
-import Props from '../ChangeDecorActionButton.types'
 import {
   ActionButtonContainer,
   ActionButton,
@@ -25,7 +27,7 @@ const RemoveDecorButton: React.FC<Props> = ({ purpose }) => {
     switch (purpose) {
       case DecorPurposes.COVER:
         dispatch(removeCover(id))
-        dispatch(setIsCoverModalClose()) //!
+        dispatch(closeChangeCoverPopup()) //!
         dispatch(refreshCoverCategory())
         break
       case DecorPurposes.ICON:

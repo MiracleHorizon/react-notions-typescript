@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useCallback, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHover } from 'usehooks-ts'
 
 import AddRandomIconButton from 'shared/Buttons/PageDecorButton/components/AddRandomIcon'
 import AddRandomCoverButton from 'shared/Buttons/PageDecorButton/components/AddRandomCover'
@@ -16,7 +17,6 @@ import {
   PageIconBlock,
   PageIcon,
 } from './PageDecorOptions.styles'
-import { useHover } from 'usehooks-ts'
 
 const PageDecorOptions: React.FC = () => {
   const {
@@ -24,20 +24,20 @@ const PageDecorOptions: React.FC = () => {
     coverInfo: { isHasCover },
     commentsInfo: { isHasComments },
   } = useSelector(currentPageSelector)
-  const dispatch = useDispatch()
   const iconRef = useRef<HTMLDivElement>(null)
+  const dispatch = useDispatch()
 
   const panelRef = useRef<HTMLDivElement>(null)
   const isHovering = useHover(panelRef)
 
-  const onOpenChangeIconPopup = (): void => {
+  const onOpenChangeIconPopup = useCallback((): void => {
     const iconRect = iconRef.current?.getBoundingClientRect()
     const changeIconPopupCoords =
       changeIconPopupCoordsHandler.setCoordsByWorkspace(iconRect)
 
     dispatch(openChangeIconPopup())
     dispatch(setChangeIconPopupCoords(changeIconPopupCoords))
-  }
+  }, [dispatch])
 
   return (
     <OptionsPanel ref={panelRef}>

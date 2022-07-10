@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { ElementCoords } from 'types'
+import { PopupWrapperProps } from './ChangeDecorPopup.types'
 
-const Wrapper = styled.div<{ coords: ElementCoords }>`
+const Wrapper = styled.div<PopupWrapperProps>`
   position: absolute;
   top: ${props => props.coords.top};
   bottom: ${props => props.coords.bottom};
@@ -9,7 +9,7 @@ const Wrapper = styled.div<{ coords: ElementCoords }>`
   right: ${props => props.coords.right};
   min-width: 180px;
   width: 100%;
-  max-width: 420px;
+  max-width: ${props => (props.purpose === 'Covers' ? '540px' : '420px')};
   height: 35vh;
   max-height: 60vh;
   border-radius: 4px;

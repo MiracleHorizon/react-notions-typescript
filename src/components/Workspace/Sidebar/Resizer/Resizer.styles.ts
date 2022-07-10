@@ -1,11 +1,10 @@
 import styled from 'styled-components'
 import { SidebarLocations } from '../Sidebar.types'
 
-const ResizerContainer = styled.div<{ location: SidebarLocations }>`
+export const ResizerContainer = styled.div<{ location: SidebarLocations }>`
   position: absolute;
   top: 0;
-  ${props =>
-    props.location === SidebarLocations.LEFT ? 'right: 0' : 'left: -1px'};
+  ${props => (props.location === 'Left' ? 'right: 0' : 'left: -1px')};
   bottom: 0;
   flex-grow: 0;
   width: 1px;
@@ -19,11 +18,10 @@ const ResizerContainer = styled.div<{ location: SidebarLocations }>`
   }
 `
 
-const Resizer = styled.div`
-  cursor: col-resize;
+export const Resizer = styled.div<{ isResizingEnabled: boolean }>`
+  position: relative;
+  cursor: ${props => (props.isResizingEnabled ? 'default' : 'col-resize')};
   width: 12px;
   height: 100%;
   margin-left: -6px;
 `
-
-export { ResizerContainer, Resizer }

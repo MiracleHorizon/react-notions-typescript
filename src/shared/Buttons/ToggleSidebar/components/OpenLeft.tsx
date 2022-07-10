@@ -1,13 +1,13 @@
 import React from 'react'
-import ToggleSidebarButton from '../index'
+
 import Props from './types'
-import { SidebarLocations } from 'components/Workspace/Sidebar/Sidebar.types'
+import ToggleSidebarButton from '../index'
 import { ToggleSidebarBtnPurposes as Purposes } from '../ToggleSidebarButton.types'
 
 const OpenLeftSidebarButton: React.FC<Props> = ({ isParentHovering }) => (
   <ToggleSidebarButton
     purpose={Purposes.OPEN}
-    location={SidebarLocations.LEFT}
+    location='Left'
     isParentHovering={isParentHovering}
   />
 )

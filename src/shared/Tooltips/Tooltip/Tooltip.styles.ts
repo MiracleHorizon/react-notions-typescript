@@ -25,6 +25,16 @@ const TooltipWrapper = styled.div<ElementCoords>`
   }
 `
 
+const TextContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h5 {
+    margin-right: 4px;
+  }
+`
+
 const Title = styled.h5`
   color: white;
 `
@@ -33,4 +43,4 @@ const Description = styled.p`
   color: #767571;
 `
 
-export { TooltipWrapper, Title, Description }
+export { TooltipWrapper, TextContainer, Title, Description }

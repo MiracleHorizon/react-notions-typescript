@@ -6,6 +6,7 @@ import {
   PageSettingsPopupState,
   PageIconPopup,
   PopupInitialState,
+  PageCoverPopup,
 } from './types'
 
 const appSettingsPopupSelector = (state: RootState): boolean => {
@@ -17,7 +18,7 @@ const renamePopupSelector = (state: RootState): RenamePopupState => {
 const changeIconPopupSelector = (state: RootState): PageIconPopup => {
   return state.popups.pageIconPopup
 }
-const changeCoverPopupSelector = (state: RootState): PopupInitialState => {
+const changeCoverPopupSelector = (state: RootState): PageCoverPopup => {
   return state.popups.pageCoverPopup
 }
 const movePagePopupSelector = (state: RootState): MovePagePopupState => {

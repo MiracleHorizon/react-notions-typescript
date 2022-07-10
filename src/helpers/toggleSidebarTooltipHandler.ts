@@ -31,15 +31,14 @@ export const toggleSidebarTooltipHandler = (params: Params): Result => {
 
   const title: string =
     purpose === Purposes.OPEN ? 'Lock sidebar open' : 'Close sidebar'
-  const description: string =
-    location === SidebarLocations.RIGHT ? 'Shift + /' : '/'
+  const description: string = location === 'Right' ? 'Shift + /' : '/'
 
   let coords: ElementCoords
-  purpose === Purposes.OPEN && location === SidebarLocations.LEFT
+  purpose === Purposes.OPEN && location === 'Left'
     ? (coords = leftOpenButtonTooltipCoords)
     : (coords = leftCloseButtonTooltipCoords)
 
-  if (purpose === Purposes.CLOSE && location === SidebarLocations.RIGHT) {
+  if (purpose === Purposes.CLOSE && location === 'Right') {
     coords = rightCloseButtonTooltipCoords
   }
 

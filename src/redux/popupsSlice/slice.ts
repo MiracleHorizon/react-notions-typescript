@@ -17,6 +17,7 @@ const initialState: PopupsState = {
   },
   pageCoverPopup: {
     isOpen: false,
+    coords: {},
   },
   renamePopup: {
     isOpen: false,
@@ -71,6 +72,9 @@ export const popupsSlice = createSlice({
     },
     setChangeIconPopupCoords(state, action: PayloadAction<ElementCoords>) {
       state.pageIconPopup.coords = action.payload
+    },
+    setChangeCoverPopupCoords(state, action: PayloadAction<ElementCoords>) {
+      state.pageCoverPopup.coords = action.payload
     },
     setMovePagePopupCoords(state, action: PayloadAction<ElementCoords>) {
       state.movePagePopup.coords = action.payload
@@ -145,6 +149,7 @@ export const {
   setPageOptionsPopupCoords,
   setMovePagePopupCoords,
   setChangeIconPopupCoords,
+  setChangeCoverPopupCoords,
   openAppSettingsPopup,
   openPageOptionsPopup,
   openPageSettingsPopup,

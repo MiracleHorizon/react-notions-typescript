@@ -36,7 +36,7 @@ const CommentsFilter: React.FC = () => {
   useOnClickOutside(dropdownRef, handleClickOutside)
 
   return (
-    <Fragment>
+    <>
       <StyledContainer>
         <TitleContainer onClick={onOpenDropdown}>
           <FilterTitle>{activeFilter}</FilterTitle>
@@ -57,7 +57,7 @@ const CommentsFilter: React.FC = () => {
           </FilterDropdown>
         </Popup>
       )}
-    </Fragment>
+    </>
   )
 }
 

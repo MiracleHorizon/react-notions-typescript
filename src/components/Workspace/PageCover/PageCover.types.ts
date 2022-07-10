@@ -1,6 +1,6 @@
 interface CoverWrapperProps {
   isHasCover: boolean
-  isRepositioning: boolean
+  isRepositionEnabled: boolean
 }
 
 interface StyledCoverProps {

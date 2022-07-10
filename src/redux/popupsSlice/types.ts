@@ -44,12 +44,16 @@ interface PageIconPopup extends PopupInitialState {
   coords: ElementCoords
 }
 
+interface PageCoverPopup extends PopupInitialState {
+  coords: ElementCoords
+}
+
 interface PopupsState {
   appSettingsPopup: PopupInitialState
   isQuickSearchPopupOpen: boolean
   isPagesTrashPopupOpen: boolean
   pageIconPopup: PageIconPopup
-  pageCoverPopup: PopupInitialState
+  pageCoverPopup: PageCoverPopup
   renamePopup: RenamePopupState
   movePagePopup: MovePagePopupState
   pageOptionsPopup: PageOptionsPopupState
@@ -62,6 +66,7 @@ export type {
   PageOptionsPopupState,
   PageSettingsPopupState,
   PageIconPopup,
+  PageCoverPopup,
   MovePagePopupState,
   RenamableEssence,
   RenamePopupState,

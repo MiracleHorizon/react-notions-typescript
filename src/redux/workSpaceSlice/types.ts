@@ -1,4 +1,5 @@
 import { PageTemplates } from '../popupsSlice/types'
+import { LoadingStatuses } from '../../api/types'
 
 export enum CoverColors {
   RED = '#eb5757',
@@ -50,9 +51,9 @@ interface BoardPageDefaultParams {
 }
 
 interface TaskListPageDefaultParams {}
-
+// | 'Default' | 'Serif' | 'Mono'
 interface IWorkspacePage {
-  template: PageTemplates.BOARD
+  template: PageTemplates.BOARD | 'Board' | 'TaskList'
   id: number
   title: string
   isFavorite: boolean
@@ -74,6 +75,11 @@ interface IWorkspacePage {
     isHasComments: boolean
     comments: IComment[] | []
   }
+  dependentPages?: {
+    isHasDependentPages: boolean
+    pages: IWorkspacePage[]
+  }
+  history?: IPageHistoryNote
 }
 
 interface IPageHistoryNote {
@@ -84,19 +90,13 @@ interface IPageHistoryNote {
   deleted: string //!
 }
 
-interface IPageOptions {
-  isFullWidth: boolean
-  isFavorite: boolean
-  isSmallText: boolean
-  history: IPageHistoryNote[]
-}
-
 interface WorkspaceSliceState {
   pages: IWorkspacePage[] | []
   currentPage: IWorkspacePage
   lastPage: IWorkspacePage | null
   recentlyDeleted: IWorkspacePage[] | []
   recentPages: IWorkspacePage | []
+  loadingStatus: LoadingStatuses
 }
 
 interface SetPageFontPayloadAction {

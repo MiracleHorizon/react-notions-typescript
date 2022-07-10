@@ -11,9 +11,15 @@ enum ChangeIconCategories {
   LINK = 'Link',
 }
 
+interface ImgCover {
+  tooltipTitle?: string
+  tooltipDescription?: string
+  coverImg: string
+}
+
 interface CoversList {
   title: string
-  covers: CoverColors[]
+  content: ImgCover[] // CoverColors[] |
 }
 
 interface IconsList {
@@ -30,9 +36,7 @@ interface ChangeDecorState {
   iconsLists: IconsList[]
   selectedCoverCategory: string
   selectedIconCategory: string
-  selectedCover: string
-  selectedIcon: string
 }
 
-export type { ChangeDecorState }
+export type { ChangeDecorState, ImgCover, CoversList }
 export { ChangeCoverCategories, ChangeIconCategories }

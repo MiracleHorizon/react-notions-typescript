@@ -9,6 +9,7 @@ import {
 } from 'redux/popupsSlice/slice'
 import { renamePopupCoordsHandler } from 'utils/coordsHandlers'
 import { PageTitleContainer, Title, Icon } from './HeaderPageTitle.styles'
+import TailSpin from '../../../../shared/Loaders/TailSpin'
 
 const HeaderPageTitle: React.FC = () => {
   const { id, title, iconInfo } = useSelector(currentPageSelector)
@@ -33,6 +34,7 @@ const HeaderPageTitle: React.FC = () => {
       >
         {iconInfo.isHasIcon && <Icon src={iconInfo.icon} alt='Page icon' />}
         <Title>{title}</Title>
+        {/*<TailSpin width={30} height={30} color='gray' />*/}
       </PageTitleContainer>
     </>
   )

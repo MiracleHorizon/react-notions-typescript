@@ -1,17 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ActivePage, CommentsFilters, SidebarSliceState } from './types'
-import { SidebarLocations } from 'components/Workspace/Sidebar/Sidebar.types'
 
 const initialState: SidebarSliceState = {
   leftSidebar: {
     isOpen: true,
     isBubbling: false,
-    location: SidebarLocations.LEFT,
+    location: 'Left',
     width: 300,
   },
   rightSidebar: {
-    isOpen: true,
-    location: SidebarLocations.RIGHT,
+    isOpen: false,
+    location: 'Right',
     activeCommentsFilter: CommentsFilters.OPEN,
     width: 400,
   },
@@ -33,6 +32,16 @@ const sidebarSlice = createSlice({
     setRightSidebarWidth(state, action: PayloadAction<number>) {
       state.rightSidebar.width = action.payload
     },
+    setActivePage(state, action: PayloadAction<ActivePage>) {
+      state.activePage = action.payload
+    },
+    setCommentsFilter(state, action: PayloadAction<CommentsFilters>) {
+      state.rightSidebar.activeCommentsFilter = action.payload
+    },
+    setLeftSidebarIsBubbling(state, action: PayloadAction<boolean>) {
+      state.leftSidebar.isBubbling = action.payload
+      state.leftSidebar.isOpen = action.payload
+    },
     closeLeftSidebar(state) {
       state.leftSidebar.isOpen = false
     },
@@ -46,18 +55,8 @@ const sidebarSlice = createSlice({
     openRightSidebar(state) {
       state.rightSidebar.isOpen = true
     },
-    toggleLeftSidebar(state) {
-      // state.isOpen = !state.isOpen
-      // state.isBubbling = !state.isBubbling
-    },
     toggleRightSidebar(state) {
       state.rightSidebar.isOpen = !state.rightSidebar.isOpen
-    },
-    setActivePage(state, action: PayloadAction<ActivePage>) {
-      state.activePage = action.payload
-    },
-    setCommentsFilter(state, action: PayloadAction<CommentsFilters>) {
-      state.rightSidebar.activeCommentsFilter = action.payload
     },
   },
 })
@@ -65,13 +64,13 @@ const sidebarSlice = createSlice({
 export const {
   setLeftSidebarWidth,
   setRightSidebarWidth,
+  setLeftSidebarIsBubbling,
   setCommentsFilter,
   closeLeftSidebar,
   openLeftSidebar,
   closeRightSidebar,
   openRightSidebar,
   setActivePage,
-  toggleLeftSidebar,
   toggleRightSidebar,
 } = sidebarSlice.actions
 

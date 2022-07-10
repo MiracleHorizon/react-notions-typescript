@@ -1,8 +1,11 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import _ from 'lodash'
+import axios from 'axios'
+
+import { LoadingStatuses, PageFilterParams } from 'api/types'
+import { MOCK_API_NOTIONS_REFERENCE } from 'api/constants'
 import { PageTemplates } from 'redux/popupsSlice/types'
 import {
-  CoverColors,
   IWorkspacePage,
   PageFontFamilies,
   SetPageFontPayloadAction,
@@ -10,110 +13,140 @@ import {
 } from './types'
 
 import vue3Svg from 'assets/img/technologies/vue3.svg'
-import reactPng from 'assets/img/react.png'
-import avatarKermitJpg from 'assets/img/Avatar1.jpg'
-import coverTest from 'assets/img/banner-test.jpg'
 import woodcutsCover from 'assets/img/pageCovers/woodcuts_11.jpg'
 
+const getAllNotionsPages = createAsyncThunk('notions/getAllPages', async () => {
+  const { data } = await axios.get(`${MOCK_API_NOTIONS_REFERENCE}`)
+
+  return data as IWorkspacePage[]
+})
+
+const getFilteredNotionsPages = createAsyncThunk(
+  'notions/getFilteredPages',
+  async (filterParams: PageFilterParams) => {
+    const { id, title } = filterParams
+
+    try {
+      const response = await axios.get(
+        `${MOCK_API_NOTIONS_REFERENCE}?filter=${title}`
+      )
+
+      return response.data
+    } catch (e) {
+      console.log('Ошибка запроса отфильтрованных страниц', e)
+    }
+  }
+)
+
+const getPageById = createAsyncThunk(
+  'notions/getPageById',
+  async (id: number) => {
+    try {
+      const response = await axios.get(`${MOCK_API_NOTIONS_REFERENCE}/:${id}`)
+
+      return response.data
+    } catch (e) {
+      console.log('Не удалось получить страницу по айди', e)
+    }
+  }
+)
+
+const createNewNotionPage = createAsyncThunk(
+  'notions/createNewPage',
+  async (newPageData: IWorkspacePage) => {
+    try {
+      return await axios.post(
+        `${MOCK_API_NOTIONS_REFERENCE}`,
+        JSON.stringify(newPageData)
+      )
+    } catch (e) {
+      console.log('Ошибка создания новой страницы', e)
+    }
+  }
+)
+
+const setCurrentNotionPage = createAsyncThunk(
+  'notions/setCurrentPage',
+  async (id: number) => {
+    try {
+      postToRecentPages(id)
+      setLastPage(id)
+
+      const response = await axios.get(`${MOCK_API_NOTIONS_REFERENCE}/${id}`)
+
+      return response.data
+    } catch (e) {
+      console.log('Ошибка установки текущий страницы', e)
+    }
+  }
+)
+
+const movePageTo = createAsyncThunk('', async () => {})
+
+const deleteNotionPage = createAsyncThunk(
+  'notions/deletePage',
+  async (id: number) => {
+    try {
+      const response = await axios.delete(
+        `${MOCK_API_NOTIONS_REFERENCE}/:${id}`
+      )
+
+      return response.status
+    } catch (e) {
+      console.log('Удалить страницу не удалось', e)
+    }
+  }
+)
+
+const removePageFromFavorites = createAsyncThunk(
+  'notions/removeFromFavorite',
+  async (id: number) => {
+    try {
+      const page = getPageById(id)
+      // page.isFavorite = false
+
+      const response = await axios.put(
+        `${MOCK_API_NOTIONS_REFERENCE}/:${id}`,
+        JSON.stringify(page)
+      )
+
+      return response.data
+    } catch (e) {
+      console.log('Не удалось убрать из избранного', e)
+    }
+  }
+)
+
+interface IconState {
+  id: string
+  icon: string
+}
+
+const setLastPage = createAsyncThunk('', async (id: number) => {})
+const postToRecentPages = createAsyncThunk('', async (id: number) => {})
+const postNewPageIcon = createAsyncThunk('', async () => {})
+const postNewIconByLink = createAsyncThunk(
+  'notions/postNewLinkIcon',
+  async ({ id, icon }: IconState) => {
+    const { data: newPageData } = await axios.get(
+      `${MOCK_API_NOTIONS_REFERENCE}/${id}`
+    )
+    newPageData.iconInfo.icon = icon
+
+    const { data } = await axios.put(
+      `${MOCK_API_NOTIONS_REFERENCE}/${id}`,
+      newPageData
+    )
+
+    return data
+  }
+)
+
+const postNewPageCover = createAsyncThunk('', async () => {})
+const postNewPageTitle = createAsyncThunk('', async () => {})
+
 const initialState: WorkspaceSliceState = {
-  pages: [
-    {
-      template: PageTemplates.BOARD,
-      id: 1,
-      title: 'Redux',
-      isFavorite: false,
-      pageSettings: {
-        isSmallText: false,
-        isFullWidth: true,
-        selectedFont: PageFontFamilies.DEFAULT,
-      },
-      coverInfo: {
-        isHasCover: true,
-        cover: `${woodcutsCover}`,
-        coverType: 'imgUrl',
-      },
-      iconInfo: {
-        isHasIcon: true,
-        icon: `${vue3Svg}`,
-      },
-      commentsInfo: {
-        isHasComments: false,
-        comments: [],
-      },
-    },
-    {
-      template: PageTemplates.BOARD,
-      id: 2,
-      title: 'React',
-      isFavorite: true,
-      pageSettings: {
-        isSmallText: false,
-        isFullWidth: true,
-        selectedFont: PageFontFamilies.DEFAULT,
-      },
-      coverInfo: {
-        isHasCover: true,
-        cover: CoverColors.RED,
-        coverType: 'CoverColors',
-      },
-      iconInfo: {
-        isHasIcon: true,
-        icon: `${reactPng}`,
-      },
-      commentsInfo: {
-        isHasComments: false,
-        comments: [],
-      },
-    },
-    {
-      template: PageTemplates.BOARD,
-      id: 3,
-      title: 'Typescript',
-      isFavorite: false,
-      pageSettings: {
-        isSmallText: false,
-        isFullWidth: false,
-        selectedFont: PageFontFamilies.DEFAULT,
-      },
-      coverInfo: {
-        isHasCover: true,
-        cover: CoverColors.RED,
-        coverType: 'CoverColors',
-      },
-      iconInfo: {
-        isHasIcon: true,
-        icon: `${avatarKermitJpg}`,
-      },
-      commentsInfo: {
-        isHasComments: false,
-        comments: [],
-      },
-    },
-    {
-      template: PageTemplates.BOARD,
-      id: 4,
-      title: 'Redux',
-      isFavorite: true,
-      pageSettings: {
-        isSmallText: false,
-        isFullWidth: true,
-        selectedFont: PageFontFamilies.DEFAULT,
-      },
-      coverInfo: {
-        isHasCover: true,
-        cover: CoverColors.RED,
-        coverType: 'CoverColors',
-      },
-      iconInfo: {
-        isHasIcon: true,
-        icon: `${vue3Svg}`,
-      },
-      commentsInfo: {
-        isHasComments: false,
-        comments: [],
-      },
-    },
-  ],
+  pages: [],
   currentPage: {
     template: PageTemplates.BOARD,
     id: 1,
@@ -137,10 +170,22 @@ const initialState: WorkspaceSliceState = {
       isHasComments: false,
       comments: [],
     },
+    dependentPages: {
+      isHasDependentPages: false,
+      pages: [],
+    },
+    history: {
+      userName: '',
+      title: '',
+      icon: '',
+      updated: '',
+      deleted: '',
+    },
   },
   lastPage: null,
   recentlyDeleted: [],
-  recentPages: [], //!
+  recentPages: [],
+  loadingStatus: LoadingStatuses.IDLE,
 }
 
 export const workSpaceSlice = createSlice({
@@ -299,6 +344,39 @@ export const workSpaceSlice = createSlice({
       page.pageSettings.isSmallText = !page.pageSettings.isSmallText
     },
   },
+
+  extraReducers: builder => {
+    builder.addCase(getAllNotionsPages.pending, state => {
+      // setTimeout(() => (state.loadingStatus = LoadingStatuses.PENDING), 2000)
+    })
+    builder.addCase(getAllNotionsPages.fulfilled, (state, action) => {
+      state.pages = action.payload
+      state.loadingStatus = LoadingStatuses.SUCCEEDED
+    })
+    builder.addCase(getAllNotionsPages.rejected, state => {
+      state.pages = []
+      state.loadingStatus = LoadingStatuses.REJECTED
+    })
+
+    builder.addCase(setCurrentNotionPage.pending, state => {
+      setTimeout(() => (state.loadingStatus = LoadingStatuses.PENDING), 2000)
+    })
+    builder.addCase(
+      setCurrentNotionPage.fulfilled,
+      (state, action: PayloadAction<IWorkspacePage>) => {
+        state.currentPage = action.payload
+      }
+    )
+    builder.addCase(setCurrentNotionPage.rejected, state => {
+      state.currentPage = state.lastPage ? state.lastPage : state.pages[0]
+    })
+
+    builder.addCase(postNewIconByLink.pending, state => {})
+    builder.addCase(postNewIconByLink.fulfilled, (state, action) => {
+      console.log(action.payload)
+    })
+    builder.addCase(postNewIconByLink.rejected, state => {})
+  },
 })
 
 export const {
@@ -320,5 +398,20 @@ export const {
   addToFavorite,
   removeFavorite,
 } = workSpaceSlice.actions
+
+export {
+  getAllNotionsPages,
+  getFilteredNotionsPages,
+  getPageById,
+  createNewNotionPage,
+  deleteNotionPage,
+  setCurrentNotionPage,
+  removePageFromFavorites,
+  movePageTo,
+  postNewPageTitle,
+  postNewPageIcon,
+  postNewIconByLink,
+  postNewPageCover,
+}
 
 export default workSpaceSlice.reducer

@@ -1,8 +1,10 @@
-import { RefObject } from 'react'
+import React, { RefObject } from 'react'
 import { SidebarLocations } from '../Sidebar.types'
 
 export default interface SidebarResizerProps {
   location: SidebarLocations
   resizerRef: RefObject<HTMLDivElement>
-  onClickAction: () => void
+  isActive: boolean
+  isResizingEnabled: boolean
+  onClickAction: (e: React.MouseEvent) => void
 }

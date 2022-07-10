@@ -1,67 +1,57 @@
 import styled from 'styled-components'
-import { SidebarLocations, SidebarWrapperProps } from './Sidebar.types'
+import { SidebarWrapperProps } from './Sidebar.types'
+import sidebarStylesHandler from 'utils/sidebarStylesHandler'
 
 const Wrapper = styled.div<SidebarWrapperProps>`
-  position: ${props =>
-    (props.isBubbling || props.location === SidebarLocations.RIGHT) &&
-    'absolute'};
   top: ${props => (props.isBubbling ? '60px' : 0)};
-  right: ${props => props.location === SidebarLocations.RIGHT && '0px'};
+  right: ${props => props.location === 'Right' && '0px'};
   flex-grow: 0;
   flex-shrink: 0;
-  width: ${props => (!props.isOpen ? 0 : props.width + 'px')};
-  //width: ${props => props.width};
   max-width: 480px;
-  min-width: ${props => {
-    if (props.location === SidebarLocations.LEFT) {
-      return !props.isOpen ? '0px' : '200px'
-    } else {
-      return !props.isOpen ? '0px' : '340px'
-    }
-  }};
   height: 100%;
   max-height: ${props => props.isBubbling && 'calc(100vh - 120px)'};
   border-top-right-radius: ${props => props.isBubbling && '3px'};
   border-bottom-right-radius: ${props => props.isBubbling && '3px'};
-  ${props =>
-    props.location === SidebarLocations.RIGHT &&
-    'border-left: 1px solid rgba(55, 53, 47, 0.09)'};
+  border-left: ${props =>
+    props.location === 'Right' ? '1px solid rgba(55, 53, 47, 0.09)' : 'none'};
   background: ${props =>
-    props.location === SidebarLocations.LEFT
+    props.location === 'Left'
       ? 'rgb(247, 246, 243)'
       : 'white'}; // background: rgb(37, 37, 37);
-  user-select: none;
-  opacity: ${props =>
-    !props.isOpen ? 0 : !props.isOpen && props.isBubbling ? 1 : 1};
-  transform: translateX(
-    ${props => {
-      if (!props.isOpen) {
-        return props.location === SidebarLocations.LEFT
-          ? -props.width + 'px'
-          : props.width + 'px'
-      }
-
-      return props.isBubbling ? props.width + 'px' : 0
-    }}
-  );
   z-index: 10;
-  box-shadow: ${props =>
-    (props.isResizerHovering || props.isResizingEnabled) &&
-    'rgb(0 0 0 / 10%) -2px 0px 0px inset'};
-  //transition: width 0.3s ease-in-out, min-width 0.3s ease-in-out,
-  //  opacity 0.35s ease-in-out;
-  transition: box-shadow 0.3s ease-in 0s;
-  // {props =>
-  // props.location === SidebarLocations.RIGHT && 'width 50ms ease-out'};
+  user-select: none;
+  opacity: ${props => (props.isOpen || props.isBubbling ? 1 : 0)};
+  position: ${props => sidebarStylesHandler.positionHandler(props)};
+  box-shadow: ${props => sidebarStylesHandler.boxShadowHandler(props)};
+  width: ${props =>
+    props.isOpen || props.isBubbling ? props.width + 'px' : 0};
+  min-width: ${props => sidebarStylesHandler.minWidthHandler(props)};
+  transform: translateX(
+    ${props => sidebarStylesHandler.transformHandler(props)}
+  );
 `
 
-const Container = styled.div`
+// {props =>
+// props.location === SidebarLocations.RIGHT && 'width 50ms ease-out'};
+
+//transition: width 0.3s ease-in-out, min-width 0.3s ease-in-out,
+//  opacity 0.35s ease-in-out;
+
+const Container = styled.div<{
+  isResizerHovering?: boolean
+  isResizingEnabled?: boolean
+}>`
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
   max-height: 100%;
+  box-shadow: ${props =>
+    props.isResizerHovering || props.isResizingEnabled
+      ? 'rgb(0 0 0 / 10%) -2px 0px 0px inset'
+      : ''};
+  transition: box-shadow 0.3s ease-in 0s;
 `
 
 const ShadowSeparator = styled.div`

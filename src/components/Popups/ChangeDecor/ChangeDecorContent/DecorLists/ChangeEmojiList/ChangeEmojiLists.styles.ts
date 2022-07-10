@@ -41,8 +41,8 @@ const EmojiItem = styled.div`
 `
 
 const InputContainer = styled.div`
-  margin-top: 5px;
-  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 3px;
   padding: 5px 10px;
 `
 

@@ -1,11 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { SmileySvg } from 'shared/SVG'
+import { CoverSvg } from 'shared/SVG'
 import { setPageCover } from 'redux/workSpaceSlice/slice'
 import { coversListsSelector } from 'redux/pageDecorationSlice/selectors'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
-import getRandomCover from 'helpers/getRandomCover'
+import { getRandomCover } from 'helpers/getRandomDecor'
 import { StyledOption, Title } from '../PageDecorButton.styles'
 
 const AddRandomCoverButton: React.FC = () => {
@@ -20,7 +20,7 @@ const AddRandomCoverButton: React.FC = () => {
 
   return (
     <StyledOption role='button' onClick={onAddRandomCover}>
-      <SmileySvg />
+      <CoverSvg />
       <Title>Add cover</Title>
     </StyledOption>
   )

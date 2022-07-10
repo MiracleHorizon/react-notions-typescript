@@ -28,7 +28,7 @@ const QuickSearchPopup: React.FC = () => {
   useOnClickOutside(popupRef, handleClickOutside)
 
   return (
-    <Popup inset={true}>
+    <Popup inset>
       <Wrapper isFullWidth={isFilterOpen} ref={popupRef}>
         <Container>
           <ContentBlock>

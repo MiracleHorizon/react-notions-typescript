@@ -2,8 +2,8 @@ import { Dispatch, SetStateAction } from 'react'
 
 export default interface CoverOptionsPanelProps {
   isHovering: boolean
-  isRepositioning: boolean
-  setIsRepositioning: Dispatch<SetStateAction<boolean>>
+  isRepositionEnabled: boolean
+  setRepositionEnabled: Dispatch<SetStateAction<boolean>>
 }
 
 interface StyledOptionProps {

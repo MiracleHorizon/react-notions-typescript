@@ -6,24 +6,20 @@ import AddRandomDecorButton from 'shared/Buttons/ChangeDecorAction/components/Ad
 import RemoveDecorButton from 'shared/Buttons/ChangeDecorAction/components/RemoveDecor'
 import { NavbarWrapper, ActionsContainer } from './ChangeDecorNavbar.styles'
 
-const ChangeDecorPopupNavbar: React.FC<Props> = props => {
-  const { categories, purpose } = props
-
-  return (
-    <NavbarWrapper>
-      {categories.map(category => (
-        <ChangeDecorNavbarItem
-          key={category}
-          category={category}
-          purpose={purpose}
-        />
-      ))}
-      <ActionsContainer>
-        <AddRandomDecorButton purpose={purpose} />
-        <RemoveDecorButton purpose={purpose} />
-      </ActionsContainer>
-    </NavbarWrapper>
-  )
-}
+const ChangeDecorPopupNavbar: React.FC<Props> = ({ categories, purpose }) => (
+  <NavbarWrapper>
+    {categories.map(category => (
+      <ChangeDecorNavbarItem
+        key={category}
+        category={category}
+        purpose={purpose}
+      />
+    ))}
+    <ActionsContainer>
+      <AddRandomDecorButton purpose={purpose} />
+      <RemoveDecorButton purpose={purpose} />
+    </ActionsContainer>
+  </NavbarWrapper>
+)
 
 export default ChangeDecorPopupNavbar

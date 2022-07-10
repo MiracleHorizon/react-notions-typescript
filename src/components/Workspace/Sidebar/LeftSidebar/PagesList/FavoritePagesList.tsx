@@ -19,7 +19,7 @@ const FavoritePagesList: React.FC = () => {
   const isListTitleHovering = useHover(listTitleRef)
 
   return (
-    <Wrapper>
+    <Wrapper isOpen={isOpen}>
       <PagesListTitle
         title='Favorites'
         reference={listTitleRef}

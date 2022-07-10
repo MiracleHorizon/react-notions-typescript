@@ -1,4 +1,4 @@
-import { CoverColors } from 'redux/workSpaceSlice/types'
+import { ImgCover } from 'redux/pageDecorationSlice/types'
 
 interface ITitle {
   title: string
@@ -9,7 +9,7 @@ interface IEmojiDecorations extends ITitle {
 }
 
 interface ICoverDecorations extends ITitle {
-  content: string[] | CoverColors[]
+  content: ImgCover[]
 }
 
 interface ChangeEmojiListsProps {

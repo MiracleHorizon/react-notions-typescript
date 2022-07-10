@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const TitleBlock = styled.div`
+export const TitleBlock = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -10,10 +10,10 @@ const TitleBlock = styled.div`
   margin-left: 10px;
   padding: 1px 5px;
   border-radius: 3px;
+  transition: background 50ms ease-in-out;
 
   :hover {
     background: rgba(55, 53, 47, 0.08);
-    transition: background 0.1s ease-in-out;
 
     span {
       color: rgba(55, 53, 47, 0.8);
@@ -21,11 +21,10 @@ const TitleBlock = styled.div`
   }
   :active {
     background: rgba(55, 53, 47, 0.16);
-    transition: background 0.1s ease-in-out;
   }
 `
 
-const Title = styled.span`
+export const Title = styled.span`
   font-size: 11.5px;
   font-weight: 600;
   text-transform: uppercase;
@@ -34,5 +33,3 @@ const Title = styled.span`
   color: rgba(55, 53, 47, 0.5);
   user-select: none;
 `
-
-export { TitleBlock, Title }

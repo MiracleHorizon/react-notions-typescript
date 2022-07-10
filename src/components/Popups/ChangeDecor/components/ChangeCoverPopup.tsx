@@ -2,25 +2,24 @@ import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useOnClickOutside } from 'usehooks-ts'
 
+import { DecorPurposes } from '../ChangeDecorNavbar/ChangeDecorNavbar.types'
 import Popup from 'components/Popups/index'
 import ChangeDecorPopupNavbar from 'components/Popups/ChangeDecor/ChangeDecorNavbar'
 import ChangeCoverContent from '../ChangeDecorContent/components/ChangeCoverContent'
-import {
-  refreshCoverCategory,
-  setIsCoverModalClose,
-} from 'redux/pageDecorationSlice/slice'
+import { refreshCoverCategory } from 'redux/pageDecorationSlice/slice'
+import { closeChangeCoverPopup } from 'redux/popupsSlice/slice'
 import { coverCategoriesSelector } from 'redux/pageDecorationSlice/selectors'
-import { DecorPurposes } from '../ChangeDecorNavbar/ChangeDecorNavbar.types'
+import { changeCoverPopupSelector } from 'redux/popupsSlice/selectors'
 import Wrapper from '../ChangeDecorPopup.styles'
 
 const ChangePageCoverPopup: React.FC = () => {
-  const coords = {}
+  const { coords } = useSelector(changeCoverPopupSelector)
   const categories = useSelector(coverCategoriesSelector)
   const popupRef = useRef<HTMLDivElement>(null)
-
   const dispatch = useDispatch()
+
   const handleClickOutside = (): void => {
-    dispatch(setIsCoverModalClose()) //! Переписать названия
+    dispatch(closeChangeCoverPopup())
     dispatch(refreshCoverCategory())
   }
 
@@ -28,10 +27,10 @@ const ChangePageCoverPopup: React.FC = () => {
 
   return (
     <Popup>
-      <Wrapper coords={coords} ref={popupRef}>
+      <Wrapper coords={coords} purpose='Covers' ref={popupRef}>
         <ChangeDecorPopupNavbar
           categories={categories}
-          purpose={DecorPurposes.ICON}
+          purpose={DecorPurposes.COVER}
         />
         <ChangeCoverContent />
       </Wrapper>

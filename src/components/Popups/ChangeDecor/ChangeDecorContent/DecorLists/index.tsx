@@ -4,6 +4,8 @@ import Props from './ChangeDecorLists.types'
 import ChangeEmojiLists from './ChangeEmojiList'
 import ChangeCoverGallery from './ChangeCoverGallery'
 import { Wrapper } from './ChangeDecorLists.styles'
+import { useSelector } from 'react-redux'
+import { coversListsSelector } from '../../../../../redux/pageDecorationSlice/selectors'
 
 const emoji = [
   {
@@ -99,12 +101,14 @@ const emoji = [
 ]
 
 const ChangeDecorLists: React.FC<Props> = ({ listTitle }) => {
+  const coverLists = useSelector(coversListsSelector)
+
   return (
     <Wrapper>
       {listTitle === 'Emoji' ? (
         <ChangeEmojiLists decorations={emoji} />
       ) : (
-        <ChangeCoverGallery decorations={emoji} />
+        <ChangeCoverGallery decorations={coverLists} />
       )}
     </Wrapper>
   )

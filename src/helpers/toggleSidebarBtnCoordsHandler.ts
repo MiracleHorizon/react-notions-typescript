@@ -1,12 +1,12 @@
 import { ToggleSidebarBtnPurposes as Purposes } from 'shared/Buttons/ToggleSidebar/ToggleSidebarButton.types'
-import { SidebarLocations as Locations } from 'components/Workspace/Sidebar/Sidebar.types'
 import { ElementCoords } from 'types'
+import { SidebarLocations } from 'components/Workspace/Sidebar/Sidebar.types'
 
 //! Переписать
 
 interface Params {
   purpose: Purposes
-  location: Locations
+  location: SidebarLocations
 }
 
 const leftOpenButtonCoords: ElementCoords = {
@@ -31,11 +31,9 @@ export const toggleSidebarBtnCoordsHandler = (params: Params) => {
 
   if (purpose === Purposes.CLOSE) {
     coords =
-      location === Locations.LEFT
-        ? leftCloseButtonCoords
-        : rightCloseButtonCoords
+      location === 'Left' ? leftCloseButtonCoords : rightCloseButtonCoords
 
-    imgRotate = location === Locations.RIGHT ? 180 : 0
+    imgRotate = location === 'Right' ? 180 : 0
   }
 
   return { coords, imgRotate }

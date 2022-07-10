@@ -27,7 +27,7 @@ const ChangePageIconPopup: React.FC = () => {
 
   return (
     <Popup>
-      <Wrapper coords={coords} ref={popupRef}>
+      <Wrapper coords={coords} purpose='Icons' ref={popupRef}>
         <ChangeDecorPopupNavbar
           categories={categories}
           purpose={DecorPurposes.ICON}

@@ -7,10 +7,11 @@ import { StyledOption, Title } from '../PageDecorButton.styles'
 
 const AddRandomIconButton: React.FC = () => {
   const { id } = useSelector(currentPageSelector)
-  // const icons = useSelector()
+  // const iconsLists = useSelector()
 
   const onAddRandomIcon = (): void => {
     console.log('Добавлена случайна иконка')
+    //...Тут будет пост запрос
   }
 
   return (

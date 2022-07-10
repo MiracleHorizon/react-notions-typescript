@@ -1,19 +1,21 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import Props from '../ChangeDecorActionButton.types'
+import { DecorPurposes } from 'components/Popups/ChangeDecor/ChangeDecorNavbar/ChangeDecorNavbar.types'
 import { CoverSvg, SmileySvg } from 'shared/SVG'
 import { setPageCover, setPageIcon } from 'redux/workSpaceSlice/slice'
 import {
   refreshCoverCategory,
   refreshIconCategory,
-  setIsCoverModalClose,
 } from 'redux/pageDecorationSlice/slice'
-import { closeChangeIconPopup } from 'redux/popupsSlice/slice'
+import {
+  closeChangeCoverPopup,
+  closeChangeIconPopup,
+} from 'redux/popupsSlice/slice'
 import { coversListsSelector } from 'redux/pageDecorationSlice/selectors'
 import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
-import getRandomCover from 'helpers/getRandomCover'
-import { DecorPurposes } from '../../../../components/Popups/ChangeDecor/ChangeDecorNavbar/ChangeDecorNavbar.types'
-import Props from '../ChangeDecorActionButton.types'
+import { getRandomCover } from 'helpers/getRandomDecor'
 import {
   ActionButtonContainer,
   ActionButton,
@@ -21,15 +23,15 @@ import {
 } from '../ChangeDecorActionButton.styles'
 
 const AddRandomDecorButton: React.FC<Props> = ({ purpose }) => {
-  const covers = useSelector(coversListsSelector)
   const { id } = useSelector(currentPageSelector)
+  const covers = useSelector(coversListsSelector)
   const dispatch = useDispatch()
 
   const onAddRandomDecor = (): void => {
     switch (purpose) {
       case DecorPurposes.COVER:
         dispatch(setPageCover({ cover: getRandomCover(covers), id }))
-        dispatch(setIsCoverModalClose())
+        dispatch(closeChangeCoverPopup())
         dispatch(refreshCoverCategory())
         break
       case DecorPurposes.ICON:

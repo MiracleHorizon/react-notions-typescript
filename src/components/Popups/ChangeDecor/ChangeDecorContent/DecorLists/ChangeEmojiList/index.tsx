@@ -24,7 +24,7 @@ const ChangeEmojiLists: React.FC<Props> = ({ decorations }) => {
           onClear={onClearInput}
         />
       </InputContainer>
-      <ListsWrapper>
+      <ListsWrapper purpose='Emojis'>
         {decorations.map(({ title, content }) => (
           <ListContainer key={title}>
             <ListTitle>{title}</ListTitle>
