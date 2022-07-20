@@ -1,23 +1,22 @@
-import React, { useCallback, useRef } from 'react'
+import React, { FC, memo, useCallback, useMemo, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 
-import useResize from 'hooks/mouse/useResize/useResize'
+import useResize from 'hooks/mouse/resize'
 import RightSidebarHeader from './RightSidebarHeader'
 import EmptyRightSidebar from './EmptyRightSidebar'
-import CloseRightSidebarButton from 'shared/Buttons/ToggleSidebar/components/CloseRight'
 import SidebarResizer from '../Resizer'
-import { rightSidebarSelector } from 'redux/sidebarsSlice/selectors'
-import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
-import {
-  closeRightSidebar,
-  setRightSidebarWidth,
-} from 'redux/sidebarsSlice/slice'
-import { Container, Content, Wrapper } from '../Sidebar.styles'
+import SidebarCommentsList from './Comments'
+import { CloseRightSidebarButton } from 'components/ui'
+import { ResizeDirections } from 'hooks/mouse/resize/useResize.types'
+import { rightSidebarStateSelector, currentPageSelector } from 'redux/selectors'
+import { closeRightSidebar, setRightSidebarWidth } from 'redux/actions'
+import * as Sidebar from '../Sidebar.styles'
 
-const RightSidebar: React.FC = () => {
-  const { activeCommentsFilter, ...rightSidebarInfo } =
-    useSelector(rightSidebarSelector)
+const RightSidebar: FC = memo(() => {
+  const { activeCommentsFilter, ...rightSidebarInfo } = useSelector(
+    rightSidebarStateSelector
+  )
   const {
     commentsInfo: { isHasComments },
   } = useSelector(currentPageSelector)
@@ -29,15 +28,19 @@ const RightSidebar: React.FC = () => {
   const sidebarRef = useRef<HTMLDivElement>(null)
   const isHovering = useHover(sidebarRef)
 
-  const { isResizingEnabled } = useResize({
-    resizeDirection: 'Left',
-    references: {
-      node: sidebarRef,
-      resizer: resizerRef,
-    },
-    setWidth: setRightSidebarWidth,
-    restrictions: { maxWidth: 480, minWidth: 340 },
-  })
+  const resizeSidebarParams = useMemo(() => {
+    return {
+      direction: ResizeDirections.LEFT,
+      references: {
+        node: sidebarRef,
+        resizer: resizerRef,
+      },
+      setWidth: setRightSidebarWidth,
+      restrictions: { maxWidth: 480, minWidth: 385 },
+    }
+  }, []) // Замыкание.
+
+  const isResizingEnabled = useResize(resizeSidebarParams)
 
   const onCloseSidebar = useCallback(
     (e: React.MouseEvent) => {
@@ -49,19 +52,19 @@ const RightSidebar: React.FC = () => {
   )
 
   return (
-    <Wrapper
+    <Sidebar.Wrapper
       ref={sidebarRef}
       {...{ ...rightSidebarInfo, isResizerHovering, isResizingEnabled }}
     >
-      <Container>
+      <Sidebar.Container>
         <CloseRightSidebarButton isParentHovering={isHovering} />
         <RightSidebarHeader />
         {isHasComments ? (
-          <Content></Content>
+          <SidebarCommentsList />
         ) : (
           <EmptyRightSidebar title={activeCommentsFilter.toLowerCase()} />
         )}
-      </Container>
+      </Sidebar.Container>
       <SidebarResizer
         isActive={!isResizingEnabled && isResizerHovering}
         isResizingEnabled={isResizingEnabled}
@@ -69,8 +72,8 @@ const RightSidebar: React.FC = () => {
         resizerRef={resizerRef}
         onClickAction={onCloseSidebar}
       />
-    </Wrapper>
+    </Sidebar.Wrapper>
   )
-}
+})
 
 export default RightSidebar

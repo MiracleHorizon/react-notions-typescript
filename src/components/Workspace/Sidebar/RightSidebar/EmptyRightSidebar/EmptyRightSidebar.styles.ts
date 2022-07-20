@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const StyledContainer = styled.div`
+export const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,16 +14,14 @@ const StyledContainer = styled.div`
   }
 `
 
-const Title = styled.h5`
-  font-weight: 600;
+export const Title = styled.h5`
   margin-top: 10px;
   margin-bottom: 7px;
+  font-weight: 600;
 `
 
-const Description = styled.p`
+export const Description = styled.p`
   width: 200px;
   font-weight: 400;
   text-align: center;
 `
-
-export { StyledContainer, Title, Description }

@@ -1,13 +1,9 @@
-interface CoverWrapperProps {
+export interface CoverWrapperProps {
   isHasCover: boolean
   isRepositionEnabled: boolean
 }
 
-interface StyledCoverProps {
+export interface StyledCoverProps {
   cover: string
-  coverType: string
   coverPosition: number
 }
-
-export default interface PageCoverProps {}
-export type { CoverWrapperProps, StyledCoverProps }

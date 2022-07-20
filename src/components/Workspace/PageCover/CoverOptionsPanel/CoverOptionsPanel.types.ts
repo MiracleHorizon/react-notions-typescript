@@ -6,9 +6,7 @@ export default interface CoverOptionsPanelProps {
   setRepositionEnabled: Dispatch<SetStateAction<boolean>>
 }
 
-interface StyledOptionProps {
+export interface StyledOptionProps {
   borderRight?: boolean
-  position: 'left' | 'right'
+  position: 'Left' | 'Right'
 }
-
-export type { StyledOptionProps }

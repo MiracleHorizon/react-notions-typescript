@@ -6,7 +6,10 @@ export const IconBlock = styled.div`
   align-items: center;
   justify-content: center;
   width: 20px;
+  min-width: 20px;
   height: 20px;
+  min-height: 20px;
+  margin-left: 2px;
   margin-right: 5px;
   border-radius: 3px;
   transition: background 50ms ease-in-out;
@@ -20,7 +23,10 @@ export const IconBlock = styled.div`
 `
 
 export const PageIcon = styled.img`
-  width: 17px;
-  height: 17px;
+  width: 16px;
+  min-width: 16px;
+  height: 16px;
+  min-height: 16px;
   object-fit: cover;
+  pointer-events: none;
 `

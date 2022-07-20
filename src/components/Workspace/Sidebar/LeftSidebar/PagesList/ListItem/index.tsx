@@ -1,101 +1,122 @@
-import React, { useCallback, useRef } from 'react'
+import React, { FC, memo, useCallback, useMemo, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
-import { useToggle } from 'hooks/useToggle'
+
+import PagesList from '../index'
+import PagesListItemIcon from './ItemIcon'
+import PageItemOptions from './ItemOptions'
+import EmptyItemDependencies from './EmptyDependencies'
+import { TriangleSvg } from 'components/ui/SVG'
 
 import Props from './ListItem.types'
-import PagesListItemIcon from './ItemIcon'
-import PagesListItemOptionsButton from 'shared/Buttons/PagesListItemOptions'
-import AddNewPageButton from 'shared/Buttons/AddNewPage'
-import TriangleSVG from 'shared/SVG/Triangle'
-import { activePageSelector } from 'redux/sidebarsSlice/selectors'
-import { setCurrentPage } from 'redux/workSpaceSlice/slice'
-import { closeRightSidebar, setActivePage } from 'redux/sidebarsSlice/slice'
+import { useAppDispatch } from 'redux/store'
+import { getPage, updatePage } from 'api/reduxAsyncThunks'
 import {
+  closeRightSidebar,
+  setSelectedPage,
   openPageOptionsPopup,
-  setPageOptionsId,
   setPageOptionsPopupCoords,
-} from 'redux/popupsSlice/slice'
-import titleHandler from 'helpers/listItemOptionsTitleHandler'
-import selectedItemHandler from 'helpers/selectedItemHandler'
-import { setCoordsByPointer } from 'helpers/setCoordsByPointer'
+  setPageOptionsPage,
+} from 'redux/actions'
 import {
-  Information,
-  StyledItem,
+  currentPageSelector,
+  pagesSelector,
+  selectedPageSelector,
+} from 'redux/selectors'
+import selectedItemHandler from 'helpers/selectedItemHandler'
+import setCoordsByPointer from 'helpers/coords/setCoordsByPointer'
+import objectCopier from 'helpers/objectCopier'
+import {
+  ItemWrapper,
+  ItemContainer,
+  InformationContainer,
   Title,
-  ToggleIconContainer,
 } from './ListItem.styles'
+import ToggleButton from '../../../../../ui/Buttons/ToggleButton'
 
-const PagesListItem: React.FC<Props> = ({ page }) => {
-  const { id, title, isFavorite, iconInfo } = page //* isChild.
-  const { isOpen, toggleIsOpen } = useToggle(false)
-  const listItemOptionsTitle = titleHandler(isFavorite)
+const PagesListItem: FC<Props> = memo(({ page, paddingLeft }) => {
+  const {
+    _id,
+    title,
+    pageSettings: { isExpanded },
+  } = page
+  const { _id: currentPageId } = useSelector(currentPageSelector)
+  const dependentPages = useSelector(pagesSelector).filter(
+    page => page.parentPageId === _id
+  ) //!
+  const appDispatch = useAppDispatch()
   const dispatch = useDispatch()
 
-  const activeItem = useSelector(activePageSelector)
-  const isActive = selectedItemHandler({ activeItem, item: { id, title } })
   const itemRef = useRef<HTMLLIElement>(null)
   const isHovering = useHover(itemRef)
 
-  const onSelectCurrentPage = (): void => {
-    dispatch(setActivePage({ title, id }))
-    dispatch(setCurrentPage(id))
-    dispatch(closeRightSidebar())
+  const selectedPage = useSelector(selectedPageSelector)
+  const isSelected = useMemo(() => {
+    return selectedItemHandler({
+      activeItem: selectedPage,
+      item: { id: _id, title },
+    })
+  }, [selectedPage, _id, title])
+
+  const toggleExpanded = useCallback((): void => {
+    const pageCopy = objectCopier(page)
+
+    pageCopy.pageSettings.isExpanded = !pageCopy.pageSettings.isExpanded
+    appDispatch(updatePage(pageCopy))
+  }, [appDispatch, page])
+
+  const onSelectCurrentPage = useCallback((): void => {
+    if (_id !== currentPageId) {
+      appDispatch(getPage(_id))
+      dispatch(setSelectedPage({ title, id: _id })) //!
+      dispatch(closeRightSidebar())
+      // dispatch(setCurrentPage(_id))
+    }
     // Тут будет пост запрос.
-  }
-
-  const onAddNewPageInside = (e: React.MouseEvent): void => {
-    e.stopPropagation()
-    //...
-  }
-
-  const onTogglePageContent = (e: React.MouseEvent): void => {
-    e.stopPropagation()
-
-    toggleIsOpen()
-  }
+  }, [appDispatch, dispatch, _id, currentPageId, title])
 
   const onOpenPageOptionsPopup = useCallback(
     (e: React.MouseEvent): void => {
       e.preventDefault()
 
       dispatch(openPageOptionsPopup())
-      dispatch(setPageOptionsId(page.id))
+      dispatch(setPageOptionsPage(page))
       dispatch(setPageOptionsPopupCoords(setCoordsByPointer(e)))
     },
     [dispatch, page]
   )
 
+  const dependenceHandler = useCallback((): JSX.Element | null => {
+    if (isExpanded && dependentPages.length > 0) {
+      return <PagesList paddingLeft={paddingLeft + 14} pages={dependentPages} />
+    }
+
+    if (isExpanded && dependentPages.length === 0) {
+      return <EmptyItemDependencies paddingLeft={paddingLeft + 17} />
+    }
+
+    return null
+  }, [dependentPages, isExpanded, paddingLeft])
+
   return (
-    <StyledItem
-      draggable
-      ref={itemRef}
-      {...{ isActive, isHovering }}
-      onClick={onSelectCurrentPage}
-      onContextMenu={onOpenPageOptionsPopup}
-    >
-      <ToggleIconContainer isChild={false} onClick={onTogglePageContent}>
-        <TriangleSVG isOpen={isOpen} />
-      </ToggleIconContainer>
-      <Information>
-        <PagesListItemIcon {...iconInfo} />
-        <Title isActive={isActive}>{title}</Title>
-      </Information>
-      {isHovering && (
-        <>
-          <PagesListItemOptionsButton
-            optionsTitle={listItemOptionsTitle}
-            {...{ id, title, iconInfo }}
-          />
-          <AddNewPageButton
-            coords={{ top: '4px', right: '8px' }}
-            tooltipTitle='Quickly add a page inside'
-            onClickAction={onAddNewPageInside}
-          />
-        </>
-      )}
-    </StyledItem>
+    <ItemWrapper>
+      <ItemContainer
+        draggable
+        ref={itemRef}
+        onClick={onSelectCurrentPage}
+        onContextMenu={onOpenPageOptionsPopup}
+        {...{ paddingLeft, isSelected, isHovering, isExpanded }}
+      >
+        <ToggleButton isExpanded={isExpanded} toggleExpanded={toggleExpanded} />
+        <InformationContainer>
+          <PagesListItemIcon {...page} />
+          <Title isSelected={isSelected}>{title}</Title>
+        </InformationContainer>
+        {isHovering && <PageItemOptions {...page} />}
+      </ItemContainer>
+      {dependenceHandler()}
+    </ItemWrapper>
   )
-}
+})
 
 export default PagesListItem

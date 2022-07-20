@@ -1,23 +1,24 @@
-import React from 'react'
-import EmptyPageItem from '../EmptyPageItem'
-import { EmptyPageListProps } from './EmptyPageList.types'
-import { StyledList } from './EmptyPageList.styles'
+import React, { FC, memo } from 'react'
 
-const EmptyPageList: React.FC<EmptyPageListProps> = props => {
+import Props from './EmptyPageList.types'
+import EmptyPageItem from '../EmptyPageItem'
+import StyledList from './EmptyPageList.styles'
+
+const EmptyPageList: FC<Props> = memo(props => {
   const { list, activeItem, onSelect } = props
 
   return (
     <StyledList>
-      {list.map(({ title, IconSVG, action }) => (
+      {list.map(item => (
         <EmptyPageItem
-          key={title}
-          {...{ title, IconSVG, action }}
+          key={item.title}
+          {...item}
           activeItem={activeItem}
           onSelect={onSelect}
         />
       ))}
     </StyledList>
   )
-}
+})
 
 export default EmptyPageList

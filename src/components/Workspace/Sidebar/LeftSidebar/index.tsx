@@ -1,30 +1,27 @@
-import React, { useCallback, useEffect, useMemo, useRef } from 'react'
+import React, { FC, memo, useCallback, useMemo, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 
-import { useAppDispatch } from 'redux/store'
-import useResize from 'hooks/mouse/useResize/useResize'
 import UserPanel from './Panels/UserPanel'
 import AppOptionsPanel from './Panels/AppOptionsPanel'
 import PagesTrashPanel from './Panels/PagesTrashPanel'
 import AddNewPagePanel from './Panels/AddNewPagePanel'
-import FavoritePagesList from './PagesList/FavoritePagesList'
-import CommonPagesList from './PagesList/CommonPagesList'
+import FavoritePagesList from './PagesList/components/FavoritePagesList'
+import CommonPagesList from './PagesList/components/CommonPagesList'
 import SidebarResizer from '../Resizer'
-import { currentPageSelector, favoritePagesSelector } from 'redux/selectors'
-import { leftSidebarSelector } from 'redux/sidebarsSlice/selectors'
-import { setActivePage, setLeftSidebarWidth } from 'redux/sidebarsSlice/slice'
-import { Container, Content, ShadowSeparator, Wrapper } from '../Sidebar.styles'
-import { getAllNotionsPages } from 'redux/workSpaceSlice/slice'
-import { useWhyDidYouUpdate } from 'use-hooks'
 
-//! 3 рендера
+import useResize from 'hooks/mouse/resize'
+import { ResizeDirections } from 'hooks/mouse/resize/useResize.types'
+import {
+  leftSidebarStateSelector,
+  favoritePagesSelector,
+} from 'redux/selectors'
+import { setLeftSidebarWidth, closeLeftSidebar } from 'redux/actions'
+import * as Sidebar from '../Sidebar.styles'
 
-const LeftSidebar: React.FC = () => {
-  const { id, title } = useSelector(currentPageSelector)
-  const leftSidebarInfo = useSelector(leftSidebarSelector)
+const LeftSidebar: FC = memo(() => {
+  const leftSidebarInfo = useSelector(leftSidebarStateSelector)
   const isHasFavoritePages = useSelector(favoritePagesSelector).length > 0
-  const appDispatch = useAppDispatch()
   const dispatch = useDispatch()
 
   const resizerRef = useRef<HTMLDivElement>(null)
@@ -33,59 +30,47 @@ const LeftSidebar: React.FC = () => {
   const sidebarRef = useRef<HTMLDivElement>(null)
   const isHovering = useHover(sidebarRef)
 
-  useMemo(() => {
-    return appDispatch(getAllNotionsPages())
-  }, [appDispatch])
-
-  const { isResizingEnabled } = useResize({
-    resizeDirection: 'Right',
-    references: {
-      node: sidebarRef,
-      resizer: resizerRef,
-    },
-    setWidth: setLeftSidebarWidth,
-    restrictions: { maxWidth: 480, minWidth: 180 },
-  })
-
-  // useWhyDidYouUpdate('test', { id, title, isResizingEnabled })
-
-  const onCloseSidebar = useCallback((e: React.MouseEvent) => {
-    // e.preventDefault()
-    //
-    // if (!isResizingEnabled) dispatch(closeLeftSidebar())
+  const sidebarResizeParams = useMemo(() => {
+    return {
+      direction: ResizeDirections.RIGHT,
+      references: {
+        node: sidebarRef,
+        resizer: resizerRef,
+      },
+      setWidth: setLeftSidebarWidth,
+      restrictions: { maxWidth: 480, minWidth: 180 },
+    }
   }, [])
+  const isResizingEnabled = useResize(sidebarResizeParams)
 
-  // const onMouseLeave = useCallback((): void => {
-  //   if (!isResizingEnabled) {
-  //     dispatch(setLeftSidebarIsBubbling(false))
-  //   }
-  // }, [isResizingEnabled, dispatch])
-
-  //      onMouseLeave={onMouseLeave}
-
-  useEffect(() => {
-    dispatch(setActivePage({ title, id }))
-  }, [id, title, dispatch])
+  const onCloseSidebar = useCallback(
+    (e: React.MouseEvent) => {
+      if (!isResizingEnabled && e.ctrlKey) {
+        dispatch(closeLeftSidebar())
+      }
+    },
+    [dispatch, isResizingEnabled]
+  )
 
   return (
-    <Wrapper
+    <Sidebar.Wrapper
       ref={sidebarRef}
       {...{ ...leftSidebarInfo, isResizerHovering, isResizingEnabled }}
     >
-      <Container
+      <Sidebar.Container
         isResizingEnabled={isResizingEnabled}
         isResizerHovering={isResizerHovering}
       >
         <UserPanel isHovering={isHovering} />
         <AppOptionsPanel />
-        <ShadowSeparator />
-        <Content>
+        <Sidebar.ShadowSeparator />
+        <Sidebar.Content padding>
           {isHasFavoritePages && <FavoritePagesList />}
           <CommonPagesList />
-        </Content>
+        </Sidebar.Content>
         <PagesTrashPanel />
         <AddNewPagePanel />
-      </Container>
+      </Sidebar.Container>
       <SidebarResizer
         isActive={!isResizingEnabled && isResizerHovering}
         isResizingEnabled={isResizingEnabled}
@@ -93,8 +78,8 @@ const LeftSidebar: React.FC = () => {
         resizerRef={resizerRef}
         onClickAction={onCloseSidebar}
       />
-    </Wrapper>
+    </Sidebar.Wrapper>
   )
-}
+})
 
 export default LeftSidebar

@@ -1,33 +1,51 @@
-import React, { useRef } from 'react'
+import React, { FC, memo, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { useHover } from 'usehooks-ts'
+import { MoonLoader } from 'react-spinners'
 
+import HeaderPageTitle from './HeaderPageTitle'
 import PageSettingsPanel from './PageSettingsPanel'
-import HeaderPageTitle from './PageTitle'
-import OpenLeftSidebarButton from 'shared/Buttons/ToggleSidebar/components/OpenLeft'
-import { leftSidebarSelector } from 'redux/sidebarsSlice/selectors'
-import { Container, HeaderPanel, Wrapper } from './Header.styles'
+import { OpenLeftSidebarButton } from 'components/ui'
+import { LoadingStatuses } from 'api/types'
+import {
+  leftSidebarStateSelector,
+  workspaceLoadingStatusesSelector,
+} from 'redux/selectors'
+import {
+  HeaderWrapper,
+  HeaderContainer,
+  HeaderPanel,
+  PageTitleWrapper,
+} from './Header.styles'
 
-const Header: React.FC = () => {
+const Header: FC = memo(() => {
   const { isOpen: isLeftSidebarOpen, isBubbling: isLeftSidebarBubbling } =
-    useSelector(leftSidebarSelector)
+    useSelector(leftSidebarStateSelector)
+  const { newPageLoadingStatus } = useSelector(workspaceLoadingStatusesSelector)
 
   const headerRef = useRef<HTMLHeadElement>(null)
   const isHovering = useHover(headerRef)
 
   return (
-    <Wrapper ref={headerRef}>
+    <HeaderWrapper ref={headerRef}>
       {(!isLeftSidebarOpen || (isLeftSidebarOpen && isLeftSidebarBubbling)) && (
         <OpenLeftSidebarButton isParentHovering={isHovering} />
       )}
-      <Container>
+      <HeaderContainer>
         <HeaderPanel>
-          <HeaderPageTitle />
+          <PageTitleWrapper>
+            <HeaderPageTitle />
+            <MoonLoader
+              size={15}
+              speedMultiplier={0.65}
+              loading={newPageLoadingStatus === LoadingStatuses.PENDING}
+            />
+          </PageTitleWrapper>
           <PageSettingsPanel />
         </HeaderPanel>
-      </Container>
-    </Wrapper>
+      </HeaderContainer>
+    </HeaderWrapper>
   )
-}
+})
 
 export default Header

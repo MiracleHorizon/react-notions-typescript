@@ -1,0 +1,16 @@
+export const tooltipsCoordsList = {
+  'pages-trash': { top: '30px' },
+  'pages-list-title': { left: '5px', top: '-50px' },
+  'pages-list-item': {},
+  'pages-list-item-new-page-btn': { top: '30px' },
+  'pages-list-item-options-btn': { left: '-70px', bottom: '-32px' },
+  'pages-list-item-change-icon-btn': { left: '0px', top: '30px' },
+  'common-pages-new-page-btn': {},
+  'left-sidebar-options': {},
+  'close-left-sidebar-btn': { top: '43px', right: '-20px' },
+  'close-right-sidebar-btn': { top: '43px', left: '-20px' },
+  'open-left-sidebar-btn': { top: '10px', left: '40px' },
+  'header-action-btn': {},
+  'workspace-comments-panel-author': { left: '-3px', top: '30px' },
+  'workspace-comments-attach-file-btn': { bottom: '30px' },
+}

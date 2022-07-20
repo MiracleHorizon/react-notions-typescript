@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import { SidebarWrapperProps } from './Sidebar.types'
-import sidebarStylesHandler from 'utils/sidebarStylesHandler'
+import SidebarWrapperProps from './Sidebar.types'
+import { sidebarStylesHandler } from 'styles/stylesHandlers'
 
-const Wrapper = styled.div<SidebarWrapperProps>`
+export const Wrapper = styled.div<SidebarWrapperProps>`
   top: ${props => (props.isBubbling ? '60px' : 0)};
   right: ${props => props.location === 'Right' && '0px'};
   flex-grow: 0;
@@ -15,9 +15,7 @@ const Wrapper = styled.div<SidebarWrapperProps>`
   border-left: ${props =>
     props.location === 'Right' ? '1px solid rgba(55, 53, 47, 0.09)' : 'none'};
   background: ${props =>
-    props.location === 'Left'
-      ? 'rgb(247, 246, 243)'
-      : 'white'}; // background: rgb(37, 37, 37);
+    props.location === 'Left' ? 'rgb(247, 246, 243)' : 'white'};
   z-index: 10;
   user-select: none;
   opacity: ${props => (props.isOpen || props.isBubbling ? 1 : 0)};
@@ -31,13 +29,7 @@ const Wrapper = styled.div<SidebarWrapperProps>`
   );
 `
 
-// {props =>
-// props.location === SidebarLocations.RIGHT && 'width 50ms ease-out'};
-
-//transition: width 0.3s ease-in-out, min-width 0.3s ease-in-out,
-//  opacity 0.35s ease-in-out;
-
-const Container = styled.div<{
+export const Container = styled.div<{
   isResizerHovering?: boolean
   isResizingEnabled?: boolean
 }>`
@@ -54,19 +46,26 @@ const Container = styled.div<{
   transition: box-shadow 0.3s ease-in 0s;
 `
 
-const ShadowSeparator = styled.div`
-  width: 100%;
-  height: 1px;
-  margin-top: 10px;
-  box-shadow: rgb(55 53 47 / 9%) 0 -1px 0;
-`
-
-const Content = styled.div`
+export const Content = styled.div<{ topIndent?: boolean; padding?: boolean }>`
+  position: relative;
+  ${props => props.topIndent && 'top: 35px'};
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  padding: 4px;
+  ${props => props.padding && 'padding: 4px'};
+  //overflow: hidden auto;
 `
 
-export { Wrapper, Container, ShadowSeparator, Content }
+export const ShadowSeparator = styled.div`
+  width: 100%;
+  min-height: 1px;
+  margin-top: 10px;
+  box-shadow: rgb(55 53 47 / 9%) 0 -1px 0;
+`
+
+// {props =>
+// props.location === SidebarLocations.RIGHT && 'width 50ms ease-out'};
+
+//transition: width 0.3s ease-in-out, min-width 0.3s ease-in-out,
+//  opacity 0.35s ease-in-out;

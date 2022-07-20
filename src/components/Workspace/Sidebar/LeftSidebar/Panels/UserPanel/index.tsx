@@ -1,16 +1,25 @@
-import React from 'react'
+import React, { FC, memo } from 'react'
+import { useSelector } from 'react-redux'
 
-import CloseLeftSidebarButton from 'shared/Buttons/ToggleSidebar/components/CloseLeft'
-import { ACCOUNT_NAME } from 'utils/accountName' //!
-import { Avatar, StyledPanel, Title } from './UserPanel.styles'
-import avatarSvg from 'assets/img/appImgs/avatar.jpg' //!
+import EmptyUserAvatar from 'components/shared/EmptyUserAvatar'
+import { CloseLeftSidebarButton } from 'components/ui'
+import { userSelector } from 'redux/selectors'
+import { Avatar, PanelWrapper, Title } from './UserPanel.styles'
 
-const UserPanel: React.FC<{ isHovering: boolean }> = ({ isHovering }) => (
-  <StyledPanel>
-    <Avatar src={avatarSvg} alt='Avatar' />
-    <Title>{ACCOUNT_NAME}'s Notion</Title>
-    <CloseLeftSidebarButton isParentHovering={isHovering} />
-  </StyledPanel>
-)
+const UserPanel: FC<{ isHovering: boolean }> = memo(({ isHovering }) => {
+  const user = useSelector(userSelector)
+
+  return (
+    <PanelWrapper>
+      {user?.avatarUrl ? (
+        <Avatar src={user.avatarUrl} alt='Avatar' />
+      ) : (
+        <EmptyUserAvatar />
+      )}
+      <Title>{user?.fullName}'s Notion</Title>
+      <CloseLeftSidebarButton isParentHovering={isHovering} />
+    </PanelWrapper>
+  )
+})
 
 export default UserPanel

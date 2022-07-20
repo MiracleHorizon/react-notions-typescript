@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { SidebarLocations } from '../Sidebar.types'
+import { SidebarLocations } from 'redux/reducers/sidebarsSlice/types'
 
 export const ResizerContainer = styled.div<{ location: SidebarLocations }>`
   position: absolute;
@@ -8,7 +8,6 @@ export const ResizerContainer = styled.div<{ location: SidebarLocations }>`
   bottom: 0;
   flex-grow: 0;
   width: 1px;
-  //background: #89857c;
   opacity: 0;
   z-index: -1;
   transition: opacity 0.3s ease-in-out 0s;

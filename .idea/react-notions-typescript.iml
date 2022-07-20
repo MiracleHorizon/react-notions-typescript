@@ -9,5 +9,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="react-notions-backend" />
+    <orderEntry type="module" module-name="react-blog" />
+    <orderEntry type="module" module-name="mern-blog" />
   </component>
 </module>

@@ -3,11 +3,9 @@ interface Option {
   action: () => void
 }
 
-interface UseKeyboardEnterParams {
+export interface UseKeyboardEnterParams {
   activeItem: string
   options: Option[]
 }
 
-type UseKeyboardEnterResult = (e: KeyboardEvent) => void
-
-export type { UseKeyboardEnterParams, UseKeyboardEnterResult }
+export type UseKeyboardEnterResult = (e: KeyboardEvent) => void

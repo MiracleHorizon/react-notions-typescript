@@ -1,15 +1,15 @@
-import React from 'react'
-import { PagesListTitleProps } from './ListTitle.types'
+import React, { FC, memo } from 'react'
+import Props from './ListTitle.types'
 import { TitleBlock, Title } from './ListTitle.styles'
 
-const PagesListTitle: React.FC<PagesListTitleProps> = props => {
-  const { title, reference, toggleList } = props
+const PagesListTitle: FC<Props> = memo(props => {
+  const { title, reference, onToggleList } = props
 
   return (
-    <TitleBlock ref={reference} onClick={toggleList}>
+    <TitleBlock ref={reference} onClick={onToggleList}>
       <Title>{title}</Title>
     </TitleBlock>
   )
-}
+})
 
 export default PagesListTitle

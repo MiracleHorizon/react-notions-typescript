@@ -1,7 +1,7 @@
 import { RefObject } from 'react'
 
-export interface PagesListTitleProps {
+export default interface PagesListTitleProps {
   title: string
   reference: RefObject<HTMLDivElement>
-  toggleList: () => void
+  onToggleList: () => void
 }

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { CoverWrapperProps, StyledCoverProps } from './PageCover.types'
 
-const CoverWrapper = styled.div<CoverWrapperProps>`
+export const CoverWrapper = styled.div<CoverWrapperProps>`
   cursor: ${props => (props.isRepositionEnabled ? 'all-scroll' : 'default')};
   position: relative;
   top: 0;
@@ -15,14 +15,11 @@ const CoverWrapper = styled.div<CoverWrapperProps>`
   user-select: none;
 `
 
-const StyledCover = styled.img<StyledCoverProps>`
+export const StyledCover = styled.img<StyledCoverProps>`
   width: 100%;
   height: 30vh;
   display: block;
   object-fit: cover;
   object-position: center ${props => props.coverPosition}%;
-  background: ${props => props.coverType === 'CoverColors' && props.cover};
   //transition: object-position 0.3s ease-in-out;
 `
-
-export { CoverWrapper, StyledCover }

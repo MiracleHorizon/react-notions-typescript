@@ -1,29 +1,31 @@
-import React from 'react'
+import React, { FC, memo, useCallback, useMemo } from 'react'
 import { useDispatch } from 'react-redux'
 
-import SidebarOptionsPanel from 'components/Options/OptionsList/SidebarOptionsPanel'
-import { TrashSvg } from 'shared/SVG'
-import { openPagesTrashPopup } from 'redux/popupsSlice/slice'
-import { PanelWrapper } from './PagesTrashPanel.styles'
+import { SidebarOptionsPanel } from 'components/shared/Options'
+import { TrashSvg } from 'components/ui/SVG'
+import { openPagesTrashPopup } from 'redux/actions'
+import PanelWrapper from './PagesTrashPanel.styles'
 
-const PagesTrashPanel: React.FC = () => {
+const PagesTrashPanel: FC = memo(() => {
   const dispatch = useDispatch()
 
-  const onOpenPagesTrashPopup = (): void => {
+  const onOpenPagesTrashPopup = useCallback((): void => {
     dispatch(openPagesTrashPopup())
-  }
+  }, [dispatch])
 
-  const pagesTrashOption = {
-    title: 'Trash',
-    IconSvg: TrashSvg,
-    action: onOpenPagesTrashPopup,
-  }
+  const pagesTrashOptions = useMemo(() => {
+    return {
+      title: 'Trash',
+      IconSvg: TrashSvg,
+      onClickAction: onOpenPagesTrashPopup,
+    }
+  }, [onOpenPagesTrashPopup])
 
   return (
     <PanelWrapper>
-      <SidebarOptionsPanel options={pagesTrashOption} />
+      <SidebarOptionsPanel options={pagesTrashOptions} />
     </PanelWrapper>
   )
-}
+})
 
 export default PagesTrashPanel

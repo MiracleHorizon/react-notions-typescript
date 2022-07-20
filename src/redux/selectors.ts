@@ -1,17 +1,23 @@
+// Auth
+export * from './reducers/authSlice/selectors'
+
+// Notions
+export * from './reducers/notionsSlice/selectors'
+
 // Workspace
-export * from './workSpaceSlice/selectors'
+export * from './reducers/workSpaceSlice/selectors'
 
 // Sidebar
-export * from './sidebarsSlice/selectors'
+export * from './reducers/sidebarsSlice/selectors'
 
 // Alerts
-export * from './alertsSlice/selectors'
+export * from './reducers/alertsSlice/selectors'
 
 // Popups
-export * from './popupsSlice/selectors'
+export * from './reducers/popupsSlice/selectors'
 
 // Quick search
-export * from './quickSearchSlice/selectors'
+export * from './reducers/quickSearchSlice/selectors'
 
 // Page decoration
-export * from './pageDecorationSlice/selectors'
+export * from './reducers/pageDecorationSlice/selectors'

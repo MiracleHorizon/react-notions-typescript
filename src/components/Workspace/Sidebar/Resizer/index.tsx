@@ -1,13 +1,14 @@
-import React, { useCallback, useRef } from 'react'
+import React, { FC, memo, useCallback, useRef } from 'react'
 
 import Props from './Resizer.types'
-import ResizeSidebarTooltip from 'shared/Tooltips/Tooltip/ResizeSidebar'
-import { Resizer, ResizerContainer } from './Resizer.styles'
+import { ElementCoords } from 'types'
+import { ResizeSidebarTooltip } from 'components/ui'
+import { ResizerContainer, Resizer } from './Resizer.styles'
 
-const SidebarResizer: React.FC<Props> = props => {
+const SidebarResizer: FC<Props> = memo(props => {
   const { location, resizerRef, isActive, isResizingEnabled, onClickAction } =
     props
-  const tooltipCoords = useRef({ left: '', right: '', top: '' })
+  const tooltipCoords = useRef<ElementCoords>({ left: '', right: '', top: '' })
 
   const onMouseEnter = useCallback(
     (e: React.MouseEvent) => {
@@ -21,15 +22,16 @@ const SidebarResizer: React.FC<Props> = props => {
   )
 
   return (
-    <ResizerContainer location={location} ref={resizerRef}>
+    <ResizerContainer ref={resizerRef} location={location}>
       <Resizer
         isResizingEnabled={isResizingEnabled}
-        onClick={onClickAction}
         onMouseEnter={onMouseEnter}
+        onClick={onClickAction}
       >
         {isActive && <ResizeSidebarTooltip coords={tooltipCoords.current} />}
       </Resizer>
     </ResizerContainer>
   )
-}
+})
+
 export default SidebarResizer

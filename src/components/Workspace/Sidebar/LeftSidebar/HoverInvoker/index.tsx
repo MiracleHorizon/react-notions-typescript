@@ -1,16 +1,16 @@
-import React from 'react'
+import React, { FC } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { leftSidebarSelector } from 'redux/sidebarsSlice/selectors'
-import { setLeftSidebarIsBubbling } from 'redux/sidebarsSlice/slice'
+import { leftSidebarStateSelector } from 'redux/reducers/sidebarsSlice/selectors'
+import { setIsLeftSidebarBubbling } from 'redux/reducers/sidebarsSlice/slice'
 import { Invoker } from './SidebarHoverInvoker.styles'
 
-const SidebarHoverInvoker: React.FC = () => {
-  const { isBubbling, isOpen } = useSelector(leftSidebarSelector)
+const SidebarHoverInvoker: FC = () => {
+  const { isBubbling, isOpen } = useSelector(leftSidebarStateSelector)
   const dispatch = useDispatch()
 
   const onMouseEnter = (): void => {
-    // dispatch(setLeftSidebarIsBubbling(true))
+    // dispatch(setIsLeftSidebarBubbling(true))
   }
 
   return <Invoker onMouseEnter={onMouseEnter} />

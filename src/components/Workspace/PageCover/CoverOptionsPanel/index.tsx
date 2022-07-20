@@ -1,72 +1,83 @@
-import React, { useRef } from 'react'
+import React, { FC, memo, useCallback, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Props from './CoverOptionsPanel.types'
 import {
   openChangeCoverPopup,
   setChangeCoverPopupCoords,
-} from 'redux/popupsSlice/slice'
-import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
+  setChangeCoverPopupPage,
+} from 'redux/actions'
+import { currentPageSelector } from 'redux/selectors'
+import { changeCoverPopupCoordsHandler } from 'utils/coordsHandlers'
 import {
   PanelWrapper,
   CoverOptions,
   StyledOption,
   OptionTitle,
 } from './CoverOptionsPanel.styles'
-import { changeCoverPopupCoordsHandler } from 'utils/coordsHandlers'
 
-const CoverOptionsPanel: React.FC<Props> = props => {
-  const { isHovering, isRepositionEnabled, setRepositionEnabled } = props
-  const {
-    pageSettings: { isFullWidth },
-  } = useSelector(currentPageSelector)
-  const changeCoverButtonRef = useRef<HTMLDivElement>(null)
-  const dispatch = useDispatch()
+const CoverOptionsPanel: FC<Props> = memo(
+  ({ isHovering, isRepositionEnabled, setRepositionEnabled }) => {
+    const currentPage = useSelector(currentPageSelector)
+    const changeCoverButtonRef = useRef<HTMLDivElement>(null)
+    const dispatch = useDispatch()
 
-  const onOpenChangeCoverPopup = (): void => {
-    const popupCoords = changeCoverPopupCoordsHandler.setCoordsByCoverButton(
-      changeCoverButtonRef.current?.getBoundingClientRect()
+    const onOpenChangeCoverPopup = useCallback((): void => {
+      const popupCoords = changeCoverPopupCoordsHandler.coverButton(
+        changeCoverButtonRef.current?.getBoundingClientRect()
+      )
+
+      dispatch(openChangeCoverPopup())
+      dispatch(setChangeCoverPopupPage(currentPage))
+      dispatch(setChangeCoverPopupCoords(popupCoords))
+    }, [dispatch, currentPage])
+
+    const onStartCoverRepositioning = useCallback((): void => {
+      setRepositionEnabled(true)
+    }, [setRepositionEnabled])
+
+    const onSaveCoverPosition = useCallback((): void => {
+      setRepositionEnabled(false)
+    }, [setRepositionEnabled])
+
+    const onCancelCoverRepositioning = useCallback((): void => {
+      setRepositionEnabled(false)
+    }, [setRepositionEnabled])
+
+    return (
+      <PanelWrapper isFullWidth={currentPage.pageSettings.isFullWidth}>
+        <CoverOptions isHovering={isHovering}>
+          <StyledOption
+            borderRight
+            role='button'
+            position='Left'
+            onClick={
+              isRepositionEnabled ? onSaveCoverPosition : onOpenChangeCoverPopup
+            }
+          >
+            <OptionTitle
+              ref={!isRepositionEnabled ? changeCoverButtonRef : null}
+            >
+              {isRepositionEnabled ? 'Save position' : 'Change cover'}
+            </OptionTitle>
+          </StyledOption>
+          <StyledOption
+            role='button'
+            position='Right'
+            onClick={
+              isRepositionEnabled
+                ? onCancelCoverRepositioning
+                : onStartCoverRepositioning
+            }
+          >
+            <OptionTitle>
+              {isRepositionEnabled ? 'Cancel' : 'Reposition'}
+            </OptionTitle>
+          </StyledOption>
+        </CoverOptions>
+      </PanelWrapper>
     )
-
-    dispatch(openChangeCoverPopup())
-    dispatch(setChangeCoverPopupCoords(popupCoords))
   }
-
-  const onStartCoverRepositioning = (): void => setRepositionEnabled(true)
-  const onSaveCoverPosition = (): void => setRepositionEnabled(false)
-  const onCancelCoverRepositioning = (): void => setRepositionEnabled(false)
-
-  return (
-    <PanelWrapper isFullWidth={isFullWidth}>
-      <CoverOptions isHovering={isHovering}>
-        <StyledOption
-          borderRight
-          role='button'
-          onClick={
-            isRepositionEnabled ? onSaveCoverPosition : onOpenChangeCoverPopup
-          }
-          position='left'
-        >
-          <OptionTitle ref={!isRepositionEnabled ? changeCoverButtonRef : null}>
-            {isRepositionEnabled ? 'Save position' : 'Change cover'}
-          </OptionTitle>
-        </StyledOption>
-        <StyledOption
-          role='button'
-          onClick={
-            isRepositionEnabled
-              ? onCancelCoverRepositioning
-              : onStartCoverRepositioning
-          }
-          position='right'
-        >
-          <OptionTitle>
-            {isRepositionEnabled ? 'Cancel' : 'Reposition'}
-          </OptionTitle>
-        </StyledOption>
-      </CoverOptions>
-    </PanelWrapper>
-  )
-}
+)
 
 export default CoverOptionsPanel

@@ -1,59 +1,41 @@
 import styled from 'styled-components'
+import { ItemContainerProps } from './ListItem.types'
+import { pagesListsStylesHandler } from 'styles/stylesHandlers'
 
-const StyledItem = styled.li<{ isActive: boolean; isHovering: boolean }>`
-  cursor: pointer;
-  position: relative;
+export const ItemWrapper = styled.div`
   display: flex;
-  align-items: center;
-  height: 100%;
+  flex-direction: column;
+`
+
+export const ItemContainer = styled.li<ItemContainerProps>`
+  position: relative;
+  cursor: pointer;
+  height: 27px;
   min-height: 25px;
   max-height: 27px;
-  margin: 2px 0;
+  display: flex;
+  align-self: flex-end;
+  align-items: center;
+  padding-left: ${props => props.paddingLeft + 'px'};
+  width: 100%;
+  margin: 1px;
   border-radius: 3px;
-  background: ${props => props.isActive && 'rgba(55, 53, 47, 0.08)'};
-  transition: background 50ms ease-in-out;
+  background: ${props => pagesListsStylesHandler.itemBackgroundHandler(props)};
+  transition: background 20ms ease-in 0s;
 
   p {
     ${props => (props.isHovering ? 'max-width: 65%;' : 'max-width: 85%;')};
   }
-
-  :hover {
-    background: rgba(55, 53, 47, 0.08);
-  }
-  :active {
-    background: rgba(55, 53, 47, 0.16);
-  }
 `
 
-const ToggleIconContainer = styled.div<{ isChild: boolean }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  margin-left: ${props => (props.isChild ? '40px' : '10px')};
-  margin-right: 2px;
-  padding-left: 1px;
-  border-radius: 3px;
-  user-select: none;
-  transition: background 50ms ease-in-out;
-
-  :hover {
-    background: rgba(55, 53, 47, 0.08);
-  }
-  :active {
-    background: rgba(55, 53, 47, 0.16);
-  }
-`
-
-const Information = styled.div`
+export const InformationContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
   overflow: hidden;
 `
 
-const Title = styled.p<{ isActive: boolean }>`
+export const Title = styled.p<{ isSelected: boolean }>`
   max-height: 100%;
   font-size: 14px;
   font-weight: 600;
@@ -62,7 +44,5 @@ const Title = styled.p<{ isActive: boolean }>`
   text-overflow: ellipsis;
   white-space: nowrap;
   color: ${props =>
-    props.isActive ? 'rgb(55, 53, 47)' : 'rgba(55, 53, 47, 0.65)'};
+    props.isSelected ? 'rgb(55, 53, 47)' : 'rgba(55, 53, 47, 0.65)'};
 `
-
-export { StyledItem, ToggleIconContainer, Information, Title }

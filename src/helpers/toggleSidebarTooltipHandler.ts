@@ -1,6 +1,7 @@
-import { ToggleSidebarBtnPurposes as Purposes } from 'shared/Buttons/ToggleSidebar/ToggleSidebarButton.types'
-import { SidebarLocations } from 'components/Workspace/Sidebar/Sidebar.types'
-import { ElementCoords } from '../types'
+import { ElementCoords } from 'types'
+import { SidebarLocations } from 'redux/reducers/sidebarsSlice/types'
+import { ToggleSidebarButtonPurposes as Purposes } from 'components/ui/Buttons/ToggleSidebar/ToggleSidebarButton.types'
+import { tooltipsCoordsList } from 'components/ui/Tooltips/BlackFilledTooltip/BlackFilledTooltip.coords'
 
 interface Params {
   purpose: Purposes
@@ -13,34 +14,23 @@ interface Result {
   coords: ElementCoords
 }
 
-const leftOpenButtonTooltipCoords: ElementCoords = {
-  top: '10px',
-  left: '40px',
-}
-const leftCloseButtonTooltipCoords: ElementCoords = {
-  top: '43px',
-  right: '-20px',
-}
-const rightCloseButtonTooltipCoords: ElementCoords = {
-  top: '43px',
-  left: '-20px',
-}
-
-export const toggleSidebarTooltipHandler = (params: Params): Result => {
+const toggleSidebarTooltipHandler = (params: Params): Result => {
   const { purpose, location } = params
 
   const title: string =
     purpose === Purposes.OPEN ? 'Lock sidebar open' : 'Close sidebar'
   const description: string = location === 'Right' ? 'Shift + /' : '/'
 
-  let coords: ElementCoords
-  purpose === Purposes.OPEN && location === 'Left'
-    ? (coords = leftOpenButtonTooltipCoords)
-    : (coords = leftCloseButtonTooltipCoords)
+  let coords: ElementCoords =
+    purpose === Purposes.OPEN && location === 'Left'
+      ? tooltipsCoordsList['open-left-sidebar-btn']
+      : tooltipsCoordsList['close-left-sidebar-btn']
 
   if (purpose === Purposes.CLOSE && location === 'Right') {
-    coords = rightCloseButtonTooltipCoords
+    coords = tooltipsCoordsList['close-right-sidebar-btn']
   }
 
   return { title, description: `Ctrl + ${description}`, coords }
 }
+
+export default toggleSidebarTooltipHandler

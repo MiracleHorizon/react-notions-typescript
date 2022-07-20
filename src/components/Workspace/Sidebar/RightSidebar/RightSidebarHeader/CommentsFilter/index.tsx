@@ -1,14 +1,14 @@
-import React, { Fragment, useRef, useState } from 'react'
+import React, { FC, memo, useCallback, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useOnClickOutside } from 'usehooks-ts'
-import { useSelectItem } from 'hooks/useSelectItem'
 
-import DropdownItem from 'shared/Dropdowns/DropdownItem/DropdownItem'
-import Popup from 'components/Popups'
-import ChevronDownSvg from 'shared/SVG/ChevronDown'
-import { CommentsFilters } from 'redux/sidebarsSlice/types'
-import { activeCommentsFilterSelector } from 'redux/sidebarsSlice/selectors'
-import { setCommentsFilter } from 'redux/sidebarsSlice/slice'
+import { useSelectItem } from 'hooks/mouse/useSelectItem'
+import Popup from 'components/shared/Popups'
+import { DropdownItem } from 'components/ui'
+import { ChevronDownSvg } from 'components/ui/SVG'
+import { CommentsFilters } from 'redux/reducers/sidebarsSlice/types'
+import { activeCommentsFilterSelector } from 'redux/selectors'
+import { setCommentsFilter } from 'redux/actions'
 import { options } from 'utils/options/commentsFilterOptions'
 import {
   StyledContainer,
@@ -19,19 +19,28 @@ import {
 
 // tabIndex={0}
 
-const CommentsFilter: React.FC = () => {
+const CommentsFilter: FC = memo(() => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false)
-  const { activeItem, onSelectItem } = useSelectItem('Open comments')
+  const { activeItem, onSelectItem } = useSelectItem('Open')
   const activeFilter = useSelector(activeCommentsFilterSelector)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const dispatch = useDispatch()
 
-  const onOpenDropdown = (): void => setIsDropdownOpen(true)
-  const onSelectFilter = (filter: CommentsFilters): void => {
-    dispatch(setCommentsFilter(filter))
+  const onOpenDropdown = useCallback((): void => {
+    setIsDropdownOpen(true)
+  }, [])
+
+  const onSelectFilter = useCallback(
+    (filter: CommentsFilters): void => {
+      dispatch(setCommentsFilter(filter))
+      setIsDropdownOpen(false)
+    },
+    [dispatch]
+  )
+
+  const handleClickOutside = useCallback((): void => {
     setIsDropdownOpen(false)
-  }
-  const handleClickOutside = (): void => setIsDropdownOpen(false)
+  }, [])
 
   useOnClickOutside(dropdownRef, handleClickOutside)
 
@@ -59,6 +68,6 @@ const CommentsFilter: React.FC = () => {
       )}
     </>
   )
-}
+})
 
 export default CommentsFilter

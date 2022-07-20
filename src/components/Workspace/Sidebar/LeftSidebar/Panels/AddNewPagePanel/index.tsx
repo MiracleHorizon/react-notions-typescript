@@ -1,20 +1,26 @@
-import React from 'react'
-import { useCreateNewPage } from 'hooks/useCreateNewPage'
+import React, { FC, memo, useCallback } from 'react'
+import { useAppDispatch } from 'redux/store'
 
-import addPageSvg from 'assets/img/plus-addPage.svg'
-import { StyledPanel, Button, Icon, Title } from './AddNewPagePanel.styles'
+import { PlusSvg } from 'components/ui/SVG'
 
-const AddNewPagePanel: React.FC = () => {
-  const onCreateNewPage = useCreateNewPage()
+import { createNewPage } from 'api/reduxAsyncThunks'
+import { PanelWrapper, StyledPlusButton, Title } from './AddNewPagePanel.styles'
+
+const AddNewPagePanel: FC = memo(() => {
+  const appDispatch = useAppDispatch()
+
+  const onCreateNewPage = useCallback((): void => {
+    appDispatch(createNewPage({}))
+  }, [appDispatch])
 
   return (
-    <StyledPanel onClick={onCreateNewPage}>
-      <Button role='button'>
-        <Icon src={addPageSvg} alt='Add page' />
-      </Button>
+    <PanelWrapper onClick={onCreateNewPage}>
+      <StyledPlusButton role='button'>
+        <PlusSvg />
+      </StyledPlusButton>
       <Title>New page</Title>
-    </StyledPanel>
+    </PanelWrapper>
   )
-}
+})
 
 export default AddNewPagePanel

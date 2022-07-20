@@ -1,17 +1,21 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
 
-import workspace from './workSpaceSlice/slice'
-import sidebar from './sidebarsSlice/slice'
-import pageDecoration from './pageDecorationSlice/slice'
-import quickSearch from './quickSearchSlice/slice'
-import popups from './popupsSlice/slice'
-import alerts from './alertsSlice/slice'
+import auth from './reducers/authSlice'
+import notions from './reducers/notionsSlice'
+import workspace from './reducers/workSpaceSlice/slice'
+import sidebars from './reducers/sidebarsSlice/slice'
+import pageDecoration from './reducers/pageDecorationSlice/slice'
+import quickSearch from './reducers/quickSearchSlice/slice'
+import popups from './reducers/popupsSlice/slice'
+import alerts from './reducers/alertsSlice/slice'
 
 export const store = configureStore({
   reducer: {
-    sidebar,
+    auth,
+    notions,
     workspace,
+    sidebars,
     pageDecoration,
     quickSearch,
     popups,

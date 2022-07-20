@@ -1,3 +1,5 @@
+import { Dispatch, RefObject, SetStateAction } from 'react'
+
 interface ActiveListItem {
   activeItem: string
   onSelect: (title: string) => void
@@ -5,7 +7,7 @@ interface ActiveListItem {
 
 interface ActiveItem {
   title: string
-  id: number
+  id: string
 }
 
 interface ActiveItemParams {
@@ -35,3 +37,6 @@ interface ElementCoords {
 
 export type { ActiveItem, ActiveListItem, ActiveItemParams, ElementCoords }
 export { Themes, ElementPositions }
+
+export type SetState<T> = Dispatch<SetStateAction<T>>
+export type NodeRef<T> = RefObject<T>

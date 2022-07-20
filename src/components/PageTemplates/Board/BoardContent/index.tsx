@@ -1,49 +1,55 @@
-import React from 'react'
+import React, { FC, memo, useCallback, useMemo, useRef } from 'react'
 import { useSelector } from 'react-redux'
 
-import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
-import { Content, PageTitle } from './BoardContent.styles'
+import PageTitle from 'components/Workspace/PageTitle'
+import PageCommentsPanel from 'components/Workspace/PageComments'
+import PageContentList from './ContentList'
 
-const BoardContent: React.FC = () => {
+import { defaultItem } from 'features/Items'
+import { useAppDispatch } from 'redux/store'
+import { updatePage } from 'api/reduxAsyncThunks'
+import { currentPageCopySelector, currentPageSelector } from 'redux/selectors'
+import fontFamilyHandler from 'helpers/decor/fontFamilyHandler'
+import { AddContentField, Content, Wrapper } from './BoardContent.styles'
+
+const ListContent: FC = memo(() => {
   const {
-    title,
+    content,
     pageSettings: { isSmallText, selectedFont },
+    commentsInfo: { isHasComments },
   } = useSelector(currentPageSelector)
+  const currentPageCopy = useSelector(currentPageCopySelector)
+  const listRef = useRef<HTMLDivElement>(null)
+  const appDispatch = useAppDispatch()
+
+  const pageFontFamily = useMemo(
+    () => fontFamilyHandler(selectedFont),
+    [selectedFont]
+  )
+
+  const onCreateNewContentItem = useCallback((): void => {
+    const lastItem = content[content.length - 1]
+
+    if (
+      content.length === 0 ||
+      lastItem.content !== '' ||
+      lastItem.contentType === 'Divider'
+    ) {
+      currentPageCopy.content = [...currentPageCopy.content, defaultItem]
+      appDispatch(updatePage(currentPageCopy))
+    }
+  }, [appDispatch, content, currentPageCopy])
 
   return (
-    <Content isSmallText={isSmallText} fontFamily={selectedFont}>
-      <PageTitle style={{ marginBottom: '10px', fontSize: '40px' }}>
-        {title}
-      </PageTitle>
-      <h1>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad
-        aliquam aliquid, amet at cupiditate, eius enim esse in iure mollitia
-        natus nesciunt nisi numquam quam quasi qui quo? Eum expedita, hic iure
-        laborum magnam pariatur quos reiciendis repudiandae sequi suscipitate,
-        eius enim esse in iure mollitia natus nesciunt nisi numquam quam quasi
-        qui quo? Eum expedita, hic iure laborum
-      </h1>
-      <h1>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad
-        aliquam aliquid, amet at cupiditate, eius enim esse in iure mollitia
-        natus nesciunt nisi numquam quam quasi qui quo? Eum expedita, hic iure
-        laborum magnam pariatur quos reiciendis repudiandae sequi suscipitate,
-        eius enim esse in iure mollitia natus nesciunt nisi numquam quam quasi
-        qui quo? Eum expedita, hic iure laborum Lorem ipsum dolor sit amet,
-        consectetur adipisicing elit. Accusantium ad aliquam aliquid, amet at
-        cupiditate, eius enim esse in iure mollitia natus nesciunt nisi numquam
-        quam quasi qui quo? Eum expedita, hic iure laborum magnam pariatur quos
-        reiciendis repudiandae sequi suscipitate, eius enim esse in iure
-        mollitia natus nesciunt nisi numquam quam quasi qui quo? Eum expedita,
-        hic iure laborum Lorem ipsum dolor sit amet, consectetur adipisicing
-        elit. Accusantium ad aliquam aliquid, amet at cupiditate, eius enim esse
-        in iure mollitia natus nesciunt nisi numquam quam quasi qui quo? Eum
-        expedita, hic iure laborum magnam pariatur quos reiciendis repudiandae
-        sequi suscipitate, eius enim esse in iure mollitia natus nesciunt nisi
-        numquam quam quasi qui quo? Eum expedita, hic iure laborum
-      </h1>
-    </Content>
+    <Wrapper isSmallText={isSmallText} fontFamily={pageFontFamily}>
+      <PageTitle />
+      {isHasComments && <PageCommentsPanel />}
+      <Content>
+        <PageContentList pRight='50' content={content} reference={listRef} />
+        <AddContentField onClick={onCreateNewContentItem} />
+      </Content>
+    </Wrapper>
   )
-}
+})
 
-export default BoardContent
+export default ListContent

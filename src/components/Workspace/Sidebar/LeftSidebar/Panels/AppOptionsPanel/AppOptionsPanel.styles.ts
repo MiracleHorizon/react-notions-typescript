@@ -1,20 +1,20 @@
 import styled from 'styled-components'
 
-const StyledPanel = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   user-select: none;
 `
 
-const OptionsList = styled.div`
+export const List = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  width: 100%;
+  flex: 1;
 `
 
-const Option = styled.div`
+export const Option = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -22,7 +22,8 @@ const Option = styled.div`
   height: 27px;
   border-radius: 3px;
   margin: 0 4px;
-  transition: background 50ms ease-in-out;
+  padding-left: 15px;
+  transition: background 20ms ease-in 0s;
 
   :hover {
     background: rgba(55, 53, 47, 0.08);
@@ -32,20 +33,10 @@ const Option = styled.div`
   }
 `
 
-const Title = styled.span`
-  margin-left: 10px;
+export const OptionTitle = styled.span`
+  margin-left: 12px;
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
   color: rgba(55, 53, 47, 0.65);
 `
-
-const Icon = styled.img`
-  width: 16px;
-  height: 16px;
-  margin-left: 15px;
-  border-radius: 3px;
-  opacity: 0.5;
-`
-
-export { StyledPanel, OptionsList, Option, Title, Icon }

@@ -7,4 +7,4 @@ const StyledList = styled.ul`
   width: 100%;
 `
 
-export { StyledList }
+export default StyledList

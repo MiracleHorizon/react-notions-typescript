@@ -3,7 +3,12 @@ import styled from 'styled-components'
 const EmptyPageWrapper = styled.div`
   width: 100%;
   min-height: 400px;
-  margin-top: 30px;
+  padding: 0 50px;
+`
+
+const PageTitle = styled.h1`
+  font-size: 40px;
+  margin-bottom: 25px;
 `
 
 const DescriptionContainer = styled.div`
@@ -11,7 +16,6 @@ const DescriptionContainer = styled.div`
 `
 
 const Description = styled.p`
-  margin-top: -15px;
   font-size: 16px;
   color: rgba(55, 53, 47, 0.5);
 `
@@ -21,7 +25,7 @@ const TemplatesTitleContainer = styled.div`
   margin-bottom: 10px;
 `
 
-const StyledTitle = styled.h5`
+const TemplatesTitle = styled.h5`
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.7px;
@@ -32,8 +36,9 @@ const StyledTitle = styled.h5`
 
 export {
   EmptyPageWrapper,
+  PageTitle,
   DescriptionContainer,
   Description,
   TemplatesTitleContainer,
-  StyledTitle,
+  TemplatesTitle,
 }

@@ -1,12 +1,11 @@
 import styled from 'styled-components'
-import { PageFontFamilies } from 'redux/workSpaceSlice/types'
 
 interface ContentProps {
   isSmallText: boolean
-  fontFamily: PageFontFamilies
+  fontFamily: string
 }
 
-const Content = styled.div<ContentProps>`
+export const Wrapper = styled.div<ContentProps>`
   min-height: 200px;
   //height: 100vh;
   width: 100%;
@@ -21,20 +20,22 @@ const Content = styled.div<ContentProps>`
   p,
   div {
     font-family: ${props => props.fontFamily} !important;
-    font-size: ${props => (props.isSmallText ? '1.8em' : '2em')};
+    //font-size: ${props => (props.isSmallText ? '1.8em' : '2em')};
   }
 `
 
-const PageTitle = styled.h1`
+export const Content = styled.div`
   width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  font-size: 40px;
-  font-weight: 700;
-  white-space: pre-wrap;
-  word-break: break-word;
-  overflow: hidden;
-  color: rgb(55, 53, 47);
+  height: auto;
+  padding-bottom: 30vh;
+  overflow: auto;
+  //background: yellow;
 `
 
-export { Content, PageTitle }
+export const AddContentField = styled.div`
+  width: calc(100% - 100px);
+  height: 40px;
+  margin-top: 2px;
+  margin-left: 50px;
+  background: pink;
+`

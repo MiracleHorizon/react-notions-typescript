@@ -1,14 +1,15 @@
-import React from 'react'
-import CommentsFilter from './CommentsFilter'
-import { Wrapper, Header, Title } from './RightSidebarHeader.styles'
+import React, { FC } from 'react'
 
-const RightSidebarHeader: React.FC = () => (
-  <Wrapper>
+import CommentsFilter from './CommentsFilter'
+import { HeaderWrapper, Header, Title } from './RightSidebarHeader.styles'
+
+const RightSidebarHeader: FC = () => (
+  <HeaderWrapper>
     <Header>
       <Title>Comments</Title>
       <CommentsFilter />
     </Header>
-  </Wrapper>
+  </HeaderWrapper>
 )
 
 export default RightSidebarHeader

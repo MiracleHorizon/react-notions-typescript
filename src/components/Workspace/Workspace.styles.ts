@@ -1,27 +1,28 @@
 import styled from 'styled-components'
 import { WorkspaceContentProps } from './Workspace.types'
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   position: relative;
   display: flex;
   flex: 1 1 0;
+  //background: pink;
 `
 
-const Container = styled.div`
+export const Container = styled.div`
   width: 100%;
   //overflow: auto;
 `
 
-const Content = styled.div<WorkspaceContentProps>`
+export const Content = styled.div<WorkspaceContentProps>`
+  height: 100vh;
   min-height: calc(100vh - 45px);
   width: ${props =>
     props.isRightSidebarOpen
       ? `calc(100% - ${props.rightSidebarWidth}px)`
       : '100%'};
   overflow: auto;
-  transition: width 0.35s ease-in-out;
+  transition: width 0.3s ease-in-out;
+  //user-select: none;
 `
-
-export { Wrapper, Container, Content }

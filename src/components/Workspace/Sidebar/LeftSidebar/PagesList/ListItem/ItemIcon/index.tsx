@@ -1,52 +1,54 @@
-import React, { useRef } from 'react'
+import React, { FC, memo, useCallback, useMemo, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHover } from 'usehooks-ts'
 
-import EmptyPageIconSVG from 'shared/SVG/EmptyPageIcon'
-import Tooltip from 'shared/Tooltips/Tooltip'
+import { ChangePageIconTooltip } from 'components/ui'
+import { EmptyPageIconSvg } from 'components/ui/SVG'
+
 import Props from './ItemIcon.types'
+import { INotionPage } from 'redux/types'
 import {
   openChangeIconPopup,
   setChangeIconPopupCoords,
-} from 'redux/popupsSlice/slice'
-import { IconBlock, PageIcon } from './ItemIcon.styles'
-import { tooltipsCoords } from 'shared/Tooltips/Tooltip/coords'
+  setChangeIconPopupPage,
+} from 'redux/actions'
 import { changeIconPopupCoordsHandler } from 'utils/coordsHandlers'
+import { IconBlock, PageIcon } from './ItemIcon.styles'
 
-const PagesListItemIcon: React.FC<Props> = ({ icon, isHasIcon }) => {
-  const tooltipCoords = tooltipsCoords['pages-list-item-change-icon-btn']
-  const emptyPageIconParams = {
-    sizes: { width: 16, height: 16 },
-    transparency: 0.85,
-  } // * Переработать.
+const PagesListItemIcon: FC<INotionPage> = memo(props => {
+  const iconRef = useRef<HTMLDivElement>(null)
+  const iconRect = iconRef.current?.getBoundingClientRect()
+  const isHovering = useHover(iconRef)
   const dispatch = useDispatch()
 
-  const iconRef = useRef<HTMLDivElement>(null)
-  const isHovering: boolean = useHover(iconRef)
+  const changeIconPopupCoords = useMemo(() => {
+    return changeIconPopupCoordsHandler.sidebar(iconRect)
+  }, [iconRect])
 
-  const iconRect = iconRef.current?.getBoundingClientRect()
-  const changeIconPopupCoords =
-    changeIconPopupCoordsHandler.setCoordsBySidebar(iconRect)
+  const onOpenChangeIconPopup = useCallback(
+    (e: React.MouseEvent): void => {
+      e.stopPropagation()
 
-  const onOpenChangeIconPopup = (e: React.MouseEvent): void => {
-    e.stopPropagation()
-
-    dispatch(setChangeIconPopupCoords(changeIconPopupCoords))
-    dispatch(openChangeIconPopup())
-  }
+      console.log(props)
+      dispatch(openChangeIconPopup())
+      dispatch(setChangeIconPopupPage(props))
+      dispatch(setChangeIconPopupCoords(changeIconPopupCoords))
+    },
+    [dispatch, changeIconPopupCoords, props]
+  )
 
   return (
     <>
       <IconBlock ref={iconRef} onClick={onOpenChangeIconPopup}>
-        {isHasIcon ? (
-          <PageIcon src={icon} alt='Page icon' />
+        {props.iconInfo.isHasIcon ? (
+          <PageIcon src={props.iconInfo.iconUrl} alt='Icon' />
         ) : (
-          <EmptyPageIconSVG {...emptyPageIconParams} />
+          <EmptyPageIconSvg width={16} height={16} transparency={0.85} />
         )}
       </IconBlock>
-      {isHovering && <Tooltip title='Change icon' coords={tooltipCoords} />}
+      {isHovering && <ChangePageIconTooltip rect={iconRect} />}
     </>
   )
-}
+})
 
 export default PagesListItemIcon

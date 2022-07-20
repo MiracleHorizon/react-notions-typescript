@@ -4,7 +4,7 @@ const StyledContainer = styled.div`
   cursor: pointer;
   margin-right: 5px;
   border-radius: 3px;
-  transition: background 50ms ease-in-out;
+  transition: background 20ms ease-in 0s;
 
   :hover {
     background: rgba(55, 53, 47, 0.08);

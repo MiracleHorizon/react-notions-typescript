@@ -1,27 +1,29 @@
-import React, { useEffect } from 'react'
+import React, { FC, memo, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { useSelectItem } from 'hooks/useSelectItem'
+import { useEventListener } from 'usehooks-ts'
+
+import { useSelectItem } from 'hooks/mouse/useSelectItem'
 import { useKeyboardSelect } from 'hooks/keyboard/useKeyboardSelect'
 import { useKeyboardEnter } from 'hooks/keyboard/useKeyboardEnter'
-
 import EmptyPageList from './EmptyPageList'
-import { currentPageSelector } from 'redux/workSpaceSlice/selectors'
+import { currentPageSelector } from 'redux/selectors'
 import {
   EMPTY_PAGE_DECORATION_OPTIONS,
   EMPTY_PAGE_TEMPLATES_OPTIONS,
   EMPTY_PAGE_OPTION_TITLES as titles,
   EMPTY_PAGE_OPTIONS_LIST as options,
-} from 'redux/optionsSlice/optionsStorage'
+} from 'redux/reducers/optionsSlice/optionsStorage'
 import {
   EmptyPageWrapper,
+  PageTitle,
   DescriptionContainer,
   Description,
   TemplatesTitleContainer,
-  StyledTitle,
+  TemplatesTitle,
 } from './EmptyPage.styles'
 
-const EmptyPage: React.FC = () => {
-  const { id } = useSelector(currentPageSelector)
+const EmptyPage: FC = memo(() => {
+  const { _id, title } = useSelector(currentPageSelector)
   const { activeItem, setActiveItem, onSelectItem } = useSelectItem('')
 
   const onKeyboardSelectItem = useKeyboardSelect({
@@ -29,26 +31,21 @@ const EmptyPage: React.FC = () => {
     activeItem,
     setActiveItem,
   })
+
   const onKeyboardEnterItemAction = useKeyboardEnter({ activeItem, options })
 
   // [bugs][EmptyPage, Hooks].
   // In useEffect -> need to remove event listeners from empty page component
   // by click outside.
 
-  useEffect(() => {
-    document.addEventListener('keydown', onKeyboardSelectItem)
-    document.addEventListener('keydown', onKeyboardEnterItemAction)
+  useEventListener('keydown', onKeyboardSelectItem)
+  useEventListener('keydown', onKeyboardEnterItemAction)
 
-    return () => {
-      document.removeEventListener('keydown', onKeyboardSelectItem)
-      document.removeEventListener('keydown', onKeyboardEnterItemAction)
-    }
-  }, [onKeyboardSelectItem, onKeyboardEnterItemAction])
-
-  useEffect(() => setActiveItem(''), [id, setActiveItem])
+  useEffect(() => setActiveItem(''), [_id, setActiveItem])
 
   return (
     <EmptyPageWrapper>
+      <PageTitle>{title}</PageTitle>
       <DescriptionContainer>
         <Description>
           Press Enter to continue with an empty page, or pick a template (↑↓ to
@@ -59,20 +56,18 @@ const EmptyPage: React.FC = () => {
         list={EMPTY_PAGE_DECORATION_OPTIONS}
         activeItem={activeItem}
         onSelect={onSelectItem}
-        setActiveItem={setActiveItem}
+        // setActiveItem={setActiveItem}
       />
-      <div>
-        <TemplatesTitleContainer>
-          <StyledTitle>Templates</StyledTitle>
-        </TemplatesTitleContainer>
-        <EmptyPageList
-          list={EMPTY_PAGE_TEMPLATES_OPTIONS}
-          activeItem={activeItem}
-          onSelect={onSelectItem}
-        />
-      </div>
+      <TemplatesTitleContainer>
+        <TemplatesTitle>Templates</TemplatesTitle>
+      </TemplatesTitleContainer>
+      <EmptyPageList
+        list={EMPTY_PAGE_TEMPLATES_OPTIONS}
+        activeItem={activeItem}
+        onSelect={onSelectItem}
+      />
     </EmptyPageWrapper>
   )
-}
+})
 
 export default EmptyPage

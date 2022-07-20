@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-export const Global = createGlobalStyle`
+const Global = createGlobalStyle`
   html, body {
     height: 100vh;
     overflow: hidden;
@@ -77,6 +77,8 @@ export const Global = createGlobalStyle`
     background: #bfe5f4;
   }
 `
+
+export default Global
 
 //@mixin noselect {
 //  -webkit-touch-callout: none; /* iOS Safari */

@@ -1,45 +1,37 @@
 import styled from 'styled-components'
 
-const StyledPanel = styled.div`
+export const PanelWrapper = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
-  width: 100%;
+  flex: 0 0 auto;
   height: 45px;
   margin-top: auto;
   padding: 5px 10px;
   box-shadow: rgb(55 53 47 / 9%) 0 -1px 0;
   background: transparent;
   user-select: none;
+  transition: background 20ms ease-in 0s;
 
   :hover {
     background: rgba(55, 53, 47, 0.08);
-    transition: background 0.1s ease-in-out;
   }
   :active {
     background: rgba(55, 53, 47, 0.16);
-    transition: background 0.1s ease-in-out;
   }
 `
 
-const Button = styled.div`
+export const StyledPlusButton = styled.div`
   cursor: pointer;
   display: flex;
+  align-items: center;
+  justify-content: flex-start;
 `
 
-const Icon = styled.img`
-  width: 20px;
-  height: 20px;
-  border-radius: 3px;
-  opacity: 0.5;
-`
-
-const Title = styled.span`
+export const Title = styled.span`
   margin-left: 10px;
   font-size: 14px;
   font-weight: 500;
   line-height: 21px;
   color: rgba(55, 53, 47, 0.65);
 `
-
-export { StyledPanel, Button, Icon, Title }

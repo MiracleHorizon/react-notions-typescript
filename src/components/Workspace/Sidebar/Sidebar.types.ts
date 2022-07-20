@@ -1,12 +1,10 @@
-type SidebarLocations = 'Left' | 'Right'
+import { SidebarLocations } from 'redux/reducers/sidebarsSlice/types'
 
-interface SidebarWrapperProps {
-  location: SidebarLocations
+export default interface SidebarWrapperProps {
+  width: number
   isOpen: boolean
   isBubbling?: boolean
-  width: number
+  location: SidebarLocations
   isResizerHovering: boolean
   isResizingEnabled: boolean
 }
-
-export type { SidebarLocations, SidebarWrapperProps }

@@ -1,12 +1,14 @@
+import { useCallback } from 'react'
 import { useDispatch } from 'react-redux'
-import { ToggleSidebarBtnPurposes as Purposes } from 'shared/Buttons/ToggleSidebar/ToggleSidebarButton.types'
-import { SidebarLocations } from 'components/Workspace/Sidebar/Sidebar.types'
+
+import { SidebarLocations } from 'redux/reducers/sidebarsSlice/types'
+import { ToggleSidebarButtonPurposes as Purposes } from 'components/ui/Buttons/ToggleSidebar/ToggleSidebarButton.types'
 import {
   closeLeftSidebar,
   closeRightSidebar,
   openLeftSidebar,
   openRightSidebar,
-} from 'redux/sidebarsSlice/slice'
+} from 'redux/actions'
 
 interface Params {
   purpose: Purposes
@@ -19,15 +21,17 @@ export const useSidebarActionHandler = (params: Params) => {
   const { purpose, location } = params
   const dispatch = useDispatch()
 
-  if (purpose === Purposes.OPEN) {
-    return location === 'Left'
-      ? () => dispatch(openLeftSidebar())
-      : () => dispatch(openRightSidebar())
-  }
+  return useCallback(() => {
+    if (purpose === Purposes.OPEN) {
+      return location === 'Left'
+        ? dispatch(openLeftSidebar())
+        : dispatch(openRightSidebar())
+    }
 
-  if (purpose === Purposes.CLOSE) {
-    return location === 'Left'
-      ? () => dispatch(closeLeftSidebar())
-      : () => dispatch(closeRightSidebar())
-  }
+    if (purpose === Purposes.CLOSE) {
+      return location === 'Left'
+        ? dispatch(closeLeftSidebar())
+        : dispatch(closeRightSidebar())
+    }
+  }, [dispatch, location, purpose])
 }

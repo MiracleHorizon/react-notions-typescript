@@ -1,17 +1,17 @@
-import React from 'react'
+import React, { FC, memo } from 'react'
 import _ from 'lodash'
 
-import EmptyCommentsSVG from 'shared/SVG/EmptyComments'
+import { EmptyCommentsSvg } from 'components/ui/SVG'
 import { StyledContainer, Title, Description } from './EmptyRightSidebar.styles'
 
-const EmptyRightSidebar: React.FC<{ title: string }> = ({ title }) => (
+const EmptyRightSidebar: FC<{ title: string }> = memo(({ title }) => (
   <StyledContainer>
-    <EmptyCommentsSVG />
+    <EmptyCommentsSvg />
     <Title>No {title} comments yet</Title>
     <Description>
       {_.capitalize(title)} comments on this page will appear here
     </Description>
   </StyledContainer>
-)
+))
 
 export default EmptyRightSidebar

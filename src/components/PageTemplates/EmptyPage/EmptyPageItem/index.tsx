@@ -1,5 +1,6 @@
-import React, { useRef } from 'react'
-import { EmptyPageItemProps } from './EmptyPageItem.types'
+import React, { memo, useRef } from 'react'
+
+import Props from './EmptyPageItem.types'
 import {
   StyledItem,
   IconContainer,
@@ -7,14 +8,14 @@ import {
   Title,
 } from './EmptyPageItem.styles'
 
-const EmptyPageItem: React.FC<EmptyPageItemProps> = props => {
+const EmptyPageItem: React.FC<Props> = memo(props => {
   const { title, IconSVG, activeItem, action, onSelect } = props
   const itemRef = useRef<HTMLDivElement>(null)
 
   return (
     <StyledItem
-      {...{ isActive: activeItem === title }}
       ref={itemRef}
+      isActive={activeItem === title}
       onClick={action}
       onMouseEnter={() => onSelect(title)}
     >
@@ -26,6 +27,6 @@ const EmptyPageItem: React.FC<EmptyPageItemProps> = props => {
       </TitleContainer>
     </StyledItem>
   )
-}
+})
 
 export default EmptyPageItem

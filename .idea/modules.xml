@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../mern-blog/.idea/mern-blog.iml" filepath="$PROJECT_DIR$/../mern-blog/.idea/mern-blog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../mern-block-frontend/.idea/react-blog.iml" filepath="$PROJECT_DIR$/../mern-block-frontend/.idea/react-blog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../react-notions-backend/.idea/react-notions-backend.iml" filepath="$PROJECT_DIR$/../react-notions-backend/.idea/react-notions-backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/react-notions-typescript.iml" filepath="$PROJECT_DIR$/.idea/react-notions-typescript.iml" />
     </modules>
   </component>

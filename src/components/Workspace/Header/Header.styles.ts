@@ -1,17 +1,17 @@
 import styled from 'styled-components'
 
-const Wrapper = styled.header`
+const HeaderWrapper = styled.header`
   display: inline-flex;
   justify-content: flex-start;
-  max-width: 100vw;
   width: 100%;
+  max-width: 100vw;
   background: white;
   user-select: none;
   z-index: 100;
   // overflow: auto; !!!
 `
 
-const Container = styled.div`
+const HeaderContainer = styled.div`
   position: relative;
   display: flex;
   flex: 1 1 0;
@@ -28,4 +28,10 @@ const HeaderPanel = styled.div`
   padding-left: 12px;
 `
 
-export { Wrapper, Container, HeaderPanel }
+const PageTitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+export { HeaderWrapper, HeaderContainer, HeaderPanel, PageTitleWrapper }
